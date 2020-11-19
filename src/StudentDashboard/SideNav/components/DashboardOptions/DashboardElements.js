@@ -6,7 +6,7 @@ export const DashboardOptions = styled.div`
     height: auto;
     display: flex;
     flex-direction: column;
-    margin: 5vh 0 0 0
+    margin: 4vh 0 0 0
 `
 
 export const DashboardHeading = styled.div`
