@@ -10,13 +10,11 @@ import AssignmentResults from './AssignmentPages/AssignmentResult';
 import ChangePassword from './StudentDashboard/ChangePassword';
 import FeesPage from './StudentDashboard/FeesPage/App';
 import AssignmentPage from './AssignmentPages/AssignmentPage';
-import Mainpage from './CourseDashboard/components/mainpage';
+
 import VideoPage from './VideoPage/App';
 import Profile from './StudentDashboard/ProfileSettings/App.js';
-<<<<<<< Updated upstream
 import CourseDashboard from './CourseDashboard';
-=======
->>>>>>> Stashed changes
+import Mainpage from './VideoPage/components/mainpage';
 function App() {
   return (
     <Router>
@@ -31,10 +29,7 @@ function App() {
         <Route path="/enrolledcourses" component={Mainpage} />
         <Route path="/videopage" component={VideoPage} />
         <Route path="/profilesettings" component={Profile} />
-<<<<<<< Updated upstream
-        <Route path="/coursedashboard" component={CourseDashboard} />
-=======
->>>>>>> Stashed changes
+ 
       </div>
     </Router>
   );
