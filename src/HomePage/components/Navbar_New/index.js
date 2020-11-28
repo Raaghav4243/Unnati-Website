@@ -1,11 +1,11 @@
 // NavLogo should be a react-scroll-link when the user is on the homepage , however it should be a react router link to redirect the user
 // to the homepage of the website
 
-import React from 'react';
-import { FaBars } from 'react-icons/fa';
-import { ImBook } from 'react-icons/im';
-import UnnatiLogo from '../../icons/UnnatiTree.svg';
-import './Navbar.css';
+import React from "react";
+import { FaBars } from "react-icons/fa";
+import { ImBook } from "react-icons/im";
+import UnnatiLogo from "../../icons/UnnatiTree.svg";
+import "./Navbar.css";
 
 import {
   Nav,
@@ -19,7 +19,7 @@ import {
   NavLinks,
   NavbarRight,
   NavBtnLink,
-} from './NavbarElements';
+} from "./NavbarElements";
 
 const Navbar = ({ toggle }) => {
   return (
@@ -31,29 +31,29 @@ const Navbar = ({ toggle }) => {
           </MobileIcon>
           <NavbarMiddle>
             <NavLogo
-              to='home'
+              to="home"
               smooth={true}
               duration={500}
               spy={true}
-              exact='true'
+              exact="true"
               offset={-120}
             >
               <img
                 src={UnnatiLogo}
-                alt='UnnatiLogo'
-                style={{ height: '50px' }}
+                alt="UnnatiLogo"
+                style={{ height: "50px" }}
               />
               <NavName>U N N A T I</NavName>
             </NavLogo>
             <NavMenu>
               <NavItem>
                 <NavLinks
-                  to='home'
-                  className='home'
+                  to="home"
+                  className="home"
                   smooth={true}
                   duration={500}
                   spy={true}
-                  exact='true'
+                  exact="true"
                   offset={-120}
                 >
                   Home
@@ -61,23 +61,23 @@ const Navbar = ({ toggle }) => {
               </NavItem>
               <NavItem>
                 <NavLinks
-                  to='about'
+                  to="about"
                   smooth={true}
                   duration={500}
                   spy={true}
-                  exact='true'
-                  offset={-120}
+                  exact="true"
+                  offset={-100}
                 >
                   About Us
                 </NavLinks>
               </NavItem>
               <NavItem>
                 <NavLinks
-                  to='courses'
+                  to="courses"
                   smooth={true}
                   duration={500}
                   spy={true}
-                  exact='true'
+                  exact="true"
                   offset={-120}
                 >
                   Courses
@@ -85,25 +85,25 @@ const Navbar = ({ toggle }) => {
               </NavItem>
               <NavItem>
                 <NavLinks
-                  to='testimonials'
+                  to="testimonials"
                   smooth={true}
                   duration={500}
                   spy={true}
-                  exact='true'
-                  offset={-150}
+                  exact="true"
+                  offset={-120}
                 >
                   Student Stories
                 </NavLinks>
               </NavItem>
               <NavItem>
                 <NavLinks
-                  to='footer'
-                  className='contact'
+                  to="footer"
+                  className="contact"
                   smooth={true}
                   duration={500}
                   spy={true}
-                  exact='true'
-                  offset={-550}
+                  exact="true"
+                  offset={-120}
                 >
                   Contact Us
                 </NavLinks>
@@ -111,7 +111,7 @@ const Navbar = ({ toggle }) => {
             </NavMenu>
           </NavbarMiddle>
           <NavbarRight>
-            <NavBtnLink to='/signin'>Sign In</NavBtnLink>
+            <NavBtnLink to="/signin">Sign In</NavBtnLink>
           </NavbarRight>
         </NavbarContainer>
       </Nav>

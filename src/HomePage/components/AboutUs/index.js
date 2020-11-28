@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   AboutCardOne,
   AboutCardTwo,
@@ -6,21 +6,25 @@ import {
   AboutCardFour,
   AboutCardFive,
   AboutCardSix,
-} from './data';
+} from "./data";
 
 import {
   AboutUsContainer,
+  AboutTitleContainer,
   AboutTitle,
   AboutInfoWrapper,
-} from './AboutElements';
+} from "./AboutElements";
 
-import AboutUsCard from './AboutUsCard';
+import AboutUsCard from "./AboutUsCard";
 
 const AboutUs = () => {
   return (
     <>
-      <AboutUsContainer id='about'>
-        <AboutTitle>ABOUT US</AboutTitle>
+      <AboutUsContainer id="about">
+        <AboutTitleContainer>
+          <AboutTitle>ABOUT US</AboutTitle>
+        </AboutTitleContainer>
+
         <AboutInfoWrapper>
           <AboutUsCard {...AboutCardOne} />
           <AboutUsCard {...AboutCardTwo} />

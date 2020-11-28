@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const AboutItem = styled.div`
   border: 1px solid #000;
@@ -6,16 +6,19 @@ export const AboutItem = styled.div`
   height: 225px;
   width: 225px;
   padding: 2rem;
-  margin: 3rem;
+  /* margin: 3rem; */
 
   &:hover {
     background-color: red;
     transition: all 0.5s ease-in-out;
   }
 
+  /* 
   @media screen and (max-width: 900px) and (min-width: 768px) {
     margin: 3rem 1rem;
-  }
+  } */
+
+  margin: 3vw;
 `;
 
 export const ImgWrap = styled.div`
