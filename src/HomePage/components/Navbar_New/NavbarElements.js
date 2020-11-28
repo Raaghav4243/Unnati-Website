@@ -145,6 +145,7 @@ export const NavBtnLink = styled(LinkR)`
   outline: none;
   border: none;
   cursor: pointer;
+  text-decoration: none;
   transition: all 0.2s ease-in-out;
   text-decoration: none;
 

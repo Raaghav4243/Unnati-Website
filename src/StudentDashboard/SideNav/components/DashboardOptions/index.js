@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 import DashboardCard from './DashboardCard';
 import { DashboardHeading, DashboardOptions } from './DashboardElements';
@@ -9,8 +10,8 @@ const DashboardNavOptions = ({ img, option }) => {
         <>
         <DashboardOptions>
             <DashboardHeading>Dashboard</DashboardHeading>
-                <DashboardCard {...Option1} />
-                <DashboardCard {...Option2} />
+                <Link to="/studentdashboard"><DashboardCard {...Option1} /></Link>
+                <Link to="/enrolledcourses"><DashboardCard {...Option2} /></Link>
             </DashboardOptions>
         </>
     )

@@ -1,0 +1,19 @@
+*{ margin: 0; padding: 0; box-sizing: border-box;}
+
+.mainpage{
+    position: absolute;
+    width: 80vw;
+    height: 100vh;
+    left: 20vw;
+}
+
+.container{
+    padding-top: 4vh;
+    margin-left: 7vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.image{
+    padding-left: 40vw;
+}

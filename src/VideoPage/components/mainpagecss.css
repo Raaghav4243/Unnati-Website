@@ -1,0 +1,100 @@
+*{ margin: 0; padding: 0; box-sizing: border-box;}
+
+.mainpage{
+    position: absolute;
+    width: 80vw;
+    height: 100vh;
+    left: 20vw;
+}
+
+.biggestbigcontainer{
+    margin-right: 5vw;
+    display: flex;
+    flex-direction: column;
+}
+.enrolledcourse{
+    text-align: left;
+    font-size: 2.7vw;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+    font-family: sans-serif;
+    color: gray;
+    margin-left: 2vw;
+}
+
+.biggestcontainer{
+    display: flex;
+    flex-direction: row;
+    
+}
+.Buttons{
+    margin-top: 2.4vw ;
+    width: 5vw;
+    margin-right: 2vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.EachButton{
+    margin-top: 1.5vw;
+    margin-bottom: 1.5vw;
+}
+
+.Button1{
+    margin-top: 1.5vw;
+    margin-bottom: 1.5vw;
+}
+.biggy{
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 2px 2px 1px;
+}
+
+.leftmsexcel{
+    font-size: 1.4vw;
+    margin-top: 3.52vw;
+    margin-left: 3vw;
+    margin-right: 2vw;
+}
+.formsexcelpercent{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.msexcelright{
+    font-size: 2.2vw;
+    padding: 1vw;
+    padding-bottom: 0.2vw;
+    margin: 1vw;
+    margin-bottom: 1vw;
+    margin-top: 1vw;
+    border-bottom: 2px solid black;
+    padding-right: 9vw;
+    vertical-align: middle;
+    display: flex;
+    flex-direction: row;
+}
+.percent{
+    font-size: 2.2vw;
+    padding: 1vw;
+    margin: 1vw;
+    margin-bottom: 1.5vw;
+    margin-top: 1vw;
+    color: green;
+}
+
+.flexit{
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+    
+}
+
+.comp{
+    font-size: 1.1vw;
+     padding: 1.4vh;
+    vertical-align: middle;
+    display: flex;
+    flex-direction: row;
+}

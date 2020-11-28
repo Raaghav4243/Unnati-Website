@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import React from "react";
 import {
   CircularProgressbar,
@@ -159,3 +160,16 @@ const CourseDashboard = () => {
 };
 
 export default CourseDashboard;
+=======
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+
+
+ReactDOM.render(<App />,
+  document.getElementById('root')
+);
+
+
+>>>>>>> Stashed changes

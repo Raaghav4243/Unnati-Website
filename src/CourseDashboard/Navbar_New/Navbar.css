@@ -1,0 +1,12 @@
+@media screen and (max-width: 1000px) {
+  .home.home.home.home {
+    display: none;
+  }
+}
+
+/* Use class name multiple times to increase priority */
+@media screen and (max-width: 900px) {
+  .contact.contact.contact.contact {
+    display: none;
+  }
+}

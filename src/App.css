@@ -17,3 +17,8 @@
   --icon-size-small: 1.2rem;
   
 }
+
+a:-webkit-any-link {
+  cursor: pointer;
+  text-decoration: none;
+}
