@@ -10,12 +10,15 @@ import percentdata from './percentdata';
 import msexcel from '../msexcel2.jpg'
 import { CourseContentboxcontainer ,Page, CourseContentheading , CourseContentbox, MSexcelright, EnrolledCourses, Buttons, Card,Coursepage,Leftmsexcel,MSexcelPercentflexcontainer,EachButton,Pagecontent} from './styledcomponents';
 import SideNav from '../SideNav'
+import { Navbar } from '../../HomePage/components/Navbar_New';
 
 
 function Mainpage() {
     return (
+        <>
+        <Navbar />
             <Page>
-                <SideNav></SideNav>
+                <SideNav/>
             <Coursepage>
             <EnrolledCourses>ENROLLED COURSES</EnrolledCourses>
 
@@ -108,6 +111,7 @@ function Mainpage() {
             </Pagecontent>
             </Coursepage>
             </Page>
+            </>
     )
 }
 

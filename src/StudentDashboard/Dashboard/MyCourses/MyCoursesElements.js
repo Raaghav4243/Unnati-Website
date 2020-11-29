@@ -40,6 +40,7 @@ export const MyCoursesTopic = styled.div`
     flex-diretion: row;
     border-bottom: 2px solid grey;
     width: 15vw;
+    text-decoration: none;
 `;
 
 export const MyCoursesLogo = styled.img`

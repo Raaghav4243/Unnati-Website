@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { MyCoursesCard1 } from './data'
 import MyCourseCard from './MyCoursesCard'
 import { MyCourses, MyCoursesDiv, MyCoursesHeading } from './MyCoursesElements'
@@ -9,7 +8,7 @@ const MyCoursesElement = () => {
         <>
             <MyCourses>
                 <MyCoursesHeading>My Courses</MyCoursesHeading>
-               <MyCoursesDiv>
+                <MyCoursesDiv>
                     <MyCourseCard {...MyCoursesCard1} />
                     <MyCourseCard {...MyCoursesCard1} />
                     <MyCourseCard {...MyCoursesCard1} />

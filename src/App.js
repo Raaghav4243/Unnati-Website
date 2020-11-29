@@ -10,11 +10,10 @@ import AssignmentResults from './AssignmentPages/AssignmentResult';
 import ChangePassword from './StudentDashboard/ChangePassword';
 import FeesPage from './StudentDashboard/FeesPage/App';
 import AssignmentPage from './AssignmentPages/AssignmentPage';
-
 import VideoPage from './VideoPage/App';
 import Profile from './StudentDashboard/ProfileSettings/App.js';
-import CourseDashboard from './CourseDashboard';
 import Mainpage from './VideoPage/components/mainpage';
+import CourseDashboard from "./CourseDashboard";
 function App() {
   return (
     <Router>
@@ -29,6 +28,7 @@ function App() {
         <Route path="/enrolledcourses" component={Mainpage} />
         <Route path="/videopage" component={VideoPage} />
         <Route path="/profilesettings" component={Profile} />
+        <Route path="/coursedashboard" component={CourseDashboard} />
  
       </div>
     </Router>

@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 export const AssignmentStartPage = styled.div`
     display: flex;
+    height: calc(100vh - 65px);
 `;
 
 export const AssignmentStartDiv = styled.div`

@@ -9,9 +9,10 @@ import Percentcomponent from './percentcomponent';
 import percentdata from './percentdata';
 import msexcel from '../msexcel2.jpg'
 import { CourseContentboxcontainer ,Page, CourseContentheading , CourseContentbox, MSexcelright, EnrolledCourses, Buttons, Card,Coursepage,Leftmsexcel,MSexcelPercentflexcontainer,EachButton,Pagecontent} from './styledcomponents';
-
 import { Navbar } from '../../HomePage/components/Navbar_New';
 import SideNav from '../../StudentDashboard/SideNav/SideNav';
+
+
 
 
 function Mainpage() {
@@ -24,7 +25,7 @@ function Mainpage() {
             <EnrolledCourses>ENROLLED COURSES</EnrolledCourses>
 
             <Pagecontent>
-                <Leftmsexcel>MSEXCEL</Leftmsexcel>
+                <Leftmsexcel>MSWord</Leftmsexcel>
                 <Buttons>
                   <EachButton><input type="radio" name="pagelinked" value="page1"></input></EachButton>
                   <EachButton><input type="radio" name="pagelinked" value="page2"></input></EachButton>

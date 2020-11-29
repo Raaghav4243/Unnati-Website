@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { CourseSideNav } from '../../CourseDashboard/SideNav_Course/SideNav'
 import { Navbar } from '../../HomePage/components/Navbar_New'
 import SideNav from '../../StudentDashboard/SideNav/SideNav'
 import { AssignmentStartPage } from '../AssignmentStart/AssignmentStartElements'
@@ -12,7 +13,7 @@ const AssignmentPage = () => {
         <>
         <Navbar />
         <AssignmentStartPage>
-            <SideNav />
+            <CourseSideNav />
         <AssignmentPageDiv>
             <AssignmentPageHeading>ASSIGNMENT</AssignmentPageHeading>
             <AssignmentPageQuestionsDiv>

@@ -1,4 +1,5 @@
 import React from 'react'
+import { CourseSideNav } from '../../CourseDashboard/SideNav_Course/SideNav'
 import { Navbar } from '../../HomePage/components/Navbar_New'
 import SideNav from '../../StudentDashboard/SideNav/SideNav'
 import { AssignmentResultsDiv, AssignmentResultsHeading, AssignmentResultsPage } from './AssignmentResultElements'
@@ -10,7 +11,7 @@ const AssignmentResults = () => {
         <>
         <Navbar />
         <AssignmentResultsPage>
-            <SideNav />
+            <CourseSideNav />
             <AssignmentResultsDiv>
                 <AssignmentResultsHeading>
                     ASSIGNMENT

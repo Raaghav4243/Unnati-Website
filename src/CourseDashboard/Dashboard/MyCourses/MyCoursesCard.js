@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 import {
     MyCoursesCard, MyCoursesContents, MyCoursesInfo, MyCoursesLogo,
@@ -17,7 +16,7 @@ const MyCourseCard = ({ logo, name, percentage, nextlogo,
                 <MyCoursesInfo>
                     <MyCoursesTopic>
                         <MyCoursesLogo src={logo} />
-                        <MyCoursesName><Link to="coursedashboard">{name}</Link></MyCoursesName>
+                        <MyCoursesName>{name}</MyCoursesName>
                     </MyCoursesTopic>
                     <PercentageCompletion>{percentage} course complete</PercentageCompletion>
                 </MyCoursesInfo>
