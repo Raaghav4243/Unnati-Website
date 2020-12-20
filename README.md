@@ -1,3 +1,21 @@
+<h2>Dependencies</h2>
+
+<ul>
+    <li>styled-components</li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+
+<h2>File Format</h2>
+
+<ul>
+//libraries used
+//redux used
+//components used
+//styles used
+</ul>
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
