@@ -88,7 +88,6 @@ class AssignmentPage extends React.Component{
                         {optionB: 'optionB'},
                         {optionC: 'optionC'},
                         {optionD: 'optionD'}
-
                     ]
                 },{
                     question_number: 1,
@@ -157,7 +156,7 @@ class AssignmentPage extends React.Component{
     render(){
         return(
             <>
-            
+                
             </>
         )
     }
