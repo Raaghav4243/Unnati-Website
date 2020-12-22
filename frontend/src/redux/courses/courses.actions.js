@@ -1,60 +1,48 @@
-// import CartActionTypes from './cart.types';
+import CourseActionTypes from './courses.types';
 
-import CourseActionTypes from "./courses.types";
-
-// export const toggleCartHidden = () => ({
-//   type: CartActionTypes.TOGGLE_CART_HIDDEN
-// });
-
-// export const addItem = item => ({
-//   type: CartActionTypes.ADD_ITEM,
-//   payload: item
-// });
-
-// export const removeItem = item => ({
-//   type: CartActionTypes.REMOVE_ITEM,
-//   payload: item
-// });
-
-// export const clearItemFromCart = item => ({
-//   type: CartActionTypes.CLEAR_ITEM_FROM_CART,
-//   payload: item
-// });
-
-/* export const fetchCollectionsStartAsync = () => {
-  return dispatch => {
-    const collectionRef = firestore.collection('collections');
-    dispatch(fetchCollectionsStart());
-
-    collectionRef
-      .get()
-      .then(snapshot => {
-        const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
-        dispatch(fetchCollectionsSuccess(collectionsMap));
-      })
-      .catch(error => dispatch(fetchCollectionsFailure(error.message)));
-  };
-}; */
+// const { default: Axios } = require('axios');
 
 export const fetchAllCoursesStart = () => ({
-    type: CourseActionTypes.FETCH_ALL_COURSES_START
-  });
+  type: CourseActionTypes.FETCH_ALL_COURSES_START,
+});
 
-export const fetchAllCoursesSuccess = coursesMap => ({
+export const fetchAllCoursesSuccess = (allCoursesArray) => ({
   type: CourseActionTypes.FETCH_ALL_COURSES_SUCCESS,
-  payload: coursesMap
-})
+  payload: allCoursesArray,
+});
 
-export const fetchAllCoursesFailure = errorMessage => ({
+export const fetchAllCoursesFailure = (errorMessage) => ({
   type: CourseActionTypes.FETCH_ALL_COURSES_FAILURE,
-  payload: errorMessage
-})
+  payload: errorMessage,
+});
 
-export const fetchAllCoursesStartAsync = async () => {
-    return dispatch => {
-        let allCourses = await fetch('/all-courses');
-        dispatch(fetchAllCoursesStart())
+export const fetchAllCoursesStartAsync = () => {
+  //using promises
 
-        allCourses = allCourses.json();
+  // return (dispatch) => {
+  //   dispatch(fetchAllCoursesStart());
+  //   fetch('/all-courses')
+  //     .then((response) => response.json())
+  //     .then((allCoursesResponse) => {
+  //       const allCoursesArray = allCoursesResponse.courses;
+  //       console.log(allCoursesArray);
+  //       dispatch(fetchAllCoursesSuccess(allCoursesArray));
+  //     })
+  //     .catch((error) => dispatch(fetchAllCoursesFailure(error.message)));
+  // };
+
+  //using async/await
+
+  return async (dispatch) => {
+    try {
+      dispatch(fetchAllCoursesStart());
+      let allCourses = await fetch('/all-courses');
+      allCourses = await allCourses.json();
+      console.log(allCourses);
+      allCourses = allCourses.courses;
+      dispatch(fetchAllCoursesSuccess(allCourses));
+    } catch (error) {
+      dispatch(fetchAllCoursesFailure(error.message));
     }
-}
+  };
+};

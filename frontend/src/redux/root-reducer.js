@@ -1,14 +1,14 @@
-import { combineReducers } from "redux";
-import persistReducer from "redux-persist/es/persistReducer";
-import courseReducer from "./courses/courses.reducer";
+import { combineReducers } from 'redux';
+// import persistReducer from 'redux-persist/es/persistReducer';
 
-const persistCongfig = {
-    key: 'root'
-}
+import courseReducer from './courses/courses.reducer';
+
+// const persistCongfig = {
+//     key: 'root'
+// }
 
 const rootReducer = combineReducers({
-    course: courseReducer
-    
-})
+  course: courseReducer,
+});
 
-export default rootReducer
+export default rootReducer;
