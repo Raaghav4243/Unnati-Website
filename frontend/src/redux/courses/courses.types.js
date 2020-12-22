@@ -6,3 +6,10 @@
 // };
 
 // export default CartActionTypes;
+
+const CourseActionTypes = {
+    FETCH_ALL_COURSES: 'FETCH_ALL_COURSES',
+
+}
+
+export default CourseActionTypes

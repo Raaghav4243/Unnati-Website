@@ -1,22 +1,16 @@
 const INITIAL_STATE = {
-  allCourses: [],
-  /*
-  Each course's :
-    courseId,
-    courseName,
-    courseAvailableAtCafes,
-    courseSummary,
-*/
-  enrolledCourses: [],
-  currentCourse: undefined,
+  allCourses: []
 };
 
 const courseReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    
     default:
-      return state;
+      return {...state};
   }
 };
+
+
 
 // import CartActionTypes from './cart.types';
 // import { addItemToCart, removeItemFromCart } from './cart.utils';
@@ -61,11 +55,4 @@ const courseReducer = (state = INITIAL_STATE, action) => {
 
 
 
-all_courses : [],
-enrolled_courses : [],
-
-all_courses : [
-  {
-    course_name: 'MS EXCEL',
-  },{course_name: 'MS PPT',},{},{}
-]
+//]
