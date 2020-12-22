@@ -37,10 +37,18 @@ import CourseActionTypes from "./courses.types";
 }; */
 
 export const fetchAllCoursesStart = () => ({
-    type: CourseActionTypes.FETCH_ALL_COURSES
+    type: CourseActionTypes.FETCH_ALL_COURSES_START
   });
-  
 
+export const fetchAllCoursesSuccess = coursesMap => ({
+  type: CourseActionTypes.FETCH_ALL_COURSES_SUCCESS,
+  payload: coursesMap
+})
+
+export const fetchAllCoursesFailure = errorMessage => ({
+  type: CourseActionTypes.FETCH_ALL_COURSES_FAILURE,
+  payload: errorMessage
+})
 
 export const fetchAllCoursesStartAsync = async () => {
     return dispatch => {
@@ -48,6 +56,5 @@ export const fetchAllCoursesStartAsync = async () => {
         dispatch(fetchAllCoursesStart())
 
         allCourses = allCourses.json();
-        console.log(allCourses)
     }
 }
