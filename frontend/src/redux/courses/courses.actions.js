@@ -6,9 +6,9 @@ export const fetchAllCoursesStart = () => ({
   type: CourseActionTypes.FETCH_ALL_COURSES_START,
 });
 
-export const fetchAllCoursesSuccess = (allCoursesArray) => ({
+export const fetchAllCoursesSuccess = (allCourses) => ({
   type: CourseActionTypes.FETCH_ALL_COURSES_SUCCESS,
-  payload: allCoursesArray,
+  payload: allCourses,
 });
 
 export const fetchAllCoursesFailure = (errorMessage) => ({

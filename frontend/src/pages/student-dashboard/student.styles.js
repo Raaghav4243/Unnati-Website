@@ -40,3 +40,11 @@ export const CafeDetail2 = styled.div
 font-size: 3vh;
 font-family: Montserrat;
 `;
+
+export const EnrolledCoursesWrapper = styled.div
+` display: flex;
+width: 100vw;
+overflow-x: auto;
+overflow-y: hidden;
+`;
+

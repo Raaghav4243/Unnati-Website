@@ -1,20 +1,7 @@
 import styled from 'styled-components';
 
-export const MoreCourses = styled.div
-` display: flex;
-flex-direction: column;
- 
-`;
 
-export const Boxes = styled.div
-` display: flex;
-display: inline-block;
-height: 30vh;
-width:100vw;
-overflow-x: auto; 
-overflow-y: hidden;
-`;
-export const Box = styled.div
+export const MainCard = styled.div
 `   display: inline-block;
     border: 1px solid #eee;
     width: 17vw;
@@ -22,6 +9,7 @@ export const Box = styled.div
   background-image: linear-gradient(to right, #1E8983  , #0DC985);
      border-radius: 20px;
     margin-top:10px;
+    margin-left: 1vw;
   `;
   
 export const ConfirmChanges = styled.button

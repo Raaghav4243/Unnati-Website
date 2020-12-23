@@ -16,8 +16,7 @@ export const EnrolledCourseCard = styled.div`
  flex-direction: column;
  border-radius: 20px;
  background-image: linear-gradient(to right, #1E8983, #0DC985);
- overflow-x: auto; 
-overflow-y: hidden;
+ margin-left:1vw;
 `
 
 export const EnrolledCourseDetails = styled.div`

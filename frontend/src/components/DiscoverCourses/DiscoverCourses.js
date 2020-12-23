@@ -1,21 +1,17 @@
 import React from 'react'
-import {Box, Boxes, ConfirmChanges, MoreCourses, EnrolledCourseDetails, EnrolledCourseImg, EnrolledCourseName} from './DiscoverCard.styles'
+import {Box, ConfirmChanges, EnrolledCourseDetails, EnrolledCourseImg, EnrolledCourseName, MainCard} from './DiscoverCard.styles'
 import MicrosoftLogo from '../Assets/MicrosoftLogo.png';
 function DiscoverCard(props)
 {  const { course_name } = props;
 return(
-  <MoreCourses>
-    <Boxes>
-      <Box>
+      <MainCard>
       <EnrolledCourseDetails>
         <EnrolledCourseImg src={MicrosoftLogo}/>
         <EnrolledCourseName>{course_name}</EnrolledCourseName>
         </EnrolledCourseDetails>
         <ConfirmChanges>Explore More</ConfirmChanges>
-      </Box>
+      </MainCard>
       
-    </Boxes>
-    </MoreCourses>
    )  
 }
 

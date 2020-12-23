@@ -10,6 +10,7 @@ import {
   CafeDetail1,
   CafeDetail2,
   VerticleFlexBox2,
+  EnrolledCoursesWrapper,
 } from '../../pages/student-dashboard/student.styles';
 
 //libraries used
@@ -24,73 +25,77 @@ import { fetchAllCoursesStartAsync } from '../../redux/courses/courses.actions';
 //styles used
 
 class StudentDashboard extends React.Component {
-  constructor(props) {
+  /*constructor(props) {
     super(props);
 
     this.state = {
-      // cafe_details: {
-      //   cafe_name: 'XYZ School of Engineering',
-      //   cafe_address: ' Bhavana Road, Samaypur Badli, New Delhi - 110001',
-      //   faculty_incharge: 'Dr. Seema Singh',
-      //   student_number: '24',
-      //   course_percentage: '70',
-      //   course_name: 'MICROSOFT EXCEL ',
-      // },
-      // cafe_details: this.props.allCourses,
+      cafe_details: {
+         cafe_name: 'XYZ School of Engineering',
+        cafe_address: ' Bhavana Road, Samaypur Badli, New Delhi - 110001',
+        faculty_incharge: 'Dr. Seema Singh',
+        student_number: '24',
+        course_percentage: '70',
+       //course_name: 'MICROSOFT EXCEL ',
+       },
+       //cafe_details: this.props.allCourses,
     };
-  }
-
+  }*/
   componentDidMount() {
     const { fetchAllCoursesStartAsync } = this.props;
-
+    console.log('Component Mounted');
     fetchAllCoursesStartAsync();
   }
 
   render() {
-    // const {
-    //   cafe_name,
-    //   cafe_address,
-    //   faculty_incharge,
-    //   student_number,
-    //   course_percentage,
-    //   course_name,
-    // } = this.state.cafe_details;
+    const { allCourses } = this.props;
+    console.log(allCourses);
+    /*const {
+    cafe_name,
+    cafe_address,
+     faculty_incharge,
+    student_number,
+    course_percentage,
+   //   course_name,
+   } = this.state.cafe_details;*/
     console.log(this.props);
-    // const cafe_details = this.props.allCourses.courses;
     return (
       <>
-        {/* <HorizontalFlexBox>
+        <HorizontalFlexBox>
           <VerticleFlexBox>
             <CafeDetail>Cafe Details</CafeDetail>
             <CafeOverview
-              cafe_name={cafe_name}
-              cafe_address={cafe_address}
-              faculty_incharge={faculty_incharge}
+              cafe_name='bihi'
+              cafe_address='hihi'
+              faculty_incharge='hiji'
             />
           </VerticleFlexBox>
           <VerticleFlexBox>
             <CafeDetail1>You Have</CafeDetail1>
-            <ClassOverview student_number={student_number} />
+            <ClassOverview student_number='hihi' />
           </VerticleFlexBox>
         </HorizontalFlexBox>
         <VerticleFlexBox2>
           <CafeDetail2>Enrolled Course</CafeDetail2>
-          <Card
-            course_percentage={course_percentage}
-            course_name={course_name}
-          />
+          <EnrolledCoursesWrapper>{allCourses ? (
+            allCourses.map((course) => <Card course_name={course.subjectName} />)
+          ) : (
+              <h2>Loading...</h2>
+
+            )}
+            </EnrolledCoursesWrapper>
+
         </VerticleFlexBox2>
         <VerticleFlexBox2>
           <CafeDetail2>Discover More Courses</CafeDetail2>
+          <EnrolledCoursesWrapper>
+            {allCourses ? (
+              allCourses.map((course) => <DiscoverCard course_name={course.subjectName} />)
+            ) : (
+                <h2>Loading...</h2>
 
-          <DiscoverCard course_name={course_name} />
-        </VerticleFlexBox2> */}
-        <div>
-          {/* {cafe_details.map((cafe) => {
-            <h1>{cafe.subjectName}</h1>;
-          })} */}
-          <h1>STUDENT PAGE</h1>
-        </div>
+              )}
+            </EnrolledCoursesWrapper>
+        </VerticleFlexBox2>
       </>
     );
   }
@@ -101,7 +106,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchAllCoursesStartAsync: () => dispatch(fetchAllCoursesStartAsync),
+  fetchAllCoursesStartAsync: () => dispatch(fetchAllCoursesStartAsync()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(StudentDashboard);
