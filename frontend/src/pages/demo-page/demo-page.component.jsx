@@ -14,7 +14,7 @@ class DemoPage extends React.Component {
     //   fetchAllCoursesStartAsync();
     // }, 1000);
     fetchAllCoursesStartAsync();
-    console.log(this.props)
+    // console.log(this.props)
   }
 
   componentDidUpdate() {

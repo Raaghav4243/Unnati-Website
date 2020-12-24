@@ -5,6 +5,7 @@ const INITIAL_STATE = {
     username: 'samar123',
     email: 'a@c.com',
     _id: '5fa6af42769f165e982b2ea9',
+    cafe_id: '5fa5796e9542c50df4285b04',
     firstName: 'Samar',
     lastName: 'singh',
     phoneNumber: '1234567890',

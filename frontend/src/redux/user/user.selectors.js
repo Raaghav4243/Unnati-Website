@@ -27,6 +27,11 @@ export const selectCurrentUserId = createSelector(
   (currentUser) => currentUser._id
 );
 
+export const selectCurrentUserCafeId = createSelector(
+  [selectCurrentUser],
+  (currentUser) => currentUser.cafe_id
+);
+
 export const selectCurrentUserEmail = createSelector(
   [selectCurrentUser],
   (currentUser) => currentUser.email
