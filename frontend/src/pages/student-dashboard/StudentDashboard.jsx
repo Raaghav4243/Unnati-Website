@@ -21,16 +21,13 @@ import { createStructuredSelector } from 'reselect';
 import { selectAllCourses } from '../../redux/courses/courses.selectors';
 import { fetchAllCoursesStartAsync } from '../../redux/courses/courses.actions';
 import { selectCurrentUserId } from '../../redux/user/user.selectors';
-import { selectUserCafeDetails } from '../../redux/cafe/cafe.selectors';
-import { fetchUserCafeStartAsync } from '../../redux/cafe/cafe.actions';
+import { selectUserCafeDetails  } from '../../redux/cafe/cafe.selectors';
+import { fetchUserCafeStartAsync } from '../../redux/cafe/cafe.actions'
 import { CafeDetails } from '../../components/CafeDetails/Cafe.Details.Styles';
-import {
-  selectCafeTeacherDetails,
-  selectUserCafeDetailsLocation,
-} from '../../redux/cafe/cafe.selectors';
 //components used
 
 //styles used
+
 
 class StudentDashboard extends React.Component {
   componentDidMount() {
@@ -40,11 +37,11 @@ class StudentDashboard extends React.Component {
     fetchUserCafeStartAsync();
   }
 
+
   render() {
-    const { userId, UserCafe, allCourses, teacher, cafeLocation } = this.props;
+    const { userId, userCafe, allCourses}= this.props;
     console.log(allCourses);
-    console.log(userId);
-    console.log(UserCafe);
+    console.log(userCafe);
     return (
       <>
         <HorizontalFlexBox>
@@ -52,11 +49,8 @@ class StudentDashboard extends React.Component {
             <CafeDetail>Cafe Details</CafeDetail>
             <CafeOverview
               cafe_name='hi'
-              cafe_address={cafeLocation}
-              // faculty_incharge={
-              //   teacher ? teacher.firstname + teacher.lastname : null
-              // }
-              faculty_incharge='Anshul'
+              cafe_address={userCafe ? userCafe.location : null}
+              faculty_incharge='hi'
             />
           </VerticleFlexBox>
           <VerticleFlexBox>
@@ -72,8 +66,8 @@ class StudentDashboard extends React.Component {
                 <Card course_name={course.subjectName} />
               ))
             ) : (
-              <h2>Loading...</h2>
-            )}
+                <h2>Loading...</h2>
+              )}
           </EnrolledCoursesWrapper>
         </VerticleFlexBox2>
         <VerticleFlexBox2>
@@ -84,8 +78,8 @@ class StudentDashboard extends React.Component {
                 <DiscoverCard course_name={course.subjectName} />
               ))
             ) : (
-              <h2>Loading...</h2>
-            )}
+                <h2>Loading...</h2>
+              )}
           </EnrolledCoursesWrapper>
         </VerticleFlexBox2>
       </>
@@ -95,9 +89,7 @@ class StudentDashboard extends React.Component {
 const mapStateToProps = createStructuredSelector({
   allCourses: selectAllCourses,
   userId: selectCurrentUserId,
-  UserCafe: selectUserCafeDetails,
-  teacher: selectCafeTeacherDetails,
-  cafeLocation: selectUserCafeDetailsLocation,
+  userCafe: selectUserCafeDetails,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -105,4 +97,6 @@ const mapDispatchToProps = (dispatch) => ({
   fetchUserCafeStartAsync: () => dispatch(fetchUserCafeStartAsync()),
 });
 
+
 export default connect(mapStateToProps, mapDispatchToProps)(StudentDashboard);
+

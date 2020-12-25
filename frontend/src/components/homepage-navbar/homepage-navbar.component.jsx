@@ -10,7 +10,7 @@ import { selectCurrentUser } from '../../redux/user/user.selectors';
 //components used
 import SignInButton from '../sign-in-button-link/sign-in-button-link.component';
 import { FaBars } from 'react-icons/fa';
-import { ReactComponent as UnnatiLogo } from '../../icons/UnnatiTree.svg';
+//import { ReactComponent as UnnatiLogo } from '../../icons/UnnatiTree.svg';
 import GoToDashboardButton from '../go-to-dashboard-button-link/go-to-dashboard-button-link.component';
 import {
   Transition,
@@ -67,9 +67,9 @@ class HomePageNavbar extends React.Component {
               </MobileIcon>
               <NavbarMiddle>
                 <NavLogo>
-                  <LogoWrapper>
+                  {/* <LogoWrapper>
                     <UnnatiLogo style={{ height: '100%' }} />
-                  </LogoWrapper>
+                  </LogoWrapper> */}
                   <NavTitle>UNNATI</NavTitle>
                 </NavLogo>
                 <NavMenu>
