@@ -4,6 +4,7 @@ const INITIAL_STATE = {
   isFetching: false,
   userCafe: null,
   errorMessage: undefined,
+  cafe: null,
 };
 
 const cafeReducer = (state = INITIAL_STATE, action) => {
@@ -17,7 +18,7 @@ const cafeReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isFetching: false,
-        UserCafe: action.payload,
+        userCafe: action.payload,
       };
     case CafeActionTypes.FETCH_CAFE_FAILURE:
       return {
