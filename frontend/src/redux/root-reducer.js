@@ -14,7 +14,7 @@ const rootReducer = combineReducers({
   user: userReducer,
   course: courseReducer,
   homePage: homePageReducer,
-  cafedetails : cafeReducer,
+  cafeDetails: cafeReducer,
 });
 
 export default rootReducer;

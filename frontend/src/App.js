@@ -6,7 +6,7 @@ import StudentDashboard from './pages/student-dashboard/StudentDashboard';
 // import SideNav from './components/SideNav/SideNav';
 
 function App() {
-  return <HomePage />;
+  return <StudentDashboard />;
 }
 
 // function App() {

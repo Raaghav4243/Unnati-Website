@@ -1,8 +1,8 @@
-import CafeActionTypes from './cafe.types'
+import CafeActionTypes from './cafe.types';
 
 const INITIAL_STATE = {
   isFetching: false,
-  UserCafe: null,
+  userCafe: null,
   errorMessage: undefined,
 };
 

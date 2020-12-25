@@ -22,26 +22,26 @@ import { selectAllCourses } from '../../redux/courses/courses.selectors';
 import { fetchAllCoursesStartAsync } from '../../redux/courses/courses.actions';
 import { selectCurrentUserId } from '../../redux/user/user.selectors';
 import { selectUserCafeDetails } from '../../redux/cafe/cafe.selectors';
-import { fetchUserCafeStartAsync } from '../../redux/cafe/cafe.actions'
+import { fetchUserCafeStartAsync } from '../../redux/cafe/cafe.actions';
 import { CafeDetails } from '../../components/CafeDetails/Cafe.Details.Styles';
-import { selectCafeTeacherDetails} from '../../redux/cafe/cafe.selectors'
+import {
+  selectCafeTeacherDetails,
+  selectUserCafeDetailsLocation,
+} from '../../redux/cafe/cafe.selectors';
 //components used
 
 //styles used
 
-
 class StudentDashboard extends React.Component {
-  componentDidMount() 
-  {
+  componentDidMount() {
     const { fetchAllCoursesStartAsync, fetchUserCafeStartAsync } = this.props;
     console.log('Component Mounted');
     fetchAllCoursesStartAsync();
     fetchUserCafeStartAsync();
   }
-  
 
   render() {
-    const { userId,UserCafe,  allCourses, teacher } = this.props;
+    const { userId, UserCafe, allCourses, teacher, cafeLocation } = this.props;
     console.log(allCourses);
     console.log(userId);
     console.log(UserCafe);
@@ -52,8 +52,11 @@ class StudentDashboard extends React.Component {
             <CafeDetail>Cafe Details</CafeDetail>
             <CafeOverview
               cafe_name='hi'
-              cafe_address={UserCafe ? UserCafe.location : null }
-              faculty_incharge={teacher ? teacher.firstname + teacher.lastname : null }
+              cafe_address={cafeLocation}
+              // faculty_incharge={
+              //   teacher ? teacher.firstname + teacher.lastname : null
+              // }
+              faculty_incharge='Anshul'
             />
           </VerticleFlexBox>
           <VerticleFlexBox>
@@ -92,8 +95,9 @@ class StudentDashboard extends React.Component {
 const mapStateToProps = createStructuredSelector({
   allCourses: selectAllCourses,
   userId: selectCurrentUserId,
-  UserCafe: selectUserCafeDetails, 
+  UserCafe: selectUserCafeDetails,
   teacher: selectCafeTeacherDetails,
+  cafeLocation: selectUserCafeDetailsLocation,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -101,6 +105,4 @@ const mapDispatchToProps = (dispatch) => ({
   fetchUserCafeStartAsync: () => dispatch(fetchUserCafeStartAsync()),
 });
 
-
 export default connect(mapStateToProps, mapDispatchToProps)(StudentDashboard);
-
