@@ -21,54 +21,39 @@ import { createStructuredSelector } from 'reselect';
 import { selectAllCourses } from '../../redux/courses/courses.selectors';
 import { fetchAllCoursesStartAsync } from '../../redux/courses/courses.actions';
 import { selectCurrentUserId } from '../../redux/user/user.selectors';
+import { selectUserCafeDetails } from '../../redux/cafe/cafe.selectors';
+import { fetchUserCafeStartAsync } from '../../redux/cafe/cafe.actions'
+import { CafeDetails } from '../../components/CafeDetails/Cafe.Details.Styles';
+import { selectCafeTeacherDetails} from '../../redux/cafe/cafe.selectors'
 //components used
 
 //styles used
 
-class StudentDashboard extends React.Component {
-  /*constructor(props) {
-    super(props);
 
-    this.state = {
-      cafe_details: {
-         cafe_name: 'XYZ School of Engineering',
-        cafe_address: ' Bhavana Road, Samaypur Badli, New Delhi - 110001',
-        faculty_incharge: 'Dr. Seema Singh',
-        student_number: '24',
-        course_percentage: '70',
-       //course_name: 'MICROSOFT EXCEL ',
-       },
-       //cafe_details: this.props.allCourses,
-    };
-  }*/
-  componentDidMount() {
-    const { fetchAllCoursesStartAsync } = this.props;
+class StudentDashboard extends React.Component {
+  componentDidMount() 
+  {
+    const { fetchAllCoursesStartAsync, fetchUserCafeStartAsync } = this.props;
     console.log('Component Mounted');
     fetchAllCoursesStartAsync();
+    fetchUserCafeStartAsync();
   }
+  
 
   render() {
-    const { userId, allCourses } = this.props;
+    const { userId,UserCafe,  allCourses, teacher } = this.props;
     console.log(allCourses);
     console.log(userId);
-    /*const {
-    cafe_name,
-    cafe_address,
-     faculty_incharge,
-    student_number,
-    course_percentage,
-   //   course_name,
-   } = this.state.cafe_details;*/
-    // console.log(this.props);
+    console.log(UserCafe);
     return (
       <>
         <HorizontalFlexBox>
           <VerticleFlexBox>
             <CafeDetail>Cafe Details</CafeDetail>
             <CafeOverview
-              cafe_name='bihi'
-              cafe_address='hihi'
-              faculty_incharge='hiji'
+              cafe_name='hi'
+              cafe_address={UserCafe ? UserCafe.location : null }
+              faculty_incharge={teacher ? teacher.firstname + teacher.lastname : null }
             />
           </VerticleFlexBox>
           <VerticleFlexBox>
@@ -104,14 +89,18 @@ class StudentDashboard extends React.Component {
     );
   }
 }
-
 const mapStateToProps = createStructuredSelector({
   allCourses: selectAllCourses,
   userId: selectCurrentUserId,
+  UserCafe: selectUserCafeDetails, 
+  teacher: selectCafeTeacherDetails,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   fetchAllCoursesStartAsync: () => dispatch(fetchAllCoursesStartAsync()),
+  fetchUserCafeStartAsync: () => dispatch(fetchUserCafeStartAsync()),
 });
 
+
 export default connect(mapStateToProps, mapDispatchToProps)(StudentDashboard);
+
