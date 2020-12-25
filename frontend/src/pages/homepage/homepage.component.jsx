@@ -4,7 +4,8 @@ import React, { useState } from 'react';
 //redux used
 
 //components used
-
+import HomePageNavbar from '../../components/homepage-navbar/homepage-navbar.component';
+import HeroSection from '../../components/hero-section/hero-section.components';
 //styles used
 
 class HomePage extends React.Component {
@@ -17,22 +18,13 @@ class HomePage extends React.Component {
   render() {
     return (
       <>
-        <div></div>
+        <HomePageNavbar />
+        <HeroSection />
+
+        <div style={{ height: '4000px', backgroundColor: 'red' }}></div>
       </>
     );
   }
 }
 
-/*
-
-Sign up:
-- we have to make sure that user fills in the details for signing in after sign up.
-- No use of JWT in sign up
-
-Login : 
-- JWT Token is used here
-- Token is received from backend
-- Store token in redux and local storage using data.token
-- 
-
-*/
+export default HomePage;
