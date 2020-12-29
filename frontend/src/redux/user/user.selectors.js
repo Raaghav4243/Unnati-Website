@@ -7,15 +7,15 @@ export const selectCurrentUser = createSelector(
   (user) => user.currentUser
 );
 
-export const selecCurrentUserUserName = createSelector(
+export const selectCurrentUserUserName = createSelector(
   [selectCurrentUser],
   (currentUser) => currentUser.username
 );
 
-export const selecCurrentUserFirstName = createSelector(
+export const selectCurrentUserFirstName = createSelector(
   [selectCurrentUser],
-  (currentUser) => currentUser.firstName
-);
+  (currentUser) => currentUser.firstName,
+  );
 
 export const selectCurrentUserLastName = createSelector(
   [selectCurrentUser],
