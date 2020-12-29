@@ -21,25 +21,22 @@ import { createStructuredSelector } from 'reselect';
 import { selectAllCourses } from '../../redux/courses/courses.selectors';
 import { fetchAllCoursesStartAsync } from '../../redux/courses/courses.actions';
 import { selectCurrentUserId } from '../../redux/user/user.selectors';
-import { selectUserCafeDetails  } from '../../redux/cafe/cafe.selectors';
-import { fetchUserCafeStartAsync } from '../../redux/cafe/cafe.actions'
+import { selectUserCafeDetails } from '../../redux/cafe/cafe.selectors';
+import { fetchUserCafeStartAsync } from '../../redux/cafe/cafe.actions';
 import { CafeDetails } from '../../components/CafeDetails/Cafe.Details.Styles';
 //components used
 
 //styles used
-
 
 class StudentDashboard extends React.Component {
   componentDidMount() {
     const { fetchAllCoursesStartAsync, fetchUserCafeStartAsync } = this.props;
     console.log('Component Mounted');
     fetchAllCoursesStartAsync();
-    fetchUserCafeStartAsync();
   }
 
-
   render() {
-    const { userId, userCafe, allCourses}= this.props;
+    const { userId, userCafe, allCourses } = this.props;
     console.log(allCourses);
     console.log(userCafe);
     return (
@@ -66,8 +63,8 @@ class StudentDashboard extends React.Component {
                 <Card course_name={course.subjectName} />
               ))
             ) : (
-                <h2>Loading...</h2>
-              )}
+              <h2>Loading...</h2>
+            )}
           </EnrolledCoursesWrapper>
         </VerticleFlexBox2>
         <VerticleFlexBox2>
@@ -78,8 +75,8 @@ class StudentDashboard extends React.Component {
                 <DiscoverCard course_name={course.subjectName} />
               ))
             ) : (
-                <h2>Loading...</h2>
-              )}
+              <h2>Loading...</h2>
+            )}
           </EnrolledCoursesWrapper>
         </VerticleFlexBox2>
       </>
@@ -97,6 +94,4 @@ const mapDispatchToProps = (dispatch) => ({
   fetchUserCafeStartAsync: () => dispatch(fetchUserCafeStartAsync()),
 });
 
-
 export default connect(mapStateToProps, mapDispatchToProps)(StudentDashboard);
-

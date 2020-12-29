@@ -1,5 +1,4 @@
 import CafeActionTypes from '../../redux/cafe/cafe.types';
-import { selectCurrentUserCafeId } from '../user/user.selectors';
 
 export const fetchUserCafeStart = () => ({
   type: CafeActionTypes.FETCH_CAFE_START,
@@ -14,14 +13,14 @@ export const fetchUserCafeFailure = (errorMessage) => ({
   type: CafeActionTypes.FETCH_CAFE_FAILURE,
   payload: errorMessage,
 });
-const cafeId = ' 5fa5796e9542c50df4285b04';
+// const cafeId = ' 5fa5796e9542c50df4285b04';
 
 export const fetchUserCafeStartAsync = () => {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
     try {
       dispatch(fetchUserCafeStart());
-      // const cafeId = selectCurrentUserCafeId();
-      // console.log('cafeId = ' + cafeId);
+      const cafeId = getState().user.cafe_id;
+      console.log('cafe id is' + cafeId);
       let userCafe = await fetch(`/cafeinformation/${cafeId}`);
       userCafe = await userCafe.json();
       console.log(userCafe.cafe);

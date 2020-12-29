@@ -4,7 +4,6 @@ const INITIAL_STATE = {
   isFetching: false,
   userCafe: null,
   errorMessage: undefined,
-  cafe: null,
 };
 
 const cafeReducer = (state = INITIAL_STATE, action) => {
