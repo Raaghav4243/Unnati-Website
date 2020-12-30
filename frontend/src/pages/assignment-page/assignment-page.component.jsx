@@ -1,5 +1,7 @@
 import React from 'react'
-//import './assignment-page.component'
+import SideNav from '../../components/SideNav/SideNav'
+import { NavBar } from '../course-video/course-video-page.styles'
+import {hdiv} from './assignment-page.component'
 import data from './data'
 
 class AssignmentPage extends React.Component {
@@ -7,7 +9,7 @@ class AssignmentPage extends React.Component {
         super()
         this.state = {
             resp: {},
-            score: null,
+            score: 0,
             sahijawab: [],
             jawab: []
         }
@@ -62,14 +64,16 @@ class AssignmentPage extends React.Component {
 
 
     render() {
-        let qnumber = 0
         return (
             <>
+                <NavBar />
+                <hdiv>
+                <SideNav />
                 <div>
-                {
-                        this.state.score ? <div>your score is: {this.state.score}</div> : null
-                }
+                    Assignment - 1 {data.assignment.assignmentName}
                 </div>
+
+                
                 <form onChange={(e) => this.handleOnChange(e)}>
                     
                     {
@@ -102,7 +106,13 @@ class AssignmentPage extends React.Component {
                     }
                     <button onClick={(e) => this.handleClick(e)}>submit</button>
                 </form>
+                <div>
+                {
+                        this.state.score ? <div>your score is: {this.state.score}</div> : null
+                }
+                </div>
 
+                </hdiv>
 
             </>
 

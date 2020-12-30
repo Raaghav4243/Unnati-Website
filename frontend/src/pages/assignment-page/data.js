@@ -53,125 +53,125 @@ const data = {
                 "maxMarks": 10,
                 "__v": 0
             },
-            //{
-            //    "correctAns": [
-            //        "test2"
-            //    ],
-            //    "options": [
-            //        "test1",
-            //        "test2",
-            //        "test3",
-            //        "test4"
-            //    ],
-            //    "_id": "5fa6b84511ef256644d5afaf",
-            //    "type": "SINGLECORRECT",
-            //    "number": '4',
-            //    "statement": "correct option 2",
-            //    "maxMarks": 10,
-            //    "__v": 0
-            //},
-            //{
-            //    "correctAns": [
-            //        "test2"
-            //    ],
-            //    "options": [
-            //        "test1",
-            //        "test2",
-            //        "test3",
-            //        "test4"
-            //    ],
-            //    "_id": "5fa6b84511ef256644d5afaf",
-            //    "type": "SINGLECORRECT",
-            //    "number": '5',
-            //    "statement": "correct option 2",
-            //    "maxMarks": 10,
-            //    "__v": 0
-            //},
-            //{
-            //    "correctAns": [
-            //        "test2"
-            //    ],
-            //    "options": [
-            //        "test1",
-            //        "test2",
-            //        "test3",
-            //        "test4"
-            //    ],
-            //    "_id": "5fa6b84511ef256644d5afaf",
-            //    "type": "SINGLECORRECT",
-            //    "number": '6',
-            //    "statement": "correct option 2",
-            //    "maxMarks": 10,
-            //    "__v": 0
-            //},
-            //{
-            //    "correctAns": [
-            //        "test2"
-            //    ],
-            //    "options": [
-            //        "test1",
-            //        "test2",
-            //        "test3",
-            //        "test4"
-            //    ],
-            //    "_id": "5fa6b84511ef256644d5afaf",
-            //    "type": "SINGLECORRECT",
-            //    "number": '7',
-            //    "statement": "correct option 2",
-            //    "maxMarks": 10,
-            //    "__v": 0
-            //},
-            //{
-            //    "correctAns": [
-            //        "test2"
-            //    ],
-            //    "options": [
-            //        "test1",
-            //        "test2",
-            //        "test3",
-            //        "test4"
-            //    ],
-            //    "_id": "5fa6b84511ef256644d5afaf",
-            //    "type": "SINGLECORRECT",
-            //    "number": '8',
-            //    "statement": "correct option 2",
-            //    "maxMarks": 10,
-            //    "__v": 0
-            //},
-            //{
-            //    "correctAns": [
-            //        "test2"
-            //    ],
-            //    "options": [
-            //        "test1",
-            //        "test2",
-            //        "test3",
-            //        "test4"
-            //    ],
-            //    "_id": "5fa6b84511ef256644d5afaf",
-            //    "type": "SINGLECORRECT",
-            //    "number": '9',
-            //    "statement": "correct option 2",
-            //    "maxMarks": 10,
-            //    "__v": 0
-            //},
-            //{
-            //    "correctAns": [
-            //        "test2"
-            //    ],
-            //    "options": [
-            //        "test1",
-            //        "test2",
-            //        "test3",
-            //        "test4"
-            //    ],
-            //    "_id": "5fa6b84511ef256644d5afaf",
-            //    "type": "SINGLECORRECT",
-            //    "number": '10',
-            //    "statement": "correct option 2",
-            //    "maxMarks": 10,
-            //    "__v": 0
-            //}
+            {
+                "correctAns": [
+                    "test2"
+                ],
+                "options": [
+                    "test1",
+                    "test2",
+                    "test3",
+                    "test4"
+                ],
+                "_id": "5fa6b84511ef256644d5afaf",
+                "type": "SINGLECORRECT",
+                "number": '4',
+                "statement": "correct option 2",
+                "maxMarks": 10,
+                "__v": 0
+            },
+            {
+                "correctAns": [
+                    "test2"
+                ],
+                "options": [
+                    "test1",
+                    "test2",
+                    "test3",
+                    "test4"
+                ],
+                "_id": "5fa6b84511ef256644d5afaf",
+                "type": "SINGLECORRECT",
+                "number": '5',
+                "statement": "correct option 2",
+                "maxMarks": 10,
+                "__v": 0
+            },
+            {
+                "correctAns": [
+                    "test2"
+                ],
+                "options": [
+                    "test1",
+                    "test2",
+                    "test3",
+                    "test4"
+                ],
+                "_id": "5fa6b84511ef256644d5afaf",
+                "type": "SINGLECORRECT",
+                "number": '6',
+                "statement": "correct option 2",
+                "maxMarks": 10,
+                "__v": 0
+            },
+            {
+                "correctAns": [
+                    "test2"
+                ],
+                "options": [
+                    "test1",
+                    "test2",
+                    "test3",
+                    "test4"
+                ],
+                "_id": "5fa6b84511ef256644d5afaf",
+                "type": "SINGLECORRECT",
+                "number": '7',
+                "statement": "correct option 2",
+                "maxMarks": 10,
+                "__v": 0
+            },
+            {
+                "correctAns": [
+                    "test2"
+                ],
+                "options": [
+                    "test1",
+                    "test2",
+                    "test3",
+                    "test4"
+                ],
+                "_id": "5fa6b84511ef256644d5afaf",
+                "type": "SINGLECORRECT",
+                "number": '8',
+                "statement": "correct option 2",
+                "maxMarks": 10,
+                "__v": 0
+            },
+            {
+                "correctAns": [
+                    "test2"
+                ],
+                "options": [
+                    "test1",
+                    "test2",
+                    "test3",
+                    "test4"
+                ],
+                "_id": "5fa6b84511ef256644d5afaf",
+                "type": "SINGLECORRECT",
+                "number": '9',
+                "statement": "correct option 2",
+                "maxMarks": 10,
+                "__v": 0
+            },
+            {
+                "correctAns": [
+                    "test2"
+                ],
+                "options": [
+                    "test1",
+                    "test2",
+                    "test3",
+                    "test4"
+                ],
+                "_id": "5fa6b84511ef256644d5afaf",
+                "type": "SINGLECORRECT",
+                "number": '10',
+                "statement": "correct option 2",
+                "maxMarks": 10,
+                "__v": 0
+            }
         ],
         "_id": "5fdaecf25aa95631647c4089",
         "subjectCode": "T1011",
