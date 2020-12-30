@@ -12,7 +12,7 @@ import StudentDashboard from './pages/student-dashboard/StudentDashboard';
 function App() {
   // return <StudentDashboard />;
   // return <DemoPage />;
-  return <AssignmentPage />;
+  return <StudentDashboard />;
   // return <CourseVideo/>;
 }
 

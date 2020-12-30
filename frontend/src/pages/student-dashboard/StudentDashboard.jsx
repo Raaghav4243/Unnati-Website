@@ -24,6 +24,7 @@ import { selectCurrentUserId } from '../../redux/user/user.selectors';
 import { selectUserCafeDetails  } from '../../redux/cafe/cafe.selectors';
 import { fetchUserCafeStartAsync } from '../../redux/cafe/cafe.actions'
 import { CafeDetails } from '../../components/CafeDetails/Cafe.Details.Styles';
+import SideNav from '../../components/SideNav/SideNav';
 //components used
 
 //styles used
@@ -45,6 +46,7 @@ class StudentDashboard extends React.Component {
     return (
       <>
         <HorizontalFlexBox>
+          
           <VerticleFlexBox>
             <CafeDetail>Cafe Details</CafeDetail>
             <CafeOverview
