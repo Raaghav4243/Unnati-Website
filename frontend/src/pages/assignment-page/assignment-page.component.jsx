@@ -1,6 +1,7 @@
 import React from 'react'
 import SideNav from '../../components/SideNav/SideNav'
 import {hdiv} from './assignment-page.component'
+import { QuestionWrapper, AssignmentWrapper , WrappingQuestions, AssignmentName, AssignmentForm, AllQuestions, Questions, Options } from './assignment-page.styles'
 import data from './data'
 
 class AssignmentPage extends React.Component {
@@ -66,15 +67,15 @@ class AssignmentPage extends React.Component {
         return (
             <>
                
-                <hdiv>
-                <SideNav />
-                <div>
+                <AssignmentWrapper>
+                {/* <SideNav /> */}
+                <WrappingQuestions>
+                <AssignmentName>
                     Assignment - 1 {data.assignment.assignmentName}
-                </div>
-
+                </AssignmentName>
                 
-                <form onChange={(e) => this.handleOnChange(e)}>
-                    
+                <AssignmentForm onChange={(e) => this.handleOnChange(e)}>
+                <AllQuestions>
                     {
                         
                         data.assignment.questions.map((question) => {
@@ -83,35 +84,41 @@ class AssignmentPage extends React.Component {
 
                             return (
                                 <>
-                                    <label key={question._id}>{question.statement}<br /></label>
+                                    <QuestionWrapper>
+                                    <Questions key={question._id}>{question.statement}<br /></Questions>
                                     {question.options.map((option, index) => {
                                         //   console.log(option)
                                         return (
                                             <>
-                                                <label key={index} htmlFor={question.number}>
+                                                <Options key={index} htmlFor={question.number}>
                                                     <input
                                                         type='radio' key={question.statement} value={option} id={option} name={question.number} />
                                                     {option}
-                                                </label>
+                                                </Options>
                                                
                                                 <br />
                                             </>
                                         )
                                     })}
+                                    </QuestionWrapper>
                                 </>
                             )
 
                         })
                     }
+                    </AllQuestions>
                     <button onClick={(e) => this.handleClick(e)}>submit</button>
-                </form>
+                    
+                </AssignmentForm>
+                </WrappingQuestions>
+                </AssignmentWrapper>
                 <div>
                 {
                         this.state.score ? <div>your score is: {this.state.score}</div> : null
                 }
                 </div>
 
-                </hdiv>
+                
 
             </>
 
