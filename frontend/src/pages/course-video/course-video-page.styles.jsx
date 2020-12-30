@@ -14,17 +14,17 @@ background: #ffffff;
   font-family: 'Montserrat', sans-serif;
 `
 
-export const SideNav = styled.div`
-width: 20vw;
-height: 89vh;
-background: #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2.5vw;
-  border: 4px solid black;
-  font-family: 'Montserrat', sans-serif;
-`
+//export const SideNav = styled.div`
+//width: 20vw;
+//height: 89vh;
+//background: #ffffff;
+//  display: flex;
+//  justify-content: center;
+//  align-items: center;
+//  font-size: 2.5vw;
+//  border: 4px solid black;
+//  font-family: 'Montserrat', sans-serif;
+//`
 
 export const CourseVideoPage = styled.div`
 display: flex;

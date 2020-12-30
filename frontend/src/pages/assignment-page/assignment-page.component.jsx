@@ -1,6 +1,5 @@
 import React from 'react'
 import SideNav from '../../components/SideNav/SideNav'
-import { NavBar } from '../course-video/course-video-page.styles'
 import {hdiv} from './assignment-page.component'
 import data from './data'
 
@@ -66,7 +65,7 @@ class AssignmentPage extends React.Component {
     render() {
         return (
             <>
-                <NavBar />
+               
                 <hdiv>
                 <SideNav />
                 <div>

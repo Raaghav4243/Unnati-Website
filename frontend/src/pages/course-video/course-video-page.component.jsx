@@ -4,9 +4,9 @@ import CourseNotesDownload from '../../components/course-video/course-notes.comp
 import { 
     CourseVideoPDFContainer, 
     CourseVideoPage, 
-    SideNav,
     NavBar} from './course-video-page.styles'
 import pdf from '../../TopicNotes.pdf'
+import SideNav from '../../components/SideNav/SideNav'
 
 
 export class CourseVideo extends Component {
@@ -14,7 +14,7 @@ export class CourseVideo extends Component {
         return  <>
             <NavBar>NAVBAR</NavBar>
             <CourseVideoPage>
-                <SideNav>SIDENAV</SideNav>
+                <SideNav />
                 <CourseVideoPDFContainer>
                     <CourseVideoPlayer url="https://www.youtube.com/watch?v=YqQx75OPRa0" ></CourseVideoPlayer>
                     <CourseNotesDownload download={pdf}></CourseNotesDownload>
