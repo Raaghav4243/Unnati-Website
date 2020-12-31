@@ -3,3 +3,21 @@
   font-family: 'Montserrat', sans-serif;
   max-width: 100%;
 }
+
+:root{
+  --heading-font: 1.6rem;
+  --heading-font-small: 1.3rem;
+  --subheading-font: 1.1rem;
+  --subheading-font-small: 0.8rem;
+  --profile-pic: 5.7rem;
+  --profile-pic-small: 4rem;
+  --font-style: 'Montserrat', sans-serif;
+  --icon-size: 1.2rem;
+  --icon-size-small: 1.2rem;
+  
+}
+
+a:-webkit-any-link {
+  cursor: pointer;
+  text-decoration: none;
+}
