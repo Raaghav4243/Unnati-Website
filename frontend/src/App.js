@@ -8,9 +8,9 @@ import StudentDashboard from './pages/student-dashboard/StudentDashboard';
 // import SideNav from './components/SideNav/SideNav';
 
 function App() {
-  // return <StudentDashboard />;
+  return <StudentDashboard />;
   // return <DemoPage />;
-  return <Profile />;
+  // return <Profile />;
   // return <CourseVideo/>;
 }
 

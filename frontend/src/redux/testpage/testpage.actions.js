@@ -1,16 +1,16 @@
-import { UserActionTypes } from './user.types';
+import { TestPageActionTypes } from './testpage.types';
 
-export const fetchUserStart = () => ({
-  type: UserActionTypes.FETCH_USER_START,
+export const fetchTestStart = () => ({
+  type: TestPageActionTypes.FETCH_TEST_START,
 });
 
-export const fetchUserSuccess = (user) => ({
-  type: UserActionTypes.FETCH_USER_SUCCESS,
-  payload: user,
+export const fetchUserSuccess = (testDetails) => ({
+  type: TestPageActionTypes.FETCH_TEST_SUCCESS,
+  payload: testDetails,
 });
 
 export const fetchUserFailure = (errorMessage) => ({
-  type: UserActionTypes.FETCH_USER_FAILURE,
+  type: TestPageActionTypes.FETCH_TEST_FAILURE,
   payload: errorMessage,
 });
 
