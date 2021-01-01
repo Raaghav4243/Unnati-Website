@@ -1,6 +1,6 @@
-import React from 'react';
+//import React from 'react';
 
-class StudentCoursePage extends React.Component {
+/*class StudentCoursePage extends React.Component {
   constructor() {
     super();
 
@@ -20,12 +20,16 @@ class StudentCoursePage extends React.Component {
         <div>Student Course Page</div>
         {/* {current_topic === 'LECTURE' ? (
           <LectureComponent topic_id={} l_id={} />
-        ) : null} */}
-        {/* {current_topic === 'TEST' ? <LectureComponent /> : null} */}
-        {/* {current_topic === 'ASSIGNMENT' ? <LectureComponent /> : null} */}
-      </>
-    );
-  }
+        ) : null} */
+{
+  /* {current_topic === 'TEST' ? <LectureComponent /> : null} */
 }
+{
+  /* {current_topic === 'ASSIGNMENT' ? <LectureComponent /> : null} */
+}
+//       </>
+//     );
+//   }
+// }
 
-export default StudentCoursePage;
+// export default StudentCoursePage; */

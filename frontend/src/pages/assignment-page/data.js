@@ -168,7 +168,7 @@ const data = {
                 "_id": "5fa6b84511ef256644d5afaf",
                 "type": "SINGLECORRECT",
                 "number": '10',
-                "statement": "correct option 2",
+                "statement": "second is the corret option",
                 "maxMarks": 10,
                 "__v": 0
             }

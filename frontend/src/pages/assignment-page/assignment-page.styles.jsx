@@ -25,12 +25,12 @@ export const AssignmentName = styled.div`
 export const AssignmentForm = styled.form`
 margin-top:1vh;
 `
-export const AllQuestions = styled.form`
+export const AllQuestions = styled.div`
 overflow: auto;
 `
-export const Questions = styled.label`
+export const Questions = styled.div`
  margin-left : 2vw;
 `
-export const Options = styled.label`
+export const Options = styled.div`
  margin-left : 2vw;
 `
