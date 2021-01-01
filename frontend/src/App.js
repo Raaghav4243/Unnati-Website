@@ -14,7 +14,7 @@ import StudentCoursePage from './pages/demo-student-course-page/demo-student-cou
 function App() {
   // return <StudentDashboard />;
   // return <DemoPage />;
-  return <AssignmentPage />;
+  return <HomePage />;
   // return <CourseVideo/>;
 }
 

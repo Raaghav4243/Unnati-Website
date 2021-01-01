@@ -35,30 +35,36 @@ export const NavbarContainer = styled.div`
   width: 100%;
   padding: 0 24px;
   max-width: 1600px;
+
+  @media screen and (max-width: 425px) {
+    /* font-size: 20px; */
+    padding: 0 10px;
+  }
 `;
 export const MobileIconSideNav = styled.div`
   display: none;
 
   @media screen and (max-width: 768px) {
-    width: 20%;
+    width: 30px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     font-size: 1.8rem;
     cursor: pointer;
     color: #000;
-  }
-
-  @media screen and (max-width: 498px) {
     font-size: 20px;
+    border: 1px solid pink;
   }
 `;
 export const NavbarMiddle = styled.div`
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 80%;
+  border: 1px solid blue;
 
   @media screen and (max-width: 768px) {
-    padding-left: 50px;
+    /* padding-left: 50px; */
     justify-content: center;
     width: 65%;
   }
@@ -68,31 +74,89 @@ export const NavLogo = styled(LinkS)`
   display: flex;
   align-items: center;
   cursor: pointer;
+  border: 1px solid yellow;
+  width: 225px;
+  width: 50%;
+  @media screen and (max-width: 768px) {
+    width: auto;
+    height: auto;
+    padding: 10px;
+    font-size: 0.75rem;
+  }
 `;
 
 export const LogoWrapper = styled.div`
-  height: 90%;
+  height: 100%;
+  padding: 0.25rem;
+  width: 75px;
   display: flex;
   align-items: center;
+  justify-content: center;
+  /* border: 1px solid yellow; */
+  border-radius: 50px;
+  background-color: #fff;
 `;
 
-export const NavTitle = styled.p``;
+export const NavTitle = styled.p`
+  color: #fff;
+  font-weight: bolder;
+  font-size: 1.5rem;
+  margin: 0 0.5rem;
+
+  &.scroll {
+    color: #000;
+    transition: all 200ms ease-in-out;
+  }
+`;
 export const NavMenu = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   list-style: none;
   text-align: center;
+  border: 1px solid orange;
+  height: 100%;
+
   /* width: 600px; */
   /* padding-left: 20px; */
   @media screen and (max-width: 768px) {
     display: none;
   }
 `;
-export const NavItem = styled.div``;
-export const NavLink = styled(LinkS)``;
+export const NavItem = styled.div`
+  border: 1px solid pink;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  min-width: 80px;
+`;
+export const NavLink = styled(LinkS)`
+  cursor: pointer;
+  /* height: 100%; */
+  color: #fff;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  /* text-transform: uppercase; */
+  cursor: pointer;
+  transition: all 200ms ease-in-out;
+
+  &.active {
+    /* border-bottom: 1px solid orange; */
+    /* color: orange;
+    transition: all 200ms ease; */
+  }
+
+  &.scroll {
+    color: #000;
+    transition: all 200ms ease-in-out;
+  }
+`;
 export const NavbarRight = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid green;
 `;

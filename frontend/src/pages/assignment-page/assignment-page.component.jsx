@@ -80,6 +80,7 @@ class AssignmentPage extends React.Component {
 
   render() {
     const i = 0;
+    const { jawab, sahijawab } = this.state;
     return (
       <>
         <AssignmentWrapper>
@@ -144,15 +145,13 @@ class AssignmentPage extends React.Component {
         <div>
           {this.state.jawab ? (
             <div>
-              {jawab.map(
-                (userResponse = () => {
-                  if (sahijawab[i++] === userResponse) {
-                    return <div>USER GAVE CORRECT ANSWER!</div>;
-                  } else {
-                    return <div>USER GAVE WRONG ANSWER!</div>;
-                  }
-                })
-              )}
+              {jawab.map((userResponse) => {
+                if (sahijawab[i++] === userResponse) {
+                  return <div>USER GAVE CORRECT ANSWER!</div>;
+                } else {
+                  return <div>USER GAVE WRONG ANSWER!</div>;
+                }
+              })}
             </div>
           ) : null}
         </div>

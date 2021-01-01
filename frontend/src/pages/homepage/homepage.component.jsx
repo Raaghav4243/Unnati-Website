@@ -21,7 +21,24 @@ class HomePage extends React.Component {
         <HomePageNavbar />
         <HeroSection />
 
-        <div style={{ height: '4000px', backgroundColor: 'red' }}></div>
+        <div style={{ height: '2000px', backgroundColor: 'red' }} id='courses'>
+          COURSES OFFERED
+        </div>
+        <div style={{ height: '2000px', backgroundColor: 'blue' }} id='about'>
+          ABOUT US
+        </div>
+        <div
+          style={{ height: '2000px', backgroundColor: 'yellow' }}
+          id='testimonials'
+        >
+          STUDENT STORIES
+        </div>
+        <div
+          style={{ height: '2000px', backgroundColor: 'green' }}
+          id='signupsection'
+        >
+          SIGN UP NOW!
+        </div>
       </>
     );
   }

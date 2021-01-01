@@ -10,6 +10,7 @@ import { selectCurrentUser } from '../../redux/user/user.selectors';
 //components used
 import SignInButton from '../sign-in-button-link/sign-in-button-link.component';
 import { FaBars } from 'react-icons/fa';
+import { ReactComponent as UnnatiLogo } from '../../icons/UnnatiTree.svg';
 //import { ReactComponent as UnnatiLogo } from '../../icons/UnnatiTree.svg';
 import GoToDashboardButton from '../go-to-dashboard-button-link/go-to-dashboard-button-link.component';
 import {
@@ -67,20 +68,52 @@ class HomePageNavbar extends React.Component {
             </MobileIconSideNav>
             <NavbarMiddle>
               <NavLogo>
-                {/* <LogoWrapper>
-                    <UnnatiLogo style={{ height: '100%' }} />
-                  </LogoWrapper> */}
-                <NavTitle>UNNATI</NavTitle>
+                <LogoWrapper>
+                  <UnnatiLogo style={{ height: '100%' }} />
+                </LogoWrapper>
+                <NavTitle className={this.state.changedColor ? 'scroll' : null}>
+                  U N N A T I
+                </NavTitle>
               </NavLogo>
               <NavMenu>
                 <NavItem>
-                  <NavLink>Home</NavLink>
+                  <NavLink
+                    to='home'
+                    smooth={true}
+                    duration={500}
+                    spy={true}
+                    exact='true'
+                    offset={-60}
+                    className={this.state.changedColor ? 'scroll' : null}
+                  >
+                    Home
+                  </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink>About Us</NavLink>
+                  <NavLink
+                    to='courses'
+                    smooth={true}
+                    duration={500}
+                    spy={true}
+                    exact='true'
+                    offset={-60}
+                    className={this.state.changedColor ? 'scroll' : null}
+                  >
+                    Courses
+                  </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink>Courses</NavLink>
+                  <NavLink
+                    to='about'
+                    smooth={true}
+                    duration={500}
+                    spy={true}
+                    exact='true'
+                    offset={-60}
+                    className={this.state.changedColor ? 'scroll' : null}
+                  >
+                    About Us
+                  </NavLink>
                 </NavItem>
               </NavMenu>
             </NavbarMiddle>

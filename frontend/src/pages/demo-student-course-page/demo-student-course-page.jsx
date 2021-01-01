@@ -18,11 +18,11 @@ class StudentCoursePage extends React.Component {
     return (
       <>
         <div>Student Course Page</div>
-        {current_topic === 'LECTURE' ? (
+        {/* {current_topic === 'LECTURE' ? (
           <LectureComponent topic_id={} l_id={} />
-        ) : null}
-        {current_topic === 'TEST' ? <LectureComponent /> : null}
-        {current_topic === 'ASSIGNMENT' ? <LectureComponent /> : null}
+        ) : null} */}
+        {/* {current_topic === 'TEST' ? <LectureComponent /> : null} */}
+        {/* {current_topic === 'ASSIGNMENT' ? <LectureComponent /> : null} */}
       </>
     );
   }
