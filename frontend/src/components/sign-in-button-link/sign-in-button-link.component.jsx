@@ -8,10 +8,12 @@ import { SignInBtnLink } from './sign-in-button-link.styles';
 
 //styles used
 
-const SignInButton = () => {
+const SignInButton = ({ scrollClass }) => {
   return (
     <>
-      <SignInBtnLink to='/signin'>Sign In</SignInBtnLink>
+      <SignInBtnLink to='/signin' className={scrollClass ? 'scroll' : null}>
+        Sign In
+      </SignInBtnLink>
     </>
   );
 };

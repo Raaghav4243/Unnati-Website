@@ -12,7 +12,7 @@ import SideNav from './components/SideNav/SideNav';
 function App() {
   // return <StudentDashboard />;
   // return <DemoPage />;
-  return <AssignmentPage />;
+  return <HomePage />;
   // return <CourseVideo/>;
 }
 

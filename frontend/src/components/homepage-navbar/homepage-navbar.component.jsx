@@ -16,7 +16,7 @@ import {
   Transition,
   Nav,
   NavbarContainer,
-  MobileIcon,
+  MobileIconSideNav,
   NavbarMiddle,
   NavLogo,
   LogoWrapper,
@@ -59,37 +59,45 @@ class HomePageNavbar extends React.Component {
 
     return (
       <>
-        <Transition>
-          <Nav className={this.state.changedColor ? 'scroll' : null}>
-            <NavbarContainer>
-              <MobileIcon onClick={toggleSidenavHidden}>
-                <FaBars />
-              </MobileIcon>
-              <NavbarMiddle>
-                <NavLogo>
-                  {/* <LogoWrapper>
+        {/* <Transition> */}
+        <Nav className={this.state.changedColor ? 'scroll' : null}>
+          <NavbarContainer>
+            <MobileIconSideNav onClick={toggleSidenavHidden}>
+              <FaBars />
+            </MobileIconSideNav>
+            <NavbarMiddle>
+              <NavLogo>
+                {/* <LogoWrapper>
                     <UnnatiLogo style={{ height: '100%' }} />
                   </LogoWrapper> */}
-                  <NavTitle>UNNATI</NavTitle>
-                </NavLogo>
-                <NavMenu>
-                  <NavItem>
-                    <NavLink>Home</NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink>About Us</NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink>Courses</NavLink>
-                  </NavItem>
-                </NavMenu>
-              </NavbarMiddle>
-              <NavbarRight>
-                {user ? <GoToDashboardButton /> : <SignInButton />}
-              </NavbarRight>
-            </NavbarContainer>
-          </Nav>
-        </Transition>
+                <NavTitle>UNNATI</NavTitle>
+              </NavLogo>
+              <NavMenu>
+                <NavItem>
+                  <NavLink>Home</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink>About Us</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink>Courses</NavLink>
+                </NavItem>
+              </NavMenu>
+            </NavbarMiddle>
+            <NavbarRight>
+              {user ? (
+                <GoToDashboardButton
+                  scrollClass={this.state.changedColor ? true : false}
+                />
+              ) : (
+                <SignInButton
+                  scrollClass={this.state.changedColor ? true : false}
+                />
+              )}
+            </NavbarRight>
+          </NavbarContainer>
+        </Nav>
+        {/* </Transition> */}
         {/* <UnnatiLogo /> */}
       </>
     );

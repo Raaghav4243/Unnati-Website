@@ -4,19 +4,18 @@ import { Link as LinkS } from 'react-scroll';
 export const Transition = styled.div``;
 
 export const Nav = styled.div`
-  /* background: #ffffff; */
-  /* background-color: #f8971d; */
-  /* background-color: #000; */
   background: transparent;
   height: 75px;
   display: flex;
   justify-content: center;
   align-items: center;
   /* position: sticky; */
+  border: 1px solid red;
   width: 100%;
   position: fixed !important;
   top: 0;
   z-index: 9999;
+  transition: all 200ms ease-in-out;
   /* box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.07); */
 
   &.scroll {
@@ -24,6 +23,8 @@ export const Nav = styled.div`
     /* visibility: visible; */
     transition: all 200ms ease-in-out;
     color: black;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.07);
+    border: 0;
   }
 `;
 export const NavbarContainer = styled.div`
@@ -33,9 +34,9 @@ export const NavbarContainer = styled.div`
   z-index: 1;
   width: 100%;
   padding: 0 24px;
-  max-width: 1450px;
+  max-width: 1600px;
 `;
-export const MobileIcon = styled.div`
+export const MobileIconSideNav = styled.div`
   display: none;
 
   @media screen and (max-width: 768px) {
@@ -49,7 +50,7 @@ export const MobileIcon = styled.div`
   }
 
   @media screen and (max-width: 498px) {
-    font-size: 1.3rem;
+    font-size: 20px;
   }
 `;
 export const NavbarMiddle = styled.div`
@@ -76,7 +77,22 @@ export const LogoWrapper = styled.div`
 `;
 
 export const NavTitle = styled.p``;
-export const NavMenu = styled.div``;
+export const NavMenu = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+  text-align: center;
+  /* width: 600px; */
+  /* padding-left: 20px; */
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+`;
 export const NavItem = styled.div``;
 export const NavLink = styled(LinkS)``;
-export const NavbarRight = styled.div``;
+export const NavbarRight = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;

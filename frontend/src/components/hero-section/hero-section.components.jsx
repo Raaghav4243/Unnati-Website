@@ -6,7 +6,6 @@ import React, { useState } from 'react';
 //components used
 import HeroButton from '../hero-button/hero-button.component';
 import Video from '../../videos/video.mp4';
-import { FaChevronRight, FaArrowRight } from 'react-icons/fa';
 //styles used
 
 import {
@@ -45,13 +44,10 @@ const HeroSection = () => {
             backgroundColorOnHover='transparent'
             color='#000'
             colorOnHover='#F8971D'
-            borderOnHover='1px solid #F8971D'
+            borderOnHover='0.5px solid #F8971D'
           >
             Get Started
-            {/* <div style={{ marginTop: '6.5px' }}>
-              {hover ? <ArrowForward /> : <ArrowRight />}{' '}
-            </div> */}
-            {hover ? <FaArrowRight /> : <FaChevronRight />}
+            {hover ? <ArrowForward /> : <ArrowRight />}
           </HeroButton>
         </HeroBtnWrapper>
       </HeroContent>

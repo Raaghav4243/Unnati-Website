@@ -4,7 +4,7 @@
   max-width: 100%;
 }
 
-:root{
+:root {
   --heading-font: 1.6rem;
   --heading-font-small: 1.3rem;
   --subheading-font: 1.1rem;
@@ -14,8 +14,9 @@
   --font-style: 'Montserrat', sans-serif;
   --icon-size: 1.2rem;
   --icon-size-small: 1.2rem;
-  
 }
+
+/* ENACTUS ORANGE : background-color: #f8971d; */
 
 a:-webkit-any-link {
   cursor: pointer;
