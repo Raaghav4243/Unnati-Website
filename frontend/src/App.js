@@ -8,11 +8,13 @@ import Profile from './pages/Profile-page/profile-page.component';
 //import { SideNav } from './pages/Profile-page/profile-page.styled.components';
 import StudentDashboard from './pages/student-dashboard/StudentDashboard';
 import SideNav from './components/SideNav/SideNav';
+import CourseSideNav from './components/course-sidenav/course-sidenav.components';
+import StudentCoursePage from './pages/demo-student-course-page/demo-student-course-page';
 
 function App() {
   // return <StudentDashboard />;
   // return <DemoPage />;
-  return <HomePage />;
+  return <AssignmentPage />;
   // return <CourseVideo/>;
 }
 
