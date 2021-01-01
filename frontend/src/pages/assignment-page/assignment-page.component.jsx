@@ -78,16 +78,17 @@ class AssignmentPage extends React.Component {
                 <AllQuestions>
                     {
                         
-                        data.assignment.questions.map((question) => {
+                        data.assignment.questions.map((question, number) => {
                             
                             //console.log(option)
 
                             return (
                                 <>
                                     <QuestionWrapper>
-                                    <Questions key={question._id}>{question.statement}<br /></Questions>
+                                    <Questions key={number}>Q{question.number}) {question.statement}<br /></Questions>
                                     {question.options.map((option, index) => {
                                         //   console.log(option)
+                                        //console.log(number)
                                         return (
                                             <>
                                                 <Options key={index} htmlFor={question.number}>
@@ -97,9 +98,20 @@ class AssignmentPage extends React.Component {
                                                 </Options>
                                                
                                                 <br />
+                                                
                                             </>
+                                            
                                         )
+                                        
                                     })}
+                                    {
+                                            this.state.jawab ? <div>Your response is:
+                                                {
+                                                    this.state.jawab[1]
+                                                }
+                                                 </div> : null
+                                    }
+                                    
                                     </QuestionWrapper>
                                 </>
                             )
