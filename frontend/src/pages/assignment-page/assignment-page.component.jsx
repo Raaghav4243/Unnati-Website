@@ -1,6 +1,5 @@
 import React from 'react';
 import SideNav from '../../components/SideNav/SideNav';
-import { hdiv } from './assignment-page.component';
 import {
   QuestionWrapper,
   AssignmentWrapper,
@@ -25,8 +24,8 @@ class AssignmentPage extends React.Component {
   }
 
   handleOnChange = (e) => {
-    console.log(e.target.value);
-    console.log(e.target.name);
+    //console.log(e.target.value);
+    //console.log(e.target.name);
     // const responses = this.resp.push({name: [e.target.value]})
     //console.log(responses)
     //  this.setState({ selectedOption: e.target.value});
@@ -79,11 +78,12 @@ class AssignmentPage extends React.Component {
   };
 
   render() {
-    const i = 0;
+    let i = -1
     return (
       <>
-        <AssignmentWrapper>
-          {/* <SideNav /> */}
+      
+          <AssignmentWrapper>
+          
           <WrappingQuestions>
             <AssignmentName>
               Assignment - 1 {data.assignment.assignmentName}
@@ -106,7 +106,7 @@ class AssignmentPage extends React.Component {
                           //console.log(number)
                           return (
                             <>
-                              <Options key={index} htmlFor={question.number}>
+                              <Options>
                                 <input
                                   type='radio'
                                   key={question.statement}
@@ -114,19 +114,16 @@ class AssignmentPage extends React.Component {
                                   id={option}
                                   name={question.number}
                                 />
-                                {option}
+                                <label key={index} htmlFor={option}>{option}</label>
+                                <br />
                               </Options>
+                              <div>
 
-                              <br />
+                              </div>
                             </>
                           );
                         })}
-                        {this.state.jawab ? (
-                          <div>
-                            Your response is:
-                            {this.state.jawab[1]}
-                          </div>
-                        ) : null}
+
                       </QuestionWrapper>
                     </>
                   );
@@ -136,26 +133,50 @@ class AssignmentPage extends React.Component {
             </AssignmentForm>
           </WrappingQuestions>
         </AssignmentWrapper>
+        
+        <>
+          <div>
+            {this.state.score ? (
+              <div>your score is: {this.state.score}</div>
+            ) : null}
+          </div>
         <div>
-          {this.state.score ? (
-            <div>your score is: {this.state.score}</div>
-          ) : null}
-        </div>
-        <div>
-          {this.state.jawab ? (
+          {this.state.jawab ?
             <div>
-              {jawab.map(
-                (userResponse = () => {
-                  if (sahijawab[i++] === userResponse) {
-                    return <div>USER GAVE CORRECT ANSWER!</div>;
+              {
+                this.state.jawab.map((responses, index) => {
+
+                  if (this.state.sahijawab[index] === responses) {
+                    return (
+                      <div>
+                        <div>{data.assignment.questions[index].statement}</div>
+                        <div>
+                          {data.assignment.questions[index].options.map((option) => { return (<div>{option}</div>) })}
+                        </div>
+                        
+                       {responses ? <div>USER GAVE THE CORRECT ANSWER! User response: {this.state.jawab[index]}, correct answer: {this.state.sahijawab[index]}</div>
+                      : <div>Unattempted, correct answer :{this.state.sahijawab[index]}</div> } 
+                      </div>
+                    )
                   } else {
-                    return <div>USER GAVE WRONG ANSWER!</div>;
+                    return (
+                      <div>
+                        <div>{data.assignment.questions[index].statement}</div>
+                        <div>
+                          {data.assignment.questions[index].options.map((option) => { return (<div>{option}</div>) })}
+                        </div>
+                        
+                        {responses ? <div> USER GAVE WRONG ANSWER! User response is: {this.state.jawab[index]}, correct answer: {this.state.sahijawab[index]}</div>
+                      : <div>Unattempted, correct answer :{this.state.sahijawab[index]}</div> } 
+                      </div>
+                    )
                   }
                 })
-              )}
+              }
             </div>
-          ) : null}
+            : null}
         </div>
+        </>
       </>
     );
   }

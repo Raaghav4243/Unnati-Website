@@ -1,6 +1,6 @@
-import React from 'react';
+//import React from 'react';
 
-class StudentCoursePage extends React.Component {
+/*class StudentCoursePage extends React.Component {
   constructor() {
     super();
 
@@ -28,4 +28,4 @@ class StudentCoursePage extends React.Component {
   }
 }
 
-export default StudentCoursePage;
+export default StudentCoursePage; */
