@@ -1,3 +1,5 @@
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+
 import './App.css';
 import AssignmentPage from './pages/assignment-page/assignment-page.component';
 import CourseOverview from './pages/course-overview/course-overview.component';
@@ -12,11 +14,22 @@ import CourseSideNav from './components/course-sidenav/course-sidenav.components
 import StudentCoursePage from './pages/demo-student-course-page/demo-student-course-page';
 // import StudentCoursePage from './pages/demo-student-course-page/demo-student-course-page';
 
-function App() {
-  // return <StudentDashboard />;
-  // return <DemoPage />;
-  return <StudentCoursePage course_id={'5fa6bd6f4afbc52538b49afb'} />;
-  // return <CourseVideo/>;
+function App({ user_id, course_id }) {
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route path='/' exact component={HomePage} />
+        <Route path='/student' exact component={StudentDashboard} />
+        <Route
+          path='/student/course'
+          exact
+          render={() => (
+            <StudentCoursePage course_id='5fa6bd6f4afbc52538b49afb' />
+          )}
+        />
+      </Switch>
+    </BrowserRouter>
+  );
 }
 
 export default App;

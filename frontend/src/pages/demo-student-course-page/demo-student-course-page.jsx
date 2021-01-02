@@ -1,9 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { selectCompletedCourseTopicsId, selectCourseTopics } from '../../redux/course-topic/course-topic.selectors';
+import {
+  selectCompletedCourseTopicsId,
+  selectCourseTopics,
+} from '../../redux/course-topic/course-topic.selectors';
 import { selectCurrentUserId } from '../../redux/user/user.selectors';
 import { fetchCourseTopicsStart } from '../../redux/course-topic/course-topic.actions';
+import CourseSideNav from '../../components/course-sidenav/course-sidenav.components';
 //import demoAssignment from '../demo-assignment';
 
 class StudentCoursePage extends React.Component {
@@ -20,14 +24,15 @@ class StudentCoursePage extends React.Component {
     // console.log('user_id recieved is ' + user_id);
     fetchCourseTopicsStart(user_id, course_id);
   }
-
   render() {
     const { course_id, topics, attemptedTopicId } = this.props;
-    console.log(attemptedTopicId)
+    console.log(attemptedTopicId);
     return (
-    <div>TOPICS ARE :
-    
-    </div>
+      <>
+        <div>Course sidenav</div>
+        <span>Course_id is : {course_id}</span>
+        {/* <CourseSideNav /> */}
+      </>
     );
   }
 }
@@ -35,7 +40,7 @@ class StudentCoursePage extends React.Component {
 const mapStateToProps = createStructuredSelector({
   user_id: selectCurrentUserId,
   topics: selectCourseTopics,
-  attemptedTopicId: selectCompletedCourseTopicsId
+  attemptedTopicId: selectCompletedCourseTopicsId,
 });
 
 const mapDispatchToProps = (dispatch) => ({
