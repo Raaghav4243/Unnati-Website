@@ -1,6 +1,11 @@
-//import React from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { selectCourseTopics } from '../../redux/course-topic/course-topic.selectors';
+import { selectCurrentUserId } from '../../redux/user/user.selectors';
+import { fetchCourseTopicsStart } from '../../redux/course-topic/course-topic.actions';
 
-/*class StudentCoursePage extends React.Component {
+class StudentCoursePage extends React.Component {
   constructor() {
     super();
 
@@ -9,27 +14,26 @@
     };
   }
 
-  handleTopicClick = (id) => {
-    this.setState({ current_topic: id });
-  };
+  componentDidMount() {
+    const { user_id, course_id, fetchCourseTopicsStart } = this.props;
+    // console.log('user_id recieved is ' + user_id);
+    fetchCourseTopicsStart(user_id, course_id);
+  }
 
   render() {
-    const { current_topic_type } = this.props;
-    return (
-      <>
-        <div>Student Course Page</div>
-        {/* {current_topic === 'LECTURE' ? (
-          <LectureComponent topic_id={} l_id={} />
-        ) : null} */
-{
-  /* {current_topic === 'TEST' ? <LectureComponent /> : null} */
+    const { course_id, topics } = this.props;
+    return <div>TOPICS ARE : </div>;
+  }
 }
-{
-  /* {current_topic === 'ASSIGNMENT' ? <LectureComponent /> : null} */
-}
-//       </>
-//     );
-//   }
-// }
 
-// export default StudentCoursePage; */
+const mapStateToProps = createStructuredSelector({
+  user_id: selectCurrentUserId,
+  topics: selectCourseTopics,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchCourseTopicsStart: (user_id, course_id) =>
+    dispatch(fetchCourseTopicsStart(user_id, course_id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(StudentCoursePage);

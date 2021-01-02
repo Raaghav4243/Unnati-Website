@@ -10,11 +10,12 @@ import StudentDashboard from './pages/student-dashboard/StudentDashboard';
 import SideNav from './components/SideNav/SideNav';
 import CourseSideNav from './components/course-sidenav/course-sidenav.components';
 import StudentCoursePage from './pages/demo-student-course-page/demo-student-course-page';
+// import StudentCoursePage from './pages/demo-student-course-page/demo-student-course-page';
 
 function App() {
   // return <StudentDashboard />;
   // return <DemoPage />;
-  return <HomePage />;
+  return <StudentCoursePage course_id={'5fa6bd6f4afbc52538b49afb'} />;
   // return <CourseVideo/>;
 }
 
