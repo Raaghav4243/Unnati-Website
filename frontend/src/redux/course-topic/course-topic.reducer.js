@@ -9,6 +9,7 @@ const INITIAL_STATE = {
   course_name: null,
   course_id: null,
   errorMessage: undefined,
+  attemptedTopicList: null
 };
 
 const courseTopicReducer = (state = INITIAL_STATE, action) => {
@@ -23,6 +24,20 @@ const courseTopicReducer = (state = INITIAL_STATE, action) => {
         course: { topics, courseName },
         courseResponse: { lecturesDone, assignmentsDone, testsDone, course },
       } = action.payload;
+      let completedTopicsId = {}
+      testsDone.forEach((test) => {
+        completedTopicsId[test.test] = 'test'
+      })
+      assignmentsDone.forEach((assignment) => {
+        completedTopicsId[assignment.assignment] = 'assignment'
+      })
+      lecturesDone.forEach((lecture) => {
+        completedTopicsId[lecture.lecture] = 'lecture'
+      })
+      //console.log(completedTopicsId)
+      
+      
+
       return {
         ...state,
         isFetching: false,
@@ -32,6 +47,8 @@ const courseTopicReducer = (state = INITIAL_STATE, action) => {
         completedTests: testsDone,
         course_name: courseName,
         course_id: course,
+        attemptedTopicList: completedTopicsId,
+        
       };
     case CourseTopicActionTypes.FETCH_COURSE_TOPICS_FAILURE:
       return {

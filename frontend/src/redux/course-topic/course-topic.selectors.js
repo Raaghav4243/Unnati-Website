@@ -7,3 +7,8 @@ export const selectCourseTopics = createSelector(
   [selectCourseTopicsAndCompletionDetails],
   (courseTopicsAndCompletionDetails) => courseTopicsAndCompletionDetails.topics
 );
+
+export const selectCompletedCourseTopicsId = createSelector(
+  [selectCourseTopicsAndCompletionDetails],
+  (selectCompletedCourseTopicId) => selectCompletedCourseTopicId.attemptedTopicList
+)
