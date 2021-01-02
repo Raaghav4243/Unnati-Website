@@ -81,9 +81,9 @@ class AssignmentPage extends React.Component {
     let i = -1
     return (
       <>
-      
-          <AssignmentWrapper>
-          
+
+        <AssignmentWrapper>
+
           <WrappingQuestions>
             <AssignmentName>
               Assignment - 1 {data.assignment.assignmentName}
@@ -133,49 +133,49 @@ class AssignmentPage extends React.Component {
             </AssignmentForm>
           </WrappingQuestions>
         </AssignmentWrapper>
-        
+
         <>
           <div>
             {this.state.score ? (
               <div>your score is: {this.state.score}</div>
             ) : null}
           </div>
-        <div>
-          {this.state.jawab ?
-            <div>
-              {
-                this.state.jawab.map((responses, index) => {
+          <div>
+            {this.state.jawab ?
+              <div>
+                {
+                  this.state.jawab.map((responses, index) => {
 
-                  if (this.state.sahijawab[index] === responses) {
-                    return (
-                      <div>
-                        <div>{data.assignment.questions[index].statement}</div>
+                    if (this.state.sahijawab[index] === responses) {
+                      return (
                         <div>
-                          {data.assignment.questions[index].options.map((option) => { return (<div>{option}</div>) })}
+                          <div>{data.assignment.questions[index].statement}</div>
+                          <div>
+                            {data.assignment.questions[index].options.map((option) => { return (<div>{option}</div>) })}
+                          </div>
+
+                          {responses ? <div>USER GAVE THE CORRECT ANSWER! User response: {this.state.jawab[index]}, correct answer: {this.state.sahijawab[index]}</div>
+                            : <div>Unattempted, correct answer :{this.state.sahijawab[index]}</div>}
                         </div>
-                        
-                       {responses ? <div>USER GAVE THE CORRECT ANSWER! User response: {this.state.jawab[index]}, correct answer: {this.state.sahijawab[index]}</div>
-                      : <div>Unattempted, correct answer :{this.state.sahijawab[index]}</div> } 
-                      </div>
-                    )
-                  } else {
-                    return (
-                      <div>
-                        <div>{data.assignment.questions[index].statement}</div>
+                      )
+                    } else {
+                      return (
                         <div>
-                          {data.assignment.questions[index].options.map((option) => { return (<div>{option}</div>) })}
+                          <div>{data.assignment.questions[index].statement}</div>
+                          <div>
+                            {data.assignment.questions[index].options.map((option) => { return (<div>{option}</div>) })}
+                          </div>
+
+                          {responses ? <div> USER GAVE WRONG ANSWER! User response is: {this.state.jawab[index]}, correct answer: {this.state.sahijawab[index]}</div>
+                            : <div>Unattempted, correct answer :{this.state.sahijawab[index]}</div>}
                         </div>
-                        
-                        {responses ? <div> USER GAVE WRONG ANSWER! User response is: {this.state.jawab[index]}, correct answer: {this.state.sahijawab[index]}</div>
-                      : <div>Unattempted, correct answer :{this.state.sahijawab[index]}</div> } 
-                      </div>
-                    )
-                  }
-                })
-              }
-            </div>
-            : null}
-        </div>
+                      )
+                    }
+                  })
+                }
+              </div>
+              : null}
+          </div>
         </>
       </>
     );
