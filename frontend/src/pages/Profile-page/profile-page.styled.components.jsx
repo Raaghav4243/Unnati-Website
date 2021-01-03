@@ -39,7 +39,7 @@ font-size: 2vw;
 font-family: 'Montserrat', sans-serif;
 `;
 
-export const ProfileDetailsContainer = styled.div`
+export const ProfileDetailsContainer = styled.form`
 display: inline-block;
 border: 1px solid #eee;
 border-radius: 6px;
@@ -95,7 +95,7 @@ flex-direction: row;
 font-family: 'Montserrat', sans-serif;
 `
 
-export const DetailsHeading = styled.div`
+export const DetailsHeading = styled.label`
 font-style: italic;
 font-size: 1.5vw;
 text-align: center;
@@ -108,7 +108,22 @@ justify-content: space-around;
 flex-wrap: wrap;
 `
 
-export const Details = styled.div`
+export const Details = styled.input`
+display: inline-block;
+border: 1px solid #696969;
+width: 14vw;
+height: 4vh;
+margin-top:1vh;
+justify-content:space-evenly;
+display: flex;
+flex-direction: column;
+border-radius: 15px;
+text-align:center;
+font-size: 1.5vw;
+font-family: 'Montserrat', sans-serif;
+`
+
+export const CafeInfo = styled.div`
 display: inline-block;
 border: 1px solid #696969;
 width: 14vw;

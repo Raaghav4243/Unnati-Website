@@ -12,6 +12,8 @@ import StudentDashboard from './pages/student-dashboard/StudentDashboard';
 import SideNav from './components/SideNav/SideNav';
 import CourseSideNav from './components/course-sidenav/course-sidenav.components';
 import StudentCoursePage from './pages/demo-student-course-page/demo-student-course-page';
+import TestPage from './pages/test-page/test-page.component';
+import UserProfileCard from './components/SideNav/UserProfile/UserProfileCard';
 // import StudentCoursePage from './pages/demo-student-course-page/demo-student-course-page';
 
 function App({ user_id, course_id }) {
@@ -27,6 +29,7 @@ function App({ user_id, course_id }) {
             <StudentCoursePage course_id='5fa6bd6f4afbc52538b49afb' />
           )}
         />
+        <Route path='/test' component={TestPage} />
       </Switch>
     </BrowserRouter>
   );

@@ -16,7 +16,8 @@ import {
   ProfileDetailsContainer,
   ProfileHeading,
   ContainerWrapper,
-  CafeDetailsContainer
+  CafeDetailsContainer,
+  CafeInfo
 } from './profile-page.styled.components';
 
 //redux used
@@ -28,11 +29,57 @@ import StudentNavbar from '../../components/student-navbar/student-navbar.compon
 
 
 class Profile extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      updatedUserInfo: {
+        role: 'STUDENT',
+        cafe: '5fa5796e9542c50df4285b04'
+      }
+    }
+  }
   // componentDidMount() {
   //   const { fetchUserCafeStartAsync } = this.props;
   //   console.log('Component Mounted');
   //   fetchUserCafeStartAsync();
   // }
+
+  handleOnChange = (e) => {
+    const { value, name, placeholder } = e.target
+    let resp = this.state.updatedUserInfo
+    resp[name] = value
+    if (!value) {
+      return resp[name] = placeholder
+    }
+    this.setState(
+      {
+        updatedUserInfo: resp
+      },
+      () => {
+        console.log(this.state);
+      }
+    );
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault()
+    console.log('hi')
+    let data = this.state.updatedUserInfo
+    fetch('/updateUser/5fa6af42769f165e982b2ea9', {
+      method: 'POST', // or 'PUT'
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }
 
   render() {
     const { userusername, useremail, userphonenumber, userlastname, userfirstname, userCafe, userId } = this.props;
@@ -45,22 +92,72 @@ class Profile extends React.Component {
         <SideNav>SIDENAV</SideNav>
         <ContainerWrapper>
           <ProfileHeading>PROFILE </ProfileHeading>
-          <ProfileDetailsContainer>
+          <ProfileDetailsContainer
+            onChange={(e) => this.handleOnChange(e)}
+            onSubmit={this.handleSubmit}
+          >
 
             <PersonalDetailsHeading>Personal Details</PersonalDetailsHeading>
             <WrapperContainer>
               <DetailsWrapper>
-                <DetailsHeading>First Name</DetailsHeading>
-                <DetailsHeading>Middle Name</DetailsHeading>
-                <DetailsHeading>Last Name*</DetailsHeading>
+                <DetailsHeading htmlFor='firstName'>First Name</DetailsHeading>
+                <DetailsHeading htmlFor='lastName'>Middle Name</DetailsHeading>
+                <DetailsHeading htmlFor='lastName'>Last Name*</DetailsHeading>
               </DetailsWrapper>
               <DetailsWrapper>
-                <Details>{userfirstname}</Details>
-                <Details>{userlastname}</Details>
-                <Details>{userlastname}</Details>
+                <Details
+                  type='type'
+                  placeholder={userfirstname}
+                  name='firstName'
+                  id='firstname'
+                />
+                <Details
+                  type='type'
+                  placeholder={userlastname}
+                  name='lastName'
+                  id='lastName'
+                />
+                <Details
+                  type='type'
+                  placeholder={userlastname}
+                  name='lastName'
+                  id='lastName'
+                />
               </DetailsWrapper>
             </WrapperContainer>
 
+            <WrapperContainer>
+              <DetailsWrapper>
+                <DetailsHeading htmlFor='username'>Username</DetailsHeading>
+                <DetailsHeading htmlFor='email'>  Email ID</DetailsHeading>
+                <DetailsHeading htmlFor='phoneNumber'>  Phone Number</DetailsHeading>
+              </DetailsWrapper>
+              <DetailsWrapper>
+                <Details
+                  type='type'
+                  placeholder={userusername}
+                  name='username'
+                  id='username'
+                />
+                <Details
+                  type='email'
+                  placeholder={useremail}
+                  name='email'
+                  id='email'
+                />
+                <Details
+                  type='number'
+                  placeholder={userphonenumber}
+                  name='phoneNumber'
+                  id='phoneNumber'
+                />
+              </DetailsWrapper>
+            </WrapperContainer>
+            <button>save changes</button>
+
+          </ProfileDetailsContainer>
+          <CafeDetailsContainer>
+            <PersonalDetailsHeading>Cafe Details</PersonalDetailsHeading>
             <WrapperContainer>
               <DetailsWrapper>
                 <DetailsHeading>Username</DetailsHeading>
@@ -68,26 +165,9 @@ class Profile extends React.Component {
                 <DetailsHeading>  Phone Number</DetailsHeading>
               </DetailsWrapper>
               <DetailsWrapper>
-                <Details>{userusername}</Details>
-                <Details>{useremail}</Details>
-                <Details>{userphonenumber}</Details>
-              </DetailsWrapper>
-            </WrapperContainer>
-
-
-          </ProfileDetailsContainer>
-          <CafeDetailsContainer>
-            <PersonalDetailsHeading>Cafe Details</PersonalDetailsHeading>
-            <WrapperContainer>
-              <DetailsWrapper>
-              <DetailsHeading>Username</DetailsHeading>
-              <DetailsHeading>  Email ID</DetailsHeading>
-              <DetailsHeading>  Phone Number</DetailsHeading>
-            </DetailsWrapper>
-              <DetailsWrapper>
-                <Details>uug</Details>
-                <Details>uug</Details>
-                <Details>uug</Details>
+                <CafeInfo>uug</CafeInfo>
+                <CafeInfo>uug</CafeInfo>
+                <CafeInfo>uug</CafeInfo>
               </DetailsWrapper>
             </WrapperContainer>
 
