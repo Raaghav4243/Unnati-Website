@@ -9,7 +9,7 @@ const INITIAL_STATE = {
   course_name: null,
   course_id: null,
   errorMessage: undefined,
-  attemptedTopicList: null
+  attemptedTopicList: null,
 };
 
 const courseTopicReducer = (state = INITIAL_STATE, action) => {
@@ -24,19 +24,17 @@ const courseTopicReducer = (state = INITIAL_STATE, action) => {
         course: { topics, courseName },
         courseResponse: { lecturesDone, assignmentsDone, testsDone, course },
       } = action.payload;
-      let completedTopicsId = {}
+      let completedTopicsId = {};
       testsDone.forEach((test) => {
-        completedTopicsId[test.test] = 'test'
-      })
+        completedTopicsId[test.test] = 'test';
+      });
       assignmentsDone.forEach((assignment) => {
-        completedTopicsId[assignment.assignment] = 'assignment'
-      })
+        completedTopicsId[assignment.assignment] = 'assignment';
+      });
       lecturesDone.forEach((lecture) => {
-        completedTopicsId[lecture.lecture] = 'lecture'
-      })
-      //console.log(completedTopicsId)
-      
-      
+        completedTopicsId[lecture.lecture] = 'lecture';
+      });
+      console.log(completedTopicsId);
 
       return {
         ...state,
@@ -48,7 +46,6 @@ const courseTopicReducer = (state = INITIAL_STATE, action) => {
         course_name: courseName,
         course_id: course,
         attemptedTopicList: completedTopicsId,
-        
       };
     case CourseTopicActionTypes.FETCH_COURSE_TOPICS_FAILURE:
       return {

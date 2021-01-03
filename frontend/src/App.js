@@ -11,7 +11,8 @@ import Profile from './pages/Profile-page/profile-page.component';
 import StudentDashboard from './pages/student-dashboard/StudentDashboard';
 import SideNav from './components/SideNav/SideNav';
 import CourseSideNav from './components/course-sidenav/course-sidenav.components';
-import StudentCoursePage from './pages/demo-student-course-page/demo-student-course-page';
+// import StudentCourseTopicPage from './pages/student-course-topic-page/student-course-topic-page';
+import StudentPage from './pages/student-page/student-page.component';
 // import StudentCoursePage from './pages/demo-student-course-page/demo-student-course-page';
 
 function App({ user_id, course_id }) {
@@ -19,14 +20,7 @@ function App({ user_id, course_id }) {
     <BrowserRouter>
       <Switch>
         <Route path='/' exact component={HomePage} />
-        <Route path='/student' exact component={StudentDashboard} />
-        <Route
-          path='/student/course'
-          exact
-          render={() => (
-            <StudentCoursePage course_id='5fa6bd6f4afbc52538b49afb' />
-          )}
-        />
+        <Route path='/student' component={StudentPage} />
       </Switch>
     </BrowserRouter>
   );

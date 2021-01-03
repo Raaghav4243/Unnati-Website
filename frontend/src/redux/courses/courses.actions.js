@@ -38,7 +38,7 @@ export const fetchAllCoursesStartAsync = () => {
       dispatch(fetchAllCoursesStart());
       let allCourses = await fetch('/all-courses');
       allCourses = await allCourses.json();
-      console.log(allCourses);
+      // console.log(allCourses);
       allCourses = allCourses.courses;
       dispatch(fetchAllCoursesSuccess(allCourses));
     } catch (error) {

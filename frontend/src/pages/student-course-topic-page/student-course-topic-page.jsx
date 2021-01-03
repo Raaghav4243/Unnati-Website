@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Route } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import {
   selectCompletedCourseTopicsId,
@@ -8,39 +9,43 @@ import {
 import { selectCurrentUserId } from '../../redux/user/user.selectors';
 import { fetchCourseTopicsStart } from '../../redux/course-topic/course-topic.actions';
 import CourseSideNav from '../../components/course-sidenav/course-sidenav.components';
+import { selectCurrentCourseId } from '../../redux/student/student.selectors';
 //import demoAssignment from '../demo-assignment';
 
-class StudentCoursePage extends React.Component {
+class StudentCourseTopicPage extends React.Component {
   constructor() {
     super();
-
-    this.state = {
-      current_topic: 0,
-    };
   }
 
   componentDidMount() {
     const { user_id, course_id, fetchCourseTopicsStart } = this.props;
-    // console.log('user_id recieved is ' + user_id);
+    console.log('user id is ', user_id, 'course_id is', course_id);
     fetchCourseTopicsStart(user_id, course_id);
   }
   render() {
-    const { course_id, topics, attemptedTopicId } = this.props;
-    console.log(attemptedTopicId);
+    const { course_id, topics, attemptedTopicsId, match } = this.props;
+    console.log('match is', match);
+    // console.log('topics are', topics);
     return (
       <>
-        <div>Course sidenav</div>
-        <span>Course_id is : {course_id}</span>
-        {/* <CourseSideNav /> */}
+        <CourseSideNav />
       </>
+      // <>
+
+      //   <div>Course sidenav</div>
+      //   <span>Course_id is : {course_id}</span>
+      //   {/* <CourseSideNav /> */}
+      // </>
+      // <Route path={`${match.path}`} render={() => <CourseSideNav />} />
     );
   }
 }
 
 const mapStateToProps = createStructuredSelector({
   user_id: selectCurrentUserId,
+  course_id: selectCurrentCourseId,
   topics: selectCourseTopics,
-  attemptedTopicId: selectCompletedCourseTopicsId,
+  attemptedTopicsId: selectCompletedCourseTopicsId,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -48,4 +53,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchCourseTopicsStart(user_id, course_id)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(StudentCoursePage);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(StudentCourseTopicPage);

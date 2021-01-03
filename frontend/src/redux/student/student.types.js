@@ -1,0 +1,6 @@
+const StudentActionTypes = {
+  SET_CURRENT_COURSE: 'SET_CURRENT_COURSE',
+  SET_CURRENT_COURSE_TOPIC_CONTENT: 'SET_CURRENT_COURSE_TOPIC_CONTENT',
+};
+
+export default StudentActionTypes;
