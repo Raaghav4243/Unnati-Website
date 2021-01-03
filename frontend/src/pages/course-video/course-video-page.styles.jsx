@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const NavBar = styled.div`
-background: #ffffff;
+  background: #ffffff;
   height: 11vh;
   display: flex;
   justify-content: center;
@@ -12,7 +12,7 @@ background: #ffffff;
   z-index: 10;
   border: 4px solid black;
   font-family: 'Montserrat', sans-serif;
-`
+`;
 
 //export const SideNav = styled.div`
 //width: 20vw;
@@ -26,9 +26,9 @@ background: #ffffff;
 //  font-family: 'Montserrat', sans-serif;
 //`
 
-export const CourseVideoPage = styled.div`
-display: flex;
-flex-direction: row;
+export const CourseVideoContainer = styled.div`
+  display: flex;
+  flex-direction: row;
 `;
 
 export const CourseVideoPDFContainer = styled.div`
@@ -37,5 +37,4 @@ export const CourseVideoPDFContainer = styled.div`
   width: 80vw;
   display: flex;
   flex-direction: column;
-
 `;

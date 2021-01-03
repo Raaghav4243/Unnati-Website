@@ -1,31 +1,23 @@
-import { TestPageActionTypes } from './testpage.types';
+import TestPageActionTypes from './testpage.types';
 
-export const fetchTestStart = () => ({
-  type: TestPageActionTypes.FETCH_TEST_START,
-});
+export const fetchTestStart = (user_id, course_id, test_id) => {
+  // console.log(
+  //   'User id inside start action' + user_id,
+  //   'Course id inside start action' + course_id,
+  //   'Test id inside start action' + test_id
+  // );
+  return {
+    type: TestPageActionTypes.FETCH_TEST_START,
+    payload: { user_id: user_id, course_id: course_id, test_id: test_id },
+  };
+};
 
-export const fetchUserSuccess = (testDetails) => ({
+export const fetchTestSuccess = (courseTestDetails) => ({
   type: TestPageActionTypes.FETCH_TEST_SUCCESS,
-  payload: testDetails,
+  payload: courseTestDetails,
 });
 
-export const fetchUserFailure = (errorMessage) => ({
+export const fetchTestFailure = (errorMessage) => ({
   type: TestPageActionTypes.FETCH_TEST_FAILURE,
   payload: errorMessage,
 });
-
-export const fetchUserStartAsync = () => {
-  //using async/await
-
-  return async (dispatch) => {
-    try {
-      //   dispatch(fetchUserStart());
-      //   let allCourses = await fetch('/all-courses');
-      //   allCourses = await allCourses.json();
-      //   allCourses = allCourses.courses;
-      //   dispatch(fetchAllCoursesSuccess(allCourses));
-    } catch (error) {
-      //   dispatch(fetchAllCoursesFailure(error.message));
-    }
-  };
-};

@@ -7,6 +7,7 @@ import homePageReducer from './homepage/homepage.reducer';
 import userReducer from './user/user.reducer';
 import courseTopicReducer from './course-topic/course-topic.reducer';
 import studentReducer from './student/student.reducer';
+import testReducer from './testpage/testpage.reducer';
 
 // const persistCongfig = {
 //     key: 'root'
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   cafeDetails: cafeReducer,
   courseTopicsAndCompletionDetails: courseTopicReducer,
   student: studentReducer,
+  test: testReducer,
 });
 
 export default rootReducer;

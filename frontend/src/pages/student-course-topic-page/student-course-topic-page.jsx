@@ -2,14 +2,18 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
-import {
-  selectCompletedCourseTopicsId,
-  selectCourseTopics,
-} from '../../redux/course-topic/course-topic.selectors';
 import { selectCurrentUserId } from '../../redux/user/user.selectors';
 import { fetchCourseTopicsStart } from '../../redux/course-topic/course-topic.actions';
 import CourseSideNav from '../../components/course-sidenav/course-sidenav.components';
-import { selectCurrentCourseId } from '../../redux/student/student.selectors';
+import {
+  selectCurrentCourseId,
+  selectCurrentCourseTopicId,
+  selectCurrentCourseTopicType,
+} from '../../redux/student/student.selectors';
+import CourseVideo from '../course-video/course-video-page.component';
+import AssignmentPage from '../assignment-page/assignment-page.component';
+import TestPage from '../test-page/test-page.component';
+import TestStartPage from '../test-start-page/test-start-page.component';
 //import demoAssignment from '../demo-assignment';
 
 class StudentCourseTopicPage extends React.Component {
@@ -19,24 +23,26 @@ class StudentCourseTopicPage extends React.Component {
 
   componentDidMount() {
     const { user_id, course_id, fetchCourseTopicsStart } = this.props;
-    console.log('user id is ', user_id, 'course_id is', course_id);
     fetchCourseTopicsStart(user_id, course_id);
   }
   render() {
-    const { course_id, topics, attemptedTopicsId, match } = this.props;
-    console.log('match is', match);
-    // console.log('topics are', topics);
+    const { match, course_topic_type, course_topic_id } = this.props;
+    console.log('match is', match, 'topic id is', course_topic_id);
     return (
       <>
         <CourseSideNav />
+        {course_topic_type === 'LECTURE' ? (
+          <CourseVideo />
+        ) : course_topic_type === 'ASSIGNMENT' ? (
+          <AssignmentPage />
+        ) : course_topic_type === 'TEST' ? (
+          <TestStartPage />
+        ) : (
+          <div>SELECT A TOPIC</div>
+        )}
+        {/* <Route exact path={`${match.path}/test`} component={TestPage} />
+         */}
       </>
-      // <>
-
-      //   <div>Course sidenav</div>
-      //   <span>Course_id is : {course_id}</span>
-      //   {/* <CourseSideNav /> */}
-      // </>
-      // <Route path={`${match.path}`} render={() => <CourseSideNav />} />
     );
   }
 }
@@ -44,8 +50,10 @@ class StudentCourseTopicPage extends React.Component {
 const mapStateToProps = createStructuredSelector({
   user_id: selectCurrentUserId,
   course_id: selectCurrentCourseId,
-  topics: selectCourseTopics,
-  attemptedTopicsId: selectCompletedCourseTopicsId,
+  course_topic_id: selectCurrentCourseTopicId,
+  course_topic_type: selectCurrentCourseTopicType,
+  // topics: selectCourseTopics,
+  // attemptedTopicsId: selectCompletedCourseTopicsId,
 });
 
 const mapDispatchToProps = (dispatch) => ({

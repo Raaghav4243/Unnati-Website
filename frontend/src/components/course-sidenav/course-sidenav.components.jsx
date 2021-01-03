@@ -22,24 +22,21 @@ class CourseSideNav extends React.Component {
 
   render() {
     const { topics, attemptedTopicsMap } = this.props;
-    console.log('Topics are', topics);
     return (
       <>
         <SideNavContainer>
           <SidebarWrap>
-            {/* allCourses.map((course, index) => (
-                <Card course_name={course.subjectName} key={course._id} />
+            {topics ? (
+              topics.map((topicObj) => (
+                <CourseSideNavSubmenu
+                  topicInfo={topicObj}
+                  attemptedTopicsMap={attemptedTopicsMap}
+                  key={topicObj._id}
+                />
               ))
-            ) */}
-            {topics
-              ? topics.map((topicObj) => (
-                  <CourseSideNavSubmenu
-                    topicInfo={topicObj}
-                    attemptedTopicsMap={attemptedTopicsMap}
-                    key={topicObj._id}
-                  />
-                ))
-              : null}
+            ) : (
+              <h1>Loading topics...</h1>
+            )}
           </SidebarWrap>
         </SideNavContainer>
       </>
