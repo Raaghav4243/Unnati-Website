@@ -1,113 +1,172 @@
-//libraries used
-import React from 'react';
+import React, { Component } from 'react'
+import data from './data'
+import Timer from 'react-compound-timer'
 
-//redux used
 
-//components used
-
-//styles used
-import {} from './test-page.styles';
-
-class TestPage extends React.Component {
+class TestPage extends Component {
   constructor() {
-    super();
-
+    super()
     this.state = {
-      // received from backend
-      done: true,
-      test: {
-        questions: [
-          {
-            options: ['opt1', 'opt2', 'opt3', 'opt4'],
-            _id: '5fdaeba85aa95631647c4087',
-            type: 'MULTICORRECT',
-            name: 'dummy1',
-            statement: 'statement1dummystatementdummystatementdummy',
-            maxMarks: 10,
-            __v: 0,
-          },
-          {
-            options: [],
-            _id: '5fdaebd25aa95631647c4088',
-            type: 'TYPED',
-            name: 'dummy1',
-            statement: 'statement1dummystatementdummystatementdummy',
-            maxMarks: 10,
-            __v: 0,
-          },
-        ],
-        _id: '5fdb07df5aa95631647c408c',
-        subjectCode: 'T1012',
-        subjectName: 'Dummy3',
-        testName: 'dummytest12',
-        duration: 45,
-        maxMarks: 100,
-        createdAt: '2020-12-17T07:25:19.016Z',
-        __v: 0,
-      },
+      resp: {},
+      time: data.test.duration*60*1000,
+    }
 
-      // set in front end
-      currentQuestionNo: 0,
-      single_choice_response: null,
-      multipe_choice_response: [],
-      typed_response: '',
-    };
+  }
+  handleOnChange = (e) => {
+    //console.log(e.target.value);
+    //console.log(e.target.name);
+    // const responses = this.resp.push({name: [e.target.value]})
+    //console.log(responses)
+    //  this.setState({ selectedOption: e.target.value});
+    //console.log(resp)
+    //const value = e.target.value;
+    //const name = e.target.name;
+    const { name, value, id } = e.target
+    let response = this.state.resp;
+    response[id] = [value]
+    console.log(e)
+    const questionType = data.test.questions[id-1].type
+    //if(questionType === 'MULTICORRECT'){
+    //  if(response[id]){
+    //    value = value.map(value)
+    //  }
+    //}
+    
+
+    console.log(response);
+      this.setState(
+      {
+        resp: response,
+
+      },
+      () => {
+        console.log(this.state);
+      }
+    );
+  };
+
+ 
+
+  handleSubmit = (e) => {
+    e.preventDefault()
   }
 
-  handleQuestionChange = (question_no) => {
-    this.setState({ currentQuestionNo: question_no });
-  };
-
-  handleSingleChoiceResponse = (response) => {
-    this.setState({ single_choice_response: response });
-  };
-
-  handleMultipleChoiceResponse = (response) => {
-    this.setState({ multipe_choice_response: response });
-  };
-
-  handleTypedChoiceResponse = (response) => {};
 
   render() {
-    const {
-      test: { questions, subjectName, testName, duration },
-      currentQuestionNo,
-    } = this.state.test;
-
-    const returnQuestionTypeComponent = () => {
-      switch (questions[currentQuestionNo].type) {
-        case 'SINGLECORRECT':
-          return (
-            <SingleCorrectTestCard
-              q_no={currentQuestionNo}
-              q_statement={questions[currentQuestionNo].statement}
-              q_options={}
-            />
-          );
-        case 'MULTICORRECT':
-          return (
-            <MultiCorrectTestCard
-              q_no={currentQuestionNo}
-              q_statement={questions[currentQuestionNo].statement}
-            />
-          );
-        case 'TYPED':
-          return (
-            <TypedTestCard
-              q_no={currentQuestionNo}
-              q_statement={questions[currentQuestionNo].statement}
-            />
-          );
-        default:
-          return <div>No question here</div>;
-      }
-    };
-
     return (
-      <TestPageContainer>
-        <TestSideNav></TestSideNav>
-        <TestMainPage>{returnQuestionTypeComponent()}</TestMainPage>
-      </TestPageContainer>
-    );
+      <>
+        <Timer
+          initialTime={this.state.time}
+          direction="backward">
+          {() => (
+            <React.Fragment>
+              <Timer.Hours />:
+              <Timer.Minutes />:
+              <Timer.Seconds />
+            </React.Fragment>
+          )}
+        </Timer>
+        <div>
+
+          <div className='testame'>
+            Test - 1 {data.test.testName}
+          </div>
+
+          <form 
+            type='submit' 
+            onChange={(e) => this.handleOnChange(e)}
+            onSubmit={this.handleSubmit}>
+            <div>
+              {data.test.questions.map((question, number) => {
+                return (
+                  <>
+                    <div key={number}>
+                      {question.statement}
+                    </div>
+                    {question.type === 'MULTICORRECT' ? <>
+                      {question.options.map((option, index) => {
+                        return (
+                          <label key={index} htmlFor={option}>
+                            <input
+                              type='checkbox'
+                              key={option}
+                              value={option}
+                              id={question.number}
+                              name={option}
+                            />
+                            {option} <br />
+                          </label>
+                        )
+                      })}
+                    </>
+                      : null}
+                    {question.type === 'SINGLECORRECT' ? <>
+                      {question.options.map((option, index) => {
+                        return (
+                          <label key={index} htmlFor={option}>
+                            <input
+                              type='radio'
+                              key={option}
+                              value={option}
+                              id={question.number}
+                              name={question.number}
+                            />
+                            {option} <br />
+                          </label>
+                        )
+                      })}
+                    </>
+                      : null}
+                    {question.type === 'TYPED' ? <>
+                      <label htmlFor={number}>
+                        <input type='text'
+                          id={question.number}
+                          name={question.number} />
+                      </label>
+                    </>
+                      : null}
+                  </>
+                )
+              })}
+            </div>
+            <button>submit</button>
+          </form>
+
+        </div>
+      </>
+    )
   }
 }
+
+export default TestPage
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
