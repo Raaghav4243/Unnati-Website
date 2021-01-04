@@ -14,10 +14,17 @@ import {
 } from '../../redux/student/student.selectors';
 
 import { TestStartPageContainer, TestTitle } from './test-start-page.styles';
+import {
+  selectTestMessage,
+  selectTestQuestions,
+} from '../../redux/testpage/testpage.selectors';
 
 class TestStartPage extends React.Component {
   constructor() {
     super();
+  }
+  componentDidUpdate() {
+    console.log('Test start page did update!');
   }
   componentDidMount() {
     const {
@@ -26,30 +33,33 @@ class TestStartPage extends React.Component {
       current_test_id,
       fetchTestStart,
     } = this.props;
-    console.log('When mounted');
-    fetchTestStart(current_user_id, current_course_id, current_test_id);
+    console.log('TestStartPage mounted');
+    // fetchTestStart(current_user_id, current_course_id, current_test_id);
   }
 
-  // componentWillUnmount() {
-  //   console.log(' TestStartPage Will unmount now');
+  componentWillUnmount() {
+    console.log('TestStartPage Will unmount now');
+  }
+
+  // componentDidUpdate() {
+  //   const {
+  //     current_user_id,
+  //     current_course_id,
+  //     current_test_id,
+  //     fetchTestStart,
+  //   } = this.props;
+  //   console.log('When test updated');
+  //   fetchTestStart(current_user_id, current_course_id, current_test_id);
   // }
-
-  componentDidUpdate() {
-    const {
-      current_user_id,
-      current_course_id,
-      current_test_id,
-      fetchTestStart,
-    } = this.props;
-    console.log('When test updated');
-    fetchTestStart(current_user_id, current_course_id, current_test_id);
-  }
   render() {
+    console.log('Test start page rendered!');
     const {
       current_test_name,
       current_user_id,
       current_course_id,
       current_test_id,
+      test_questions,
+      test_message,
     } = this.props;
     return (
       <>
@@ -61,6 +71,11 @@ class TestStartPage extends React.Component {
             {current_course_id}
             Test:
             {current_test_id}
+            {test_message ? (
+              <div> Message from backend {test_message}</div>
+            ) : test_questions ? (
+              <div>Questions Received</div>
+            ) : null}
           </TestTitle>
         </TestStartPageContainer>
       </>
@@ -74,6 +89,8 @@ const mapStateToProps = createStructuredSelector({
   current_test_name: selectCurrentCourseTopicName,
   current_user_id: selectCurrentUserId,
   current_course_id: selectCurrentCourseId,
+  test_questions: selectTestQuestions,
+  test_message: selectTestMessage,
 });
 
 const mapDispatchToProps = (dispatch) => ({

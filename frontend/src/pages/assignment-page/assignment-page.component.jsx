@@ -23,6 +23,13 @@ class AssignmentPage extends React.Component {
     };
   }
 
+  componentDidMount() {
+    console.log('Assignment Page has mounted');
+  }
+  componentWillUnmount() {
+    console.log('Assignment Page Will unmount now');
+  }
+
   handleOnChange = (e) => {
     //console.log(e.target.value);
     //console.log(e.target.name);
@@ -78,6 +85,7 @@ class AssignmentPage extends React.Component {
   };
 
   render() {
+    console.log('Assignment page has rendered');
     let i = -1;
     return (
       <>

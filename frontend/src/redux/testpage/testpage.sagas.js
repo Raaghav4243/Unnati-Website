@@ -23,9 +23,9 @@ export function* fetchTestAsync({ payload: { user_id, course_id, test_id } }) {
   }
 }
 
-export function* fetchTestOnCurrentCourseContentTypeChange() {
-  yield takeLatest();
-}
+// export function* fetchTestOnCurrentCourseContentTypeChange() {
+//   yield takeLatest(StudentActionTypes.SET_CURRENT_COURSE_TOPIC_CONTENT);
+// }
 
 export function* fetchTestStart() {
   yield takeLatest(TestPageActionTypes.FETCH_TEST_START, fetchTestAsync);

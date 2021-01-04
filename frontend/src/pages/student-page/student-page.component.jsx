@@ -10,7 +10,6 @@ class StudentPage extends React.Component {
 
   render() {
     const { match } = this.props;
-    console.log('student page match is  ', match);
     return (
       <>
         <Route exact path={`${match.path}`} component={StudentDashboard} />

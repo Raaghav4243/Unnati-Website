@@ -10,7 +10,15 @@ import pdf from '../../assets/TopicNotes.pdf';
 import SideNav from '../../components/SideNav/SideNav';
 
 export class CourseVideo extends Component {
+  componentDidMount() {
+    console.log('Lecture Page has mounted');
+  }
+  componentWillUnmount() {
+    console.log('Lecture Page Will unmount now');
+  }
+
   render() {
+    console.log('Lecture Page has rendered');
     return (
       <>
         <NavBar>NAVBAR</NavBar>

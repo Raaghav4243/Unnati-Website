@@ -4,15 +4,17 @@ import { Route } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import { selectCurrentUserId } from '../../redux/user/user.selectors';
 import { fetchCourseTopicsStart } from '../../redux/course-topic/course-topic.actions';
-import CourseSideNav from '../../components/course-sidenav/course-sidenav.components';
 import {
   selectCurrentCourseId,
   selectCurrentCourseTopicId,
   selectCurrentCourseTopicType,
 } from '../../redux/student/student.selectors';
+
+import CourseSideNav from '../../components/course-sidenav/course-sidenav.components';
+import CourseContentPage from '../course-content-page/course-content-page.component';
 import CourseVideo from '../course-video/course-video-page.component';
 import AssignmentPage from '../assignment-page/assignment-page.component';
-import TestPage from '../test-page/test-page.component';
+// import TestPage from '../test-page/test-page.component';
 import TestStartPage from '../test-start-page/test-start-page.component';
 //import demoAssignment from '../demo-assignment';
 
@@ -27,21 +29,11 @@ class StudentCourseTopicPage extends React.Component {
   }
   render() {
     const { match, course_topic_type, course_topic_id } = this.props;
-    console.log('match is', match, 'topic id is', course_topic_id);
+    // console.log('match is', match, 'topic id is', course_topic_id);
     return (
       <>
         <CourseSideNav />
-        {course_topic_type === 'LECTURE' ? (
-          <CourseVideo />
-        ) : course_topic_type === 'ASSIGNMENT' ? (
-          <AssignmentPage />
-        ) : course_topic_type === 'TEST' ? (
-          <TestStartPage />
-        ) : (
-          <div>SELECT A TOPIC</div>
-        )}
-        {/* <Route exact path={`${match.path}/test`} component={TestPage} />
-         */}
+        <CourseContentPage />
       </>
     );
   }
