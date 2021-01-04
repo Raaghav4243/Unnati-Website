@@ -93,9 +93,4 @@ const mapStateToProps = createStructuredSelector({
   test_message: selectTestMessage,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  fetchTestStart: (user_id, course_id, test_id) =>
-    dispatch(fetchTestStart(user_id, course_id, test_id)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(TestStartPage);
+export default connect(mapStateToProps)(TestStartPage);

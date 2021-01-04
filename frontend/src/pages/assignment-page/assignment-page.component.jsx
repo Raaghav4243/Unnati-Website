@@ -1,5 +1,18 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+
 import SideNav from '../../components/SideNav/SideNav';
+import {
+  selectAssignmentMessage,
+  selectAssignmentQuestions,
+} from '../../redux/assignment-page/assignment-page.selectors';
+import {
+  selectCurrentCourseId,
+  selectCurrentCourseTopicId,
+  selectCurrentCourseTopicName,
+} from '../../redux/student/student.selectors';
+import { selectCurrentUserId } from '../../redux/user/user.selectors';
 import {
   QuestionWrapper,
   AssignmentWrapper,
@@ -86,10 +99,22 @@ class AssignmentPage extends React.Component {
 
   render() {
     console.log('Assignment page has rendered');
+    const { assignment_message, assignment_questions } = this.props;
     let i = -1;
     return (
       <>
         <AssignmentWrapper>
+          {assignment_message ? (
+            <div>MESSAGE FROM BACKEND {assignment_message}</div>
+          ) : (
+            <div>Loading...</div>
+          )}
+          {assignment_questions ? (
+            <div>QUESTIONS RECEIVED</div>
+          ) : (
+            <div>Loading...</div>
+          )}
+
           <WrappingQuestions>
             <AssignmentName>
               Assignment - 1 {data.assignment.assignmentName}
@@ -213,4 +238,13 @@ class AssignmentPage extends React.Component {
   }
 }
 
-export default AssignmentPage;
+const mapStateToProps = createStructuredSelector({
+  current_assignment_id: selectCurrentCourseTopicId,
+  current_assignment_name: selectCurrentCourseTopicName,
+  current_user_id: selectCurrentUserId,
+  current_course_id: selectCurrentCourseId,
+  assignment_questions: selectAssignmentQuestions,
+  assignment_message: selectAssignmentMessage,
+});
+
+export default connect(mapStateToProps)(AssignmentPage);

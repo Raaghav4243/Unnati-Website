@@ -19,7 +19,7 @@ import FeesPage from './pages/FeesPage/App';
 import StudentPage from './pages/student-page/student-page.component';
 // import StudentCoursePage from './pages/demo-student-course-page/demo-student-course-page';
 
-function App({ user_id, course_id }) {
+function App() {
   return (
     <BrowserRouter>
       <Switch>

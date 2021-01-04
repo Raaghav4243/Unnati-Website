@@ -1,0 +1,7 @@
+const LecturePageActionTypes = {
+  FETCH_LECTURE_START: 'FETCH_LECTURE_START',
+  FETCH_LECTURE_SUCCESS: 'FETCH_LECTURE_SUCCESS',
+  FETCH_LECTURE_FAILURE: 'FETCH_LECTURE_FAILURE',
+};
+
+export default LecturePageActionTypes;
