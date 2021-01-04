@@ -3,7 +3,7 @@ import CourseVideoPlayer from '../../components/course-video/course-video.compon
 import CourseNotesDownload from '../../components/course-video/course-notes.component';
 import {
   CourseVideoPDFContainer,
-  CourseVideoPage,
+  CourseVideoContainer,
   NavBar,
 } from './course-video-page.styles';
 import pdf from '../../assets/TopicNotes.pdf';
@@ -14,13 +14,13 @@ export class CourseVideo extends Component {
     return (
       <>
         <NavBar>NAVBAR</NavBar>
-        <CourseVideoPage>
+        <CourseVideoContainer>
           <SideNav />
           <CourseVideoPDFContainer>
             <CourseVideoPlayer url='https://www.youtube.com/watch?v=YqQx75OPRa0'></CourseVideoPlayer>
             <CourseNotesDownload download={pdf}></CourseNotesDownload>
           </CourseVideoPDFContainer>
-        </CourseVideoPage>
+        </CourseVideoContainer>
       </>
     );
   }

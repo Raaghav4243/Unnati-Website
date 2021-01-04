@@ -22,4 +22,4 @@ sagaMiddleware.run(rootSaga);
 
 // export default { store, persistStore };
 
-export default { store };
+// export default { store };

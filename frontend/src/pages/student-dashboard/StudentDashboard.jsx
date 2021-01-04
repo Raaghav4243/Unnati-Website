@@ -32,18 +32,17 @@ import SideNav from '../../components/SideNav/SideNav';
 class StudentDashboard extends React.Component {
   componentDidMount() {
     const { fetchAllCoursesStartAsync, fetchUserCafeStartAsync } = this.props;
-    console.log('Component Mounted');
+    // console.log('Component Mounted');
     fetchAllCoursesStartAsync();
   }
 
   render() {
     const { userId, userCafe, allCourses } = this.props;
-    console.log(allCourses);
-    console.log(userCafe);
+    // console.log(allCourses);
+    // console.log(userCafe);
     return (
       <>
         <HorizontalFlexBox>
-          
           <VerticleFlexBox>
             <CafeDetail>Cafe Details</CafeDetail>
             <CafeOverview
@@ -61,8 +60,8 @@ class StudentDashboard extends React.Component {
           <CafeDetail2>Enrolled Course</CafeDetail2>
           <EnrolledCoursesWrapper>
             {allCourses ? (
-              allCourses.map((course) => (
-                <Card course_name={course.subjectName} />
+              allCourses.map((course, index) => (
+                <Card course_name={course.subjectName} key={course._id} />
               ))
             ) : (
               <h2>Loading...</h2>
@@ -74,7 +73,10 @@ class StudentDashboard extends React.Component {
           <EnrolledCoursesWrapper>
             {allCourses ? (
               allCourses.map((course) => (
-                <DiscoverCard course_name={course.subjectName} />
+                <DiscoverCard
+                  course_name={course.subjectName}
+                  key={course._id}
+                />
               ))
             ) : (
               <h2>Loading...</h2>

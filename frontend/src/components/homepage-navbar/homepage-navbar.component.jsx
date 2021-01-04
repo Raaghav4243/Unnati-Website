@@ -115,6 +115,32 @@ class HomePageNavbar extends React.Component {
                     About Us
                   </NavLink>
                 </NavItem>
+                <NavItem>
+                  <NavLink
+                    to='testimonials'
+                    smooth={true}
+                    duration={500}
+                    spy={true}
+                    exact='true'
+                    offset={-60}
+                    className={this.state.changedColor ? 'scroll' : null}
+                  >
+                    Student Stories
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink
+                    to='contact'
+                    smooth={true}
+                    duration={500}
+                    spy={true}
+                    exact='true'
+                    offset={-60}
+                    className={this.state.changedColor ? 'scroll' : null}
+                  >
+                    Contact Us
+                  </NavLink>
+                </NavItem>
               </NavMenu>
             </NavbarMiddle>
             <NavbarRight>
