@@ -1,18 +1,18 @@
-// import FeeDetailTypes from "./fee-datails.types"
+import FeeDetailTypes from "./fee-datails.types"
 
-// export const fetchFeeDetailStart = () => ({
-//     type: FeeDetailTypes.FETCH_FEE_DETAILS_START
-// })
+export const fetchFeeDetailStart = () => ({
+    type: FeeDetailTypes.FETCH_FEE_DETAILS_START
+})
 
-// export const fetchFeeDetailSuccess = (feeDetail) => ({
-//     type: FeeDetailTypes.FETCH_FEE_DETAILS_SUCCESS,
-//     payload: feeDetail
-// })
+export const fetchFeeDetailSuccess = (feeDetail) => ({
+    type: FeeDetailTypes.FETCH_FEE_DETAILS_SUCCESS,
+    payload: feeDetail
+})
 
-// export const fetchFeeDetailFailure = (errorMessage) => ({
-//     type: FeeDetailTypes.FETCH_FEE_DETAILS_FAILURE,
-//     payload: errorMessage
-// })
+export const fetchFeeDetailFailure = (errorMessage) => ({
+    type: FeeDetailTypes.FETCH_FEE_DETAILS_FAILURE,
+    payload: errorMessage
+})
 
 // export const fetchFeeDetailStartAsync = () => {
 //     return async (dispatch, getState) => {
