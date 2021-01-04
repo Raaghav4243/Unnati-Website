@@ -10,6 +10,11 @@ class TestPage extends Component {
       time: data.test.duration * 60 * 1000,
     };
   }
+
+  componentDidMount(){
+    
+  }
+
   handleOnChange = (e) => {
     //console.log(e.target.value);
     //console.log(e.target.name);
