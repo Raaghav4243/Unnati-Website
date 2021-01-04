@@ -4,20 +4,24 @@ import { createStructuredSelector } from 'reselect';
 import { fetchCourseTopicsStart } from '../../redux/course-topic/course-topic.sagas';
 import { fetchFeeAmountStart } from '../../redux/fee-amount/fee-amount.actions';
 import { selectUserDueFees, selectUserPaidFees } from '../../redux/fee-amount/fee-amount.selectors';
+import { fetchFeeDetailStart } from '../../redux/fee-details/fee-details.actions';
+import { selectUserFeeDetails } from '../../redux/fee-details/fee-details.selectors';
 
 import { FullPage, DueAmount, OnlineButton, PaidAmount, FeesCat, FeesBox, FeesHead, BoxAndHead, PastHead, SubCol, SubHead, SubCol1, FlexHeadCol, PastBody, BothBox } from './FeesElements';
 
 class FeesPage extends React.Component {
     componentDidMount(){
-        const {fetchFeeAmountStart} = this.props;
+        const {fetchFeeAmountStart, fetchFeeDetailStart} = this.props;
         fetchFeeAmountStart()
+        fetchFeeDetailStart()
      
         
     }
     render() {
-        const {paidFees, dueFees} = this.props;
+        const {paidFees, dueFees, feeDetails} = this.props;
         console.log('paid fees', paidFees)
         console.log('due fees', dueFees)
+        console.log( 'fee details' ,feeDetails)
         
         return (
             <>
@@ -58,12 +62,16 @@ class FeesPage extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
     paidFees: selectUserPaidFees,
-    dueFees: selectUserDueFees
+    dueFees: selectUserDueFees,
+    feeDetails: selectUserFeeDetails
 })
 
 const mapDispatchToProps = (dispatch) => ({
     fetchFeeAmountStart: () => 
-        dispatch(fetchFeeAmountStart())
+        dispatch(fetchFeeAmountStart()),
+    
+    fetchFeeDetailStart: () => 
+        dispatch(fetchFeeDetailStart())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(FeesPage)

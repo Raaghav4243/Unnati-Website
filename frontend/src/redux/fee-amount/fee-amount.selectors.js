@@ -5,7 +5,7 @@ const selectFeeAmount = (state) => state.feeAmount
 export const selectCurrentUserFees = createSelector(
     [selectFeeAmount],
     (fee) => {
-        console.log(fee.feeAmount)
+        //console.log(fee.feeAmount)
         return fee
     }
     
