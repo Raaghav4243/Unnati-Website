@@ -12,6 +12,11 @@ class TestPage extends Component {
     }
 
   }
+
+  componentDidMount(){
+    
+  }
+
   handleOnChange = (e) => {
     //console.log(e.target.value);
     //console.log(e.target.name);

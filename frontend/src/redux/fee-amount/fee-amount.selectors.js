@@ -4,16 +4,19 @@ const selectFeeAmount = (state) => state.feeAmount
 
 export const selectCurrentUserFees = createSelector(
     [selectFeeAmount],
-    (fee) => fee
+    (fee) => {
+        console.log(fee.feeAmount)
+        return fee
+    }
+    
 )
 
-// export const selectUserPaidFees = createSelector(
-//     [selectCurrentUserFees],
-//     //(fee) => fee.paidAmount
-// )
-
-// export const selectUserDueFees = createSelector(
-//    [selectCurrentUserFees],
-//    //(fee) => fee.dueAmount
-// )
+ export const selectUserPaidFees = createSelector(
+     [selectCurrentUserFees],
+    (paid) => paid.paidAmount
+ )
+ export const selectUserDueFees = createSelector(
+    [selectCurrentUserFees],
+    (due) => due.dueAmount
+ )
 

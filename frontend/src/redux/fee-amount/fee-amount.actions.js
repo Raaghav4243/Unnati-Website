@@ -14,19 +14,19 @@ export const fetchFeeAmountFailure = (errorMessage) => ({
     payload: errorMessage
 })
 
-export const fetchFeeAmountStartAsync = () => {
-    return async (dispatch, getState) => {
-        try {
-            dispatch(fetchFeeAmountStart())
-            const userId = getState().user._id
-            const cafeId = getState().user.cafe_id
-            let feeAmount = await fetch(`/FeesStatus/5fa6af42769f165e982b2ea9/cafe/5fa5796e9542c50df4285b04`)
-            feeAmount = await feeAmount.json()
-            feeAmount = feeAmount.user
-            console.log(feeAmount.user)
-            dispatch(fetchFeeAmountSuccess(feeAmount))
-        } catch (error) {
-            dispatch(fetchFeeAmountFailure(error.message))
-        }
-    }
-}
+// export const fetchFeeAmountStartAsync = () => {
+//     return async (dispatch, getState) => {
+//         try {
+//             dispatch(fetchFeeAmountStart())
+//             const userId = getState().user._id
+//             const cafeId = getState().user.cafe_id
+//             let feeAmount = await fetch(`/FeesStatus/5fa6af42769f165e982b2ea9/cafe/5fa5796e9542c50df4285b04`)
+//             feeAmount = await feeAmount.json()
+//             feeAmount = feeAmount.user
+//             console.log(feeAmount.user)
+//             dispatch(fetchFeeAmountSuccess(feeAmount))
+//         } catch (error) {
+//             dispatch(fetchFeeAmountFailure(error.message))
+//         }
+//     }
+// }

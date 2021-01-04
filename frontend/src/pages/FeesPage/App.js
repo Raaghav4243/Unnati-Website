@@ -1,20 +1,24 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { fetchFeeAmountStartAsync } from '../../redux/fee-amount/fee-amount.actions';
-import { selectCurrentUserFees } from '../../redux/fee-amount/fee-amount.selectors';
+import { fetchCourseTopicsStart } from '../../redux/course-topic/course-topic.sagas';
+import { fetchFeeAmountStart } from '../../redux/fee-amount/fee-amount.actions';
+import { selectUserDueFees, selectUserPaidFees } from '../../redux/fee-amount/fee-amount.selectors';
 
 import { FullPage, DueAmount, OnlineButton, PaidAmount, FeesCat, FeesBox, FeesHead, BoxAndHead, PastHead, SubCol, SubHead, SubCol1, FlexHeadCol, PastBody, BothBox } from './FeesElements';
 
 class FeesPage extends React.Component {
     componentDidMount(){
-        const {fetchFeeAmountStartAsync} = this.props;
-        console.log('fee amount')
-        fetchFeeAmountStartAsync()
+        const {fetchFeeAmountStart} = this.props;
+        fetchFeeAmountStart()
+     
+        
     }
     render() {
-        const hi = this.props
-        console.log(hi)
+        const {paidFees, dueFees} = this.props;
+        console.log('paid fees', paidFees)
+        console.log('due fees', dueFees)
+        
         return (
             <>
 
@@ -24,9 +28,9 @@ class FeesPage extends React.Component {
                             <FeesHead>Fees</FeesHead>
                             <FeesBox>
                                 <FeesCat>Due Fees</FeesCat>
-                                <DueAmount>{DueAmount}</DueAmount>
+                                <DueAmount>{dueFees}</DueAmount>
                                 <FeesCat>Paid Amount</FeesCat>
-                                <PaidAmount>{PaidAmount}</PaidAmount>
+                                <PaidAmount>{paidFees}</PaidAmount>
                                 <OnlineButton type="submit">Make Online Payment</OnlineButton>
                             </FeesBox>
                         </BoxAndHead>
@@ -53,13 +57,13 @@ class FeesPage extends React.Component {
 
 
 const mapStateToProps = createStructuredSelector({
-   // DueAmount: selectUserDueFees,
-   // PaidAmount: selectUserPaidFees,
-    hi: selectCurrentUserFees
+    paidFees: selectUserPaidFees,
+    dueFees: selectUserDueFees
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    fetchFeeAmountStartAsync: () => dispatch(fetchFeeAmountStartAsync())
+    fetchFeeAmountStart: () => 
+        dispatch(fetchFeeAmountStart())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(FeesPage)

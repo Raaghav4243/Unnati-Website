@@ -11,7 +11,7 @@ import Profile from './pages/Profile-page/profile-page.component';
 import StudentDashboard from './pages/student-dashboard/StudentDashboard';
 import SideNav from './components/SideNav/SideNav';
 import CourseSideNav from './components/course-sidenav/course-sidenav.components';
-import StudentCoursePage from './pages/demo-student-course-page/demo-student-course-page';
+//import StudentCoursePage from './pages/demo-student-course-page/demo-student-course-page';
 import TestPage from './pages/test-page/test-page.component';
 import UserProfileCard from './components/SideNav/UserProfile/UserProfileCard';
 import FeesPage from './pages/FeesPage/App';
@@ -25,6 +25,7 @@ function App({ user_id, course_id }) {
       <Switch>
         <Route path='/' exact component={HomePage} />
         <Route path='/student' component={StudentPage} />
+        <Route path='/test' component={FeesPage} />
       </Switch>
     </BrowserRouter>
   );
