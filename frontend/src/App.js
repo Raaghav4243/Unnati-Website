@@ -23,6 +23,7 @@ import './App.css';
 import HomePage from './student/pages/homepage/homepage.component';
 import StudentPage from './student/pages/student-page/student-page.component';
 import FeesPage from './student/pages/FeesPage/App';
+import TeacherDashboard from '../src/teacher/pages/teacher-dashboard-main-page/teacher-dashboard-page'
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path='/' exact component={HomePage} />
         <Route path='/student' component={StudentPage} />
         <Route path='/test' component={FeesPage} />
+        <Route path='/teacher' component={TeacherDashboard} />
       </Switch>
     </BrowserRouter>
   );
