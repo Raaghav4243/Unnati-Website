@@ -48,6 +48,19 @@ function App() {
             </Switch> 
             </BrowserRouter>
     );
+import TeacherDashboard from '../src/teacher/pages/teacher-dashboard-main-page/teacher-dashboard-page'
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route path='/' exact component={HomePage} />
+        <Route path='/student' component={StudentPage} />
+        <Route path='/test' component={FeesPage} />
+        <Route path='/teacher' component={TeacherDashboard} />
+      </Switch>
+    </BrowserRouter>
+  );
 }
 
 export default App;
