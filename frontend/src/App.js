@@ -17,6 +17,7 @@ import UserProfileCard from './components/SideNav/UserProfile/UserProfileCard';
 import FeesPage from './pages/FeesPage/App';
 // import StudentCourseTopicPage from './pages/student-course-topic-page/student-course-topic-page';
 import StudentPage from './pages/student-page/student-page.component';
+import SignUpForm from './pages/Login-page/SignupForm';
 // import StudentCoursePage from './pages/demo-student-course-page/demo-student-course-page';
 
 function App() {

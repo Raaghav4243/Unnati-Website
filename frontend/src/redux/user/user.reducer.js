@@ -13,6 +13,8 @@ const INITIAL_STATE = {
   },
   isFetching: false,
   errorMessage: undefined,
+  userIsUpdating: false,
+  updateConformation: null
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -39,6 +41,18 @@ const userReducer = (state = INITIAL_STATE, action) => {
         isFetching: false,
         errorMessage: action.payload,
       };
+    case UserActionTypes.UPDATE_USER_START:
+      return{
+        ...state,
+        userIsUpdating: true
+      }
+    case UserActionTypes.UPDATE_USER_SUCCESS:
+      return{
+        ...state,
+        userIsUpdating: false,
+        updateConformation: action.payload
+      }
+    
     default:
       return state;
   }

@@ -27,7 +27,7 @@ class TestPage extends Component {
     const { name, value, id } = e.target;
     let response = this.state.resp;
     response[id] = [value];
-    console.log(e);
+    //console.log(e);
     const questionType = data.test.questions[id - 1].type;
     //if(questionType === 'MULTICORRECT'){
     //  if(response[id]){

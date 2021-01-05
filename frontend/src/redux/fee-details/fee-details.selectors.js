@@ -9,3 +9,19 @@ export const selectUserFeeDetails = createSelector(
         return fee
     }
 )
+
+export const selectUserFeeReciepts = createSelector(
+    [selectUserFeeDetails],
+    (reciepts) => {
+        return reciepts.receipts  
+    }
+)
+
+// export const selectUserFeeAmount = createSelector(
+//     // [selectUserFeeReciepts],
+//     // (amount) => {
+//     //     amount.map((amount => {
+//     //         return amount.remarks
+//     //     }))
+//     // }
+// )

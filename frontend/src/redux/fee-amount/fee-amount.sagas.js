@@ -6,10 +6,10 @@ import {
 
 import FeeAmountTypes from './fee-amount.types';
 
-export function* fetchFeeAmountAsync() {
+export function* fetchFeeAmountAsync({ payload: { user_id, cafe_id } }) {
   try {
     let feeAmountDetails = yield fetch(
-      '/FeesStatus/5fa6af42769f165e982b2ea9/cafe/5fa5796e9542c50df4285b04'
+      `/FeesStatus/${user_id}/cafe/${cafe_id}`
     );
 
     feeAmountDetails = yield feeAmountDetails.json();
