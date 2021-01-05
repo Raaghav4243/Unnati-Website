@@ -1,4 +1,4 @@
-const data = {
+const questionData = {
     "assignment": {
         "questions": [
             {
@@ -184,4 +184,4 @@ const data = {
     "attemptsLeft": 3
 }
 
-export default data
+export default questionData

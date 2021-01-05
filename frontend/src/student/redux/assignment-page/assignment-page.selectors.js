@@ -11,3 +11,8 @@ export const selectAssignmentMessage = createSelector(
   [selectAssignmentDetails],
   (assignmentDetails) => assignmentDetails.message
 );
+
+export const selectAssignmentId = createSelector(
+  [selectAssignmentDetails],
+  (assignmentDetails) => assignmentDetails.assignmentId
+)

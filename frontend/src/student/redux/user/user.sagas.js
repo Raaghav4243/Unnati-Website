@@ -2,8 +2,9 @@ import { all, call, put, takeLatest } from "redux-saga/effects";
 import { updateUserSuccess } from "./user.actions";
 import { UserActionTypes } from "./user.types";
 
-export function* updateUserAsync({payload: {data, user_id}}){
+export function* updateUserAsync({payload: {user_id, data}}){
     try {
+      console.log('updated profile info data',data)
         yield fetch(`/updateUser/${user_id}`, {
               method: 'POST', // or 'PUT'
               headers: {

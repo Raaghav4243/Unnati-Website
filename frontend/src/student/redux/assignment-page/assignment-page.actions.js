@@ -20,3 +20,18 @@ export const fetchAssignmentFailure = (errorMessage) => ({
   type: AssignmentPageActionTypes.FETCH_ASSIGNMENT_FAILURE,
   payload: errorMessage,
 });
+
+export const submitAssignmentStart = (data) => {
+  console.log('action data', data)
+  return{
+    type: AssignmentPageActionTypes.SUBMIT_ASSIGNMENT_START,
+    payload: {data: data}
+  }
+}
+
+export const submitAssignmentSuccess = (message) => {
+  return{
+  type: AssignmentPageActionTypes.SUBMIT_ASSIGNMENT_SUCCESS,
+  payload: message
+  }
+}
