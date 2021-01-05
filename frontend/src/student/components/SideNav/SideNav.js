@@ -8,7 +8,7 @@ import ProfileSetting from './ProfileSettings';
 import ReturnBtn from './Return';
 
 
-const SideNav = () => {
+const ProfileSideNav = () => {
     return(
         <SideNavDiv>
             <Profile />
@@ -19,4 +19,4 @@ const SideNav = () => {
     )
 }
 
-export default SideNav;
+export default ProfileSideNav;

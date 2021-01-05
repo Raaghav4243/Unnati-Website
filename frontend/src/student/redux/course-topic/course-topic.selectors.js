@@ -12,3 +12,8 @@ export const selectCompletedCourseTopicsId = createSelector(
   [selectCourseTopicsAndCompletionDetails],
   (selectCompletedCourseTopicId) => selectCompletedCourseTopicId.attemptedTopicList
 )
+
+export const selectCourseId  =createSelector(
+  [selectCourseTopicsAndCompletionDetails],
+  (selectCourseTopicsAndCompletionDetails) => selectCourseTopicsAndCompletionDetails.course_id
+)

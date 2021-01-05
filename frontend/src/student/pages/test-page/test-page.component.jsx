@@ -16,38 +16,49 @@ class TestPage extends Component {
   }
 
   handleOnChange = (e) => {
-    //console.log(e.target.value);
-    //console.log(e.target.name);
-    // const responses = this.resp.push({name: [e.target.value]})
-    //console.log(responses)
-    //  this.setState({ selectedOption: e.target.value});
-    //console.log(resp)
-    //const value = e.target.value;
-    //const name = e.target.name;
-    const { name, value, id } = e.target;
-    let response = this.state.resp;
-    response[id] = [value];
-    //console.log(e);
-    const questionType = data.test.questions[id - 1].type;
-    //if(questionType === 'MULTICORRECT'){
-    //  if(response[id]){
-    //    value = value.map(value)
-    //  }
-    //}
 
-    console.log(response);
+    const { name, value, id } = e.target;
+    
+    let response = this.state.resp;
+  
+    const questionType = data.test.questions[id - 1].type;
+
+    if(questionType === 'MULTICORRECT'){
+        if (response[id] == undefined){
+          response[id] = [value];
+        }
+        else if(response[id].includes(value)){
+            let temp = response[id].filter((item) => {
+              return item !== value
+            })
+            response[id] = temp
+
+        }
+        else{
+          response[id].push(value);
+        }
+    }
+    else{
+      response[id] = [value];
+    }
+
+    console.log('resp',response);
     this.setState(
       {
         resp: response,
       },
       () => {
-        console.log(this.state);
+        console.log('state',this.state);
       }
     );
   };
 
+
   handleSubmit = (e) => {
     e.preventDefault();
+    let data = this.state.resp
+    let values = Object.values(data)
+    console.log(values)
   };
 
   render() {

@@ -27,6 +27,7 @@ import { fetchUserCafeStartAsync } from '../../redux/cafe/cafe.actions'
 import { CafeDetails } from '../../components/CafeDetails/Cafe.Details.Styles';
 import StudentNavbar from '../../components/student-navbar/student-navbar.component';
 import { updateUserStart } from '../../redux/user/user.actions';
+import ProfileSideNav from '../../components/SideNav/SideNav'
 
 
 class Profile extends React.Component {
@@ -79,10 +80,11 @@ class Profile extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault()
     console.log('hi')
-    let {data} = this.state.updatedUserInfo
+    let data = this.state.updatedUserInfo
     let user_id = this.props.userId
     const {updateUserStart} = this.props
     updateUserStart(user_id, data)
+    console.log('data on the page', data)
   //fetch('/updateUser/5fa6af42769f165e982b2ea9', {
   //  method: 'POST', // or 'PUT'
   //  headers: {
@@ -108,7 +110,8 @@ class Profile extends React.Component {
       <NavBar>NAVBAR</NavBar>
 
       <PageWrapper>
-        <SideNav>SIDENAV</SideNav>
+         <ProfileSideNav /> 
+        
         <ContainerWrapper>
           <ProfileHeading>PROFILE </ProfileHeading>
           <ProfileDetailsContainer
@@ -209,8 +212,8 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  updateUserStart: (data, user_id) => 
-    dispatch(updateUserStart(data, user_id)) 
+  updateUserStart: (user_id, data) => 
+    dispatch(updateUserStart(user_id, data)) 
 })
 
 //export default Profile;

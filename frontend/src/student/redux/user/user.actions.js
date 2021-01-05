@@ -14,10 +14,11 @@ export const fetchUserFailure = (errorMessage) => ({
   payload: errorMessage,
 });
 
-export const updateUserStart = (data, user_id) => {
+export const updateUserStart = (user_id, data) => {
+  console.log('action data', data, 'action user id', user_id)
   return {
     type: UserActionTypes.UPDATE_USER_START,
-    payload: {data, user_id}
+    payload: {user_id: user_id, data: data}
   }
 }
 

@@ -1,3 +1,4 @@
+import { RiTruckLine } from 'react-icons/ri';
 import AssignmentPageActionTypes from './assignment-page.types';
 
 const INITIAL_STATE = {
@@ -12,6 +13,8 @@ const INITIAL_STATE = {
   questions: null,
   attemptsLeft: null,
   errorMessage: null,
+  assignmentIsSubmitting: false,
+  submitConformation: null
 };
 
 const assignmentReducer = (state = INITIAL_STATE, action) => {
@@ -70,6 +73,17 @@ const assignmentReducer = (state = INITIAL_STATE, action) => {
         isFetching: false,
         errorMessage: action.payload,
       };
+    case AssignmentPageActionTypes.SUBMIT_ASSIGNMENT_START:
+      return{
+        ...state,
+        assignmentIsSubmitting: true
+      }
+    case AssignmentPageActionTypes.SUBMIT_ASSIGNMENT_SUCCESS:
+      return{
+        ...state,
+        assignmentIsSubmitting: false,
+        submitConformation: action.payload
+      }
     default:
       return state;
   }

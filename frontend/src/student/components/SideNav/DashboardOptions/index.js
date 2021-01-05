@@ -10,8 +10,7 @@ const DashboardNavOptions = ({ img, option }) => {
         <>
         <DashboardOptions>
             <DashboardHeading>Dashboard</DashboardHeading>
-                <Link to="/studentdashboard"><DashboardCard {...Option1} /></Link>
-                <Link to="/enrolledcourses"><DashboardCard {...Option2} /></Link>
+                <Link to="/student"><DashboardCard {...Option1} /></Link>
             </DashboardOptions>
         </>
     )

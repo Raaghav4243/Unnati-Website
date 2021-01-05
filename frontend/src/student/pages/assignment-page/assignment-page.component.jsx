@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
 import SideNav from '../../components/SideNav/SideNav';
+import { submitAssignmentStart } from '../../redux/assignment-page/assignment-page.actions';
+import { fetchAssignmentStart } from '../../redux/assignment-page/assignment-page.actions';
 import {
   selectAssignmentMessage,
   selectAssignmentQuestions,
@@ -23,21 +25,28 @@ import {
   Questions,
   Options,
 } from './assignment-page.styles';
-import data from './data';
+import questionData from './data';
 
 class AssignmentPage extends React.Component {
   constructor() {
     super();
     this.state = {
       resp: {},
-      score: 0,
       sahijawab: [],
       jawab: [],
+      done: false,
+       score: {marksScored: 0},
     };
   }
 
   componentDidMount() {
     console.log('Assignment Page has mounted');
+    const user_id = this.props.current_user_id
+    const course_id = this.props.current_course_id
+    const assignment_id = this.props.current_assignment_id
+    const {fetchAssignmentStart} = this.props
+    fetchAssignmentStart({ user_id, course_id, assignment_id })
+
   }
   componentWillUnmount() {
     console.log('Assignment Page Will unmount now');
@@ -57,7 +66,7 @@ class AssignmentPage extends React.Component {
     console.log(response);
     this.setState(
       {
-        resp: response,
+        resp: response
       },
       () => {
         console.log(this.state);
@@ -67,7 +76,7 @@ class AssignmentPage extends React.Component {
 
   handleClick = (e) => {
     e.preventDefault();
-    const questionNumbers = data.assignment.questions.map(
+    const questionNumbers = questionData.assignment.questions.map(
       (number) => number.number
     );
     let responses = [];
@@ -77,7 +86,7 @@ class AssignmentPage extends React.Component {
     });
     console.log(responses);
     this.setState({ jawab: responses });
-    const answers = data.assignment.questions.map(
+    const answers = questionData.assignment.questions.map(
       (answer) => answer.correctAns[0]
     );
     this.setState({ sahijawab: answers });
@@ -87,14 +96,19 @@ class AssignmentPage extends React.Component {
       for (let i = 0; i < a.length; i++) {
         if (a[i] == b[i]) {
           marks = marks + 1;
-        }
+        } 
         //console.log(a[i], b[i])
       }
       console.log(marks);
-      this.setState({ score: marks });
+      this.setState({ score: marks, done: true });
     };
     compareArray(responses, answers);
     console.log(this.state);
+
+    let data = this.state.score
+    console.log('page data',data)
+    const {submitAssignmentStart} = this.props
+    submitAssignmentStart(data)
   };
 
   render() {
@@ -103,137 +117,141 @@ class AssignmentPage extends React.Component {
     let i = -1;
     return (
       <>
-      
-        <AssignmentWrapper>
-          {assignment_message ? (
-            <div>MESSAGE FROM BACKEND {assignment_message}</div>
-          ) : (
-            <div>Loading...</div>
-          )}
-          {assignment_questions ? (
-            <div>QUESTIONS RECEIVED</div>
-          ) : (
-            <div>Loading...</div>
-          )}
+        {this.state.done === false ?
+          <AssignmentWrapper>
+            {assignment_message ? (
+              <div>MESSAGE FROM BACKEND {assignment_message}</div>
+            ) : (
+                <div>Loading...</div>
+              )}
+            {assignment_questions ? (
+              <div>QUESTIONS RECEIVED</div>
+            ) : (
+                <div>Loading...</div>
+              )}
 
-          <WrappingQuestions>
-            <AssignmentName>
-              Assignment - 1 {data.assignment.assignmentName}
-            </AssignmentName>
+            <WrappingQuestions>
+              <AssignmentName>
+                Assignment - 1 {questionData.assignment.assignmentName}
+              </AssignmentName>
 
-            <AssignmentForm onChange={(e) => this.handleOnChange(e)}>
-              <AllQuestions>
-                {data.assignment.questions.map((question, number) => {
-                  //console.log(option)
+              <AssignmentForm onChange={(e) => this.handleOnChange(e)}>
+                <AllQuestions>
+                  {questionData.assignment.questions.map((question, number) => {
+                    //console.log(option)
 
-                  return (
-                    <>
-                      <QuestionWrapper>
-                        <Questions key={number}>
-                          Q{question.number}) {question.statement}
-                          <br />
-                        </Questions>
-                        {question.options.map((option, index) => {
-                          //   console.log(option)
-                          //console.log(number)
-                          return (
-                            <>
-                              <Options>
-                                <input
-                                  type='radio'
-                                  key={question.statement}
-                                  value={option}
-                                  id={option}
-                                  name={question.number}
-                                />
-                                <label key={index} htmlFor={option}>
-                                  {option}
-                                </label>
-                                <br />
-                              </Options>
-                              <div></div>
-                            </>
-                          );
-                        })}
-                      </QuestionWrapper>
-                    </>
-                  );
-                })}
-              </AllQuestions>
-              <button onClick={(e) => this.handleClick(e)}>submit</button>
-            </AssignmentForm>
-          </WrappingQuestions>
-        </AssignmentWrapper>
-
-        <>
-          <div>
-            {this.state.score ? (
-              <div>your score is: {this.state.score}</div>
-            ) : null}
-          </div>
-          <div>
-            {this.state.jawab ? (
-              <div>
-                {this.state.jawab.map((responses, index) => {
-                  if (this.state.sahijawab[index] === responses) {
                     return (
-                      <div>
-                        <div>{data.assignment.questions[index].statement}</div>
-                        <div>
-                          {data.assignment.questions[index].options.map(
-                            (option) => {
-                              return <div>{option}</div>;
-                            }
-                          )}
-                        </div>
-
-                        {responses ? (
-                          <div>
-                            USER GAVE THE CORRECT ANSWER! User response:{' '}
-                            {this.state.jawab[index]}, correct answer:{' '}
-                            {this.state.sahijawab[index]}
-                          </div>
-                        ) : (
-                          <div>
-                            Unattempted, correct answer :
-                            {this.state.sahijawab[index]}
-                          </div>
-                        )}
-                      </div>
+                      <>
+                        <QuestionWrapper>
+                          <Questions key={number}>
+                            Q{question.number}) {question.statement}
+                            <br />
+                          </Questions>
+                          {question.options.map((option, index) => {
+                            //   console.log(option)
+                            //console.log(number)
+                            return (
+                              <>
+                                <Options>
+                                  <input
+                                    type='radio'
+                                    key={question.statement}
+                                    value={option}
+                                    id={option}
+                                    name={question.number}
+                                  />
+                                  <label key={index} htmlFor={option}>
+                                    {option}
+                                  </label>
+                                  <br />
+                                </Options>
+                                <div></div>
+                              </>
+                            );
+                          })}
+                        </QuestionWrapper>
+                      </>
                     );
-                  } else {
-                    return (
-                      <div>
-                        <div>{data.assignment.questions[index].statement}</div>
+                  })}
+                </AllQuestions>
+                <button onClick={(e) => this.handleClick(e)}>submit</button>
+              </AssignmentForm>
+            </WrappingQuestions>
+          </AssignmentWrapper>
+          :
+          <>
+            <div>
+              {this.state.score ? (
+                <div>your score is: {this.state.score}</div>
+              ) : null}
+            </div>
+            <div>
+              {this.state.jawab ? (
+                <div>
+                  {this.state.jawab.map((responses, index) => {
+                    if (this.state.sahijawab[index] === responses) {
+                      return (
                         <div>
-                          {data.assignment.questions[index].options.map(
-                            (option) => {
-                              return <div>{option}</div>;
-                            }
-                          )}
-                        </div>
+                          <div>{questionData.assignment.questions[index].statement}</div>
+                          <div>
+                            {questionData.assignment.questions[index].options.map(
+                              (option) => {
+                                return <div>{option}</div>;
+                              }
+                            )}
+                          </div>
 
-                        {responses ? (
+                          {responses ? (
+                            <div>
+                              USER GAVE THE CORRECT ANSWER! User response:{' '}
+                              {this.state.jawab[index]}, correct answer:{' '}
+                              {this.state.sahijawab[index]}
+                            </div>
+                          ) : (
+                              <div>
+                                Unattempted, correct answer :
+                                {this.state.sahijawab[index]}
+                              </div>
+                            )}
+                        </div>
+                      );
+                    } else {
+                      return (
+                        <div>
+                          <div>{questionData.assignment.questions[index].statement}</div>
                           <div>
-                            {' '}
-                            USER GAVE WRONG ANSWER! User response is:{' '}
-                            {this.state.jawab[index]}, correct answer:{' '}
-                            {this.state.sahijawab[index]}
+                            {questionData.assignment.questions[index].options.map(
+                              (option) => {
+                                return <div>{option}</div>;
+                              }
+                            )}
                           </div>
-                        ) : (
-                          <div>
-                            Unattempted, correct answer :
-                            {this.state.sahijawab[index]}
-                          </div>
-                        )}
-                      </div>
-                    );
-                  }
-                })}
-              </div>
-            ) : null}
-          </div>
-        </>
+
+                          {responses ? (
+                            <div>
+                              {' '}
+                        USER GAVE WRONG ANSWER! User response is:{' '}
+                              {this.state.jawab[index]}, correct answer:{' '}
+                              {this.state.sahijawab[index]}
+                            </div>
+                          ) : (
+                              <div>
+                                Unattempted, correct answer :
+                                {this.state.sahijawab[index]}
+                              </div>
+                            )}
+                        </div>
+                      );
+                    }
+                  })}
+                </div>
+              ) : null}
+            </div>
+          </>
+        }
+
+
+
       </>
     );
   }
@@ -248,4 +266,12 @@ const mapStateToProps = createStructuredSelector({
   assignment_message: selectAssignmentMessage,
 });
 
-export default connect(mapStateToProps)(AssignmentPage);
+const mapDispatchToProps = (dispatch) => ({
+  fetchAssignmentStart: ({ user_id, course_id, assignment_id }) =>
+  dispatch(fetchAssignmentStart({ user_id, course_id, assignment_id })),
+
+  submitAssignmentStart: (data) => 
+    dispatch(submitAssignmentStart(data))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(AssignmentPage);
