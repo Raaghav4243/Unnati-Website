@@ -2,7 +2,7 @@ import FeeDetailTypes from "./fee-datails.types";
 
 const INTIAL_STATE = {
     isFetching: false,
-    feeDetails: null,
+    receipts: null,
     errorMessage: null
 }
 
@@ -14,10 +14,11 @@ const feeReducer = (state = INTIAL_STATE, action) => {
                 isFetching: true
             }
         case FeeDetailTypes.FETCH_FEE_DETAILS_SUCCESS:
+            const {receipts} = action.payload
             return{
                 ...state,
                 isFetching: false,
-                feeDetails: action.payload  
+                receipts: receipts  
             }
         case FeeDetailTypes.FETCH_FEE_DETAILS_FAILURE:
             return{

@@ -103,6 +103,7 @@ class AssignmentPage extends React.Component {
     let i = -1;
     return (
       <>
+      
         <AssignmentWrapper>
           {assignment_message ? (
             <div>MESSAGE FROM BACKEND {assignment_message}</div>

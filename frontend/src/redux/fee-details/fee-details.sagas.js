@@ -3,10 +3,10 @@ import { fetchFeeAmountStart } from "../fee-amount/fee-amount.actions";
 import FeeDetailTypes from "./fee-datails.types";
 import { fetchFeeDetailFailure, fetchFeeDetailSuccess } from "./fee-details.actions";
 
-export function* FetchFeeDetailAsync(){
+export function* FetchFeeDetailAsync({payload: {user_id}}){
     try {
         let feeDetail = yield fetch(
-            '/user-receipts/5fa6af42769f165e982b2ea9'
+            `/user-receipts/${user_id}`
         )
         feeDetail = yield feeDetail.json()
         console.log('fee details are', feeDetail)

@@ -21,24 +21,39 @@ import {
 } from './profile-page.styled.components';
 
 //redux used
-import { selectCurrentUserUserName, selectCurrentUserId, selectCurrentUserEmail, selectPhoneNumber, selectCurrentUserFirstName, selectCurrentUserLastName } from '../../redux/user/user.selectors';
+import { selectCurrentUserUserName, selectCurrentUserId, selectCurrentUserEmail, selectPhoneNumber, selectCurrentUserFirstName, selectCurrentUserLastName, selectCurrentUserRole, selectCurrentUserCafeId } from '../../redux/user/user.selectors';
 import { selectUserCafeDetails } from '../../redux/cafe/cafe.selectors';
 import { fetchUserCafeStartAsync } from '../../redux/cafe/cafe.actions'
 import { CafeDetails } from '../../components/CafeDetails/Cafe.Details.Styles';
 import StudentNavbar from '../../components/student-navbar/student-navbar.component';
+import { updateUserStart } from '../../redux/user/user.actions';
 
 
 class Profile extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
+    const { userId,
+      userfirstname,
+      userlastname,
+      userphonenumber,
+      userusername,
+      cafeId,
+      userrole,
+      useremail } = props;
     this.state = {
       updatedUserInfo: {
-        role: 'STUDENT',
-        cafe: '5fa5796e9542c50df4285b04'
+        role: `${userrole}`,
+        cafe: `${cafeId}`,
+        email: `${useremail}`,
+        firstName: `${userfirstname}`,
+        lastName: `${userlastname}`,
+        phoneNumber: `${userphonenumber}`,
+        username: `${userusername}`
       }
     }
   }
-  // componentDidMount() {
+  
+  // componentDidMnt() {
   //   const { fetchUserCafeStartAsync } = this.props;
   //   console.log('Component Mounted');
   //   fetchUserCafeStartAsync();
@@ -64,27 +79,31 @@ class Profile extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault()
     console.log('hi')
-    let data = this.state.updatedUserInfo
-    fetch('/updateUser/5fa6af42769f165e982b2ea9', {
-      method: 'POST', // or 'PUT'
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Success:', data);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
-  }
+    let {data} = this.state.updatedUserInfo
+    let user_id = this.props.userId
+    const {updateUserStart} = this.props
+    updateUserStart(user_id, data)
+  //fetch('/updateUser/5fa6af42769f165e982b2ea9', {
+  //  method: 'POST', // or 'PUT'
+  //  headers: {
+  //    'Content-Type': 'application/json',
+  //  },
+  //  body: JSON.stringify(data),
+  //})
+  //  .then(response => response.json())
+  //  .then(data => {
+  //    console.log('Success:', data);
+  //  })
+  //  .catch((error) => {
+  //    console.error('Error:', error);
+  };
+  
 
   render() {
     const { userusername, useremail, userphonenumber, userlastname, userfirstname, userCafe, userId } = this.props;
     console.log(userfirstname);
     console.log(userCafe);
+    console.log(this.props.userId)
     return <>
       <NavBar>NAVBAR</NavBar>
 
@@ -184,8 +203,15 @@ const mapStateToProps = createStructuredSelector({
   userlastname: selectCurrentUserLastName,
   userusername: selectCurrentUserUserName,
   useremail: selectCurrentUserEmail,
-  userphonenumber: selectPhoneNumber
+  userphonenumber: selectPhoneNumber,
+  userrole: selectCurrentUserRole,
+  cafeId: selectCurrentUserCafeId
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  updateUserStart: (data, user_id) => 
+    dispatch(updateUserStart(data, user_id)) 
+})
+
 //export default Profile;
-export default connect(mapStateToProps)(Profile);
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

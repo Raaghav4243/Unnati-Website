@@ -5,24 +5,26 @@ import { fetchCourseTopicsStart } from '../../redux/course-topic/course-topic.sa
 import { fetchFeeAmountStart } from '../../redux/fee-amount/fee-amount.actions';
 import { selectUserDueFees, selectUserPaidFees } from '../../redux/fee-amount/fee-amount.selectors';
 import { fetchFeeDetailStart } from '../../redux/fee-details/fee-details.actions';
-import { selectUserFeeDetails } from '../../redux/fee-details/fee-details.selectors';
+import { selectUserFeeDetails, selectUserFeeReciepts, } from '../../redux/fee-details/fee-details.selectors';
+import { selectCurrentUserCafeId, selectCurrentUserId } from '../../redux/user/user.selectors';
 
 import { FullPage, DueAmount, OnlineButton, PaidAmount, FeesCat, FeesBox, FeesHead, BoxAndHead, PastHead, SubCol, SubHead, SubCol1, FlexHeadCol, PastBody, BothBox } from './FeesElements';
 
 class FeesPage extends React.Component {
-    componentDidMount(){
-        const {fetchFeeAmountStart, fetchFeeDetailStart} = this.props;
-        fetchFeeAmountStart()
-        fetchFeeDetailStart()
-     
-        
+    componentDidMount() {
+        const { user_id, cafe_id, fetchFeeAmountStart, fetchFeeDetailStart } = this.props;
+        fetchFeeAmountStart(user_id, cafe_id)
+        fetchFeeDetailStart(user_id)
+
+
     }
     render() {
-        const {paidFees, dueFees, feeDetails} = this.props;
+        const { paidFees, dueFees, userFeeDetails, userFeeReciepts} = this.props;
         console.log('paid fees', paidFees)
         console.log('due fees', dueFees)
-        console.log( 'fee details' ,feeDetails)
-        
+        console.log('amount', userFeeReciepts)
+
+
         return (
             <>
 
@@ -42,10 +44,36 @@ class FeesPage extends React.Component {
                             <PastHead>Past Receipts</PastHead>
                             <PastBody>
                                 <FlexHeadCol>
-                                    <SubCol><br /><SubHead>Date</SubHead><br /> 29/9/2020 </SubCol>
-                                    <SubCol1><br /><SubHead>Transaction</SubHead><br />201020320</SubCol1>
-                                    <SubCol><br /><SubHead>Mode</SubHead><br /> Online </SubCol>
-                                    <SubCol><br /><SubHead>Amount</SubHead><br /> 300 </SubCol>
+                                    <SubCol><br /><SubHead>Date</SubHead><br /> 
+                                    {userFeeReciepts ? 
+                                        <div>{
+                                            userFeeReciepts.map((date) => {
+                                                return <div>{date.createdAt}</div>
+                                            })
+                                        }</div>:null    
+                                    }
+                                    </SubCol> 
+                                    <SubCol1><br /><SubHead>Transaction</SubHead><br />{userFeeReciepts ? 
+                                        <div>{
+                                            userFeeReciepts.map((date) => {
+                                                return <div>{date._id}</div>
+                                            })
+                                        }</div>:null    
+                                    }</SubCol1>
+                                    <SubCol><br /><SubHead>Remarks</SubHead><br /> {userFeeReciepts ? 
+                                        <div>{
+                                            userFeeReciepts.map((date) => {
+                                                return <div>{date.remarks}</div>
+                                            })
+                                        }</div>:null    
+                                    } </SubCol>
+                                    <SubCol><br /><SubHead>Amount</SubHead><br />{userFeeReciepts ? 
+                                        <div>{
+                                            userFeeReciepts.map((date) => {
+                                                return <div>{date.amount}</div>
+                                            })
+                                        }</div>:null    
+                                    }</SubCol>
 
                                 </FlexHeadCol>
 
@@ -63,15 +91,20 @@ class FeesPage extends React.Component {
 const mapStateToProps = createStructuredSelector({
     paidFees: selectUserPaidFees,
     dueFees: selectUserDueFees,
-    feeDetails: selectUserFeeDetails
+    userFeeDetails: selectUserFeeDetails,
+    userFeeReciepts: selectUserFeeReciepts,
+    user_id: selectCurrentUserId,
+    cafe_if: selectCurrentUserCafeId,
+ 
+    
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    fetchFeeAmountStart: () => 
-        dispatch(fetchFeeAmountStart()),
-    
-    fetchFeeDetailStart: () => 
-        dispatch(fetchFeeDetailStart())
+    fetchFeeAmountStart: (user_id, cafe_id) =>
+        dispatch(fetchFeeAmountStart(user_id, cafe_id)),
+
+    fetchFeeDetailStart: (user_id) =>
+        dispatch(fetchFeeDetailStart(user_id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(FeesPage)

@@ -14,6 +14,20 @@ export const fetchUserFailure = (errorMessage) => ({
   payload: errorMessage,
 });
 
+export const updateUserStart = (data, user_id) => {
+  return {
+    type: UserActionTypes.UPDATE_USER_START,
+    payload: {data, user_id}
+  }
+}
+
+export const updateUserSuccess = (message) => {
+  return{
+    type: UserActionTypes.UPDATE_USER_SUCCESS,
+    payload: message
+  }
+}
+
 export const fetchUserStartAsync = () => {
   //using async/await
 
