@@ -1,8 +1,8 @@
 import React from 'react';
-import CafeOverview from '../../components/CafeDetails/CafeDetails';
-import ClassOverview from '../../components/CafeDetails/classmate';
-import Card from '../../components/EnrolledCourses/EnrolledCourses';
-import DiscoverCard from '../../components/DiscoverCourses/DiscoverCourses';
+import CafeOverview from '../../../student/components/CafeDetails/CafeDetails';
+import ClassOverview from '../../../student/components/CafeDetails/classmate';
+import Card from '../../../student/components/EnrolledCourses/EnrolledCourses';
+import DiscoverCard from '../../../student/components/DiscoverCourses/DiscoverCourses';
 import {
   HorizontalFlexBox,
   VerticleFlexBox,
@@ -18,13 +18,13 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
 //redux used
-import { selectAllCourses } from '../../redux/courses/courses.selectors';
-import { fetchAllCoursesStartAsync } from '../../redux/courses/courses.actions';
-import { selectCurrentUserId } from '../../redux/user/user.selectors';
-import { selectUserCafeDetails } from '../../redux/cafe/cafe.selectors';
-import { fetchUserCafeStartAsync } from '../../redux/cafe/cafe.actions';
-import { CafeDetails } from '../../components/CafeDetails/Cafe.Details.Styles';
-import SideNav from '../../components/SideNav/SideNav';
+import { selectAllCourses } from '../../../student/redux/courses/courses.selectors';
+import { fetchAllCoursesStartAsync } from '../../../student/redux/courses/courses.actions';
+import { selectCurrentUserId } from '../../../student/redux/user/user.selectors';
+import { selectUserCafeDetails } from '../../../student/redux/cafe/cafe.selectors';
+import { fetchUserCafeStartAsync } from '../../../student/redux/cafe/cafe.actions';
+import { CafeDetails } from '../../../student/components/CafeDetails/Cafe.Details.Styles';
+import SideNav from '../../../student/components/SideNav/SideNav';
 //components used
 
 //styles used
