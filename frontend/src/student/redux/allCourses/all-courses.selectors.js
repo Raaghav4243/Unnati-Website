@@ -1,10 +1,15 @@
 import { createSelector } from 'reselect';
 
-const selectCourses = (state) => state.course;
+const selectCourses = (state) => state.allCourses;
 
 export const selectAllCourses = createSelector(
   [selectCourses],
   (course) => course.allCourses
+);
+
+export const selectAllCoursesIdMap = createSelector(
+  [selectCourses],
+  (course) => course.allCoursesIdMap
 );
 
 // const selectCart = state => state.cart;

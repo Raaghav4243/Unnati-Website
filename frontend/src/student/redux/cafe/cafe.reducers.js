@@ -2,7 +2,8 @@ import CafeActionTypes from './cafe.types';
 
 const INITIAL_STATE = {
   isFetching: false,
-  userCafe: null,
+  userCafeDetails: null,
+  number_of_classmates: null,
   errorMessage: undefined,
 };
 
@@ -14,10 +15,12 @@ const cafeReducer = (state = INITIAL_STATE, action) => {
         isFetching: true,
       };
     case CafeActionTypes.FETCH_CAFE_SUCCESS:
+      const { cafe, userNumbers } = action.payload;
       return {
         ...state,
         isFetching: false,
-        userCafe: action.payload,
+        userCafeDetails: cafe,
+        number_of_classmates: userNumbers - 2, // we have subtracted 2 because one is the user itself and the other is the teacher.
       };
     case CafeActionTypes.FETCH_CAFE_FAILURE:
       return {

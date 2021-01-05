@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 // import persistReducer from 'redux-persist/es/persistReducer';
 
 import cafeReducer from './cafe/cafe.reducers';
-import courseReducer from './courses/courses.reducer';
+import allCoursesReducer from './allCourses/all-courses.reducer';
 import homePageReducer from './homepage/homepage.reducer';
 import userReducer from './user/user.reducer';
 import courseTopicReducer from './course-topic/course-topic.reducer';
@@ -19,7 +19,7 @@ import lectureReducer from './lecture-page/lecture-page.reducer';
 
 const rootReducer = combineReducers({
   user: userReducer,
-  course: courseReducer,
+  allCourses: allCoursesReducer,
   homePage: homePageReducer,
   cafeDetails: cafeReducer,
   courseTopicsAndCompletionDetails: courseTopicReducer,

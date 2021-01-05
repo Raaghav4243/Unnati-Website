@@ -32,10 +32,6 @@ const assignmentReducer = (state = INITIAL_STATE, action) => {
         errorMessage: null,
       };
     case AssignmentPageActionTypes.FETCH_ASSIGNMENT_SUCCESS:
-      // const {
-      //   test: { questions, _id, subjectName, testName, duration, maxMarks },
-      //   message,
-      // } = action.payload;
       if (action.payload.message) {
         const { message, marksScored } = action.payload;
         return {
@@ -46,7 +42,6 @@ const assignmentReducer = (state = INITIAL_STATE, action) => {
         };
       } else {
         const {
-          // test: { questions, _id, subjectName, testName, duration, maxMarks },
           assignment: {
             questions,
             _id,

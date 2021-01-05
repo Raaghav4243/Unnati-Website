@@ -17,3 +17,22 @@ export const setCurrentCourseTopicContent = (
     course_topic_content_name,
   },
 });
+
+export const fetchEnrolledCoursesStart = (user_id) => {
+  return {
+    type: StudentActionTypes.FETCH_ENROLLED_COURSES_START,
+    payload: {
+      user_id: user_id,
+    },
+  };
+};
+
+export const fetchEnrolledCoursesSuccess = (enrolledCoursesDetails) => ({
+  type: StudentActionTypes.FETCH_ENROLLED_COURSES_SUCCESS,
+  payload: enrolledCoursesDetails,
+});
+
+export const fetchEnrolledCoursesFailure = (errorMessage) => ({
+  type: StudentActionTypes.FETCH_ENROLLED_COURSES_FAILURE,
+  payload: errorMessage,
+});

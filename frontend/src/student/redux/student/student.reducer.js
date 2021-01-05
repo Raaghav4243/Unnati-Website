@@ -1,11 +1,15 @@
 import StudentActionTypes from './student.types';
 
 const INITIAL_STATE = {
+  isFetchingEnrolledCourses: false,
+  user_enrolled_courses: null,
+  percentStatusArray: null,
   // current_course_id: '5fa6bd6f4afbc52538b49afb',
   current_course_id: '5fdb113d6ad31452f48233b9',
   current_topic_content_id: null,
   current_topic_content_type: null,
   current_topic_content_name: null,
+  errorMessage: null,
 };
 
 const studentReducer = (state = INITIAL_STATE, action) => {
@@ -16,20 +20,36 @@ const studentReducer = (state = INITIAL_STATE, action) => {
         current_course_id: action.payload,
       };
     case StudentActionTypes.SET_CURRENT_COURSE_TOPIC_CONTENT:
-      console.log('This action is called');
+      // console.log('This action is called');
       const {
         course_topic_content_id,
         course_topic_content_type,
         course_topic_content_name,
       } = action.payload;
-
       return {
         ...state,
         current_topic_content_id: course_topic_content_id,
         current_topic_content_type: course_topic_content_type,
         current_topic_content_name: course_topic_content_name,
       };
-
+    case StudentActionTypes.FETCH_ENROLLED_COURSES_START:
+      return {
+        ...state,
+        isFetchingEnrolledCourses: true,
+      };
+    case StudentActionTypes.FETCH_ENROLLED_COURSES_SUCCESS:
+      const { userCourses, percentStatus } = action.payload;
+      return {
+        ...state,
+        user_enrolled_courses: userCourses,
+        percentStatusArray: percentStatus,
+      };
+    case StudentActionTypes.FETCH_ENROLLED_COURSES_FAILURE:
+      return {
+        ...state,
+        isFetchingEnrolledCourses: false,
+        errorMessage: action.payload,
+      };
     default:
       return state;
   }

@@ -21,3 +21,13 @@ export const selectCurrentCourseTopicName = createSelector(
   [selectStudentDetails],
   (studentDetails) => studentDetails.current_topic_content_name
 );
+
+export const selectUserEnrolledCourses = createSelector(
+  [selectStudentDetails],
+  (studentDetails) => studentDetails.user_enrolled_courses
+);
+
+export const selectPercentStatusForUserEnrolledCourses = createSelector(
+  [selectStudentDetails],
+  (studentDetails) => studentDetails.percentStatusArray
+);

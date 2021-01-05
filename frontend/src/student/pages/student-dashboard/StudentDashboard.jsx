@@ -18,50 +18,103 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
 //redux used
-import { selectAllCourses } from '../../redux/courses/courses.selectors';
-import { fetchAllCoursesStartAsync } from '../../redux/courses/courses.actions';
+import { fetchAllCoursesStart } from '../../redux/allCourses/all-courses.actions';
+import { fetchUserCafeStart } from '../../redux/cafe/cafe.actions';
+import { fetchEnrolledCoursesStart } from '../../redux/student/student.actions';
+import { setCurrentCourse } from '../../redux/student/student.actions';
+
+import {
+  selectAllCourses,
+  selectAllCoursesIdMap,
+} from '../../redux/allCourses/all-courses.selectors';
 import { selectCurrentUserId } from '../../redux/user/user.selectors';
-import { selectUserCafeDetails } from '../../redux/cafe/cafe.selectors';
-import { fetchUserCafeStartAsync } from '../../redux/cafe/cafe.actions';
+import {
+  selectUserCafeDetails,
+  selectUserCafeNumberOfClassmates,
+} from '../../redux/cafe/cafe.selectors';
 import { CafeDetails } from '../../components/CafeDetails/Cafe.Details.Styles';
 import SideNav from '../../components/SideNav/SideNav';
+import {
+  selectCurrentCourseId,
+  selectUserEnrolledCourses,
+} from '../../redux/student/student.selectors';
 //components used
 
 //styles used
 
 class StudentDashboard extends React.Component {
   componentDidMount() {
-    const { fetchAllCoursesStartAsync, fetchUserCafeStartAsync } = this.props;
+    const {
+      userId,
+      fetchAllCoursesStart,
+      fetchUserCafeStart,
+      fetchEnrolledCoursesStart,
+    } = this.props;
     // console.log('Component Mounted');
-    fetchAllCoursesStartAsync();
+    fetchEnrolledCoursesStart(userId);
+    fetchUserCafeStart();
+    // fetchAllCoursesStart();
   }
 
   render() {
-    const { userId, userCafe, allCourses } = this.props;
+    const {
+      userId,
+      userCafe,
+      enrolled_courses,
+      no_of_classmates,
+      setCurrentCourse,
+    } = this.props;
     // console.log(allCourses);
     // console.log(userCafe);
     return (
       <>
         <HorizontalFlexBox>
+          {/* {enrolled_courses ? (
+            <div>ENROLLED COURSES RECEIVED</div>
+          ) : (
+            <div>Loading Enrolled Courses...</div>
+          )} */}
           <VerticleFlexBox>
-            <CafeDetail>Cafe Details</CafeDetail>
-            <CafeOverview
-              cafe_name='hi'
-              cafe_address={userCafe ? userCafe.location : null}
-              faculty_incharge='hi'
-            />
+            {userCafe ? (
+              <>
+                <CafeDetail>Cafe Details</CafeDetail>
+
+                <CafeOverview
+                  cafe_name='hi'
+                  cafe_address={userCafe.location}
+                  faculty_incharge='hi'
+                />
+              </>
+            ) : (
+              <div>Loading cafe_details</div>
+            )}
           </VerticleFlexBox>
           <VerticleFlexBox>
             <CafeDetail1>You Have</CafeDetail1>
-            <ClassOverview student_number='hihi' />
+            <ClassOverview student_number={no_of_classmates} />
           </VerticleFlexBox>
         </HorizontalFlexBox>
         <VerticleFlexBox2>
           <CafeDetail2>Enrolled Course</CafeDetail2>
           <EnrolledCoursesWrapper>
-            {allCourses ? (
-              allCourses.map((course, index) => (
-                <Card course_name={course.subjectName} key={course._id} />
+            {console.log('ENROLLED COURSES ARE ', enrolled_courses)}
+            {enrolled_courses ? (
+              enrolled_courses.map((courseObj, index) => (
+                <Card
+                  course_name={courseObj.course.courseName}
+                  course_id={courseObj.course._id}
+                  key={courseObj.course._id}
+                />
+                // <>
+                //   <div
+                //     onClick={() => {
+                //       setCurrentCourse(courseObj.course._id);
+                //       console.log('COURSE CLICKED');
+                //     }}
+                //   >
+                //     COURSE NAME is {courseObj.course.courseName}
+                //   </div>
+                // </>
               ))
             ) : (
               <h2>Loading...</h2>
@@ -71,7 +124,7 @@ class StudentDashboard extends React.Component {
         <VerticleFlexBox2>
           <CafeDetail2>Discover More Courses</CafeDetail2>
           <EnrolledCoursesWrapper>
-            {allCourses ? (
+            {/* {allCourses ? (
               allCourses.map((course) => (
                 <DiscoverCard
                   course_name={course.subjectName}
@@ -80,7 +133,7 @@ class StudentDashboard extends React.Component {
               ))
             ) : (
               <h2>Loading...</h2>
-            )}
+            )} */}
           </EnrolledCoursesWrapper>
         </VerticleFlexBox2>
       </>
@@ -88,14 +141,22 @@ class StudentDashboard extends React.Component {
   }
 }
 const mapStateToProps = createStructuredSelector({
-  allCourses: selectAllCourses,
+  // allCourses: selectAllCourses,
   userId: selectCurrentUserId,
   userCafe: selectUserCafeDetails,
+  enrolled_courses: selectUserEnrolledCourses,
+  all_courses_id_map: selectAllCoursesIdMap,
+  no_of_classmates: selectUserCafeNumberOfClassmates,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchAllCoursesStartAsync: () => dispatch(fetchAllCoursesStartAsync()),
-  fetchUserCafeStartAsync: () => dispatch(fetchUserCafeStartAsync()),
+  fetchEnrolledCoursesStart: (user_id) =>
+    dispatch(fetchEnrolledCoursesStart(user_id)),
+  // fetchAllCoursesStart: () => dispatch(fetchAllCoursesStart()),
+  // fetchUserCafeStartAsync: () => dispatch(fetchUserCafeStartAsync()),
+  setCurrentCourse: (course_id) => dispatch(setCurrentCourse(course_id)),
+
+  fetchUserCafeStart: () => dispatch(fetchUserCafeStart()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(StudentDashboard);
