@@ -134,6 +134,7 @@ class StudentDashboard extends React.Component {
             ) : (
               <h2>Loading...</h2>
             )} */}
+            {}
           </EnrolledCoursesWrapper>
         </VerticleFlexBox2>
       </>

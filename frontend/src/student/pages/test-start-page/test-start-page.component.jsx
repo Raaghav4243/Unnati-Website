@@ -18,6 +18,7 @@ import {
   selectTestMessage,
   selectTestQuestions,
 } from '../../redux/testpage/testpage.selectors';
+import TestPage from '../test-page/test-page.component';
 
 class TestStartPage extends React.Component {
   constructor() {
@@ -74,7 +75,10 @@ class TestStartPage extends React.Component {
             {test_message ? (
               <div> Message from backend {test_message}</div>
             ) : test_questions ? (
-              <div>Questions Received</div>
+              <>
+                <div>Questions Received</div>
+                <TestPage />
+              </>
             ) : null}
           </TestTitle>
         </TestStartPageContainer>

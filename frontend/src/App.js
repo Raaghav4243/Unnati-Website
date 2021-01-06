@@ -36,6 +36,8 @@ function App() {
         <Route path='/profilesettings' component={Profile} />
         <Route path='/feespage' component={FeesPage} />
         <Route path='/test' component={TestPage} />
+        <Route path='/signup' component={SignUpForm} />
+        <Route path='/login' component={LogInForm} />
       </Switch>
     </BrowserRouter>
   );
