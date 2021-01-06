@@ -35,16 +35,7 @@ const rows = [
   { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
 ];
 
-// export default function DataTable() {
-//   return (
-//     <div style={{ height: 400, width: '100%' }}>
-//       <DataGrid rows={rows} columns={columns} pageSize={5} checkboxSelection />
-//     </div>
-//   );
-// }
-
-
-export default class teacher-enrolledstudent extends Component {
+export default class teacherenrolledstudent extends Component {
     render() {
         return (
             <div style={{ height: 400, width: '100%' }}>
@@ -53,3 +44,7 @@ export default class teacher-enrolledstudent extends Component {
         )
     }
 }
+
+
+
+
