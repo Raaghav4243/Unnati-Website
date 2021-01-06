@@ -181,9 +181,7 @@ class AssignmentPage extends React.Component {
           :
           <>
             <div>
-              {this.state.score ? (
-                <div>your score is: {this.state.score}</div>
-              ) : null}
+            <div>your score is: {this.state.score.marksScored}</div>
             </div>
             <div>
               {this.state.jawab ? (
