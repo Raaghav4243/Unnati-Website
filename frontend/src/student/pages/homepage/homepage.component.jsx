@@ -8,12 +8,27 @@ import { connect } from 'react-redux';
 import HomePageNavbar from '../../components/homepage-navbar/homepage-navbar.component';
 import HeroSection from '../../components/hero-section/hero-section.components';
 import { fetchAllCoursesStart } from '../../redux/allCourses/all-courses.actions';
+import OurCoursesContainer from '../../components/courses-offered/courses-offered.container';
+import HomepageSidebar from '../../components/homepage-sidebar/homepage-sidebar.component';
+import AboutUs from '../../components/homepage-about-us/homepage-about-us.component';
+import OurCoursesSection from '../../components/homepage-our-courses/homepage-our-courses.component';
+import Testimonials from '../../components/homepage-testimonials/homepage-testimonials.component';
+import HomepageFooter from '../../components/homepage-footer/homepage-footer.component';
 //styles used
 
 class HomePage extends React.Component {
   constructor() {
     super();
+
+    this.state = {
+      isOpen: false,
+    };
   }
+
+  toggle = () => {
+    console.log('Toggle is called');
+    this.setState({ isOpen: !this.state.isOpen });
+  };
 
   componentDidMount() {
     const { fetchAllCoursesStart } = this.props;
@@ -21,12 +36,26 @@ class HomePage extends React.Component {
   }
 
   render() {
+    // const {} = this.props;
     return (
       <>
-        <HomePageNavbar />
+        <HomePageNavbar toggle={this.toggle} />
         <HeroSection />
+        <HomepageSidebar isOpen={this.state.isOpen} toggle={this.toggle} />
+        <AboutUs />
+        <OurCoursesSection />
+        <Testimonials />
+        <HomepageFooter />
 
-        <div style={{ height: '2000px', backgroundColor: 'red' }} id='courses'>
+        {/* <div id='home' style={{ top: 0 }}></div>
+        <HomePageNavbar />
+        <div id='home'>
+          <HeroSection />
+        </div>
+        {/* <div id='courses'> */}
+        {/* <OurCoursesContainer /> */}
+        {/* </div> */}
+        {/* <div style={{ height: '2000px', backgroundColor: 'red' }} id='courses'>
           COURSES OFFERED
         </div>
         <div style={{ height: '2000px', backgroundColor: 'blue' }} id='about'>
@@ -43,7 +72,7 @@ class HomePage extends React.Component {
           id='signupsection'
         >
           SIGN UP NOW!
-        </div>
+        </div>  */}
       </>
     );
   }

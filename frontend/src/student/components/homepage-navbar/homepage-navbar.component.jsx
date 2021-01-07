@@ -1,34 +1,32 @@
-//libraries used
-import React from 'react';
-import { createStructuredSelector } from 'reselect';
-import { connect } from 'react-redux';
+// NavLogo should be a react-scroll-link when the user is on the homepage , however it should be a react router link to redirect the user
+// to the homepage of the website
 
-//redux used
-import { toggleSidenavHidden } from '../../redux/homepage/homepage.actions';
+import React from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 
-//components used
+import GoToDashboardButton from '../go-to-dashboard-button-link/go-to-dashboard-button-link.component';
 import SignInButton from '../sign-in-button-link/sign-in-button-link.component';
+// import { ImBook } from 'react-icons/im';
 import { FaBars } from 'react-icons/fa';
 import { ReactComponent as UnnatiLogo } from '../../icons/UnnatiTree.svg';
-//import { ReactComponent as UnnatiLogo } from '../../icons/UnnatiTree.svg';
-import GoToDashboardButton from '../go-to-dashboard-button-link/go-to-dashboard-button-link.component';
+import './homepage-navbar.css';
+
 import {
-  Transition,
   Nav,
   NavbarContainer,
-  MobileIconSideNav,
   NavbarMiddle,
   NavLogo,
-  LogoWrapper,
-  NavTitle,
+  NavName,
+  MobileIcon,
   NavMenu,
   NavItem,
-  NavLink,
+  NavLinks,
   NavbarRight,
+  NavBtnLink,
 } from './homepage-navbar.styles';
-
-//styles used
 
 class HomePageNavbar extends React.Component {
   constructor() {
@@ -56,94 +54,104 @@ class HomePageNavbar extends React.Component {
     });
   };
   render() {
-    const { user } = this.props;
-
+    const { user, toggle } = this.props;
+    const { changedColor } = this.state;
     return (
       <>
-        {/* <Transition> */}
-        <Nav className={this.state.changedColor ? 'scroll' : null}>
+        <Nav scrollOn={changedColor}>
           <NavbarContainer>
-            <MobileIconSideNav onClick={toggleSidenavHidden}>
+            <MobileIcon onClick={toggle} scrollOn={changedColor}>
               <FaBars />
-            </MobileIconSideNav>
+            </MobileIcon>
             <NavbarMiddle>
-              <NavLogo>
-                <LogoWrapper>
-                  <UnnatiLogo style={{ height: '100%' }} />
-                </LogoWrapper>
-                <NavTitle className={this.state.changedColor ? 'scroll' : null}>
-                  U N N A T I
-                </NavTitle>
+              <NavLogo
+                to='home'
+                smooth={true}
+                duration={500}
+                spy={true}
+                exact='true'
+                offset={-120}
+              >
+                {/* <img
+                  src={UnnatiLogo}
+                  alt='UnnatiLogo'
+                  style={{ height: '60px' }}
+                /> */}
+                <UnnatiLogo style={{ height: '60px' }} />
+                <NavName scrollOn={changedColor}>UNNATI</NavName>
               </NavLogo>
               <NavMenu>
-                <NavItem>
-                  <NavLink
+                <NavItem scrollOn={changedColor}>
+                  <NavLinks
                     to='home'
+                    className='home'
                     smooth={true}
                     duration={500}
                     spy={true}
                     exact='true'
-                    offset={-60}
-                    className={this.state.changedColor ? 'scroll' : null}
+                    offset={-120}
+                    scrollOn={changedColor}
                   >
                     Home
-                  </NavLink>
+                  </NavLinks>
                 </NavItem>
-                <NavItem>
-                  <NavLink
-                    to='courses'
-                    smooth={true}
-                    duration={500}
-                    spy={true}
-                    exact='true'
-                    offset={-60}
-                    className={this.state.changedColor ? 'scroll' : null}
-                  >
-                    Courses
-                  </NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink
+                <NavItem scrollOn={changedColor}>
+                  <NavLinks
                     to='about'
                     smooth={true}
                     duration={500}
                     spy={true}
                     exact='true'
-                    offset={-60}
-                    className={this.state.changedColor ? 'scroll' : null}
+                    offset={-50}
+                    scrollOn={changedColor}
                   >
                     About Us
-                  </NavLink>
+                  </NavLinks>
                 </NavItem>
-                <NavItem>
-                  <NavLink
+                <NavItem scrollOn={changedColor}>
+                  <NavLinks
+                    to='courses'
+                    smooth={true}
+                    duration={500}
+                    spy={true}
+                    exact='true'
+                    offset={-70}
+                    scrollOn={changedColor}
+                  >
+                    Courses
+                  </NavLinks>
+                </NavItem>
+                <NavItem scrollOn={changedColor}>
+                  <NavLinks
                     to='testimonials'
                     smooth={true}
                     duration={500}
                     spy={true}
                     exact='true'
-                    offset={-60}
-                    className={this.state.changedColor ? 'scroll' : null}
+                    offset={-100}
+                    scrollOn={changedColor}
                   >
                     Student Stories
-                  </NavLink>
+                  </NavLinks>
                 </NavItem>
-                <NavItem>
-                  <NavLink
-                    to='contact'
+                <NavItem scrollOn={changedColor}>
+                  <NavLinks
+                    to='footer'
+                    className='contact'
                     smooth={true}
                     duration={500}
                     spy={true}
                     exact='true'
-                    offset={-60}
-                    className={this.state.changedColor ? 'scroll' : null}
+                    offset={-120}
+                    scrollOn={changedColor}
                   >
                     Contact Us
-                  </NavLink>
+                  </NavLinks>
                 </NavItem>
               </NavMenu>
             </NavbarMiddle>
             <NavbarRight>
+              {/* <NavBtnLink to='/signin'>Sign In</NavBtnLink> */}
               {user ? (
                 <GoToDashboardButton
                   scrollClass={this.state.changedColor ? true : false}
@@ -156,8 +164,6 @@ class HomePageNavbar extends React.Component {
             </NavbarRight>
           </NavbarContainer>
         </Nav>
-        {/* </Transition> */}
-        {/* <UnnatiLogo /> */}
       </>
     );
   }

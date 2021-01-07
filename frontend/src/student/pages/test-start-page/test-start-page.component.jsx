@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Route } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 
 import { selectCurrentCourseId } from '../../redux/student/student.selectors';
@@ -13,11 +15,19 @@ import {
   selectCurrentCourseTopicName,
 } from '../../redux/student/student.selectors';
 
-import { TestStartPageContainer, TestTitle } from './test-start-page.styles';
 import {
   selectTestMessage,
   selectTestQuestions,
 } from '../../redux/testpage/testpage.selectors';
+
+//components used
+import {
+  TestStartPageContainer,
+  TestTitle,
+  QuestionsPromptContainer,
+  Prompt,
+  StartTestButton,
+} from './test-start-page.styles';
 import TestPage from '../test-page/test-page.component';
 
 class TestStartPage extends React.Component {
@@ -61,12 +71,13 @@ class TestStartPage extends React.Component {
       current_test_id,
       test_questions,
       test_message,
+      match,
+      history,
     } = this.props;
     return (
       <>
         <TestStartPageContainer>
-          <TestTitle>
-            Do you want to start this test? : {current_test_name}
+          {/* Do you want to start this test? : {current_test_name}
             {current_user_id}
             Course:
             {current_course_id}
@@ -79,8 +90,30 @@ class TestStartPage extends React.Component {
                 <div>Questions Received</div>
                 <TestPage />
               </>
-            ) : null}
-          </TestTitle>
+            ) : null} */}
+          {test_message ? (
+            <div>MESSAGE RECEIVED</div>
+          ) : test_questions ? (
+            <>
+              {/* <Route path={`${match.path}/test`} component={TestPage} /> */}
+              {console.log('QUESTIONS ARRAY:', test_questions)}
+              <QuestionsPromptContainer>
+                <Prompt>
+                  Are you sure you want to start this test? Once Started, it
+                  cannot be paused without submission.
+                </Prompt>
+                <StartTestButton
+                  onClick={() => {
+                    history.push(`${match.path}/test`);
+                  }}
+                >
+                  Start Test
+                </StartTestButton>
+              </QuestionsPromptContainer>
+            </>
+          ) : (
+            <div>WE ARE FINDING YOUR TEST... </div>
+          )}
         </TestStartPageContainer>
       </>
     );
@@ -97,4 +130,4 @@ const mapStateToProps = createStructuredSelector({
   test_message: selectTestMessage,
 });
 
-export default connect(mapStateToProps)(TestStartPage);
+export default connect(mapStateToProps)(withRouter(TestStartPage));

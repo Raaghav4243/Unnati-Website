@@ -14,7 +14,7 @@ const GoToDashboardButton = ({ left, right, scrollClass }) => {
   return (
     <>
       <GoToDashboardButtonLink
-        to='/student'
+        to='/student/dashboard'
         className={scrollClass ? 'scroll' : null}
       >
         {left ? <FaArrowLeft /> : null}

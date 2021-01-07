@@ -32,9 +32,7 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route path='/' exact component={HomePage} />
-        <Route path='/student' component={StudentPage} />{' '}
-        <Route path='/profilesettings' component={Profile} />
-        <Route path='/feespage' component={FeesPage} />
+        <Route path='/student' component={StudentPage} />
         <Route path='/test' component={TestPage} />
         <Route path='/signup' component={SignUpForm} />
         <Route path='/login' component={LogInForm} />
