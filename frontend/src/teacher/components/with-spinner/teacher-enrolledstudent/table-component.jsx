@@ -7,6 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import TablePagination from '@material-ui/core/TablePagination';
 
 const useStyles = makeStyles({
   table: {
@@ -26,12 +27,12 @@ const rows = [
   createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
-export default function EnrolledTable() {
+export default function TableEnrolled() {
   const classes = useStyles();
 
   return (
     <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="simple table">
+      <Table heightclassName={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell>Dessert (100g serving)</TableCell>
@@ -43,7 +44,7 @@ export default function EnrolledTable() {
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-            <TableRow key={row.name}>
+              <TableRow key={row.name}>
               <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>
@@ -53,6 +54,7 @@ export default function EnrolledTable() {
               <TableCell align="right">{row.protein}</TableCell>
             </TableRow>
           ))}
+          <TablePagination rowsPerPageOptions={[4, 5]} />
         </TableBody>
       </Table>
     </TableContainer>
