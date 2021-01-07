@@ -26,8 +26,9 @@ import SignUpForm from './student/pages/Signup-page/SignupForm';
 import LogInForm from './student/pages/Login-page/LoginForm.page';
 import Profile from './student/pages/Profile-page/profile-page.component';
 import TestPage from './student/pages/test-page/test-page.component';
-import teacherenrolledstudent from './teacher/pages/teacher-enrolledstudent/teacher-enrolledstuden';
-import BasicTable from './teacher/pages/teacher-enrolledstudent/teacher-enrolledstuden';
+import teacherenrolledstudent from './teacher/pages/teacher-enrolledstudent/teacher-enrolledstudent';
+import BasicTable from './teacher/pages/teacher-enrolledstudent/teacher-enrolledstudent';
+import cafeteacher from './teacher/pages/teacher-enrolledstudent/teacher-enrolledstudent';
 
 function App() {
   return (
@@ -40,7 +41,7 @@ function App() {
         <Route path='/test' component={TestPage} />
         <Route path='/signup' component={SignUpForm} />
         <Route path='/login' component={LogInForm} />
-        <Route path='/teacher' component={BasicTable} />
+        <Route path='/teacher' component={cafeteacher} />
       
       </Switch>
     </BrowserRouter>
