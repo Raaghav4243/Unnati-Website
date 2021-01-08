@@ -4,10 +4,11 @@ export const fetchUserStart = () => ({
   type: UserActionTypes.FETCH_USER_START,
 });
 
-export const fetchUserSuccess = (user) => ({
+export const fetchUserSuccess = (user) => {
+  return{
   type: UserActionTypes.FETCH_USER_SUCCESS,
-  payload: user,
-});
+  payload: user
+}};
 
 export const fetchUserFailure = (errorMessage) => ({
   type: UserActionTypes.FETCH_USER_FAILURE,

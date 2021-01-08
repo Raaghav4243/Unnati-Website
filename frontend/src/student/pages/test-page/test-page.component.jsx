@@ -8,6 +8,7 @@ class TestPage extends Component {
     super();
     this.state = {
       resp: {},
+      quesResp: {},
       time: data.test.duration * 60 * 1000,
     };
   }
@@ -18,7 +19,7 @@ class TestPage extends Component {
     const { name, value, id } = e.target;
 
     let response = this.state.resp;
-
+    console.log(name)
     const questionType = data.test.questions[id - 1].type;
 
     if (questionType === 'MULTICORRECT') {
@@ -52,7 +53,48 @@ class TestPage extends Component {
     let data = this.state.resp;
     let values = Object.values(data);
     console.log(values);
+    // fetch("/login", {
+    //   method: "POST", // or 'PUT'
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(data),
+    // })
+    //   .then((response) => response.json())
+    //   
+    //   .catch((error) => {
+    //     console.error("Error:", error);
+    //   });
   };
+
+  handleQuestionSubmitOnChange = (e) => {
+    e.preventDefault()
+    const { name, value, id } = e.target;
+    const questionResponse = this.state.quesResp
+    questionResponse[id] = [value]
+    this.setState(
+      {
+        quesResp: questionResponse,
+      }
+    )
+  }
+
+  handleQuestionSubmit = (e) => {
+    e.preventDefault()
+    // fetch("/submit-response/user/:userId/test/:testId/question/:questionId", {
+    //   method: "POST", // or 'PUT'
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(data),
+    // })
+    //   .then((response) => response.json())
+    //  
+    //   .catch((error) => {
+    //     console.error("Error:", error);
+    //   });
+
+  }
 
   render() {
     return (
@@ -70,7 +112,7 @@ class TestPage extends Component {
           <div>
             <div className='testame'>Test - 1 {data.test.testName}</div>
 
-            <form
+            <div
               type='submit'
               onChange={(e) => this.handleOnChange(e)}
               onSubmit={this.handleSubmit}
@@ -79,7 +121,10 @@ class TestPage extends Component {
                 {data.test.questions.map((question, number) => {
                   return (
                     <>
-                      <div key={number}>{question.statement}</div>
+                      <form key={number}
+                       onChange={this.handleQuestionSubmitOnChange}
+                       onSubmit={this.handleQuestionSubmit}
+                       >{question.statement}
                       {question.type === 'MULTICORRECT' ? (
                         <>
                           {question.options.map((option, index) => {
@@ -90,14 +135,16 @@ class TestPage extends Component {
                                   key={option}
                                   value={option}
                                   id={question.number}
-                                  name={option}
+                                  name={question._id}
                                 />
                                 {option} <br />
                               </label>
                             );
                           })}
                         </>
+                        
                       ) : null}
+                      
                       {question.type === 'SINGLECORRECT' ? (
                         <>
                           {question.options.map((option, index) => {
@@ -108,7 +155,7 @@ class TestPage extends Component {
                                   key={option}
                                   value={option}
                                   id={question.number}
-                                  name={question.number}
+                                  name={question._id}
                                 />
                                 {option} <br />
                               </label>
@@ -122,17 +169,20 @@ class TestPage extends Component {
                             <input
                               type='text'
                               id={question.number}
-                              name={question.number}
+                              name={question._id}
                             />
                           </label>
                         </>
                       ) : null}
+                      <button type='submit'>Submit question</button>
+                      </form>
                     </>
+                    
                   );
                 })}
               </div>
               <button>submit</button>
-            </form>
+            </div>
           </div>
         </TestPageContainer>
       </>

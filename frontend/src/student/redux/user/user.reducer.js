@@ -2,14 +2,14 @@ import { UserActionTypes } from './user.types';
 
 const INITIAL_STATE = {
   currentUser: {
-    username: 'samar123',
-    email: 'a@c.com',
-    _id: '5fa6af42769f165e982b2ea9',
-    cafe_id: '5fa5796e9542c50df4285b04',
-    firstName: 'Samar',
-    lastName: 'singh',
-    phoneNumber: '1234567890',
-    role: 'STUDENT',
+    username: null,
+    email: null,
+    _id: null,
+    cafe: null,
+    firstName: null,
+    lastName: null,
+    phoneNumber: null,
+    role: null,
   },
   isFetching: false,
   errorMessage: undefined,
@@ -30,6 +30,8 @@ const userReducer = (state = INITIAL_STATE, action) => {
         isFetching: true,
       };
     case UserActionTypes.FETCH_USER_SUCCESS:
+      const {username, email, _id, lastName,
+         firstName, phoneNumber, role, cafe} = action.payload
       return {
         ...state,
         isFetching: false,

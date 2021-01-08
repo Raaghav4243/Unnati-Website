@@ -42,7 +42,6 @@ function App() {
     </BrowserRouter>
   );
 }
-// import TeacherDashboard from '../src/teacher/pages/teacher-dashboard-main-page/teacher-dashboard-page';
 
 // import './App.css';
 
