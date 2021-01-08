@@ -31,7 +31,7 @@ const HeroSection = () => {
         <VideoBg autoPlay loop muted src={Video} type='video/mp4' />
       </HeroBg>
       <HeroContent>
-        <HeroH1> Project Unnati</HeroH1>
+        <HeroH1>Project Unnati</HeroH1>
         <HeroP>Upskilling the underprivileged.</HeroP>
         <HeroBtnWrapper>
           <HeroButton

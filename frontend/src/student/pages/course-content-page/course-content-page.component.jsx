@@ -18,6 +18,8 @@ import { fetchTestStart } from '../../redux/testpage/testpage.actions';
 import { fetchAssignmentStart } from '../../redux/assignment-page/assignment-page.actions';
 import { fetchLectureStart } from '../../redux/lecture-page/lecture-page.actions';
 
+import { PageWrapper } from './course-content-page.styles';
+
 class CourseContentPage extends React.Component {
   constructor() {
     super();
@@ -70,17 +72,19 @@ class CourseContentPage extends React.Component {
     const { course_topic_type } = this.props;
     return (
       <>
-        {course_topic_type === 'LECTURE' ? (
-          <CourseVideo />
-        ) : course_topic_type === 'ASSIGNMENT' ? (
-          <AssignmentPage />
-        ) : course_topic_type === 'TEST' ? (
-          <TestStartPage />
-        ) : (
-          <div>SELECT A TOPIC</div>
-        )}
-        {/* <Route exact path={`${match.path}/test`} component={TestPage} />
-         */}
+        <PageWrapper>
+          {course_topic_type === 'LECTURE' ? (
+            <CourseVideo />
+          ) : course_topic_type === 'ASSIGNMENT' ? (
+            <AssignmentPage />
+          ) : course_topic_type === 'TEST' ? (
+            <TestStartPage />
+          ) : (
+            <div>SELECT A TOPIC</div>
+          )}
+          {/* <Route exact path={`${match.path}/test`} component={TestPage} />
+           */}
+        </PageWrapper>
       </>
     );
   }

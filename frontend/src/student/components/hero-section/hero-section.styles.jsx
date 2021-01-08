@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { MdKeyboardArrowRight, MdArrowForward } from 'react-icons/md';
 
 export const HeroContainer = styled.div`
+  /* margin-top: 75px; */
   background: #0c0c0c;
   display: flex;
   justify-content: center;
@@ -61,6 +62,7 @@ export const HeroH1 = styled.h1`
   color: #fff;
   /* color: #ffd200; */
   font-size: 48px;
+  font-family: 'Montserrat';
   text-align: center;
 
   @media screen and (max-width: 768px) {

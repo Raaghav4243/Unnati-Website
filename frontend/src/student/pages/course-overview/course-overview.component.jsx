@@ -6,7 +6,7 @@ import React from 'react';
 //components used
 import CourseOverviewHeader from '../../components/course-overview-header/course-overview-header.component';
 import CourseSummary from '../../components/course-summary/course-summary.component';
-import StudentNavbar from '../../components/student-navbar/student-navbar.component';
+import StudentNavbar from '../../components/student-dashboard-navbar/student-dashboard-navbar.component';
 
 import CourseMedia from '../../components/course-media/course-media.component';
 
