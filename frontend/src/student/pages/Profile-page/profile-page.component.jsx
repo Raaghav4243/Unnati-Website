@@ -111,6 +111,11 @@ class Profile extends React.Component {
   };
 
   render() {
+  //   let userData = localStorage.getItem('user')
+  // userData = JSON.parse(userData)
+  // console.log(userData)
+  // console.log(userData.username)
+    // const { userusername, useremail, userphonenumber, userlastname, userfirstname, userCafe, userId } = this.props;
     const {
       userusername,
       useremail,

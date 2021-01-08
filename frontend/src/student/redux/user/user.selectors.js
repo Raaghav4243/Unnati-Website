@@ -29,7 +29,7 @@ export const selectCurrentUserId = createSelector(
 
 export const selectCurrentUserCafeId = createSelector(
   [selectCurrentUser],
-  (currentUser) => currentUser.cafe_id
+  (currentUser) => currentUser.cafe
 );
 
 export const selectCurrentUserEmail = createSelector(
