@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import {
   CourseItem,
   ImgWrap,
@@ -6,9 +7,14 @@ import {
   CourseItemTitle,
 } from './homepage-our-courses-card.styles';
 
-const CourseCard = ({ img, alt, title }) => {
+const CourseCard = ({ img, alt, title, history, match }) => {
   return (
-    <CourseItem>
+    <CourseItem
+      onClick={() => {
+        // set current course overview id
+        history.push(`${match.path}discover`);
+      }}
+    >
       <ImgWrap>
         <CourseItemImg src={img} alt={alt}></CourseItemImg>
       </ImgWrap>
@@ -17,4 +23,4 @@ const CourseCard = ({ img, alt, title }) => {
   );
 };
 
-export default CourseCard;
+export default withRouter(CourseCard);

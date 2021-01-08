@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 // import { SideNav } from '../../../student/pages/Profile-page/profile-page.styled.components'
-import CafeOverview from '../../../student/components/CafeDetails/CafeDetails';
-import ClassOverview from '../../../student/components/CafeDetails/classmate';
+import CafeOverview from '../../../student/components/recycle-bin/CafeDetails/CafeDetails';
+import ClassOverview from '../../../student/components/recycle-bin/CafeDetails/classmate';
 import {
   CafeDetailWrapper,
   Body,
@@ -54,14 +54,12 @@ import EnrolledTable from '../../components/with-spinner/teacher-enrolledstudent
 //               <SideNav></SideNav>
 //               <EnrolledTable></EnrolledTable>
 //         </Page>
-//      </>   
+//      </>
 //     )
 //   }
 // }
 
-
 class cafeteacher extends React.Component {
-
   render() {
     const {
       userId,
@@ -73,28 +71,29 @@ class cafeteacher extends React.Component {
 
     return (
       <>
-      <NavBar>NAVBAR</NavBar>
-      <Body>
-      <SideNav>SIDENAV</SideNav>
-      <CafeTableWrapper>
-      <CafeDetailWrapper>
-        <HorizontalFlexBox>
-          <VerticleFlexBox>
-            <CafeDetail>Cafe Details</CafeDetail>
-            <CafeOverview cafe_name='hi' />
-          </VerticleFlexBox>
-          <VerticleFlexBox>
-            <CafeDetail1>You Have</CafeDetail1>
-            <ClassOverview student_number='5' />
-          </VerticleFlexBox>
-        </HorizontalFlexBox>
-      </CafeDetailWrapper>
-      <TableWrapper>
-      <EnrolledTable></EnrolledTable>
-      </TableWrapper>
-      </CafeTableWrapper>
-      </Body>
-      </>);
+        <NavBar>NAVBAR</NavBar>
+        <Body>
+          <SideNav>SIDENAV</SideNav>
+          <CafeTableWrapper>
+            <CafeDetailWrapper>
+              <HorizontalFlexBox>
+                <VerticleFlexBox>
+                  <CafeDetail>Cafe Details</CafeDetail>
+                  <CafeOverview cafe_name='hi' />
+                </VerticleFlexBox>
+                <VerticleFlexBox>
+                  <CafeDetail1>You Have</CafeDetail1>
+                  <ClassOverview student_number='5' />
+                </VerticleFlexBox>
+              </HorizontalFlexBox>
+            </CafeDetailWrapper>
+            <TableWrapper>
+              <EnrolledTable></EnrolledTable>
+            </TableWrapper>
+          </CafeTableWrapper>
+        </Body>
+      </>
+    );
   }
 }
 

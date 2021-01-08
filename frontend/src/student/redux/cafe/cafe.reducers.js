@@ -20,7 +20,7 @@ const cafeReducer = (state = INITIAL_STATE, action) => {
         ...state,
         isFetching: false,
         userCafeDetails: cafe,
-        number_of_classmates: userNumbers - 2, // we have subtracted 2 because one is the user itself and the other is the teacher.
+        number_of_classmates: userNumbers - 1, // we have subtracted 2 because one is the user itself and the other is the teacher.
       };
     case CafeActionTypes.FETCH_CAFE_FAILURE:
       return {
