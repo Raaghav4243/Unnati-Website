@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import GoToDashboardButton from '../../components/go-to-dashboard-button-link/go-to-dashboard-button-link.component';
 import studentCourseTopicPage from '../student-course-topic-page/student-course-topic-page';
 import studentDashboard from '../student-dashboard/student-dashboard.component';
+import CourseOverview from '../course-overview/course-overview.component';
 
 import { Container, Prompt } from './student-page.styles';
 
@@ -20,6 +21,7 @@ class StudentPage extends React.Component {
           path={`${match.path}/course`}
           component={studentCourseTopicPage}
         />
+        <Route path={`${match.path}/discover`} component={CourseOverview} />
 
         {
           // debugged testcase : incase user manually goes to /student

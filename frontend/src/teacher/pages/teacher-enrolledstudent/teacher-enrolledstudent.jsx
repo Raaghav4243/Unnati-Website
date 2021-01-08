@@ -1,22 +1,22 @@
-// import React, { Component } from 'react'
-// // import { SideNav } from '../../../student/pages/Profile-page/profile-page.styled.components'
-// import CafeOverview from '../../../student/components/CafeDetails/CafeDetails';
-// import ClassOverview from '../../../student/components/CafeDetails/classmate';
-// import {
-//   CafeDetailWrapper,
-//   Body,
-//   NavBar,
-//   SideNav,
-//   HorizontalFlexBox,
-//   VerticleFlexBox,
-//   CafeDetail,
-//   CafeDetail1,
-//   CafeTableWrapper,
-//   TableWrapper,
-//   CafeDetail2,
-//   VerticleFlexBox2,
-//   EnrolledCoursesWrapper,
-// } from './teacher-enrolled.styled';
+import React, { Component } from 'react';
+// import { SideNav } from '../../../student/pages/Profile-page/profile-page.styled.components'
+import CafeOverview from '../../../student/components/recycle-bin/CafeDetails/CafeDetails';
+import ClassOverview from '../../../student/components/recycle-bin/CafeDetails/classmate';
+import {
+  CafeDetailWrapper,
+  Body,
+  NavBar,
+  SideNav,
+  HorizontalFlexBox,
+  VerticleFlexBox,
+  CafeDetail,
+  CafeDetail1,
+  CafeTableWrapper,
+  TableWrapper,
+  CafeDetail2,
+  VerticleFlexBox2,
+  EnrolledCoursesWrapper,
+} from './teacher-enrolled.styled';
 
 // //libraries used
 // import { connect } from 'react-redux';
@@ -46,56 +46,55 @@
 // // } from '../../redux/student/student.selectors';
 // // //components used
 
-// // // export default class TeacherEnrolled extends Component {
-// // //   render() {
-// //     return (
-// //       <>
-// //         <Page>
-// //               <SideNav></SideNav>
-// //               <EnrolledTable></EnrolledTable>
-// //         </Page>
-// //      </>   
-// //     )
-// //   }
-// // }
-
-
-// class cafeteacher extends React.Component {
-
-//   render() {
-//     const {
-//       userId,
-//       userCafe,
-//       enrolled_courses,
-//       no_of_classmates,
-//       setCurrentCourse,
-//     } = this.props;
-
+// // export default class TeacherEnrolled extends Component {
+// //   render() {
 //     return (
 //       <>
-//       <NavBar>NAVBAR</NavBar>
-//       <Body>
-//       <SideNav>SIDENAV</SideNav>
-//       <CafeTableWrapper>
-//       <CafeDetailWrapper>
-//         <HorizontalFlexBox>
-//           <VerticleFlexBox>
-//             <CafeDetail>Cafe Details</CafeDetail>
-//             <CafeOverview cafe_name='hi' />
-//           </VerticleFlexBox>
-//           <VerticleFlexBox>
-//             <CafeDetail1>You Have</CafeDetail1>
-//             <ClassOverview student_number='5' />
-//           </VerticleFlexBox>
-//         </HorizontalFlexBox>
-//       </CafeDetailWrapper>
-//       <TableWrapper>
-//       <EnrolledTable></EnrolledTable>
-//       </TableWrapper>
-//       </CafeTableWrapper>
-//       </Body>
-//       </>);
+//         <Page>
+//               <SideNav></SideNav>
+//               <EnrolledTable></EnrolledTable>
+//         </Page>
+//      </>
+//     )
 //   }
 // }
 
-// export default cafeteacher;
+class cafeteacher extends React.Component {
+  render() {
+    const {
+      userId,
+      userCafe,
+      enrolled_courses,
+      no_of_classmates,
+      setCurrentCourse,
+    } = this.props;
+
+    return (
+      <>
+        <NavBar>NAVBAR</NavBar>
+        <Body>
+          <SideNav>SIDENAV</SideNav>
+          <CafeTableWrapper>
+            <CafeDetailWrapper>
+              <HorizontalFlexBox>
+                <VerticleFlexBox>
+                  <CafeDetail>Cafe Details</CafeDetail>
+                  <CafeOverview cafe_name='hi' />
+                </VerticleFlexBox>
+                <VerticleFlexBox>
+                  <CafeDetail1>You Have</CafeDetail1>
+                  <ClassOverview student_number='5' />
+                </VerticleFlexBox>
+              </HorizontalFlexBox>
+            </CafeDetailWrapper>
+            <TableWrapper>
+              <EnrolledTable></EnrolledTable>
+            </TableWrapper>
+          </CafeTableWrapper>
+        </Body>
+      </>
+    );
+  }
+}
+
+export default cafeteacher;

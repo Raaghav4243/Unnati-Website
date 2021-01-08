@@ -55,6 +55,7 @@ class HomePageNavbar extends React.Component {
   };
   render() {
     const { user, toggle } = this.props;
+    console.log('USER OBJ', user);
     const { changedColor } = this.state;
     return (
       <>
@@ -152,6 +153,16 @@ class HomePageNavbar extends React.Component {
             </NavbarMiddle>
             <NavbarRight>
               {/* <NavBtnLink to='/signin'>Sign In</NavBtnLink> */}
+              {/* {user ? (
+                <GoToDashboardButton
+                  scrollClass={this.state.changedColor ? true : false}
+                />
+              ) : (
+                <SignInButton
+                  scrollClass={this.state.changedColor ? true : false}
+                />
+              )} */}
+              {console.log('USER IS', user)}
               {user ? (
                 <GoToDashboardButton
                   scrollClass={this.state.changedColor ? true : false}

@@ -7,11 +7,13 @@ import {
   Contact,
   CafeImage,
 } from './Cafe.Details.Styles';
-import image from '../../../assets/image.png';
+// import image from '../../../assets/image.png';
+import image from '../../assets/image.png';
+
 import {
   HorizontalFlexBox1,
   VerticleFlexBox,
-} from '../../../pages/student-dashboard/student-dashboard.styles';
+} from '../../../student/pages/student-dashboard/student-dashboard.styles.jsx';
 
 const CafeOverview = (props) => {
   const { cafe_name, cafe_address, faculty_incharge } = props;

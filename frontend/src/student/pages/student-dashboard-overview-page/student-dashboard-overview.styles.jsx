@@ -6,7 +6,7 @@ export const PageContainer = styled.div`
   /* height: 100%; */
   width: 100%;
   /* min-height: calc(100vh - 100px); */
-  /* border: 4px solid black; */
+  border: 4px solid black;
 `;
 export const CafeDetailsParentWrapper = styled.div`
   width: 100%;

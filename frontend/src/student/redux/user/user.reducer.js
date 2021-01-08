@@ -14,7 +14,7 @@ const INITIAL_STATE = {
   isFetching: false,
   errorMessage: undefined,
   userIsUpdating: false,
-  updateConformation: null
+  updateConformation: null,
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -30,8 +30,8 @@ const userReducer = (state = INITIAL_STATE, action) => {
         isFetching: true,
       };
     case UserActionTypes.FETCH_USER_SUCCESS:
-      const {username, email, _id, lastName,
-         firstName, phoneNumber, role, cafe} = action.payload
+      // const {username, email, _id, lastName,
+      //    firstName, phoneNumber, role, cafe} = action.payload
       return {
         ...state,
         isFetching: false,
@@ -44,17 +44,17 @@ const userReducer = (state = INITIAL_STATE, action) => {
         errorMessage: action.payload,
       };
     case UserActionTypes.UPDATE_USER_START:
-      return{
+      return {
         ...state,
-        userIsUpdating: true
-      }
+        userIsUpdating: true,
+      };
     case UserActionTypes.UPDATE_USER_SUCCESS:
-      return{
+      return {
         ...state,
         userIsUpdating: false,
-        updateConformation: action.payload
-      }
-    
+        updateConformation: action.payload,
+      };
+
     default:
       return state;
   }

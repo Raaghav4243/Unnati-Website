@@ -9,6 +9,7 @@ export const CourseItem = styled.div`
 
   &:hover {
     box-shadow: 0px 2px 4px rgba(100, 100, 100, 0.7);
+    cursor: pointer;
 
     h3 {
       transition: display 1s ease-in-out;
