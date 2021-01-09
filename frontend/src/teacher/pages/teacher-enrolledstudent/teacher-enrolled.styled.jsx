@@ -11,6 +11,10 @@ display: flex;
 flex-direction: row;
 `;
 
+export const Container = styled.div`
+width: 50vw;
+`;
+
 export const VerticleFlexBox = styled.div`
 display: flex;
  flex-direction: column;
@@ -22,6 +26,8 @@ display: flex;
 `;
 
 export const TableWrapper = styled.div`
+ height: 1000px;
+ width: 1000px;
  margin-left: 5vh;
 `;
 

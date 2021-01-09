@@ -8,10 +8,12 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import TablePagination from '@material-ui/core/TablePagination';
+import { sizing } from '@material-ui/system';
 
 const useStyles = makeStyles({
   table: {
-    minWidth: 650,
+    width: 65,
+    maxHeight: 300,
   },
 });
 
@@ -31,7 +33,8 @@ export default function TableEnrolled() {
   const classes = useStyles();
 
   return (
-    <TableContainer component={Paper}>
+
+    <TableContainer width= "50%" height="50%" component={Paper}>
       <Table heightclassName={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -44,7 +47,7 @@ export default function TableEnrolled() {
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-              <TableRow key={row.name}>
+            <TableRow key={row.name}>
               <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>
