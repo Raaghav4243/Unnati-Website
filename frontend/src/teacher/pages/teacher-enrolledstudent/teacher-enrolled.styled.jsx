@@ -25,6 +25,7 @@ display: flex;
  flex-direction: column;
 `;
 
+
 export const TableWrapper = styled.div`
  height: 1000px;
  width: 1000px;

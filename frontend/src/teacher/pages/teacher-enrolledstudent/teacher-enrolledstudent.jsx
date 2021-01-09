@@ -2,20 +2,17 @@ import React, { Component } from 'react';
 // import { SideNav } from '../../../student/pages/Profile-page/profile-page.styled.components'
 import CafeOverview from '../../../student/components/recycle-bin/CafeDetails/CafeDetails';
 import ClassOverview from '../../../student/components/recycle-bin/CafeDetails/classmate';
+import TeacherCafeDetails from '../../components/cafe-details/cafe-details.component'
+// import TableEnrolled from '../../components/teacher-enrolledstudent/table-component';
+import CustomPaginationActionsTable from '../../components/teacher-enrolledstudent/table-component';
+
 import {
   CafeDetailWrapper,
   Body,
   NavBar,
   SideNav,
-  HorizontalFlexBox,
-  VerticleFlexBox,
-  CafeDetail,
-  CafeDetail1,
   CafeTableWrapper,
   TableWrapper,
-  CafeDetail2,
-  VerticleFlexBox2,
-  EnrolledCoursesWrapper,
 } from './teacher-enrolled.styled';
 
 // //libraries used
@@ -76,19 +73,12 @@ class cafeteacher extends React.Component {
           <SideNav>SIDENAV</SideNav>
           <CafeTableWrapper>
             <CafeDetailWrapper>
-              <HorizontalFlexBox>
-                <VerticleFlexBox>
-                  <CafeDetail>Cafe Details</CafeDetail>
-                  <CafeOverview cafe_name='hi' />
-                </VerticleFlexBox>
-                <VerticleFlexBox>
-                  <CafeDetail1>You Have</CafeDetail1>
-                  <ClassOverview student_number='5' />
-                </VerticleFlexBox>
-              </HorizontalFlexBox>
+              <TeacherCafeDetails></TeacherCafeDetails>
             </CafeDetailWrapper>
             <TableWrapper>
-              <EnrolledTable></EnrolledTable>
+              {/* <TableEnrolled></TableEnrolled> */}
+              <CustomPaginationActionsTable></CustomPaginationActionsTable>
+              <DataGrid></DataGrid>
             </TableWrapper>
           </CafeTableWrapper>
         </Body>
