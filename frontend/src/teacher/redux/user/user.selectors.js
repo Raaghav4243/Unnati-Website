@@ -22,10 +22,6 @@ export const selectCurrentUserLastName = createSelector(
   (currentUser) => currentUser.lastName
 );
 
-export const selectCurrentUserId = createSelector(
-  [selectCurrentUser],
-  (currentUser) => currentUser._id
-);
 
 export const selectCurrentUserCafeId = createSelector(
   [selectCurrentUser],

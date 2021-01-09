@@ -13,7 +13,7 @@ import {
   selectUserCafeDetails,
   selectUserCafeNumberOfClassmates,
 } from '../../redux/cafe/cafe.selectors';
-import { selectCurrentUserId } from '../../redux/user/user.selectors';
+//import { selectCurrentUserId } from '../../redux/user/user.selectors';
 
 //components
 // import EnrolledCourseCard from '../../components/enrolled-course-card/enrolled-course-card.component';
@@ -32,8 +32,8 @@ import {
   StudentDropDown,
   CourseDropDown
 } from './assign.courses.styles';
-import StudentDashboardNavbar from '../../../student/components/student-dashboard-navbar/student-dashboard-navbar.component'
-import StudentDashboardSidenav from '../../../student/components/student-dashboard-sidenav/student-dashboard-sidenav.component'
+import TeacherDashboardNavbar from '../../components/teacher-dashboard-navbar/teacher-dashboard-navbar.component'
+import TeacherDashboardSidenav from '../../components/teacher-dashboard-sidenav/teacher-dashboard-sidenav.component'
 class TeacherDashboardAssignPage extends React.Component {
   componentDidMount() {
     const {
@@ -51,8 +51,8 @@ class TeacherDashboardAssignPage extends React.Component {
     return (
       <>
         <PageContainer>
-        <StudentDashboardNavbar />
-        <StudentDashboardSidenav />
+        <TeacherDashboardNavbar />
+        <TeacherDashboardSidenav />
         <PageWrapper>
           <CafeDetailsParentWrapper>
             <TeacherCafeDetails />
@@ -187,7 +187,7 @@ class TeacherDashboardAssignPage extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  userId: selectCurrentUserId,
+  //userId: selectCurrentUserId,
   userCafe: selectUserCafeDetails,
 });
 
