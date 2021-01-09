@@ -1,23 +1,17 @@
 import React, { Component } from 'react';
-// import { SideNav } from '../../../student/pages/Profile-page/profile-page.styled.components'
-import CafeOverview from '../../../student/components/recycle-bin/CafeDetails/CafeDetails';
-import ClassOverview from '../../../student/components/recycle-bin/CafeDetails/classmate';
+import TeacherCafeDetails from '../../components/cafe-details/cafe-details.component'
+import CustomPaginationActionsTable from '../../components/teacher-enrolledstudent/table-component';
+
 import {
   CafeDetailWrapper,
   Body,
   NavBar,
   SideNav,
-  HorizontalFlexBox,
-  VerticleFlexBox,
-  CafeDetail,
-  CafeDetail1,
   CafeTableWrapper,
   TableWrapper,
-  CafeDetail2,
-  VerticleFlexBox2,
-  EnrolledCoursesWrapper,
 } from './teacher-enrolled.styled';
 
+<<<<<<< HEAD
 //libraries used
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -60,6 +54,9 @@ import EnrolledTable from '../../components/teacher-enrolledstudent/table-compon
 // }
 
 class cafeteacher extends React.Component {
+=======
+class TeacherEnrolledStudents extends React.Component {
+>>>>>>> 709e50f9adf7a7635abcb8738f548af3cb754233
   render() {
     const {
       userId,
@@ -76,19 +73,10 @@ class cafeteacher extends React.Component {
           <SideNav>SIDENAV</SideNav>
           <CafeTableWrapper>
             <CafeDetailWrapper>
-              <HorizontalFlexBox>
-                <VerticleFlexBox>
-                  <CafeDetail>Cafe Details</CafeDetail>
-                  <CafeOverview cafe_name='hi' />
-                </VerticleFlexBox>
-                <VerticleFlexBox>
-                  <CafeDetail1>You Have</CafeDetail1>
-                  <ClassOverview student_number='5' />
-                </VerticleFlexBox>
-              </HorizontalFlexBox>
+              <TeacherCafeDetails></TeacherCafeDetails>
             </CafeDetailWrapper>
             <TableWrapper>
-              <EnrolledTable></EnrolledTable>
+              <CustomPaginationActionsTable></CustomPaginationActionsTable>
             </TableWrapper>
           </CafeTableWrapper>
         </Body>
@@ -97,4 +85,4 @@ class cafeteacher extends React.Component {
   }
 }
 
-export default cafeteacher;
+export default TeacherEnrolledStudents;
