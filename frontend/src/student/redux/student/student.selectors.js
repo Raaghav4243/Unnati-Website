@@ -27,6 +27,11 @@ export const selectUserEnrolledCourses = createSelector(
   (studentDetails) => studentDetails.user_enrolled_courses
 );
 
+export const selectUserEnrolledCoursesIdMap = createSelector(
+  [selectStudentDetails],
+  (studentDetails) => studentDetails.user_enrolled_courses_id_map
+);
+
 export const selectPercentStatusForUserEnrolledCourses = createSelector(
   [selectStudentDetails],
   (studentDetails) => studentDetails.percentStatusArray

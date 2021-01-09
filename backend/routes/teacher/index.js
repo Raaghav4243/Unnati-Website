@@ -1,3 +1,4 @@
+const { response } = require('express');
 const express = require('express');
 const router = express.Router();
 const mongoose= require('mongoose');
@@ -31,7 +32,7 @@ const CourseEnrolled = mongoose.model('CourseEnrolled');
 const authenticate = require('./../../middleware/authenticate')
 const restrictTo = require('./../../middleware/restrictTo')
 
-router.post("/cafeStudents/:cafeId",authenticate,restrictTo("TEACHER"),async (req,res) => {
+router.get("/cafeStudents/:cafeId",/*authenticate,restrictTo("TEACHER"),*/async (req,res) => {
     try {
         let response = {
             message:"information of cafe",
@@ -39,75 +40,139 @@ router.post("/cafeStudents/:cafeId",authenticate,restrictTo("TEACHER"),async (re
             arr: []
         }
         const students = await User.find({cafe:req.params.cafeId,role:'STUDENT'}).select("_id firstName lastName phoneNumber email")
-        students.forEach(student => {
+        for (const student of students) {
             const currId = student._id;
-            const courses = await CourseEnrolled.find({user:currId}).select("_id course")
-            let arrCourses = []
-            courses.forEach(course => {
-                const courseId = course.course.type
-                const courseDetails = await Course.findOne({_id:courseId})
-                arrCourses.push(courseDetails)
-            })
-            arr.push({
+            const courses = await CourseEnrolled.find({user:currId}).populate({
+                path:'course', select:'courseName summary'
+            }).select("_id course")
+            response.arr.push({
+                _id:student._id,
                 firstName: student.firstName,
                 lastName: student.lastName,
                 phoneNumber: student.phoneNumber,
                 email: student.email,
-                courses : arrCourses
-            })
-        });
+                courses : courses
+            })   
+        }
         res.status(200).json(response)
     } catch (error) {
         console.log(error);
     }
 })
 
-router.post("/requestTestEvaluate/:responseSheetId",authenticate,restrictTo("TEACHER"),async (req,res) => {
+// request answer sheet for evaluation
+router.get("/requestTestEvaluate/:responseSheetId",/*authenticate,restrictTo("TEACHER"),*/async (req,res) => {
     try {
-        data = await ResponseSheet.findById({_id: req.params.responseSheetId}).populate({
-            path: 'Test',
-            populate: { path: 'Question'}
+        data = await ResponseSheet.findById({_id: req.params.responseSheetId}).populate([{
+            path: 'testId',
+            populate: { path: 'questions'}
           }, {
-            path: 'Response',
-          });
+            path: 'responses',
+            populate: { path: 'questionId'}
+          }]);
         res.status(200).json({message:'Test and response details',done:true,data:data})
     } catch (error) {
         console.log(error);
     }
-})
+}) 
 
-router.post("/enterMarks/:courseEnrolled/test/:testId/marks/:marks",authenticate,restrictTo("TEACHER"),async (req,res) => {
+
+// add score to the database
+router.post("/evaluateTest/student/:studentId/course/:courseId/test/:testId"/*,authenticate,restrictTo("TEACHER")*/,async (req,res) => {
     try {
-        let response = {
-            message:"adding mask to DB",
-            done:true,
+        course = await CourseEnrolled.findOne({user: req.params.studentId,course:req.params.courseId})
+        for (var test of course.testsDone) {
+            if(test.test.toString()===req.params.testId.toString()){
+                test.marksScored = req.body.marksScored
+                course.save()
+                res.status(200).json({message:"Marks are added!",done:true,course});
+                return 
+            }
         }
-        const courseDetails = await CourseEnrolled.findById({_id: req.params.courseEnrolled})
-        courseDetails.
-        teacher.isAdminRejected=true
-        teacher.save(function (err) {
-            if (err){
-                console.log(err);
-                return;
-            }  
-            res.status(200).json({message:"teacher rejected",done:true});
-        }); 
-        res.status(200).json(response)
+        
+             
     } catch (error) {
         console.log(error);
     }
 })
 
-router.post("/loadPendingEvaluations/:cafeId/course/:courseId",authenticate,restrictTo("TEACHER"),async (req,res) => {
+
+router.get("/loadPendingEvaluations/:cafeId",/*authenticate,restrictTo("TEACHER"),*/async (req,res) => {
     try {
         let response = {
             message:"list of pending evaluations",
             done:true,
         }
+
+        let users = await User.find({cafe:req.params.cafeId,role:'STUDENT'}).populate({
+            path: 'coursesEnrolled',
+            populate: {path:'course', select:'courseName'},
+            select:'testsDone'
+        }).select('firstName lastName username _id ')
+        for (const user of users) {
+            for (const course of user.coursesEnrolled) {
+                course.testsDone = course.testsDone.filter(obj=>{
+                    return obj.marksScored===-1
+                })
+            }
+        }
+        response.pendingEvaluations = users
+
         res.status(200).json(response)
     } catch (error) {
         console.log(error);
     }
+})
+// enroll a user in a course 
+router.post("/user/:userId/cafe/:cafeId/courseEnroll/:courseId",async (req,res)=>{
+    const c =  await Course.findOne({_id: req.params.courseId})
+    var user = await User.findOne({_id:req.params.userId})
+    c.fees.forEach(fee =>{
+        if(fee.cafe.toString()===req.params.cafeId.toString()){
+            user.dueAmount= user.dueAmount + fee.amount
+        }
+    })
+    const course = await CourseEnrolled.create({user:req.params.userId,course:req.params.courseId})
+    user.coursesEnrolled.push(course._id)
+    user.save(err => {
+        if(err){
+            console.log(err)
+            return
+        }
+    })
+    // console.log(user.dueAmount)
+    res.status(200).json({done: true,message:'User enrolled in courses'})
+})
+// pay fees  add it to receipts of user
+router.post("/user/:userId/feesUpdate",async (req,res)=>{
+    // const course = await CourseEnrolled.findOne({user:req.params.userId,course:req.params.courseId})
+    const {amount,remarks} = req.body
+    const receipt = await Receipt.create({amount,remarks})
+    var user = await User.findOne({_id:req.params.userId})
+    user.receipts.push(receipt._id)
+    if(user.dueAmount>amount){
+        user.dueAmount = user.dueAmount - amount;
+    }else{
+        user.dueAmount = 0;
+    }
+    user.paidAmount = user.paidAmount + amount;
+    user.save(err => {
+        console.log(err)
+        return
+    })
+    res.status(200).json({done: true,message:'User fees paid and receipt generated'})
+})
+
+// fees status of a user
+router.get("/FeesStatus/user/:userId",async (req,res)=>{
+    try {
+        const user = await User.findOne({_id: req.params.userId}).select('paidAmount dueAmount')
+    
+        res.status(200).json({done: true,user,message:'User fees Status'})
+    } catch (error) {
+        console.log(error);
+    }
+
 })
 
 module.exports=router

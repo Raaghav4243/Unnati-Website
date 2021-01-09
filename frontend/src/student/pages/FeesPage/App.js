@@ -16,7 +16,7 @@ import {
   selectCurrentUserCafeId,
   selectCurrentUserId,
 } from '../../redux/user/user.selectors';
-import ProfileSideNav from '../../components/SideNav/SideNav'
+import ProfileSideNav from '../../components/SideNav/SideNav';
 
 import {
   FullPage,
@@ -57,7 +57,7 @@ class FeesPage extends React.Component {
       <>
         <FullPage>
           <BothBox>
-            <ProfileSideNav />
+            {/* <ProfileSideNav /> */}
             <BoxAndHead>
               <FeesHead>Fees</FeesHead>
               <FeesBox>

@@ -8,21 +8,24 @@ export const SignInBtnLink = styled(Link)`
   white-space: nowrap;
   border-radius: 10px;
   outline: none;
-  /* border: 1px solid black; */
+  /* border: 0.5px solid black; */
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.9);
   cursor: pointer;
   color: ${({ color }) => (color ? color : '#000')};
   background-color: ${({ backgroundColor }) =>
     backgroundColor ? backgroundColor : '#fff'};
   /* padding: ${({ big }) => (big ? '14px 48px' : '12px 30px')}; */
-  width: ${({ big }) => (big ? '180px' : '100px')};
+  width: ${({ big }) => (big ? '200px' : '120px')};
   height: ${({ big }) => (big ? '50px' : '45px')};
-  transition: all 0.2s ease-in-out, font-weight 0ms;
+  transition: all 200ms ease-in-out;
 
   &:hover {
-    transition: all 0.2s ease-in-out, font-weight 0ms;
+    transition: all 200ms ease-in-out;
     background-color: ${({ backgroundColorOnHover }) =>
       backgroundColorOnHover ? backgroundColorOnHover : '#fff'};
-    border: ${({ borderOnHover }) => (borderOnHover ? borderOnHover : '#000')};
+    /* border: ${({ borderOnHover }) =>
+      borderOnHover ? borderOnHover : '1px solid #000'}; */
+    box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.9);
     color: ${({ colorOnHover }) => (colorOnHover ? colorOnHover : '#000')};
   }
 
@@ -32,10 +35,13 @@ export const SignInBtnLink = styled(Link)`
   }
 
   @media screen and (max-width: 768px) {
-    width: 90%;
+    /* width: 90%; */
     height: auto;
     padding: 10px;
     font-size: 0.75rem;
+  }
+  @media screen and (max-width: 768px) {
+    font-size: 0.6rem;
   }
 `;
 

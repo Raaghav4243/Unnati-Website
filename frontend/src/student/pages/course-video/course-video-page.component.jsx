@@ -34,9 +34,9 @@ export class CourseVideo extends Component {
     console.log('Lecture Page has rendered');
     return (
       <>
-        <NavBar>NAVBAR</NavBar>
+        {/* <NavBar>NAVBAR</NavBar> */}
         <CourseVideoContainer>
-          <SideNav />
+          {/* <SideNav /> */}
           <CourseVideoPDFContainer>
             {/* <CourseVideoPlayer url={`https://www.youtube.com/watch?v=YqQx75OPRa0`}></CourseVideoPlayer> */}
             <CourseVideoPlayer

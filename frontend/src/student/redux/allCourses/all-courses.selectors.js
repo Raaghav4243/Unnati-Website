@@ -12,6 +12,11 @@ export const selectAllCoursesIdMap = createSelector(
   (course) => course.allCoursesIdMap
 );
 
+export const selectIsAllCoursesFetching = createSelector(
+  [selectCourses],
+  (course) => course.isFetching
+);
+
 // const selectCart = state => state.cart;
 
 // export const selectCartItems = createSelector(

@@ -1,4 +1,4 @@
-import { takeLatest, put, all, call } from 'redux-saga/effects';
+import { takeLatest, put, all, call, delay } from 'redux-saga/effects';
 
 import {
   fetchAllCoursesSuccess,
@@ -9,6 +9,7 @@ import AllCoursesActionTypes from './all-courses.types';
 
 export function* fetchAllCoursesAsync() {
   try {
+    yield delay(3000);
     let allCourses = yield fetch(`/all-courses`);
 
     allCourses = yield allCourses.json();

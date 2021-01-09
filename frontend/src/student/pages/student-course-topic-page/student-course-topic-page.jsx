@@ -16,7 +16,11 @@ import CourseVideo from '../course-video/course-video-page.component';
 import AssignmentPage from '../assignment-page/assignment-page.component';
 // import TestPage from '../test-page/test-page.component';
 import TestStartPage from '../test-start-page/test-start-page.component';
+import CourseNavbar from '../../components/course-navbar/course-navbar.component';
+import TestPage from '../test-page/test-page.component';
 //import demoAssignment from '../demo-assignment';
+
+import { Container } from './student-course-topic-page.styles';
 
 class StudentCourseTopicPage extends React.Component {
   constructor() {
@@ -32,8 +36,32 @@ class StudentCourseTopicPage extends React.Component {
     // console.log('match is', match, 'topic id is', course_topic_id);
     return (
       <>
-        <CourseSideNav />
-        <CourseContentPage />
+        <Route
+          exact
+          path={`${match.path}`}
+          render={() => {
+            return (
+              <>
+                <Container>
+                  <CourseNavbar />
+                  <CourseSideNav />
+                  <CourseContentPage />
+                </Container>
+              </>
+            );
+          }}
+        />
+        <Route
+          exact
+          path={`${match.path}/test`}
+          render={() => {
+            return (
+              <>
+                <TestPage />
+              </>
+            );
+          }}
+        />
       </>
     );
   }

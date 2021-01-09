@@ -10,6 +10,7 @@ import { feeAmountSagas } from './fee-amount/fee-amount.sagas';
 import { feeDetailSagas } from './fee-details/fee-details.sagas';
 import { cafeSagas } from './cafe/cafe.sagas';
 import { userSagas } from './user/user.sagas';
+import { courseOverviewSagas } from './course-overview/course-overview.sagas';
 
 export default function* rootSaga() {
   yield all([
@@ -23,5 +24,6 @@ export default function* rootSaga() {
     call(feeDetailSagas),
     call(cafeSagas),
     call(userSagas),
+    call(courseOverviewSagas),
   ]);
 }

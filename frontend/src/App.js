@@ -28,26 +28,23 @@ import Profile from './student/pages/Profile-page/profile-page.component';
 import TestPage from './student/pages/test-page/test-page.component';
 import teacherenrolledstudent from './teacher/pages/teacher-enrolledstudent/teacher-enrolledstudent';
 import BasicTable from './teacher/pages/teacher-enrolledstudent/teacher-enrolledstudent';
-import cafeteacher from './teacher/pages/teacher-enrolledstudent/teacher-enrolledstudent';
+import TeacherDashboardAssignPage from './teacher/pages/assign-courses/assign-courses'
 
 function App() {
   return (
     <BrowserRouter>
       <Switch>
         <Route path='/' exact component={HomePage} />
-        <Route path='/student' component={StudentPage} />{' '}
-        <Route path='/profilesettings' component={Profile} />
-        <Route path='/feespage' component={FeesPage} />
+        <Route path='/student' component={StudentPage} />
         <Route path='/test' component={TestPage} />
         <Route path='/signup' component={SignUpForm} />
         <Route path='/login' component={LogInForm} />
-        <Route path='/teacher' component={cafeteacher} />
+        <Route path='/teacher/assign' component={TeacherDashboardAssignPage} />
       
       </Switch>
     </BrowserRouter>
   );
 }
-// import TeacherDashboard from '../src/teacher/pages/teacher-dashboard-main-page/teacher-dashboard-page';
 
 // import './App.css';
 
