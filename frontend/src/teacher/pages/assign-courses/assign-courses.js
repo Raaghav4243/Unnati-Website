@@ -1,12 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import { ReactComponent as ArrowsEqual } from '../../icons/arrows.svg';
+import arrows from '../../icons/arrows.svg';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
-
+import Button from '@material-ui/core/Button/Button'
 //redux
 import { fetchUserCafeStart } from '../../redux/cafe/cafe.actions';
 import {
@@ -30,7 +32,10 @@ import {
   StudentTitle,
   CourseTitle,
   StudentDropDown,
-  CourseDropDown
+  CourseDropDown,
+  ButtonWrapper,
+  DropWrapper,
+  ImageWrapper,
 } from './assign.courses.styles';
 import TeacherDashboardNavbar from '../../components/teacher-dashboard-navbar/teacher-dashboard-navbar.component'
 import TeacherDashboardSidenav from '../../components/teacher-dashboard-sidenav/teacher-dashboard-sidenav.component'
@@ -61,7 +66,8 @@ class TeacherDashboardAssignPage extends React.Component {
           <DropDownWrapper>
             <StudentDropDown>
           <StudentTitle>Student</StudentTitle>
-          <FormControl variant="outlined" className='hello'>
+          <DropWrapper>
+          <FormControl variant="outlined" className='hello' style={{minWidth: 150}}>
         <InputLabel htmlFor="outlined-age-native-simple">Select</InputLabel>
         <Select
           // native
@@ -79,10 +85,13 @@ class TeacherDashboardAssignPage extends React.Component {
           <option value={30}>Thirty</option>
         </Select>
       </FormControl>
+      </DropWrapper>
       </StudentDropDown>
+      <ImageWrapper src={arrows} />
       <CourseDropDown>
           <CourseTitle>Course Name</CourseTitle>
-          <FormControl variant="outlined" className='hello'>
+          <DropWrapper>
+          <FormControl variant="outlined" className='hello' style={{minWidth: 150}}>
         <InputLabel htmlFor="outlined-age-native-simple">Select</InputLabel>
         <Select
           // native
@@ -100,10 +109,15 @@ class TeacherDashboardAssignPage extends React.Component {
           <option value={30}>Thirty</option>
         </Select>
       </FormControl>
+      </DropWrapper>
           </CourseDropDown>
           </DropDownWrapper>
-          
+          <ButtonWrapper>
+            Assign
+         </ButtonWrapper>
          </PageWrapper>
+         
+         
         </PageContainer>
       </>
     );

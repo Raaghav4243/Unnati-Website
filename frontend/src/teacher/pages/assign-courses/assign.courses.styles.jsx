@@ -52,7 +52,7 @@ export const CourseTitle = styled.div`
   font-size: 18px;
   font-weight: 500;
   font-family: 'Montserrat', sans-serif;
-  margin-left: 2vw;
+  
 `;
 
 export const DropDownWrapper = styled.div`
@@ -75,5 +75,30 @@ export const StudentDropDown = styled.div`
 export const CourseDropDown = styled.div`
   display:flex;
   flex-direction: column;
-  margin-left:15vw;
+  margin-left:10vw;
 `;
+
+export const ButtonWrapper = styled.button`
+width: 8vw;
+height:5.7vh;
+display: flex;
+justify-content: center;
+font-size: 18px;
+border-radius: 10px;
+color: #FFFFFF;
+background-color: #2475B0;
+cursor: pointer;
+padding: 1.3vh 1vw 1vh 1vw;
+margin-top: 5vh;
+border: none;
+outline:none;
+`;
+
+export const DropWrapper = styled.div`
+margin-top: 1vh;
+`;
+
+export const ImageWrapper = styled.img`
+margin-left: 5vw;
+margin-top: 3vh;
+`
