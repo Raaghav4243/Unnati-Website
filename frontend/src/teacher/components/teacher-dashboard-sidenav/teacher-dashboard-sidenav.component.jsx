@@ -44,10 +44,10 @@ class TeacherDashboardSidenav extends React.Component {
           </PictureContainer>
           <Profile>
             <ProfileTitle>Profile</ProfileTitle>
-            <SidenavLink to={`/profile`}>
+            <SidenavLink to={`/teacher/profile`}>
               Update Profile Info
             </SidenavLink>
-            <SidenavLink to={`/password`}>
+            <SidenavLink to={`/teacher/changepassword`}>
               Change Password
             </SidenavLink>
             <SignOutButton onClick={this.handleSignOut}>Sign Out</SignOutButton>
@@ -56,9 +56,9 @@ class TeacherDashboardSidenav extends React.Component {
             <DashboardTitle>Dashboard</DashboardTitle>
             <SidenavLink to={`/`}>View Dashboard</SidenavLink>
             <SidenavLink to={`/teacher/enrolled`}>Enrolled Students</SidenavLink>
-            <SidenavLink to={`/approvestudents`}>Approve Student Course</SidenavLink>
+            <SidenavLink to={`/teacher/approve`}>Approve Student Course</SidenavLink>
             <SidenavLink to={`/teacher/assign`}>Assign Course to Student</SidenavLink>
-            <SidenavLink to={`/studentfees`}>Enter Fee for Student</SidenavLink>
+            <SidenavLink to={`/teacher/studentfees`}>Enter Fee for Student</SidenavLink>
             <SidenavLink to={`/evaluate`}>Evaluate Tests</SidenavLink>
           </Dashboard>
         </Container>

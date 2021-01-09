@@ -42,3 +42,7 @@ export const selectCurrentUserRole = createSelector(
   [selectCurrentUser],
   (currentUser) => currentUser.role
 );
+export const selectCurrentUserId = createSelector(
+  [selectCurrentUser],
+  (currentUser) => currentUser._id
+);

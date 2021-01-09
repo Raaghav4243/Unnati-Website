@@ -28,9 +28,11 @@ import Profile from './student/pages/Profile-page/profile-page.component';
 import TestPage from './student/pages/test-page/test-page.component';
 import cafeteacher from './teacher/pages/teacher-enrolledstudent/teacher-enrolledstudent';
 import TeacherEnrolledStudents from './teacher/pages/teacher-enrolledstudent/teacher-enrolledstudent';
-import TeacherDashboardAssignPage from './teacher/pages/assign-courses/assign-courses'
+import TeacherDashboardAssignPage from './teacher/pages/assign-courses/assign-courses';
+import TeacherDashboardFeesPage from './teacher/pages/course-fees/course-fees-page';
 import TeacherApproval from './teacher/pages/teacher-approval/teacher-approval.page';
-
+import TeacherProfile from './teacher/pages/Profile-page/profile-page.component';
+import TeacherChangePassword from './teacher/pages/change-password/change-password'
 function App() {
   return (
     <BrowserRouter>
@@ -43,7 +45,9 @@ function App() {
         <Route path='/teacher/enrolled' component={TeacherEnrolledStudents} />
         <Route path='/teacher/approve' component={TeacherApproval} />
         <Route path='/teacher/assign' component={TeacherDashboardAssignPage} />
-      
+        <Route path='/teacher/studentfees' component={TeacherDashboardFeesPage} />
+        <Route path='/teacher/profile' component={TeacherProfile} />
+        <Route path='/teacher/changepassword' component={TeacherChangePassword} />
       </Switch>
     </BrowserRouter>
   );
