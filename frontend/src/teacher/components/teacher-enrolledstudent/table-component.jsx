@@ -1,77 +1,3 @@
-// import React from 'react';
-// import { makeStyles } from '@material-ui/core/styles';
-// import Table from '@material-ui/core/Table';
-// import TableBody from '@material-ui/core/TableBody';
-// import TableCell from '@material-ui/core/TableCell';
-// import TableContainer from '@material-ui/core/TableContainer';
-// import TableHead from '@material-ui/core/TableHead';
-// import TableRow from '@material-ui/core/TableRow';
-// import Paper from '@material-ui/core/Paper';
-// import TablePagination from '@material-ui/core/TablePagination';
-
-// const useStyles = makeStyles({
-//   table: {
-//     width: 65,
-//     maxHeight: 300,
-//   },
-// });
-
-// function createData(ID, FirstName, LastName, Age, FullName) {
-//   return { ID, FirstName, LastName, Age, FullName };
-// }
-
-// const rows = [
-//   createData(1 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
-//   createData(2 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
-//   createData(3 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
-//   createData(4 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
-//   createData(5 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
-//   createData(6 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
-//   createData(7 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
-//   createData(8 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
-//   createData(9 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
-// ];
-
-// export default function TableEnrolled() {
-//   const classes = useStyles();
-
-//   return (
-
-//     <TableContainer width= "50%" height="50%" component={Paper}>
-//       <Table heightclassName={classes.table} aria-label="simple table">
-//       <colgroup>
-//       <col style={{width:'10%'}}/>
-//       <col style={{width:'25%'}}/>
-//       <col style={{width:'25%'}}/>
-//       <col style={{width:'10%'}}/>
-//       <col style={{width:'30%'}}/>
-//       </colgroup>
-//         <TableHead>
-//           <TableRow>
-//             <TableCell>ID</TableCell>
-//             <TableCell align="center">First Name</TableCell>
-//             <TableCell align="center">Last Name</TableCell>
-//             <TableCell align="center">Age</TableCell>
-//             <TableCell align="center">Full Name</TableCell>
-//           </TableRow>
-//         </TableHead>
-//         <TableBody>
-//           {rows.map((row) => (
-//             <TableRow key={row.name}>
-//               <TableCell component="th" scope="row">{row.ID}</TableCell>
-//               <TableCell align="center">{row.FirstName}</TableCell>
-//               <TableCell align="center">{row.LastName}</TableCell>
-//               <TableCell align="center">{row.Age}</TableCell>
-//               <TableCell align="center">{row.FullName}</TableCell>
-//             </TableRow>
-//           ))}
-//           <TablePagination rowsPerPageOptions={[4, 5]} />
-//         </TableBody>
-//       </Table>
-//     </TableContainer>
-//   );
-// }
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -88,6 +14,8 @@ import FirstPageIcon from '@material-ui/icons/FirstPage';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
+import TableHead from '@material-ui/core/TableHead';
+// import TableRow from '@material-ui/core/TableRow';
 
 const useStyles1 = makeStyles((theme) => ({
   root: {
@@ -154,25 +82,21 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-function createData(name, calories, fat) {
-  return { name, calories, fat };
-}
+function createData(ID, FirstName, LastName, Age, FullName) {
+    return { ID, FirstName, LastName, Age, FullName };
+  }
 
 const rows = [
-  createData('Cupcake', 305, 3.7),
-  createData('Donut', 452, 25.0),
-  createData('Eclair', 262, 16.0),
-  createData('Frozen yoghurt', 159, 6.0),
-  createData('Gingerbread', 356, 16.0),
-  createData('Honeycomb', 408, 3.2),
-  createData('Ice cream sandwich', 237, 9.0),
-  createData('Jelly Bean', 375, 0.0),
-  createData('KitKat', 518, 26.0),
-  createData('Lollipop', 392, 0.2),
-  createData('Marshmallow', 318, 0),
-  createData('Nougat', 360, 19.0),
-  createData('Oreo', 437, 18.0),
-].sort((a, b) => (a.calories < b.calories ? -1 : 1));
+  createData(1 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
+    createData(2 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
+    createData(3 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
+    createData(4 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
+    createData(5 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
+    createData(6 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
+    createData(7 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
+    createData(8 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
+    createData(9 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'), 
+];
 
 const useStyles2 = makeStyles({
   table: {
@@ -183,7 +107,7 @@ const useStyles2 = makeStyles({
 export default function CustomPaginationActionsTable() {
   const classes = useStyles2();
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rowsPerPage, setRowsPerPage] = React.useState(4);
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
@@ -200,34 +124,30 @@ export default function CustomPaginationActionsTable() {
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="custom pagination table">
       <TableHead>
-//           <TableRow>
-//             <TableCell>ID</TableCell>
-//             <TableCell align="center">First Name</TableCell>
-//             <TableCell align="center">Last Name</TableCell>
-//             <TableCell align="center">Age</TableCell>
-//             <TableCell align="center">Full Name</TableCell>
-//           </TableRow>
-//         </TableHead>
+           <TableRow >
+             <TableCell>ID</TableCell>
+             <TableCell align="center">First Name</TableCell>
+             <TableCell align="center">Last Name</TableCell>
+             <TableCell align="center">Age</TableCell>
+             <TableCell align="center">Full Name</TableCell>
+          </TableRow>
+         </TableHead>
         <TableBody>
           {(rowsPerPage > 0
             ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : rows
           ).map((row) => (
             <TableRow key={row.name}>
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell style={{ width: 160 }} align="right">
-                {row.calories}
-              </TableCell>
-              <TableCell style={{ width: 160 }} align="right">
-                {row.fat}
-              </TableCell>
+            <TableCell component="th" scope="row">{row.ID}</TableCell>
+            <TableCell align="center">{row.FirstName}</TableCell>
+            <TableCell align="center">{row.LastName}</TableCell>
+            <TableCell align="center">{row.Age}</TableCell>
+            <TableCell align="center">{row.FullName}</TableCell>
             </TableRow>
           ))}
 
           {emptyRows > 0 && (
-            <TableRow style={{ height: 53 * emptyRows }}>
+            <TableRow style={{ height: 30 * emptyRows }}>
               <TableCell colSpan={6} />
             </TableRow>
           )}
@@ -235,7 +155,7 @@ export default function CustomPaginationActionsTable() {
         <TableFooter>
           <TableRow>
             <TablePagination
-              rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+              rowsPerPageOptions={[4, 10, 25, { label: 'All', value: -1 }]}
               colSpan={3}
               count={rows.length}
               rowsPerPage={rowsPerPage}

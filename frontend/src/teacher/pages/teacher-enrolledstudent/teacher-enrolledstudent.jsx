@@ -76,9 +76,7 @@ class cafeteacher extends React.Component {
               <TeacherCafeDetails></TeacherCafeDetails>
             </CafeDetailWrapper>
             <TableWrapper>
-              {/* <TableEnrolled></TableEnrolled> */}
               <CustomPaginationActionsTable></CustomPaginationActionsTable>
-              <DataGrid></DataGrid>
             </TableWrapper>
           </CafeTableWrapper>
         </Body>
