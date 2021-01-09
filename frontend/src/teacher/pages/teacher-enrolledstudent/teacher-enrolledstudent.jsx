@@ -21,7 +21,7 @@ import {
 //libraries used
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import EnrolledTable from '../../components/with-spinner/teacher-enrolledstudent/table-component';
+import EnrolledTable from '../../components/teacher-enrolledstudent/table-component';
 
 //redux used
 // import { fetchAllCoursesStart } from '../../redux/allCourses/all-courses.actions';
