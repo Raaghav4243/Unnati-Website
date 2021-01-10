@@ -3,6 +3,7 @@ import TeacherCafeDetails from '../../components/cafe-details/cafe-details.compo
 import CustomPaginationActionsTable from '../../components/teacher-approval.page/table-component';
 import TeacherDashboardNavbar from '../../components/teacher-dashboard-navbar/teacher-dashboard-navbar.component';
 import TeacherDashboardSidenav from '../../components/teacher-dashboard-sidenav/teacher-dashboard-sidenav.component';
+// import EnhancedTable2 from '../../components/teacher-enrolledstudent/table2.Component';
 
 import {
   CafeDetailWrapper,
@@ -68,6 +69,7 @@ class TeacherApproval extends React.Component {
             </CafeDetailWrapper>
             <TableWrapper>
               <CustomPaginationActionsTable></CustomPaginationActionsTable>
+              {/* <EnhancedTable2></EnhancedTable2> */}
             </TableWrapper>
           </CafeTableWrapper>
         </Body>
