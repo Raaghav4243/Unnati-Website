@@ -53,9 +53,10 @@ function App() {
         <Route path='/teacher' component={cafeteacher} />
         {/* <Route path='/signup' component={SignUpForm} />
         <Route path='/login' component={LogInForm} /> */}
+       
         <Route path='/teacher/enrolled' component={TeacherEnrolledStudents} />
-        <Route path='/teacher/approve' component={TeacherApproval} />
-        <Route path='/teacher/testcheck' component={TeacherTestCheck} />
+        <Route path='/approve' component={TeacherApproval} />
+        <Route path='/testcheck' component={TeacherTestCheck} />
         <Route path='/teacher/assign' component={TeacherDashboardAssignPage} />
 
 
