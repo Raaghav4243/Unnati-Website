@@ -123,14 +123,13 @@ export default function CustomPaginationActionsTable() {
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="custom pagination table">
-      {/* <colgroup>
+      <colgroup>
       <col style={{width:'10%'}}/>
       <col style={{width:'20%'}}/>
+      <col style={{width:'15%'}}/>
+      <col style={{width:'15%'}}/>
       <col style={{width:'20%'}}/>
-      <col style={{width:'10%'}}/>
-      <col style={{width:'20%'}}/>
-      <col style={{width:'20%'}}/>
-   </colgroup> */}
+   </colgroup>
       <TableHead>
            <TableRow >
              <TableCell align="center">ID</TableCell>
