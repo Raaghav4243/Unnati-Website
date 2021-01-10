@@ -45,30 +45,24 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
+        {/* STUDENT ROUTES */}
         <Route path='/' exact component={HomePage} />
         <Route path='/student' component={StudentPage} />
         <Route path='/test' component={TestPage} />
         <Route path='/signup' component={SignInAndSignUpPage} />
-        {/* <Route path='/login' component={LogInForm} /> */}
         <Route path='/teacher' component={cafeteacher} />
-        {/* <Route path='/signup' component={SignUpForm} />
-        <Route path='/login' component={LogInForm} /> */}
+        {/* <Route path='/login' component={LogInForm} /> */}
+        {/* <Route path='/signup' component={SignUpForm} /> */}
        
-        <Route path='/teacher/enrolled' component={TeacherEnrolledStudents} />
+
+        {/* TEACHER ROUTE */}
+        <Route path='/enrolled' component={TeacherEnrolledStudents} />
         <Route path='/approve' component={TeacherApproval} />
         <Route path='/testcheck' component={TeacherTestCheck} />
         <Route path='/teacher/assign' component={TeacherDashboardAssignPage} />
-
-
-        <Route
-          path='/teacher/studentfees'
-          component={TeacherDashboardFeesPage}
-        />
+        <Route path='/teacher/studentfees' component={TeacherDashboardFeesPage}/>
         <Route path='/teacher/profile' component={TeacherProfile} />
-        <Route
-          path='/teacher/changepassword'
-          component={TeacherChangePassword}
-        />
+        <Route path='/teacher/changepassword' component={TeacherChangePassword}/>
       </Switch>
     </BrowserRouter>
   );

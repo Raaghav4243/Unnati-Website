@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import TeacherCafeDetails from '../../components/cafe-details/cafe-details.component'
+import TeacherDashboardNavbar from '../../components/teacher-dashboard-navbar/teacher-dashboard-navbar.component';
+import TeacherDashboardSidenav from '../../components/teacher-dashboard-sidenav/teacher-dashboard-sidenav.component';
 import CustomPaginationActionsTable from '../../components/teacher-testCheck/table-component';
 import {
   CafeDetailWrapper,
   Body,
-  NavBar,
-  SideNav,
   CafeTableWrapper,
   TableWrapper,
 } from './teacher-test.-check.styles';
@@ -18,9 +18,9 @@ class TeacherTestCheck extends React.Component {
 
     return (
       <>
-        <NavBar>NAVBAR</NavBar>
+      <TeacherDashboardNavbar></TeacherDashboardNavbar>
         <Body>
-          <SideNav>SIDENAV</SideNav>
+      <TeacherDashboardSidenav></TeacherDashboardSidenav>      
           <CafeTableWrapper>
             <CafeDetailWrapper>
               <TeacherCafeDetails></TeacherCafeDetails>
