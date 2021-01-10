@@ -130,7 +130,7 @@ export default function CustomPaginationActionsTable() {
              <TableCell align="center">Last Name</TableCell>
              <TableCell align="center">Age</TableCell>
              <TableCell align="center">Full Name</TableCell>
-             <TableCell align="center">Approve</TableCell>
+             <TableCell align="center">VIEW RESPONSE</TableCell>
           </TableRow>
          </TableHead>
         <TableBody>
@@ -144,7 +144,7 @@ export default function CustomPaginationActionsTable() {
             <TableCell align="center">{row.LastName}</TableCell>
             <TableCell align="center">{row.Age}</TableCell>
             <TableCell align="center">{row.FullName}</TableCell>
-            <TableCell align="center"><button id={row.ButtonId} color='#2196F3' >APPROVE</button> </TableCell>
+            <TableCell align="center"><button id={row.ButtonId} color='#2196F3' >VIEW RESPONSE</button> </TableCell>
             </TableRow>
           ))}
 

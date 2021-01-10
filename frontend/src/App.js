@@ -30,6 +30,7 @@ import cafeteacher from './teacher/pages/teacher-enrolledstudent/teacher-enrolle
 import TeacherEnrolledStudents from './teacher/pages/teacher-enrolledstudent/teacher-enrolledstudent';
 import TeacherDashboardAssignPage from './teacher/pages/assign-courses/assign-courses'
 import TeacherApproval from './teacher/pages/teacher-approval/teacher-approval.page';
+import TeacherTestCheck from './teacher/pages/teacher-testCheck/teacher-test-check.page';
 
 function App() {
   return (
@@ -42,8 +43,9 @@ function App() {
         <Route path='/login' component={LogInForm} />
         <Route path='/teacher/enrolled' component={TeacherEnrolledStudents} />
         <Route path='/teacher/approve' component={TeacherApproval} />
+        <Route path='/teacher/testcheck' component={TeacherTestCheck} />
         <Route path='/teacher/assign' component={TeacherDashboardAssignPage} />
-      
+
       </Switch>
     </BrowserRouter>
   );
