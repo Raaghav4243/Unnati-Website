@@ -30,11 +30,13 @@ import TestPage from './student/pages/test-page/test-page.component';
 import cafeteacher from './teacher/pages/teacher-enrolledstudent/teacher-enrolledstudent';
 import SignInAndSignUpPage from './student/pages/signup-and-signin-page/signup-and-signin-page.component';
 
-import TeacherEnrolledStudents from './teacher/pages/teacher-enrolledstudent/teacher-enrolledstudent';
 import TeacherDashboardAssignPage from './teacher/pages/assign-courses/assign-courses';
 import TeacherDashboardFeesPage from './teacher/pages/course-fees/course-fees-page';
+
+import TeacherEnrolledStudents from './teacher/pages/teacher-enrolledstudent/teacher-enrolledstudent';
 import TeacherApproval from './teacher/pages/teacher-approval/teacher-approval.page';
 import TeacherTestCheck from './teacher/pages/teacher-testCheck/teacher-test-check.page';
+
 import TeacherProfile from './teacher/pages/Profile-page/profile-page.component';
 import TeacherChangePassword from './teacher/pages/change-password/change-password';
 
