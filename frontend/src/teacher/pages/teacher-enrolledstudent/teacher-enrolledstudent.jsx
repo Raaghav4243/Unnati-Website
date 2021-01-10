@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TeacherCafeDetails from '../../components/cafe-details/cafe-details.component'
+import TeacherCafeDetails from '../../components/cafe-details/cafe-details.component';
 import CustomPaginationActionsTable from '../../components/teacher-enrolledstudent/table-component';
 
 import {

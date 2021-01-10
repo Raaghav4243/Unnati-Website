@@ -46,7 +46,8 @@ export const Profile = styled.div`
   /* border-bottom: 1px solid red; */
   display: flex;
   flex-direction: column;
-  padding-left: 10px;
+  padding-left: 1.5vw;
+  margin-left:1.5vw;
 `;
 
 export const ProfileTitle = styled.div`
@@ -83,7 +84,8 @@ export const Dashboard = styled.div`
   /* border-bottom: 1px solid red; */
   display: flex;
   flex-direction: column;
-  padding-left: 10px;
+  padding-left: 1.5vw;
+  margin-left:1.5vw;
 `;
 
 export const DashboardTitle = styled.div`

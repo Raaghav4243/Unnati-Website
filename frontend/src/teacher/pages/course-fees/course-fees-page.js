@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { ReactComponent as ArrowsEqual } from '../../icons/arrows.svg';
 import arrows from '../../icons/arrows.svg';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
@@ -36,10 +35,10 @@ import {
   ButtonWrapper,
   DropWrapper,
   ImageWrapper,
-} from './assign.courses.styles';
+} from './course-fees-styles';
 import TeacherDashboardNavbar from '../../components/teacher-dashboard-navbar/teacher-dashboard-navbar.component'
 import TeacherDashboardSidenav from '../../components/teacher-dashboard-sidenav/teacher-dashboard-sidenav.component'
-class TeacherDashboardAssignPage extends React.Component {
+class TeacherDashboardFeesPage extends React.Component {
   componentDidMount() {
     const {
       userId,
@@ -62,7 +61,7 @@ class TeacherDashboardAssignPage extends React.Component {
           <CafeDetailsParentWrapper>
             <TeacherCafeDetails />
           </CafeDetailsParentWrapper>
-          <TextTitle>Assign Course to Student</TextTitle>
+          <TextTitle>Enter Fee</TextTitle>
           <DropDownWrapper>
             <StudentDropDown>
           <StudentTitle>Student</StudentTitle>
@@ -89,7 +88,7 @@ class TeacherDashboardAssignPage extends React.Component {
       </StudentDropDown>
       <ImageWrapper src={arrows} />
       <CourseDropDown>
-          <CourseTitle>Course Name</CourseTitle>
+          <CourseTitle>Fee Amount</CourseTitle>
           <DropWrapper>
           <FormControl variant="outlined" className='hello' style={{minWidth: 150}}>
         <InputLabel htmlFor="outlined-age-native-simple">Select</InputLabel>
@@ -113,7 +112,7 @@ class TeacherDashboardAssignPage extends React.Component {
           </CourseDropDown>
           </DropDownWrapper>
           <ButtonWrapper>
-            Assign
+            Confirm Fee
          </ButtonWrapper>
          </PageWrapper>
          
@@ -212,4 +211,4 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(TeacherDashboardAssignPage);
+)(TeacherDashboardFeesPage);

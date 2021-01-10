@@ -11,7 +11,7 @@ import { SignInBtnLink } from './sign-in-button-link.styles';
 const SignInButton = ({ scrollClass }) => {
   return (
     <>
-      <SignInBtnLink to='/signin' className={scrollClass ? 'scroll' : null}>
+      <SignInBtnLink to='/signup' className={scrollClass ? 'scroll' : null}>
         Sign In
       </SignInBtnLink>
     </>

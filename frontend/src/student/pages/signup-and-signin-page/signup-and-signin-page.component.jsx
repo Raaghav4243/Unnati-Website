@@ -11,3 +11,30 @@ Login :
 - 
 
 */
+
+import React from 'react';
+import SignUpForm from '../../components/sign-up/sign-up.component';
+import SignIn from '../../components/sign-in/sign-in.component';
+// import SignUpForm from '../../components/Signup-page/SignupForm';
+import { SignInAndSignUpContainer } from './signup-and-signin-page.styles';
+import SignInPageNavbar from '../../components/signin-and-signup-page-navbar/signin-and-signup-page-navbar.component';
+
+class SignInAndSignUpPage extends React.Component {
+  constructor() {
+    super();
+  }
+
+  render() {
+    return (
+      <>
+        <SignInPageNavbar />
+        <SignInAndSignUpContainer>
+          <SignIn />
+          <SignUpForm />
+        </SignInAndSignUpContainer>
+      </>
+    );
+  }
+}
+
+export default SignInAndSignUpPage;

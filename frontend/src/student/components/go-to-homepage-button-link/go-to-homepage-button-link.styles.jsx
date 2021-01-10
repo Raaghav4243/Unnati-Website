@@ -26,7 +26,7 @@ export const GoToHomepageLink = styled(Link)`
 `;
 
 export const Name = styled.p`
-  color: ${({ fontColor }) => (fontColor ? fontColor : '#000000')};
+  color: ${({ fontColor }) => (fontColor ? fontColor : '#ffffff')};
   text-align: nowrap;
   /* font-family: 'Montserrat'; */
   font-weight: 500;

@@ -22,15 +22,22 @@ import AssignmentPage from './student/pages/assignment-page/assignment-page.comp
 import HomePage from './student/pages/homepage/homepage.component';
 import StudentPage from './student/pages/student-page/student-page.component';
 import FeesPage from './student/pages/FeesPage/App';
-import SignUpForm from './student/pages/Signup-page/SignupForm';
-import LogInForm from './student/pages/Login-page/LoginForm.page';
+// import SignUpForm from './student/pages/Signup-page/SignupForm';
+// import SignUpForm from './student/components/signup/signup.component';
+// import LogInForm from './student/components/login/LoginForm.page';
 import Profile from './student/pages/Profile-page/profile-page.component';
 import TestPage from './student/pages/test-page/test-page.component';
 import cafeteacher from './teacher/pages/teacher-enrolledstudent/teacher-enrolledstudent';
+import SignInAndSignUpPage from './student/pages/signup-and-signin-page/signup-and-signin-page.component';
+
 import TeacherEnrolledStudents from './teacher/pages/teacher-enrolledstudent/teacher-enrolledstudent';
-import TeacherDashboardAssignPage from './teacher/pages/assign-courses/assign-courses'
+import TeacherDashboardAssignPage from './teacher/pages/assign-courses/assign-courses';
+import TeacherDashboardFeesPage from './teacher/pages/course-fees/course-fees-page';
 import TeacherApproval from './teacher/pages/teacher-approval/teacher-approval.page';
 import TeacherTestCheck from './teacher/pages/teacher-testCheck/teacher-test-check.page';
+import TeacherProfile from './teacher/pages/Profile-page/profile-page.component';
+import TeacherChangePassword from './teacher/pages/change-password/change-password';
+
 
 function App() {
   return (
@@ -39,13 +46,26 @@ function App() {
         <Route path='/' exact component={HomePage} />
         <Route path='/student' component={StudentPage} />
         <Route path='/test' component={TestPage} />
-        <Route path='/signup' component={SignUpForm} />
-        <Route path='/login' component={LogInForm} />
+        <Route path='/signup' component={SignInAndSignUpPage} />
+        {/* <Route path='/login' component={LogInForm} /> */}
+        <Route path='/teacher' component={cafeteacher} />
+        {/* <Route path='/signup' component={SignUpForm} />
+        <Route path='/login' component={LogInForm} /> */}
         <Route path='/teacher/enrolled' component={TeacherEnrolledStudents} />
         <Route path='/teacher/approve' component={TeacherApproval} />
         <Route path='/teacher/testcheck' component={TeacherTestCheck} />
         <Route path='/teacher/assign' component={TeacherDashboardAssignPage} />
 
+
+        <Route
+          path='/teacher/studentfees'
+          component={TeacherDashboardFeesPage}
+        />
+        <Route path='/teacher/profile' component={TeacherProfile} />
+        <Route
+          path='/teacher/changepassword'
+          component={TeacherChangePassword}
+        />
       </Switch>
     </BrowserRouter>
   );
