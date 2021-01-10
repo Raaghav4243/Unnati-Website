@@ -125,11 +125,12 @@ export default function CustomPaginationActionsTable() {
       <Table className={classes.table} aria-label="custom pagination table">
       <colgroup>
       <col style={{width:'10%'}}/>
-      <col style={{width:'20%'}}/>
-      <col style={{width:'15%'}}/>
-      <col style={{width:'15%'}}/>
-      <col style={{width:'20%'}}/>
-   </colgroup>
+      <col style={{width:'10%'}}/>
+      <col style={{width:'10%'}}/>
+      <col style={{width:'10%'}}/>
+      <col style={{width:'10%'}}/>
+      <col style={{width:'10%'}}/>
+      </colgroup>
       <TableHead>
            <TableRow >
              <TableCell align="center">ID</TableCell>

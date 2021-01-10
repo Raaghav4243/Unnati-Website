@@ -124,11 +124,12 @@ export default function CustomPaginationActionsTable() {
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="custom pagination table">
       <colgroup>
-      <col style={{width:'15%'}}/>
-      <col style={{width:'20%'}}/>
-      <col style={{width:'20%'}}/>
-      <col style={{width:'15%'}}/>
-      <col style={{width:'25%'}}/>
+      <col style={{width:'10%'}}/>
+      <col style={{width:'10%'}}/>
+      <col style={{width:'10%'}}/>
+      <col style={{width:'10%'}}/>
+      <col style={{width:'10%'}}/>
+      <col style={{width:'10%'}}/>
    </colgroup>
       <TableHead>
            <TableRow >
@@ -146,7 +147,7 @@ export default function CustomPaginationActionsTable() {
             : rows
           ).map((row) => (
             <TableRow key={row.name}>
-            <TableCell align="center"component="th" scope="row">{row.ID}</TableCell>
+            <TableCell align="center" component="th" scope="row">{row.ID}</TableCell>
             <TableCell align="center">{row.FirstName}</TableCell>
             <TableCell align="center">{row.LastName}</TableCell>
             <TableCell align="center">{row.Age}</TableCell>
