@@ -50,14 +50,14 @@ function App() {
         <Route path='/student' component={StudentPage} />
         <Route path='/test' component={TestPage} />
         <Route path='/signup' component={SignInAndSignUpPage} />
-        <Route path='/teacher' component={cafeteacher} />
+        <Route path='/teacher' exact component={cafeteacher} />
         {/* <Route path='/login' component={LogInForm} /> */}
         {/* <Route path='/signup' component={SignUpForm} /> */}
        
 
         {/* TEACHER ROUTE */}
-        <Route path='/enrolled' component={TeacherEnrolledStudents} />
-        <Route path='/approve' component={TeacherApproval} />
+        <Route path='/enrolled' component={TeacherEnrolledStudents} /> //enrolled-students list, no functionality
+        <Route path='/approve' component={TeacherApproval} /> 
         <Route path='/testcheck' component={TeacherTestCheck} />
         <Route path='/teacher/assign' component={TeacherDashboardAssignPage} />
         <Route path='/teacher/studentfees' component={TeacherDashboardFeesPage}/>

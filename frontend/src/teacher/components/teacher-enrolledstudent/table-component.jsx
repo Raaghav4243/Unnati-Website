@@ -82,21 +82,21 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-function createData(ID, FirstName, LastName, Age, FullName) {
-    return { ID, FirstName, LastName, Age, FullName };
-  }
+// function createData(ID, FirstName, LastName, Age, FullName) {
+//     return { ID, FirstName, LastName, Age, FullName };
+//   }
 
-const rows = [
-    createData(1 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
-    createData(2 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
-    createData(3 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
-    createData(4 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
-    createData(5 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
-    createData(6 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
-    createData(7 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
-    createData(8 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
-    createData(9 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'), 
-];
+// const rows = [
+//     createData(1 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
+//     createData(2 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
+//     createData(3 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
+//     createData(4 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
+//     createData(5 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
+//     createData(6 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
+//     createData(7 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
+//     createData(8 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
+//     createData(9 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'), 
+// ];
 
 const useStyles2 = makeStyles({
   table: {
@@ -104,10 +104,12 @@ const useStyles2 = makeStyles({
   },
 });
 
-export default function CustomPaginationActionsTable() {
+export default function CustomPaginationActionsTable(props) {
+  const rows = props.rows
   const classes = useStyles2();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(4);
+  
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 

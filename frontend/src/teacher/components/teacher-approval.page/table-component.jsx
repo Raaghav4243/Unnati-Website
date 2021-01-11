@@ -86,16 +86,17 @@ function createData(ID, FirstName, LastName, Age, FullName, ButtonId) {
     return { ID, FirstName, LastName, Age, FullName, ButtonId };
   }
 
-const rows = [
-    createData(1 , 'Raaghav', 'Raj', 19, 'Raaghav Raj',1),
-    createData(2 , 'Raaghav', 'Raj', 19, 'Raaghav Raj',2),
-    createData(3 , 'Raaghav', 'Raj', 19, 'Raaghav Raj',3),
-    createData(4 , 'Raaghav', 'Raj', 19, 'Raaghav Raj',4),
-    createData(5 , 'Raaghav', 'Raj', 19, 'Raaghav Raj',5),
-    createData(6 , 'Raaghav', 'Raj', 19, 'Raaghav Raj',6),
-    createData(7 , 'Raaghav', 'Raj', 19, 'Raaghav Raj',7),
-    createData(8 , 'Raaghav', 'Raj', 19, 'Raaghav Raj',8),
-    createData(9 , 'Raaghav', 'Raj', 19, 'Raaghav Raj',9), 
+const rows = 
+[
+    // createData(1 , 'Raaghav', 'Raj', 19, 'Raaghav Raj',1),
+    // createData(2 , 'Raaghav', 'Raj', 19, 'Raaghav Raj',2),
+    // createData(3 , 'Raaghav', 'Raj', 19, 'Raaghav Raj',3),
+    // createData(4 , 'Raaghav', 'Raj', 19, 'Raaghav Raj',4),
+    // createData(5 , 'Raaghav', 'Raj', 19, 'Raaghav Raj',5),
+    // createData(6 , 'Raaghav', 'Raj', 19, 'Raaghav Raj',6),
+    // createData(7 , 'Raaghav', 'Raj', 19, 'Raaghav Raj',7),
+    // createData(8 , 'Raaghav', 'Raj', 19, 'Raaghav Raj',8),
+    // createData(9 , 'Raaghav', 'Raj', 19, 'Raaghav Raj',9), 
 ];
 
 const useStyles2 = makeStyles({
