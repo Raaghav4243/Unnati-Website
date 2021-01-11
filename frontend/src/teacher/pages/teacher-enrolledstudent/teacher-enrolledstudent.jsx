@@ -36,12 +36,24 @@ class TeacherEnrolledStudents extends React.Component {
     const {verifiedStudents} = this.props
     console.log(verifiedStudents)
 
-    
-    
     let rows = [
-      createData(1, "Raaghav", "Raj", 19, "Raaghav Raj"),
       
+            
     ];
+
+    if(verifiedStudents){
+      verifiedStudents.map((student, index) => {
+        let rowObj = createData(index+1, student.firstName, student.lastName, 19, 'krishna');
+        console.log('rowObj', rowObj)
+        rows.push(rowObj)
+       })
+    }else{
+      
+    }
+    
+   
+
+    console.log( 'rows', rows)
 
     // const {
     //   userId,

@@ -9,7 +9,7 @@ import AllCoursesActionTypes from './all-courses.types';
 
 export function* fetchAllCoursesAsync() {
   try {
-    yield delay(3000);
+    //yield delay(3000);
     let allCourses = yield fetch(`/all-courses`);
 
     allCourses = yield allCourses.json();
