@@ -39,10 +39,10 @@ import {
   RemarksFieldWrapper,
   RemarksWrapper,
 } from './course-fees-styles';
-import TeacherDashboardNavbar from '../../components/teacher-dashboard-navbar/teacher-dashboard-navbar.component'
-import TeacherDashboardSidenav from '../../components/teacher-dashboard-sidenav/teacher-dashboard-sidenav.component'
-import { fetchVerifiedStudentStart } from '../../redux/verified-students/verified-students.actions';
-import { selectVerifiedStudents } from '../../redux/verified-students/verified-student.selectors';
+//import TeacherDashboardNavbar from '../../components/teacher-dashboard-navbar/teacher-dashboard-navbar.component'
+//import TeacherDashboardSidenav from '../../components/teacher-dashboard-sidenav/teacher-dashboard-sidenav.component'
+//import { fetchVerifiedStudentStart } from '../../redux/verified-students/verified-students.actions';
+//import { selectVerifiedStudents } from '../../redux/verified-students/verified-student.selectors';
 //} from "./course-fees-styles";
 import TeacherDashboardNavbar from "../../components/teacher-dashboard-navbar/teacher-dashboard-navbar.component";
 import TeacherDashboardSidenav from "../../components/teacher-dashboard-sidenav/teacher-dashboard-sidenav.component";
@@ -59,6 +59,12 @@ class TeacherDashboardFeesPage extends React.Component {
     fetchUserCafeStart();
     fetchVerifiedStudentStart();
   }
+
+  handleChange = (e) => {
+    const value = e.target.value
+    console.log(value)
+  }
+
   render() {
     const { verifiedStudents } = this.props;
     console.log("rendered verified students", verifiedStudents);
@@ -81,7 +87,7 @@ class TeacherDashboardFeesPage extends React.Component {
         <Select
           // native
           // value={state.age}
-          // onChange={handleChange}
+           onChange={this.handleChange}
           label="Age"
           inputProps={{
             name: 'age',
@@ -89,13 +95,13 @@ class TeacherDashboardFeesPage extends React.Component {
           }}
         >
           <option aria-label="None" value="none">NONE</option>
-          {/* {
+          {verifiedStudents ?
             verifiedStudents.map((student, index) => {
               return(
                 <option key={index} value={student.firstName}>{student.firstName}</option>
               )
-            })
-          } */}
+            }) : null
+          }
           
         </Select>
       </FormControl>
@@ -119,67 +125,6 @@ class TeacherDashboardFeesPage extends React.Component {
             Confirm Fee
          </ButtonWrapper>
          </PageWrapper>
-         
-         
-          <TeacherDashboardNavbar />
-          <TeacherDashboardSidenav />
-          <PageWrapper>
-            <CafeDetailsParentWrapper>
-              <TeacherCafeDetails />
-            </CafeDetailsParentWrapper>
-            <TextTitle>Enter Fee</TextTitle>
-            <DropDownWrapper>
-              <StudentDropDown>
-                <StudentTitle>Student</StudentTitle>
-                <DropWrapper>
-                  <FormControl
-                    variant="outlined"
-                    className="hello"
-                    style={{ minWidth: 150 }}
-                  >
-                    <InputLabel htmlFor="outlined-age-native-simple">
-                      Select
-                    </InputLabel>
-                    <Select
-                      // native
-                      // value={state.age}
-                      // onChange={handleChange}
-                      label="Age"
-                      inputProps={{
-                        name: "age",
-                        id: "outlined-age-native-simple",
-                      }}
-                    >
-                      <option aria-label="None" value="none">
-                        NONE
-                      </option>
-                      {verifiedStudents
-                        ? verifiedStudents.map((student, index) => (
-                            <>
-                              <option key={index} value={student.firstName}>
-                                {student.firstName}
-                              </option>
-                            </>
-                          ))
-                        : null}
-                    </Select>
-                  </FormControl>
-                </DropWrapper>
-              </StudentDropDown>
-              <ImageWrapper src={arrows} />
-              <CourseDropDown>
-                <CourseTitle>Fee Amount</CourseTitle>
-                <DropWrapper>
-                  <TextField
-                    id="filled-basic"
-                    label="Filled"
-                    variant="filled"
-                  />
-                </DropWrapper>
-              </CourseDropDown>
-            </DropDownWrapper>
-            <ButtonWrapper>Confirm Fee</ButtonWrapper>
-          </PageWrapper>
         </PageContainer>
       </>
     );
