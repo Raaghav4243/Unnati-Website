@@ -1,8 +1,12 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 import TeacherCafeDetails from "../../components/cafe-details/cafe-details.component";
 import TeacherDashboardNavbar from "../../components/teacher-dashboard-navbar/teacher-dashboard-navbar.component";
 import TeacherDashboardSidenav from "../../components/teacher-dashboard-sidenav/teacher-dashboard-sidenav.component";
 import CustomPaginationActionsTable from "../../components/teacher-enrolledstudent/table-component";
+import { selectVerifiedStudents } from "../../redux/verified-students/verified-student.selectors";
+import { fetchVerifiedStudentStart } from "../../redux/verified-students/verified-students.actions";
 // import EnhancedTable2 from '../../components/teacher-enrolledstudent/table2.Component';
 
 import {
@@ -15,32 +19,37 @@ import {
 } from "./teacher-enrolled.styled";
 
 class TeacherEnrolledStudents extends React.Component {
+  componentDidMount(){
+    const {fetchVerifiedStudentStart} = this.props
+    fetchVerifiedStudentStart()
+  }
   
+  
+
   render() {
 
     function createData(ID, FirstName, LastName, Age, FullName){
       return { ID, FirstName, LastName, Age, FullName };
     }
 
+
+    const {verifiedStudents} = this.props
+    console.log(verifiedStudents)
+
+    
+    
     let rows = [
       createData(1, "Raaghav", "Raj", 19, "Raaghav Raj"),
-      createData(2, "Raaghav", "Raj", 19, "Raaghav Raj"),
-      createData(3, "Raaghav", "Raj", 19, "Raaghav Raj"),
-      createData(4, "Raaghav", "Raj", 19, "Raaghav Raj"),
-      createData(5, "Raaghav", "Raj", 19, "Raaghav Raj"),
-      createData(6, "Raaghav", "Raj", 19, "Raaghav Raj"),
-      createData(7, "Raaghav", "Raj", 19, "Raaghav Raj"),
-      createData(8, "Raaghav", "Raj", 19, "Raaghav Raj"),
-      createData(9, "Raaghav", "Raj", 19, "Raaghav Raj"),
+      
     ];
 
-    const {
-      userId,
-      userCafe,
-      enrolled_courses,
-      no_of_classmates,
-      setCurrentCourse,
-    } = this.props;
+    // const {
+    //   userId,
+    //   userCafe,
+    //   enrolled_courses,
+    //   no_of_classmates,
+    //   setCurrentCourse,
+    // } = this.props;
 
     return (
       <>
@@ -62,4 +71,13 @@ class TeacherEnrolledStudents extends React.Component {
   }
 }
 
-export default TeacherEnrolledStudents;
+const mapStateToProps = createStructuredSelector({
+  verifiedStudents: selectVerifiedStudents,
+
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchVerifiedStudentStart: () => dispatch(fetchVerifiedStudentStart())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(TeacherEnrolledStudents);

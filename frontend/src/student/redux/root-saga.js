@@ -11,6 +11,7 @@ import { feeDetailSagas } from './fee-details/fee-details.sagas';
 import { cafeSagas } from './cafe/cafe.sagas';
 import { userSagas } from './user/user.sagas';
 import { courseOverviewSagas } from './course-overview/course-overview.sagas';
+import { verifiedStudentsSagas } from '../../teacher/redux/verified-students/verified-students.sagas';
 
 export default function* rootSaga() {
   yield all([
@@ -25,5 +26,6 @@ export default function* rootSaga() {
     call(cafeSagas),
     call(userSagas),
     call(courseOverviewSagas),
+    call(verifiedStudentsSagas)
   ]);
 }
