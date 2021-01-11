@@ -36,6 +36,8 @@ import {
   ButtonWrapper,
   DropWrapper,
   ImageWrapper,
+  RemarksFieldWrapper,
+  RemarksWrapper,
 } from './course-fees-styles';
 import TeacherDashboardNavbar from '../../components/teacher-dashboard-navbar/teacher-dashboard-navbar.component'
 import TeacherDashboardSidenav from '../../components/teacher-dashboard-sidenav/teacher-dashboard-sidenav.component'
@@ -83,13 +85,13 @@ class TeacherDashboardFeesPage extends React.Component {
           }}
         >
           <option aria-label="None" value="none">NONE</option>
-          {
+          {/* {
             verifiedStudents.map((student, index) => {
               return(
                 <option key={index} value={student.firstName}>{student.firstName}</option>
               )
             })
-          }
+          } */}
           
         </Select>
       </FormControl>
@@ -102,6 +104,12 @@ class TeacherDashboardFeesPage extends React.Component {
           <TextField id="filled-basic" label="Filled" variant="filled" />
       </DropWrapper>
           </CourseDropDown>
+          <RemarksWrapper>
+            <CourseTitle>Remarks</CourseTitle>
+            <RemarksFieldWrapper>
+          <TextField id="filled-basic" label="Filled" variant="filled" />
+          </RemarksFieldWrapper>
+          </RemarksWrapper>
           </DropDownWrapper>
           <ButtonWrapper >
             Confirm Fee
