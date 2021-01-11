@@ -39,11 +39,11 @@ import {
   RemarksFieldWrapper,
   RemarksWrapper,
 } from './course-fees-styles';
-//import TeacherDashboardNavbar from '../../components/teacher-dashboard-navbar/teacher-dashboard-navbar.component'
-//import TeacherDashboardSidenav from '../../components/teacher-dashboard-sidenav/teacher-dashboard-sidenav.component'
-//import { fetchVerifiedStudentStart } from '../../redux/verified-students/verified-students.actions';
-//import { selectVerifiedStudents } from '../../redux/verified-students/verified-student.selectors';
-//} from "./course-fees-styles";
+// import TeacherDashboardNavbar from '../../components/teacher-dashboard-navbar/teacher-dashboard-navbar.component'
+// import TeacherDashboardSidenav from '../../components/teacher-dashboard-sidenav/teacher-dashboard-sidenav.component'
+// import { fetchVerifiedStudentStart } from '../../redux/verified-students/verified-students.actions';
+// import { selectVerifiedStudents } from '../../redux/verified-students/verified-student.selectors';
+// } from "./course-fees-styles";
 import TeacherDashboardNavbar from "../../components/teacher-dashboard-navbar/teacher-dashboard-navbar.component";
 import TeacherDashboardSidenav from "../../components/teacher-dashboard-sidenav/teacher-dashboard-sidenav.component";
 import { fetchVerifiedStudentStart } from "../../redux/verified-students/verified-students.actions";

@@ -37,7 +37,7 @@ import {
   DropWrapper,
   ImageWrapper,
 } from "./assign.courses.styles";
-import TeacherDashboardNavbar from "../../components/teacher-dashboard-navbar/teacher-dashboard-navbar.component";
+import TeacherDashboardNavbar from '../../components/teacher-dashboard-navbar/teacher-dashboard-navbar.component';
 import TeacherDashboardSidenav from "../../components/teacher-dashboard-sidenav/teacher-dashboard-sidenav.component";
 import { selectVerifiedStudents } from "../../redux/verified-students/verified-student.selectors";
 import { fetchVerifiedStudentStart } from "../../redux/verified-students/verified-students.actions";
@@ -100,18 +100,15 @@ class TeacherDashboardAssignPage extends React.Component {
                         id: "outlined-age-native-simple",
                       }}
                     >
-                      <option aria-label="None" value="none">
-                        NONE
-                      </option>
-                      {verifiedStudents
-                        ? verifiedStudents.map((student, index) => (
-                            <>
-                              <option key={index} value={student.firstName} id={student._id}>
-                                {student.firstName}
-                              </option>
-                            </>
-                          ))
-                        : null}
+                      <option aria-label="None" value="none">NONE</option>
+          {verifiedStudents ?
+            verifiedStudents.map((student, index) => {
+              return(
+                <option key={index} value={student.firstName}>{student.firstName}</option>
+              )
+            }) : null
+          }
+          
                     </Select>
                   </FormControl>
                 </DropWrapper>
@@ -142,13 +139,13 @@ class TeacherDashboardAssignPage extends React.Component {
                         NONE
                       </option>
                       {allCourses
-                        ? allCourses.map((course, index) => (
-                            <>
+                        ? allCourses.map((course, index) => { 
+                            return(
                               <option key={index} value={course.courseName}>
                                 {course.courseName}
-                              </option>
-                            </>
-                          ))
+                              </option>)
+                          
+                            })
                         : null}
                     </Select>
                   </FormControl>
