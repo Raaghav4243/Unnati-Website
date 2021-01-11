@@ -39,6 +39,7 @@ import TeacherTestCheck from './teacher/pages/teacher-testCheck/teacher-test-che
 
 import TeacherProfile from './teacher/pages/Profile-page/profile-page.component';
 import TeacherChangePassword from './teacher/pages/change-password/change-password';
+import EvaluateTestPage from './teacher/pages/evaluate-test-page/evaluate-test';
 
 
 function App() {
@@ -63,6 +64,7 @@ function App() {
         <Route path='/teacher/studentfees' component={TeacherDashboardFeesPage}/>
         <Route path='/teacher/profile' component={TeacherProfile} />
         <Route path='/teacher/changepassword' component={TeacherChangePassword}/>
+        <Route path='/teacher/evaluatetest' component={EvaluateTestPage}/>
       </Switch>
     </BrowserRouter>
   );

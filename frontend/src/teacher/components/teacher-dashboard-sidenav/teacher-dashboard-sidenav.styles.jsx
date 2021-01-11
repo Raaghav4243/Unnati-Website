@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export const Container = styled.div`
   /* border: 1px solid black; */
   background-color: #c4c4c4;
-  width: 300px;
+  width: 20vw;
   height: calc(100vh - 75px);
   display: flex;
   flex-direction: column;
@@ -13,7 +13,6 @@ export const Container = styled.div`
   top: 75px;
   transition: 350ms;
   z-index: 10;
-  overflow: auto;
   left: 0;
 
   @media screen and (max-width: 768px) {
