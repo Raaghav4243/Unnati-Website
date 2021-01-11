@@ -29,12 +29,16 @@ export const NavBar = styled.div`
 export const CourseVideoContainer = styled.div`
   display: flex;
   flex-direction: row;
+  width: 100%;
+  border: 4px solid blue;
 `;
 
 export const CourseVideoPDFContainer = styled.div`
-  padding-top: 6vh;
-  height: 75vh;
-  width: 80vw;
+  /* padding-top: 6vh; */
+  /* height: 75vh; */
+  /* width: 80vw; */
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
 `;

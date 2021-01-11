@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Link } from 'react-scroll';
+import { Link } from 'react-router-dom';
 
 const HeroButton = styled(Link)`
   display: flex;
@@ -7,6 +7,8 @@ const HeroButton = styled(Link)`
   justify-content: center;
   white-space: nowrap;
   border-radius: 10px;
+  color: #000000;
+  /* text-decoration: none; */
   outline: none;
   border: none;
   cursor: pointer;

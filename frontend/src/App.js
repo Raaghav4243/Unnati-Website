@@ -20,6 +20,7 @@ import AssignmentPage from './student/pages/assignment-page/assignment-page.comp
 // // import StudentCoursePage from './pages/demo-student-course-page/demo-student-course-page';
 
 import HomePage from './student/pages/homepage/homepage.component';
+import CourseOverview from './student/pages/course-overview/course-overview.component';
 import StudentPage from './student/pages/student-page/student-page.component';
 import FeesPage from './student/pages/FeesPage/App';
 // import SignUpForm from './student/pages/Signup-page/SignupForm';
@@ -38,32 +39,45 @@ import TeacherTestCheck from './teacher/pages/teacher-testCheck/teacher-test-che
 import TeacherProfile from './teacher/pages/Profile-page/profile-page.component';
 import TeacherChangePassword from './teacher/pages/change-password/change-password';
 
-
 function App() {
   return (
     <BrowserRouter>
       <Switch>
         <Route path='/' exact component={HomePage} />
+        <Route
+          path='/discover'
+          exact
+          render={() => <CourseOverview forHome />}
+        />
         <Route path='/student' component={StudentPage} />
         <Route path='/test' component={TestPage} />
         <Route path='/signup' component={SignInAndSignUpPage} />
         {/* <Route path='/login' component={LogInForm} /> */}
-        <Route path='/teacher' component={cafeteacher} />
+        <Route path='/teacher' exact component={cafeteacher} />
         {/* <Route path='/signup' component={SignUpForm} />
         <Route path='/login' component={LogInForm} /> */}
-        <Route path='/teacher/enrolled' component={TeacherEnrolledStudents} />
-        <Route path='/teacher/approve' component={TeacherApproval} />
-        <Route path='/teacher/testcheck' component={TeacherTestCheck} />
-        <Route path='/teacher/assign' component={TeacherDashboardAssignPage} />
-
+        <Route
+          path='/teacher/enrolled'
+          exact
+          component={TeacherEnrolledStudents}
+        />
+        <Route path='/teacher/approve' exact component={TeacherApproval} />
+        <Route path='/teacher/testcheck' exact component={TeacherTestCheck} />
+        <Route
+          path='/teacher/assign'
+          exact
+          component={TeacherDashboardAssignPage}
+        />
 
         <Route
           path='/teacher/studentfees'
+          exact
           component={TeacherDashboardFeesPage}
         />
-        <Route path='/teacher/profile' component={TeacherProfile} />
+        <Route path='/teacher/profile' exact component={TeacherProfile} />
         <Route
           path='/teacher/changepassword'
+          exact
           component={TeacherChangePassword}
         />
       </Switch>

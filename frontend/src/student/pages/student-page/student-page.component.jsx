@@ -21,8 +21,12 @@ class StudentPage extends React.Component {
           path={`${match.path}/course`}
           component={studentCourseTopicPage}
         />
-        <Route path={`${match.path}/discover`} component={CourseOverview} />
-
+        <Route
+          path={`${match.path}/discover`}
+          exact
+          render={() => <CourseOverview forStudent />}
+          // component={CourseOverview}
+        />
         {
           // debugged testcase : incase user manually goes to /student
         }

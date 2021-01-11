@@ -2,7 +2,12 @@ import CafeActionTypes from './cafe.types';
 
 const INITIAL_STATE = {
   isFetching: false,
-  userCafeDetails: null,
+  cafeId: null,
+  cafeAddress: null,
+  cafeLocation: null,
+  cafeName: null,
+  teacherInChargeName: null,
+  teacherInChargeId: null,
   number_of_classmates: null,
   errorMessage: undefined,
 };
@@ -15,12 +20,24 @@ const cafeReducer = (state = INITIAL_STATE, action) => {
         isFetching: true,
       };
     case CafeActionTypes.FETCH_CAFE_SUCCESS:
-      const { cafe, userNumbers } = action.payload;
+      const {
+        cafe: { _id, address, location, name },
+        userNumbers,
+        users,
+      } = action.payload;
+      const teacherObj = users.find((user) => user.role === 'TEACHER');
+      console.log('TEACHER', teacherObj);
       return {
         ...state,
         isFetching: false,
-        userCafeDetails: cafe,
-        number_of_classmates: userNumbers - 1, // we have subtracted 2 because one is the user itself and the other is the teacher.
+        errorMessage: undefined,
+        cafeId: _id,
+        cafeAddress: address,
+        cafeLocation: location,
+        cafeName: name,
+        teacherInChargeName: `${teacherObj.firstName} ${teacherObj.lastName}`,
+        teacherInChargeId: teacherObj._id,
+        number_of_classmates: userNumbers - 1, // we have subtracted 1 because one is the user itself.
       };
     case CafeActionTypes.FETCH_CAFE_FAILURE:
       return {

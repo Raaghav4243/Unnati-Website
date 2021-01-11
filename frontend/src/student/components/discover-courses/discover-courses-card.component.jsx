@@ -13,8 +13,16 @@ import {
   ButtonWrapper,
   ExploreButton,
 } from './discover-courses-card.styles';
+import { setCurrentCourseForOverview } from '../../redux/course-overview/course-overview.actions';
 
-const DiscoverCourseCard = ({ courseName, courseId, history, match }) => {
+const DiscoverCourseCard = ({
+  courseName,
+  courseId,
+  enrolled,
+  setCurrentCourseForOverview,
+  history,
+  match,
+}) => {
   return (
     <CardWrapper>
       <CardTitle>
@@ -30,11 +38,15 @@ const DiscoverCourseCard = ({ courseName, courseId, history, match }) => {
         <ExploreButton
           onClick={() => {
             // setCurrentCourse(courseId);
-            console.log('DISPATCH ACTION TO SET CURRENT OVERVIEW COURSE');
-            history.push(`student/discover`);
+            console.log('DISPATCHING ACTION TO SET CURRENT OVERVIEW COURSE');
+            setCurrentCourseForOverview(courseId);
+            console.log(history);
+            console.log('COURSE ID', courseId);
+            history.push(`/student/discover`);
+            // <Redirect to='/student/discover' />;
           }}
         >
-          Explore More
+          {enrolled ? 'Already Purchased!' : 'Explore More'}
         </ExploreButton>
       </ButtonWrapper>
     </CardWrapper>
@@ -43,6 +55,8 @@ const DiscoverCourseCard = ({ courseName, courseId, history, match }) => {
 
 const mapDispatchToProps = (dispatch) => ({
   //   setCurrentCourse: (course_id) => dispatch(setCurrentCourse(course_id)),
+  setCurrentCourseForOverview: (courseId) =>
+    dispatch(setCurrentCourseForOverview(courseId)),
 });
 
 export default connect(

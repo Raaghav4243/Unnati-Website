@@ -8,11 +8,12 @@ export const CourseOverviewHeaderContainer = styled.div`
   background-color: #1e1e1e;
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
 `;
 
 export const CourseOverviewHeaderWrapper = styled.div`
   /* border: 4px solid pink; */
+  margin-top: 3rem;
   display: flex;
   flex-direction: column;
   width: 75%;

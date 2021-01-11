@@ -17,21 +17,20 @@ import {
 } from '../../redux/student/student.selectors';
 import { selectCurrentUserId } from '../../redux/user/user.selectors';
 import {
+  selectLectureDriveId,
   selectLectureNotesLink,
-  selectLectureYoutubeId,
 } from '../../redux/lecture-page/lecture-page.selectors';
+import { fetchLectureStart } from '../../redux/lecture-page/lecture-page.actions';
 
 export class CourseVideo extends Component {
-  componentDidMount() {
-    console.log('Lecture Page has mounted');
-  }
   componentWillUnmount() {
     console.log('Lecture Page Will unmount now');
   }
 
   render() {
-    const { lecture_youtube_id } = this.props;
+    const { lecture_youtube_id, lecture_notes_link } = this.props;
     console.log('Lecture Page has rendered');
+    console.log('Lecture Notes Link', lecture_notes_link);
     return (
       <>
         {/* <NavBar>NAVBAR</NavBar> */}
@@ -40,7 +39,8 @@ export class CourseVideo extends Component {
           <CourseVideoPDFContainer>
             {/* <CourseVideoPlayer url={`https://www.youtube.com/watch?v=YqQx75OPRa0`}></CourseVideoPlayer> */}
             <CourseVideoPlayer
-              url={`https://www.youtube.com/watch?v=${lecture_youtube_id}`}
+              // url={`https://www.youtube.com/watch?v=${lecture_youtube_id}`}
+              url={lecture_notes_link}
             ></CourseVideoPlayer>
             <CourseNotesDownload download={pdf}></CourseNotesDownload>
           </CourseVideoPDFContainer>
@@ -55,8 +55,13 @@ const mapStateToProps = createStructuredSelector({
   current_lecture_name: selectCurrentCourseTopicName,
   current_user_id: selectCurrentUserId,
   current_course_id: selectCurrentCourseId,
-  lecture_youtube_id: selectLectureYoutubeId,
+  lecture_drive_id: selectLectureDriveId,
   lecture_notes_link: selectLectureNotesLink,
 });
 
-export default connect(mapStateToProps)(CourseVideo);
+const mapDispatchToProps = (dispatch) => ({
+  fetchLectureStart: (user_id, course_id, lecture_id) =>
+    dispatch(fetchLectureStart(user_id, course_id, lecture_id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CourseVideo);

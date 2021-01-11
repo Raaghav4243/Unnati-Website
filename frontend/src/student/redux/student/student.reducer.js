@@ -6,7 +6,8 @@ const INITIAL_STATE = {
   user_enrolled_courses_id_map: null,
   percentStatusArray: null,
   // current_course_id: '5fa6bd6f4afbc52538b49afb',
-  current_course_id: '5fdb113d6ad31452f48233b9',
+  // current_course_id: '5fdb113d6ad31452f48233b9',
+  current_course_id: null,
   current_topic_content_id: null,
   current_topic_content_type: null,
   current_topic_content_name: null,
@@ -19,6 +20,9 @@ const studentReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         current_course_id: action.payload,
+        current_topic_content_id: null,
+        current_topic_content_type: null,
+        current_topic_content_name: null,
       };
     case StudentActionTypes.SET_CURRENT_COURSE_TOPIC_CONTENT:
       // console.log('This action is called');
@@ -47,6 +51,7 @@ const studentReducer = (state = INITIAL_STATE, action) => {
       });
       return {
         ...state,
+        isFetchingEnrolledCourses: false,
         user_enrolled_courses: userCourses,
         user_enrolled_courses_id_map: enrolledCoursesIdMap,
         percentStatusArray: percentStatus,

@@ -1,4 +1,9 @@
-import { takeLatest, put, all, call } from 'redux-saga/effects';
+import { takeLatest, put, all, call, select } from 'redux-saga/effects';
+import {
+  selectCurrentCourseId,
+  selectCurrentCourseTopicId,
+} from '../student/student.selectors';
+import { selectCurrentUserId } from '../user/user.selectors';
 
 import {
   fetchLectureSuccess,
@@ -7,12 +12,22 @@ import {
 
 import LecturePageActionTypes from './lecture-page.types';
 
-export function* fetchLectureAsync({
-  payload: { user_id, course_id, lecture_id },
-}) {
+export function* fetchLectureAsync() {
   try {
+    const userId = yield select(selectCurrentUserId);
+    const courseId = yield select(selectCurrentCourseId);
+    const lectureId = yield select(selectCurrentCourseTopicId);
+    // console.log(
+    //   'FETCHING LECTURE USING',
+    //   userId,
+    //   'user',
+    //   courseId,
+    //   'course',
+    //   lectureId,
+    //   'lecture'
+    // );
     let courseLectureDetails = yield fetch(
-      `/enrolled-course/${user_id}/course/${course_id}/lecture/${lecture_id}`
+      `/enrolled-course/${userId}/course/${courseId}/lecture/${lectureId}`
     );
 
     courseLectureDetails = yield courseLectureDetails.json();

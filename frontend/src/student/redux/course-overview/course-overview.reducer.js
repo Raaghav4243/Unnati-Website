@@ -14,10 +14,15 @@ const INITIAL_STATE = {
 const courseOverviewReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case CourseOverviewActionTypes.SET_CURRENT_COURSE_FOR_OVERVIEW:
-      const { courseId } = action.payload;
+      // const courseId = action.payload;
       return {
         ...state,
-        courseId: courseId,
+        courseId: action.payload,
+        courseName: null,
+        courseImageLink: null,
+        courseSummary: null,
+        courseAvailableAt: null,
+        coursePrice: null,
       };
     case CourseOverviewActionTypes.FETCH_COURSE_FOR_OVERVIEW_START:
       return {
