@@ -8,6 +8,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import Button from '@material-ui/core/Button/Button'
+import TextField from '@material-ui/core/TextField/TextField'
 //redux
 import { fetchUserCafeStart } from '../../redux/cafe/cafe.actions';
 import {
@@ -98,24 +99,7 @@ class TeacherDashboardFeesPage extends React.Component {
       <CourseDropDown>
           <CourseTitle>Fee Amount</CourseTitle>
           <DropWrapper>
-          <FormControl variant="outlined" className='hello' style={{minWidth: 150}}>
-        <InputLabel htmlFor="outlined-age-native-simple">Select</InputLabel>
-        <Select
-          // native
-          // value={state.age}
-          // onChange={handleChange}
-          label="Age"
-          inputProps={{
-            name: 'age',
-            id: 'outlined-age-native-simple',
-          }}
-        >
-          <option aria-label="None" value="" />
-          <option value={10}>Ten</option>
-          <option value={20}>Twenty</option>
-          <option value={30}>Thirty</option>
-        </Select>
-      </FormControl>
+          <TextField id="filled-basic" label="Filled" variant="filled" />
       </DropWrapper>
           </CourseDropDown>
           </DropDownWrapper>
