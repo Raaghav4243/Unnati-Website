@@ -60,7 +60,7 @@ const TeacherCafeDetails = ({
           <ClassmatesTitle>You have</ClassmatesTitle>
           <ClassmatesWrapper>
             <Number>{classmates}2</Number>
-            <Prompt>Classmates</Prompt>
+            <Prompt>Students</Prompt>
           </ClassmatesWrapper>
         </ClassmatesContainer>
       </Container>

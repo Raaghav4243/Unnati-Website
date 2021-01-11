@@ -1,14 +1,14 @@
-import { all, call, put, takeLatest } from "redux-saga/effects";
+import { all, call, put, takeLatest } from 'redux-saga/effects';
 import {
   fetchUserFailure,
   fetchUserSuccess,
   updateUserSuccess,
-} from "./user.actions";
-import { UserActionTypes } from "./user.types";
+} from './user.actions';
+import { UserActionTypes } from './user.types';
 
 export function* fetchUserAsync() {
   try {
-    let userData = localStorage.getItem("user");
+    let userData = localStorage.getItem('user');
     userData = JSON.parse(userData);
     console.log(userData);
     yield put(fetchUserSuccess(userData));
@@ -19,20 +19,20 @@ export function* fetchUserAsync() {
 
 export function* updateUserAsync({ payload: { user_id, data } }) {
   try {
-    console.log("updated profile info data", data);
+    console.log('updated profile info data', data);
     yield fetch(`/updateUser/${user_id}`, {
-      method: "POST", // or 'PUT'
+      method: 'POST', // or 'PUT'
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Success:", data);
+        console.log('Success:', data);
       });
 
-    yield put(updateUserSuccess("user updated"));
+    yield put(updateUserSuccess('user updated'));
   } catch (error) {}
 }
 

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
-export const CourseOverviewPage = styled.div`
+export const CourseOverviewWrapper = styled.div`
+  margin-top: 75px;
   width: 100vw;
   /* border: 4px solid red; */
   display: flex;

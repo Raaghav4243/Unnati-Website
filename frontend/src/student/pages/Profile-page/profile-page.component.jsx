@@ -31,7 +31,12 @@ import {
   selectCurrentUserRole,
   selectCurrentUserCafeId,
 } from '../../redux/user/user.selectors';
-import { selectUserCafeDetails } from '../../redux/cafe/cafe.selectors';
+import {
+  selectUserCafeDetails,
+  selectUserCafeLocation,
+  selectUserCafeName,
+  selectUserCafeTeacherInChargeName,
+} from '../../redux/cafe/cafe.selectors';
 import { fetchUserCafeStartAsync } from '../../redux/cafe/cafe.actions';
 import { CafeDetails } from '../../components/recycle-bin/CafeDetails/Cafe.Details.Styles';
 // import StudentNavbar from '../../components/student-dashboard-navbar/student-dashboard-navbar.component';
@@ -111,10 +116,10 @@ class Profile extends React.Component {
   };
 
   render() {
-  //   let userData = localStorage.getItem('user')
-  // userData = JSON.parse(userData)
-  // console.log(userData)
-  // console.log(userData.username)
+    //   let userData = localStorage.getItem('user')
+    // userData = JSON.parse(userData)
+    // console.log(userData)
+    // console.log(userData.username)
     // const { userusername, useremail, userphonenumber, userlastname, userfirstname, userCafe, userId } = this.props;
     const {
       userusername,
@@ -124,6 +129,9 @@ class Profile extends React.Component {
       userfirstname,
       userCafe,
       userId,
+      cafeName,
+      cafeLocation,
+      cafeTeacherName,
     } = this.props;
     console.log(userfirstname);
     console.log(userCafe);
@@ -210,14 +218,14 @@ class Profile extends React.Component {
               <PersonalDetailsHeading>Cafe Details</PersonalDetailsHeading>
               <WrapperContainer>
                 <DetailsWrapper>
-                  <DetailsHeading>Username</DetailsHeading>
-                  <DetailsHeading> Email ID</DetailsHeading>
-                  <DetailsHeading> Phone Number</DetailsHeading>
+                  <DetailsHeading> Name</DetailsHeading>
+                  <DetailsHeading> Location</DetailsHeading>
+                  <DetailsHeading> Teacher</DetailsHeading>
                 </DetailsWrapper>
                 <DetailsWrapper>
-                  <CafeInfo>uug</CafeInfo>
-                  <CafeInfo>uug</CafeInfo>
-                  <CafeInfo>uug</CafeInfo>
+                  <CafeInfo>{cafeName}</CafeInfo>
+                  <CafeInfo>{cafeLocation}</CafeInfo>
+                  <CafeInfo>{cafeTeacherName}</CafeInfo>
                 </DetailsWrapper>
               </WrapperContainer>
             </CafeDetailsContainer>
@@ -229,7 +237,6 @@ class Profile extends React.Component {
 }
 const mapStateToProps = createStructuredSelector({
   userId: selectCurrentUserId,
-  userCafe: selectUserCafeDetails,
   userfirstname: selectCurrentUserFirstName,
   userlastname: selectCurrentUserLastName,
   userusername: selectCurrentUserUserName,
@@ -237,6 +244,9 @@ const mapStateToProps = createStructuredSelector({
   userphonenumber: selectPhoneNumber,
   userrole: selectCurrentUserRole,
   cafeId: selectCurrentUserCafeId,
+  cafeName: selectUserCafeName,
+  cafeLocation: selectUserCafeLocation,
+  cafeTeacherName: selectUserCafeTeacherInChargeName,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -35,7 +35,7 @@ const HeroSection = () => {
         <HeroP>Upskilling the underprivileged.</HeroP>
         <HeroBtnWrapper>
           <HeroButton
-            to='signup'
+            to='/signup'
             onMouseEnter={onHover}
             onMouseLeave={onHover}
             primary='false'

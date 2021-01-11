@@ -130,7 +130,9 @@ export const NavLinks = styled(LinkS)`
 
   // when link is active, then border bottom is coloured
   &.active {
-    border-bottom: 3px solid red;
+    /* border-bottom: 3px solid #f8971d; */
+    color: #f8971d;
+    font-weight: 500;
     /* background-color: #f6f6f6; */
   }
 `;

@@ -36,3 +36,8 @@ export const selectPercentStatusForUserEnrolledCourses = createSelector(
   [selectStudentDetails],
   (studentDetails) => studentDetails.percentStatusArray
 );
+
+export const selectIsFetchingEnrolledCourses = createSelector(
+  [selectStudentDetails],
+  (studentDetails) => studentDetails.isFetchingEnrolledCourses
+);

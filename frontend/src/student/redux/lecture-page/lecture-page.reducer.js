@@ -4,7 +4,7 @@ const INITIAL_STATE = {
   isFetching: false,
   lectureId: null,
   lectureName: null,
-  youtube_id: null,
+  driveId: null,
   notes_link: null,
   errorMessage: null,
 };
@@ -17,7 +17,7 @@ const lectureReducer = (state = INITIAL_STATE, action) => {
         isFetching: true,
         lectureId: null,
         lectureName: null,
-        youtube_id: null,
+        driveId: null,
         notes_link: null,
         errorMessage: null,
       };
@@ -28,15 +28,15 @@ const lectureReducer = (state = INITIAL_STATE, action) => {
       // } = action.payload;
 
       const {
-        lecture: { _id, youtubeId, name, notes },
+        lecture: { _id, driveId, name, noteId },
       } = action.payload;
       return {
         ...state,
         isFetching: false,
         lectureId: _id,
         lectureName: name,
-        youtube_id: youtubeId,
-        notes_link: notes,
+        driveId: driveId,
+        notes_link: noteId,
         errorMessage: null,
       };
 

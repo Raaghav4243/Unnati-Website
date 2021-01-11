@@ -1,8 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
 // import { ReactComponent as CafeIcon } from '../../icons/cafe.svg';
 
 import CafeImage from '../../assets/image.png';
+import {
+  selectUserCafeAddress,
+  selectUserCafeName,
+  selectUserCafeNumberOfClassmates,
+  selectUserCafeTeacherInChargeName,
+} from '../../redux/cafe/cafe.selectors';
 
 import {
   Container,
@@ -26,8 +34,8 @@ import {
 const StudentCafeDetails = ({
   cafeName,
   cafeAddress,
-  facultyIncharge,
-  classmates,
+  teacherName,
+  no_of_classmates,
 }) => {
   return (
     <>
@@ -42,13 +50,13 @@ const StudentCafeDetails = ({
               />
             </CafeLogo>
             <CafeDetails>
-              <CafeName>{cafeName}cafeName</CafeName>
+              <CafeName>{cafeName}</CafeName>
               <CafeAddress>
-                <strong>Address :</strong> {cafeAddress}
+                <strong>Address : </strong> {cafeAddress}
               </CafeAddress>
               <CafeFaculty>
-                <strong>Faculty Incharge :</strong>
-                {facultyIncharge}
+                <strong>Faculty Incharge : </strong>
+                {teacherName}
               </CafeFaculty>
               <ButtonWrapper>
                 <ContactButton>Contact Teacher</ContactButton>
@@ -59,7 +67,7 @@ const StudentCafeDetails = ({
         <ClassmatesContainer>
           <ClassmatesTitle>You have</ClassmatesTitle>
           <ClassmatesWrapper>
-            <Number>{classmates}2</Number>
+            <Number>{no_of_classmates}</Number>
             <Prompt>Classmates</Prompt>
           </ClassmatesWrapper>
         </ClassmatesContainer>
@@ -68,4 +76,11 @@ const StudentCafeDetails = ({
   );
 };
 
-export default StudentCafeDetails;
+const mapStateToProps = createStructuredSelector({
+  cafeName: selectUserCafeName,
+  cafeAddress: selectUserCafeAddress,
+  teacherName: selectUserCafeTeacherInChargeName,
+  no_of_classmates: selectUserCafeNumberOfClassmates,
+});
+
+export default connect(mapStateToProps)(StudentCafeDetails);

@@ -2,9 +2,19 @@ import { createSelector } from 'reselect';
 
 const selectLectureDetails = (state) => state.lecture;
 
-export const selectLectureYoutubeId = createSelector(
+export const selectLectureId = createSelector(
   [selectLectureDetails],
-  (lectureDetails) => lectureDetails.youtube_id
+  (lectureDetails) => lectureDetails.lectureId
+);
+
+export const selectLectureName = createSelector(
+  [selectLectureDetails],
+  (lectureDetails) => lectureDetails.lectureName
+);
+
+export const selectLectureDriveId = createSelector(
+  [selectLectureDetails],
+  (lectureDetails) => lectureDetails.driveId
 );
 
 export const selectLectureNotesLink = createSelector(

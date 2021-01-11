@@ -1,5 +1,7 @@
 //libraries used
 import React from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
 //redux used
 
@@ -12,10 +14,18 @@ import CourseMedia from '../../components/course-media/course-media.component';
 
 // styles used
 import {
-  CourseOverviewPage,
+  CourseOverviewWrapper,
   CourseLowerContainer,
   CourseLowerWrapper,
 } from './course-overview.styles';
+import { fetchCourseForOverviewStart } from '../../redux/course-overview/course-overview.actions';
+import {
+  selectCurrentCourseOverviewId,
+  selectCurrentCourseOverviewName,
+  selectCurrentCourseOverviewPrice,
+  selectCurrentCourseOverviewSummary,
+} from '../../redux/course-overview/course-overview.selectors';
+import CourseNavbar from '../../components/course-navbar/course-navbar.component';
 
 class CourseOverview extends React.Component {
   constructor(props) {
@@ -34,33 +44,64 @@ class CourseOverview extends React.Component {
     };
   }
 
+  componentDidMount() {
+    const { fetchCourseForOverviewStart } = this.props;
+    console.log('FETCH OVERVIEW FROM MOUNT');
+    fetchCourseForOverviewStart();
+  }
+
+  componentDidUpdate() {
+    console.log('FETCH OVERVIEW FROM UPDATE');
+    const { fetchCourseForOverviewStart } = this.props;
+    fetchCourseForOverviewStart();
+  }
+
   render() {
     const {
-      course_name,
-      course_fees,
+      // course_name,
+      // course_fees,
       course_available_at,
-      course_summary,
+      // course_summary,
       course_image,
     } = this.state.course_details;
+    const {
+      courseName,
+      courseSummary,
+      coursePrice,
+      forHome,
+      forStudent,
+    } = this.props;
     return (
       <>
-        <StudentNavbar />
-        <CourseOverviewPage>
+        {forHome ? <StudentNavbar /> : null}
+        {forStudent ? <CourseNavbar /> : null}
+        <CourseOverviewWrapper>
           <CourseOverviewHeader
-            name={course_name}
-            fees={course_fees}
+            name={courseName}
+            fees={coursePrice}
             availableAt={course_available_at}
           />
           <CourseLowerContainer>
             <CourseLowerWrapper>
-              <CourseSummary summary={course_summary} />
+              <CourseSummary summary={courseSummary} />
               <CourseMedia src={course_image} alt={'course-image'} />
             </CourseLowerWrapper>
           </CourseLowerContainer>
-        </CourseOverviewPage>
+        </CourseOverviewWrapper>
       </>
     );
   }
 }
 
-export default CourseOverview;
+const mapStateToProps = createStructuredSelector({
+  courseId: selectCurrentCourseOverviewId,
+  courseName: selectCurrentCourseOverviewName,
+  courseSummary: selectCurrentCourseOverviewSummary,
+  coursePrice: selectCurrentCourseOverviewPrice,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchCourseForOverviewStart: () => dispatch(fetchCourseForOverviewStart()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CourseOverview);

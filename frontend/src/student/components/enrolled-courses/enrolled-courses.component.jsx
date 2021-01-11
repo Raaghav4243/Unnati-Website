@@ -1,4 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import {
+  selectPercentStatusForUserEnrolledCourses,
+  selectUserEnrolledCourses,
+} from '../../redux/student/student.selectors';
 
 import EnrolledCourseCard from './enrolled-course-card.component';
 
@@ -14,51 +20,25 @@ class StudentEnrolledCourses extends React.Component {
   }
 
   render() {
+    const { enrolled_courses, percentStatusArray } = this.props;
+    console.log('ENROLLED COURSES ARRAY IS', enrolled_courses);
+    console.log('PERCENT STATUS ARRAY IS', percentStatusArray);
     return (
       <>
         <Container>
           <Title>Enrolled Courses</Title>
           <EnrolledCourseCardWrapper>
-            <EnrolledCourseCard
-              courseName={'Microsoft EXCEL'}
-              PercentageStatus={33.33}
-              courseId={'hkjhfh'}
-            />
-            <EnrolledCourseCard
-              courseName={'Microsoft EXCEL'}
-              PercentageStatus={33.33}
-              courseId={'hkjhfh'}
-            />
-            <EnrolledCourseCard
-              courseName={'Microsoft EXCEL'}
-              PercentageStatus={33.33}
-              courseId={'hkjhfh'}
-            />
-            <EnrolledCourseCard
-              courseName={'Microsoft EXCEL'}
-              PercentageStatus={33.33}
-              courseId={'hkjhfh'}
-            />
-            <EnrolledCourseCard
-              courseName={'Microsoft EXCEL'}
-              PercentageStatus={33.33}
-              courseId={'hkjhfh'}
-            />
-            <EnrolledCourseCard
-              courseName={'Microsoft EXCEL'}
-              PercentageStatus={33.33}
-              courseId={'hkjhfh'}
-            />
-            <EnrolledCourseCard
-              courseName={'Microsoft EXCEL'}
-              PercentageStatus={33.33}
-              courseId={'hkjhfh'}
-            />
-            <EnrolledCourseCard
-              courseName={'Microsoft EXCEL'}
-              PercentageStatus={33.33}
-              courseId={'hkjhfh'}
-            />
+            {enrolled_courses
+              ? enrolled_courses.map((course, index) => (
+                  <>
+                    <EnrolledCourseCard
+                      courseName={course.course.courseName}
+                      PercentageStatus={Math.round(percentStatusArray[index])}
+                      courseId={course.course._id}
+                    />
+                  </>
+                ))
+              : null}
           </EnrolledCourseCardWrapper>
         </Container>
       </>
@@ -66,4 +46,9 @@ class StudentEnrolledCourses extends React.Component {
   }
 }
 
-export default StudentEnrolledCourses;
+const mapStateToProps = createStructuredSelector({
+  enrolled_courses: selectUserEnrolledCourses,
+  percentStatusArray: selectPercentStatusForUserEnrolledCourses,
+});
+
+export default connect(mapStateToProps)(StudentEnrolledCourses);

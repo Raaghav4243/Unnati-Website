@@ -1,13 +1,8 @@
 import LecturePageActionTypes from './lecture-page.types';
 
-export const fetchLectureStart = (user_id, course_id, lecture_id) => {
+export const fetchLectureStart = () => {
   return {
     type: LecturePageActionTypes.FETCH_LECTURE_START,
-    payload: {
-      user_id: user_id,
-      course_id: course_id,
-      lecture_id: lecture_id,
-    },
   };
 };
 

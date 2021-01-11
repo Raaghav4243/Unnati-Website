@@ -31,6 +31,10 @@ class StudentCourseTopicPage extends React.Component {
     const { user_id, course_id, fetchCourseTopicsStart } = this.props;
     fetchCourseTopicsStart(user_id, course_id);
   }
+
+  componentDidUpdate() {
+    console.log('STUDENT COURSE TOPIC PAGE UPDATED!');
+  }
   render() {
     const { match, course_topic_type, course_topic_id } = this.props;
     // console.log('match is', match, 'topic id is', course_topic_id);
@@ -51,6 +55,17 @@ class StudentCourseTopicPage extends React.Component {
             );
           }}
         />
+        {/* <Route
+          exact
+          path={`${match.path}/assignment`}
+          render={() => {
+            return (
+              <>
+                <TestPage />
+              </>
+            );
+          }}
+        /> */}
         <Route
           exact
           path={`${match.path}/test`}
@@ -70,8 +85,8 @@ class StudentCourseTopicPage extends React.Component {
 const mapStateToProps = createStructuredSelector({
   user_id: selectCurrentUserId,
   course_id: selectCurrentCourseId,
-  course_topic_id: selectCurrentCourseTopicId,
-  course_topic_type: selectCurrentCourseTopicType,
+  // course_topic_id: selectCurrentCourseTopicId,
+  // course_topic_type: selectCurrentCourseTopicType,
   // topics: selectCourseTopics,
   // attemptedTopicsId: selectCompletedCourseTopicsId,
 });

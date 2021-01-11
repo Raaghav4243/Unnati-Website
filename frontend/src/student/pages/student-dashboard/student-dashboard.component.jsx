@@ -23,7 +23,7 @@ import {
 } from '../../redux/allCourses/all-courses.selectors';
 import { selectCurrentUserId } from '../../redux/user/user.selectors';
 import {
-  selectUserCafeDetails,
+  // selectUserCafeDetails,
   selectUserCafeNumberOfClassmates,
 } from '../../redux/cafe/cafe.selectors';
 import { CafeDetails } from '../../components/recycle-bin/CafeDetails/Cafe.Details.Styles';
@@ -38,6 +38,8 @@ import FeesPage from '../FeesPage/App';
 import StudentDashboardSidenav from '../../components/student-dashboard-sidenav/student-dashboard-sidenav.component';
 import StudentDashboardNavbar from '../../components/student-dashboard-navbar/student-dashboard-navbar.component';
 import StudentDashboardOverviewPage from '../student-dashboard-overview-page/student-dashboard-overview.component';
+import CourseOverview from '../course-overview/course-overview.component';
+import ChangePassword from '../change-password/change-password.component';
 
 //components used
 
@@ -62,6 +64,17 @@ class studentDashboard extends React.Component {
             />
             <Route exact path={`${match.path}/fees`} component={FeesPage} />
             <Route exact path={`${match.path}/profile`} component={Profile} />
+            <Route
+              exact
+              path={`${match.path}/password`}
+              component={ChangePassword}
+            />
+
+            {/* <Route
+              exact
+              path={`${match.path}/discover`}
+              component={CourseOverview}
+            /> */}
           </PageWrapper>
         </Container>
       </>
@@ -71,7 +84,7 @@ class studentDashboard extends React.Component {
 const mapStateToProps = createStructuredSelector({
   // allCourses: selectAllCourses,
   userId: selectCurrentUserId,
-  userCafe: selectUserCafeDetails,
+  // userCafe: selectUserCafeDetails,
   enrolled_courses: selectUserEnrolledCourses,
   all_courses_id_map: selectAllCoursesIdMap,
   no_of_classmates: selectUserCafeNumberOfClassmates,
