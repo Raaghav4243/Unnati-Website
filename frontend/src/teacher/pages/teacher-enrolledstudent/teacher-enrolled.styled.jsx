@@ -12,6 +12,8 @@ width: 50vw;
 
 export const CafeTableWrapper = styled.div`
 display: flex;
+margin-top: 11vh;
+margin-left: 21vw; 
  flex-direction: column;
 `;
 

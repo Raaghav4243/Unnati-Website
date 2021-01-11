@@ -87,7 +87,7 @@ function createData(ID, FirstName, LastName, Age, FullName, ButtonId) {
   }
 
 const rows = [
-   createData(1 , 'Raaghav', 'Raj', 19, 'Raaghav Raj',1),
+    createData(1 , 'Raaghav', 'Raj', 19, 'Raaghav Raj',1),
     createData(2 , 'Raaghav', 'Raj', 19, 'Raaghav Raj',2),
     createData(3 , 'Raaghav', 'Raj', 19, 'Raaghav Raj',3),
     createData(4 , 'Raaghav', 'Raj', 19, 'Raaghav Raj',4),
@@ -123,9 +123,17 @@ export default function CustomPaginationActionsTable() {
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="custom pagination table">
+      <colgroup>
+      <col style={{width:'10%'}}/>
+      <col style={{width:'10%'}}/>
+      <col style={{width:'10%'}}/>
+      <col style={{width:'10%'}}/>
+      <col style={{width:'10%'}}/>
+      <col style={{width:'10%'}}/>
+      </colgroup>
       <TableHead>
            <TableRow >
-             <TableCell>ID</TableCell>
+             <TableCell align="center">ID</TableCell>
              <TableCell align="center">First Name</TableCell>
              <TableCell align="center">Last Name</TableCell>
              <TableCell align="center">Age</TableCell>
@@ -139,7 +147,7 @@ export default function CustomPaginationActionsTable() {
             : rows
           ).map((row) => (
             <TableRow key={row.name}>
-            <TableCell component="th" scope="row">{row.ID}</TableCell>
+            <TableCell align="center" component="th" scope="row">{row.ID}</TableCell>
             <TableCell align="center">{row.FirstName}</TableCell>
             <TableCell align="center">{row.LastName}</TableCell>
             <TableCell align="center">{row.Age}</TableCell>

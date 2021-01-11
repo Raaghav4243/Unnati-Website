@@ -13,6 +13,7 @@ import testReducer from './testpage/testpage.reducer';
 import assignmentReducer from './assignment-page/assignment-page.reducer';
 import lectureReducer from './lecture-page/lecture-page.reducer';
 import courseOverviewReducer from './course-overview/course-overview.reducer';
+import verifiedStudentReducer from '../../teacher/redux/verified-students/verified-students.reducer';
 
 // const persistCongfig = {
 //     key: 'root'
@@ -31,6 +32,7 @@ const rootReducer = combineReducers({
   assignment: assignmentReducer,
   lecture: lectureReducer,
   courseOverview: courseOverviewReducer,
+  verifiedStudent: verifiedStudentReducer
 });
 
 export default rootReducer;
