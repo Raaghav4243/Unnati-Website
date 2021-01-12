@@ -24,9 +24,6 @@ class TeacherEnrolledStudents extends React.Component {
     const {fetchVerifiedStudentStart} = this.props
     fetchVerifiedStudentStart()
   }
-  
-  
-
   render() {
 
     function createData(ID, FirstName, LastName, Age, FullName){
@@ -34,7 +31,7 @@ class TeacherEnrolledStudents extends React.Component {
     }
 
 
-    const {verifiedStudents} = this.props
+    const {verifiedStudents} = this.props;
     console.log(verifiedStudents)
 
     let rows = [
