@@ -96,7 +96,7 @@ export default function CustomPaginationActionsTable(props) {
   const [rowsPerPage, setRowsPerPage] = React.useState(4);
   
   const rows=props.rows;
-  const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+  const emptyRows = rowsPerPage - Math.min(rowsPerPage, rowsPerPage.length - page * rowsPerPage);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);

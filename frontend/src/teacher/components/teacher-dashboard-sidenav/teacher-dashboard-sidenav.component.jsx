@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 
-//redux used
-// import {
-//   selectCurrentUser,
-//   selectCurrentUserFirstName,
-//   selectCurrentUserLastName,
-// } from '../../redux/user/user.selectors';
+
+import {
+  selectCurrentUser,
+  selectCurrentUserFirstName,
+  selectCurrentUserLastName,
+} from '../../redux/user/user.selectors';
 
 // import { ReactComponent as ProfilePhoto } from '../../icons/profile-user.svg';
 import { ReactComponent as ProfilePhoto } from '../../icons/male-icon.svg';
@@ -67,10 +67,11 @@ class TeacherDashboardSidenav extends React.Component {
   }
 }
 
-// const mapStateToProps = createStructuredSelector({
-//   user: selectCurrentUser,
-//   firstName: selectCurrentUserFirstName,
-//   lastName: selectCurrentUserLastName,
-// });
+const mapStateToProps = createStructuredSelector({
+  user: selectCurrentUser,
+  firstName: selectCurrentUserFirstName,
+  lastName: selectCurrentUserLastName,
+});
 
-export default TeacherDashboardSidenav;
+
+export default connect(mapStateToProps)(withRouter(TeacherDashboardSidenav));
