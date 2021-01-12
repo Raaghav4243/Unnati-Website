@@ -15,6 +15,11 @@ import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
 import TableHead from '@material-ui/core/TableHead';
+import { fetchTestSheetStart } from '../../redux/test-sheet/test-sheet.actions';
+import { connect } from 'react-redux';
+import { Link, Route } from 'react-router-dom';
+import { createStructuredSelector } from 'reselect';
+import { selectTestDetails } from '../../redux/test-sheet/test-sheet.selectors';
 // import TableRow from '@material-ui/core/TableRow';
 
 const useStyles1 = makeStyles((theme) => ({
@@ -82,21 +87,7 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-function createData(ID, FirstName, LastName, Age, FullName, ButtonId) {
-    return { ID, FirstName, LastName, Age, FullName, ButtonId };
-  }
 
-const rows = [
-    createData(1 , 'Raaghav', 'Raj', 19, 'Raaghav Raj',1),
-    createData(2 , 'Raaghav', 'Raj', 19, 'Raaghav Raj',2),
-    createData(3 , 'Raaghav', 'Raj', 19, 'Raaghav Raj',3),
-    createData(4 , 'Raaghav', 'Raj', 19, 'Raaghav Raj',4),
-    createData(5 , 'Raaghav', 'Raj', 19, 'Raaghav Raj',5),
-    createData(6 , 'Raaghav', 'Raj', 19, 'Raaghav Raj',6),
-    createData(7 , 'Raaghav', 'Raj', 19, 'Raaghav Raj',7),
-    createData(8 , 'Raaghav', 'Raj', 19, 'Raaghav Raj',8),
-    createData(9 , 'Raaghav', 'Raj', 19, 'Raaghav Raj',9), 
-];
 
 const useStyles2 = makeStyles({
   table: {
@@ -104,7 +95,8 @@ const useStyles2 = makeStyles({
   },
 });
 
-export default function CustomPaginationActionsTable() {
+ function CustomPaginationActionsTable(props) {
+  const rows = props.rows
   const classes = useStyles2();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(4);
@@ -120,6 +112,10 @@ export default function CustomPaginationActionsTable() {
     setPage(0);
   };
 
+  
+
+
+ 
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="custom pagination table">
@@ -135,9 +131,7 @@ export default function CustomPaginationActionsTable() {
            <TableRow >
              <TableCell align="center">ID</TableCell>
              <TableCell align="center">First Name</TableCell>
-             <TableCell align="center">Last Name</TableCell>
-             <TableCell align="center">Age</TableCell>
-             <TableCell align="center">Full Name</TableCell>
+             <TableCell align="center">Course Name</TableCell>
              <TableCell align="center">VIEW RESPONSE</TableCell>
           </TableRow>
          </TableHead>
@@ -150,9 +144,19 @@ export default function CustomPaginationActionsTable() {
             <TableCell align="center" component="th" scope="row">{row.ID}</TableCell>
             <TableCell align="center">{row.FirstName}</TableCell>
             <TableCell align="center">{row.LastName}</TableCell>
-            <TableCell align="center">{row.Age}</TableCell>
-            <TableCell align="center">{row.FullName}</TableCell>
-            <TableCell align="center"><button id={row.ButtonId} color='#2196F3' >VIEW RESPONSE</button> </TableCell>
+              <TableCell align="center">
+                <Link to='/teacher/evaluatetest'>
+                <button id='k' color='#2196F3' onClick={() => {
+                const responseSheetId = row.ID
+                console.log(responseSheetId)
+                const {fetchTestSheetStart, test} = props
+                fetchTestSheetStart(responseSheetId)
+                console.log(test)
+                
+                
+              }}>VIEW RESPONSE</button>
+              </Link>
+               </TableCell>
             </TableRow>
           ))}
 
@@ -184,3 +188,13 @@ export default function CustomPaginationActionsTable() {
     </TableContainer>
   );
 }
+
+const mapStateToProps = createStructuredSelector({
+  test: selectTestDetails
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchTestSheetStart: (responseSheetId) => dispatch(fetchTestSheetStart(responseSheetId))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)( CustomPaginationActionsTable)

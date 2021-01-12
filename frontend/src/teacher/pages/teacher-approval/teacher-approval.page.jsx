@@ -68,7 +68,7 @@ class TeacherApproval extends React.Component {
               <TeacherCafeDetails></TeacherCafeDetails>
             </CafeDetailWrapper>
             <TableWrapper>
-              <CustomPaginationActionsTable></CustomPaginationActionsTable>
+              <CustomPaginationActionsTable ></CustomPaginationActionsTable>
               {/* <EnhancedTable2></EnhancedTable2> */}
             </TableWrapper>
           </CafeTableWrapper>

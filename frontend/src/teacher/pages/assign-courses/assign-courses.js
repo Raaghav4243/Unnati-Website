@@ -43,12 +43,13 @@ import { selectVerifiedStudents } from "../../redux/verified-students/verified-s
 import { fetchVerifiedStudentStart } from "../../redux/verified-students/verified-students.actions";
 import { selectAllCourses } from "../../../student/redux/allCourses/all-courses.selectors";
 import { fetchAllCoursesStart } from "../../../student/redux/allCourses/all-courses.actions";
+import { courseAssignStart } from "../../redux/course-assign/course-assign.actions";
 class TeacherDashboardAssignPage extends React.Component {
   constructor(){
     super()
     this.state = {
       userId: null,
-      cafeId: null,
+      cafeId: '5fa5796e9542c50df4285b04',
       courseId: null
     }
   }
@@ -64,10 +65,33 @@ class TeacherDashboardAssignPage extends React.Component {
     fetchVerifiedStudentStart();
     fetchAllCoursesStart();
   }
+
+  handleNameChange = (e) => {
+    const value = e.target.value
+    console.log(value)
+    this.setState({userId: value}, () => {console.log(this.state)})
+  }
+
+  handleCourseChange = (e) => {
+    const value = e.target.value
+    this.setState({courseId: value}, () => {console.log(this.state)})
+  }
+
+  handleSubmit = (e) => {
+    const userId = this.state.userId
+    const courseId = this.state.courseId
+    const cafeId = this.state.cafeId
+    const {courseAssignStart} = this.props
+    console.log('page data', userId, courseId, cafeId)
+    console.log('this function is working')
+    courseAssignStart(userId, cafeId, courseId)
+  }
+
   render() {
     const { userCafe, verifiedStudents, allCourses } = this.props;
     console.log('courses are', allCourses)
     console.log('verified user are', verifiedStudents)
+    console.log(this.state.userId)
     return (
       <>
         <PageContainer>
@@ -93,7 +117,7 @@ class TeacherDashboardAssignPage extends React.Component {
                     <Select
                       // native
                       // value={state.age}
-                      // onChange={handleChange}
+                       onChange={this.handleNameChange}
                       label="student"
                       inputProps={{
                         name: "student",
@@ -104,7 +128,7 @@ class TeacherDashboardAssignPage extends React.Component {
           {verifiedStudents ?
             verifiedStudents.map((student, index) => {
               return(
-                <option key={index} value={student.firstName}>{student.firstName}</option>
+                <option key={index} value={student._id}>{student.firstName}</option>
               )
             }) : null
           }
@@ -128,7 +152,7 @@ class TeacherDashboardAssignPage extends React.Component {
                     <Select
                       // native
                       // value={state.age}
-                      // onChange={handleChange}
+                      onChange={this.handleCourseChange}
                       label="Age"
                       inputProps={{
                         name: "age",
@@ -141,7 +165,7 @@ class TeacherDashboardAssignPage extends React.Component {
                       {allCourses
                         ? allCourses.map((course, index) => { 
                             return(
-                              <option key={index} value={course.courseName}>
+                              <option key={index} value={course._id}>
                                 {course.courseName}
                               </option>)
                           
@@ -152,7 +176,7 @@ class TeacherDashboardAssignPage extends React.Component {
                 </DropWrapper>
               </CourseDropDown>
             </DropDownWrapper>
-            <ButtonWrapper onClick={() => {this.setState({userId: 1})}}>Assign</ButtonWrapper>
+            <ButtonWrapper onClick={this.handleSubmit}>Assign</ButtonWrapper>
           </PageWrapper>
         </PageContainer>
       </>
@@ -171,7 +195,9 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = (dispatch) => ({
   fetchUserCafeStart: () => dispatch(fetchUserCafeStart()),
   fetchVerifiedStudentStart: () => dispatch(fetchVerifiedStudentStart()),
-  fetchAllCoursesStart: () => dispatch(fetchAllCoursesStart())
+  fetchAllCoursesStart: () => dispatch(fetchAllCoursesStart()),
+  courseAssignStart: (userId, cafeId, courseId) =>
+    dispatch(courseAssignStart(userId, cafeId, courseId))
 });
 
 export default connect(
