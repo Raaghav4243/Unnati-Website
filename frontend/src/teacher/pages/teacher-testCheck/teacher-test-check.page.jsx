@@ -6,6 +6,7 @@ import CustomPaginationActionsTable from '../../components/teacher-testCheck/tab
 // import EnhancedTable2 from '../../components/teacher-enrolledstudent/table2.Component';
 
 import {
+  CafeDetailsParentWrapper,
   CafeDetailWrapper,
   Body,
   CafeTableWrapper,
@@ -24,9 +25,9 @@ class TeacherTestCheck extends React.Component {
         <Body>
       <TeacherDashboardSidenav></TeacherDashboardSidenav>      
           <CafeTableWrapper>
-            <CafeDetailWrapper>
+            < CafeDetailsParentWrapper>
               <TeacherCafeDetails></TeacherCafeDetails>
-            </CafeDetailWrapper>
+            </ CafeDetailsParentWrapper>
             <TableWrapper>
               <CustomPaginationActionsTable></CustomPaginationActionsTable>
               {/* <EnhancedTable2></EnhancedTable2> */}

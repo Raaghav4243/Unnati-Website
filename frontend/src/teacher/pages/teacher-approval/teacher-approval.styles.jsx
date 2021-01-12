@@ -12,6 +12,14 @@ margin-left: 21vw;
  flex-direction: column;
 `;
 
+export const CafeDetailsParentWrapper = styled.div`
+  width: 100%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  /* min-height: 35%; */
+  /* border: 4px solid yellow; */
+`;
+
 export const TableWrapper = styled.div`
  width: 1000px;
  margin-left: 5vh;
