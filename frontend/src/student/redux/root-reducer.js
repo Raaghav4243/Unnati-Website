@@ -14,7 +14,7 @@ import assignmentReducer from './assignment-page/assignment-page.reducer';
 import lectureReducer from './lecture-page/lecture-page.reducer';
 import courseOverviewReducer from './course-overview/course-overview.reducer';
 import verifiedStudentReducer from '../../teacher/redux/verified-students/verified-students.reducer';
-
+import unverifiedStudentReducer from '../../teacher/redux/unverified-students/unverified-students.reducer';
 // const persistCongfig = {
 //     key: 'root'
 // }
@@ -32,7 +32,8 @@ const rootReducer = combineReducers({
   assignment: assignmentReducer,
   lecture: lectureReducer,
   courseOverview: courseOverviewReducer,
-  verifiedStudent: verifiedStudentReducer
+  verifiedStudent: verifiedStudentReducer,
+  unverifiedStudent: unverifiedStudentReducer,
 });
 
 export default rootReducer;
