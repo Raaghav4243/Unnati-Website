@@ -142,3 +142,18 @@ export const Prompt = styled.div`
   font-size: 18px;
   font-family: 'Montserrat', sans-serif;
 `;
+export const PopupWrapper= styled.div`
+width: 100%;
+height: 170px;
+padding: 5vh 5vw 5vh 5vw;
+
+/* border: 2px solid orange; */
+border-radius: 10px;
+background-color: #f3f3f3;
+display: flex;
+justify-content: space-between;
+align-items: center;
+flex-direction: column;
+`;
+export const ContactDetails= styled.div
+``

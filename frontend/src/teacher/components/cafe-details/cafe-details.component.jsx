@@ -9,7 +9,7 @@ import {
   selectUserCafeNumberOfClassmates,
   selectUserCafeTeacherInChargeName,
 } from '../../redux/cafe/cafe.selectors';
-
+import Popup from "reactjs-popup";
 import CafeImage from '../../assets/image.png';
 
 import {
@@ -29,6 +29,8 @@ import {
   ClassmatesWrapper,
   Number,
   Prompt,
+  PopupWrapper,
+  ContactDetails,
 } from './cafe-details.styles';
 
 const TeacherCafeDetails = ({
@@ -59,7 +61,14 @@ const TeacherCafeDetails = ({
                 {facultyIncharge}
               </CafeFaculty>
               <ButtonWrapper>
-                <ContactButton>Contact Teacher</ContactButton>
+              <Popup trigger={<ContactButton>Contact Teacher</ContactButton>} position="right center">
+                <PopupWrapper>
+                  <ContactDetails>Faculty Phone Number : 971633335552</ContactDetails>
+                  <ContactDetails>Faculty Email: facultyemail@gmail.com</ContactDetails>
+                  <ContactDetails>Enactus Email: enactusdtu@gmail.com</ContactDetails>
+                  </PopupWrapper>
+  </Popup>
+                
               </ButtonWrapper>
             </CafeDetails>
           </CafeDetailsWrapper>
