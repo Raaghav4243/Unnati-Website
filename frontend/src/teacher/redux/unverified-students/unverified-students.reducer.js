@@ -1,4 +1,4 @@
-const { VerifiedStudentsType } = require("./verified-students.types")
+const { UnVerifiedStudentsType } = require("./unverified-students.types")
 
 const INITIAL_STATE = {
     unverifiedStudents: null,
@@ -6,7 +6,7 @@ const INITIAL_STATE = {
     errorMessage: null,
 }
 
-const UnverifiedStudentReducer = (state=INITIAL_STATE, action) => {
+const unverifiedStudentReducer = (state=INITIAL_STATE, action) => {
     switch(action.type){
         case UnVerifiedStudentsType.FETCH_UNVERIFIED_STUDENT_START:
             return{

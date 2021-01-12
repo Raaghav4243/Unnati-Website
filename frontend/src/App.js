@@ -41,7 +41,7 @@ import TeacherTestCheck from './teacher/pages/teacher-testCheck/teacher-test-che
 import TeacherProfile from './teacher/pages/Profile-page/profile-page.component';
 import TeacherChangePassword from './teacher/pages/change-password/change-password';
 import EvaluateTestPage from './teacher/pages/evaluate-test-page/evaluate-test';
-
+import TeacherDashboardLandingPage from './teacher/pages/teacher-dashboard-main-page/teacher-dashboard-page';
 function App() {
   return (
     <BrowserRouter>
@@ -56,11 +56,7 @@ function App() {
         <Route path='/student' component={StudentPage} />
         <Route path='/test' component={TestPage} />
         <Route path='/signup' component={SignInAndSignUpPage} />
-        <Route path='/teacher' exact component={cafeteacher} />
-        {/* <Route path='/login' component={LogInForm} /> */}
-        <Route path='/teacher' exact component={cafeteacher} />
-        {/* <Route path='/signup' component={SignUpForm} />
-        <Route path='/login' component={LogInForm} /> */}
+        <Route path='/teacher' exact component={TeacherDashboardLandingPage} />
         <Route
           path='/teacher/enrolled'
           exact

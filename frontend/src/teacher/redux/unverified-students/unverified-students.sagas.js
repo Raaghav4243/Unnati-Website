@@ -1,6 +1,6 @@
 import { all, call, put, takeLatest } from "redux-saga/effects";
-import { fetchUnVerifiedStudentFailure, fetchUnVerifiedStudentSuccess } from "./verified-students.actions";
-import { UnVerifiedStudentsType } from "./verified-students.types";
+import { fetchUnVerifiedStudentFailure, fetchUnVerifiedStudentSuccess } from '../unverified-students/unverified-students.actions';
+import { UnVerifiedStudentsType } from "./unverified-students.types";
 
 export function* fetchUnVerifiedStudentAsync(){
     try {

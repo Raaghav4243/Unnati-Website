@@ -12,7 +12,7 @@ import { cafeSagas } from './cafe/cafe.sagas';
 import { userSagas } from './user/user.sagas';
 import { courseOverviewSagas } from './course-overview/course-overview.sagas';
 import { verifiedStudentsSagas } from '../../teacher/redux/verified-students/verified-students.sagas';
-
+import {unverifiedStudentsSagas} from '../../teacher/redux/unverified-students/unverified-students.sagas';
 export default function* rootSaga() {
   yield all([
     call(courseTopicSagas),
@@ -26,6 +26,7 @@ export default function* rootSaga() {
     call(cafeSagas),
     call(userSagas),
     call(courseOverviewSagas),
-    call(verifiedStudentsSagas)
+    call(verifiedStudentsSagas),
+    call(unverifiedStudentsSagas),
   ]);
 }
