@@ -9,6 +9,14 @@ export const Container = styled.div`
 width: 50vw;
 `;
 
+export const CafeDetailsParentWrapper = styled.div`
+  width: 100%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  /* min-height: 35%; */
+  /* border: 4px solid yellow; */
+`;
+
 export const CafeTableWrapper = styled.div`
 display: flex;
 margin-top: 11vh;

@@ -17,6 +17,7 @@ import { feeUpdateSagas } from '../../teacher/redux/fee-update/fee-update.sagas'
 import { testListForEvaluationSagas } from '../../teacher/redux/test-evaluation/test-evaluation-list.sagas';
 import { testSheetSagas } from '../../teacher/redux/test-sheet/test-sheet.sagas';
 
+import {unverifiedStudentsSagas} from '../../teacher/redux/unverified-students/unverified-students.sagas';
 export default function* rootSaga() {
   yield all([
     call(courseTopicSagas),
@@ -34,6 +35,7 @@ export default function* rootSaga() {
     call(courseAssignSagas),
     call(feeUpdateSagas),
     call(testListForEvaluationSagas),
-    call(testSheetSagas)
+    call(testSheetSagas),
+    call(unverifiedStudentsSagas),
   ]);
 }

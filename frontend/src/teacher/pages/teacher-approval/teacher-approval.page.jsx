@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 import TeacherCafeDetails from '../../components/cafe-details/cafe-details.component'
 import CustomPaginationActionsTable from '../../components/teacher-approval.page/table-component';
 import TeacherDashboardNavbar from '../../components/teacher-dashboard-navbar/teacher-dashboard-navbar.component';
@@ -6,11 +8,15 @@ import TeacherDashboardSidenav from '../../components/teacher-dashboard-sidenav/
 // import EnhancedTable2 from '../../components/teacher-enrolledstudent/table2.Component';
 
 import {
+  CafeDetailsParentWrapper,
   CafeDetailWrapper,
   Body,
   CafeTableWrapper,
   TableWrapper,
 } from './teacher-approval.styles';
+
+import { selectUnVerifiedStudents } from '../../redux/unverified-students/unverified-student.selectors';
+import { fetchUnVerifiedStudentStart } from '../../redux/unverified-students/unverified-students.actions';
 
 // //libraries used
 // import { connect } from 'react-redux';
@@ -54,9 +60,35 @@ import {
 // }
 
 class TeacherApproval extends React.Component {
+  componentDidMount(){
+    const {fetchUnVerifiedStudentStart} = this.props
+    fetchUnVerifiedStudentStart()
+  }
+  
   render() {
-    const {
-    } = this.props;
+    
+function createData(ID, FirstName, LastName, Age, FullName, ButtonId) {
+  return { ID, FirstName, LastName, Age, FullName, ButtonId };
+}
+
+const {unverifiedStudents} = this.props;
+console.log(unverifiedStudents)
+
+let rows = [
+  
+        
+];
+
+if(unverifiedStudents){
+  unverifiedStudents.map((student, index) => {
+    let rowObj = createData(index+1, student.firstName, student.lastName, 19, 'krishna');
+    console.log('rowObj', rowObj)
+    rows.push(rowObj)
+   })
+}else{
+  
+}
+
 
     return (
       <>
@@ -64,11 +96,12 @@ class TeacherApproval extends React.Component {
         <Body>
           <TeacherDashboardSidenav></TeacherDashboardSidenav>
           <CafeTableWrapper>
-            <CafeDetailWrapper>
+            <CafeDetailsParentWrapper>
               <TeacherCafeDetails></TeacherCafeDetails>
-            </CafeDetailWrapper>
+            </CafeDetailsParentWrapper>
             <TableWrapper>
               <CustomPaginationActionsTable ></CustomPaginationActionsTable>
+              <CustomPaginationActionsTable rows ={rows}></CustomPaginationActionsTable>
               {/* <EnhancedTable2></EnhancedTable2> */}
             </TableWrapper>
           </CafeTableWrapper>
@@ -77,5 +110,13 @@ class TeacherApproval extends React.Component {
     );
   }
 }
+const mapStateToProps = createStructuredSelector({
+  unverifiedStudents: selectUnVerifiedStudents,
 
-export default TeacherApproval;
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchUnVerifiedStudentStart: () => dispatch(fetchUnVerifiedStudentStart())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(TeacherApproval);

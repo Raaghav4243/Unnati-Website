@@ -16,6 +16,7 @@ import {
   SideNav,
   CafeTableWrapper,
   TableWrapper,
+  CafeDetailsParentWrapper ,
 } from "./teacher-enrolled.styled";
 
 class TeacherEnrolledStudents extends React.Component {
@@ -69,9 +70,9 @@ class TeacherEnrolledStudents extends React.Component {
         <Body>
           <TeacherDashboardSidenav></TeacherDashboardSidenav>
           <CafeTableWrapper>
-            <CafeDetailWrapper>
+          <CafeDetailsParentWrapper> 
               <TeacherCafeDetails></TeacherCafeDetails>
-            </CafeDetailWrapper>
+              </CafeDetailsParentWrapper >
             <TableWrapper>
               <CustomPaginationActionsTable rows={rows}></CustomPaginationActionsTable>
               {/* <EnhancedTable2></EnhancedTable2> */}
