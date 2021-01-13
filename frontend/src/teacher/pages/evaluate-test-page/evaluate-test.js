@@ -51,7 +51,7 @@ class EvaluateTestPage extends React.Component {
   }
 
   componentDidMount() {
-    const { userId, fetchUserCafeStart, subject = "MA-103" } = this.props;
+    const { userId, fetchUserCafeStart, } = this.props;
     // if(allCourses is null), then fetchAllCoursesStart() as well.
     fetchUserCafeStart();
   }
@@ -80,6 +80,7 @@ class EvaluateTestPage extends React.Component {
   render() {
     const { userCafe, test } = this.props;
     console.log(test);
+    //console.log(userCafe)
     //console.log(test.testId)
 
     return (

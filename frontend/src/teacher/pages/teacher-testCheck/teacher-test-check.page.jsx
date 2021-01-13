@@ -24,8 +24,8 @@ class TeacherTestCheck extends React.Component {
     fetchTestListForEvaluationStart();
   }
   render() {
-    function createData(ID, FirstName, LastName, ButtonId) {
-      return { ID, FirstName, LastName,  ButtonId };
+    function createData(ID, FirstName, CourseName, testName, ButtonId) {
+      return { ID, FirstName, CourseName, testName,  ButtonId };
     }
 
     const rows = [createData(1, "Raaghav", "Raj", 1)];
@@ -45,7 +45,7 @@ class TeacherTestCheck extends React.Component {
          //console.log('course names', coursename)
         course.testsDone.map((test) => {
           console.log(test)
-          let rowObj = createData(test.responseSheet, firstName, coursename,  courseid)
+          let rowObj = createData(test.responseSheet, firstName, coursename, test.test, courseid)
           rows.push(rowObj)
         })
        })

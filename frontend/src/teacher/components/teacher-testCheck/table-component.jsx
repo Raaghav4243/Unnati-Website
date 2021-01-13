@@ -132,6 +132,7 @@ const useStyles2 = makeStyles({
              <TableCell align="center">ID</TableCell>
              <TableCell align="center">First Name</TableCell>
              <TableCell align="center">Course Name</TableCell>
+             <TableCell align="center">Test Name</TableCell>
              <TableCell align="center">VIEW RESPONSE</TableCell>
           </TableRow>
          </TableHead>
@@ -143,19 +144,22 @@ const useStyles2 = makeStyles({
             <TableRow key={row.name}>
             <TableCell align="center" component="th" scope="row">{row.ID}</TableCell>
             <TableCell align="center">{row.FirstName}</TableCell>
-            <TableCell align="center">{row.LastName}</TableCell>
+            <TableCell align="center">{row.CourseName}</TableCell>
+            <TableCell align="center">{row.testName}</TableCell>
               <TableCell align="center">
-                <Link to='/teacher/evaluatetest'>
-                <button id='k' color='#2196F3' onClick={() => {
+              {/* <Link to='/teacher/evaluatetest'></Link> */}
+                <button id={row.ButtonId} color='#2196F3' onClick={() => {
+                  
                 const responseSheetId = row.ID
                 console.log(responseSheetId)
+                console.log('course id', row.ButtonId)
                 const {fetchTestSheetStart, test} = props
-                fetchTestSheetStart(responseSheetId)
+                //fetchTestSheetStart(responseSheetId)
                 console.log(test)
                 
                 
               }}>VIEW RESPONSE</button>
-              </Link>
+              
                </TableCell>
             </TableRow>
           ))}
