@@ -11,11 +11,11 @@ import { UserActionTypes } from './user.types';
 export function* fetchUserAsync() {
   try {
     console.log('USER ASYNC IS GETTING CALLED');
-    localStorage.removeItem('user');
+   // localStorage.removeItem('user');
     let userData = yield localStorage.getItem('user');
     userData = JSON.parse(userData);
     console.log(userData);
-    // yield put(signInSuccess(userData));
+    yield put(signInSuccess(userData));
   } catch (error) {
     yield put(fetchUserFailure(error));
   }

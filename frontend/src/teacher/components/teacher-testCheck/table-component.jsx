@@ -152,7 +152,9 @@ const useStyles2 = makeStyles({
                   
                 const responseSheetId = row.ID
                 console.log(responseSheetId)
-                console.log('course id', row.ButtonId)
+                
+                const courseId = row.ButtonId
+                console.log('course id', row.courseId)
                 const {fetchTestSheetStart, test} = props
                 //fetchTestSheetStart(responseSheetId)
                 console.log(test)
