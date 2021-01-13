@@ -1,20 +1,20 @@
-import { RiTruckLine } from 'react-icons/ri';
 import AssignmentPageActionTypes from './assignment-page.types';
 
 const INITIAL_STATE = {
   isFetching: false,
   isAssignmentSubmitting: false,
-  message: null,
-  marksScored: null,
+  messageFromBackend: null,
+  maxMarksScored: null,
+  maxMarksPossible: null,
   assignmentId: null,
   assignmentName: null,
   duration: null,
-  maxMarks: null,
   questions: null,
   attemptsLeft: null,
+  // assignmentIsSubmitting: false,
+  submitConformation: null,
+  submissionFailed: false,
   errorMessage: null,
-  assignmentIsSubmitting: false,
-  submitConformation: null
 };
 
 const assignmentReducer = (state = INITIAL_STATE, action) => {
@@ -24,12 +24,12 @@ const assignmentReducer = (state = INITIAL_STATE, action) => {
         ...state,
         isFetching: true,
         isAssignmentSubmitting: false,
-        message: null,
-        marksScored: null,
+        messageFromBackend: null,
+        maxMarksScored: null,
         assignmentId: null,
         assignmentName: null,
         duration: null,
-        maxMarks: null,
+        maxMarksPossible: null,
         questions: null,
         attemptsLeft: null,
         errorMessage: null,
@@ -40,8 +40,8 @@ const assignmentReducer = (state = INITIAL_STATE, action) => {
         return {
           ...state,
           isFetching: false,
-          message: message,
-          marksScored: marksScored,
+          messageFromBackend: message,
+          maxMarksScored: marksScored,
         };
       } else {
         const {
@@ -53,16 +53,20 @@ const assignmentReducer = (state = INITIAL_STATE, action) => {
             duration,
             maxMarks,
           },
+          marksScored,
           attemptsLeft,
         } = action.payload;
         return {
           ...state,
           isFetching: false,
+          submitConformation: null,
+          isAssignmentSubmitting: false,
           assignmentId: _id,
           assignmentName: assignmentName,
           subjectName: subjectName,
           duration: duration,
-          maxMarks: maxMarks,
+          maxMarksPossible: maxMarks,
+          maxMarksScored: marksScored,
           questions: questions,
           attemptsLeft: attemptsLeft,
         };
@@ -74,16 +78,26 @@ const assignmentReducer = (state = INITIAL_STATE, action) => {
         errorMessage: action.payload,
       };
     case AssignmentPageActionTypes.SUBMIT_ASSIGNMENT_START:
-      return{
+      return {
         ...state,
-        assignmentIsSubmitting: true
-      }
+        isAssignmentSubmitting: true,
+        submissionFailed: false,
+        submitConformation: null,
+      };
     case AssignmentPageActionTypes.SUBMIT_ASSIGNMENT_SUCCESS:
-      return{
+      return {
         ...state,
-        assignmentIsSubmitting: false,
-        submitConformation: action.payload
-      }
+        isAssignmentSubmitting: false,
+        submitConformation: action.payload,
+        submissionFailed: false,
+      };
+    case AssignmentPageActionTypes.SUBMIT_ASSIGNMENT_FAILURE:
+      return {
+        ...state,
+        isAssignmentSubmitting: false,
+        submissionFailed: true,
+        errorMessage: action.payload,
+      };
     default:
       return state;
   }

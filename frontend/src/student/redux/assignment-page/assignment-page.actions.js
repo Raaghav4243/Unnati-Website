@@ -1,13 +1,8 @@
 import AssignmentPageActionTypes from './assignment-page.types';
 
-export const fetchAssignmentStart = (user_id, course_id, assignment_id) => {
+export const fetchAssignmentStart = () => {
   return {
     type: AssignmentPageActionTypes.FETCH_ASSIGNMENT_START,
-    payload: {
-      user_id: user_id,
-      course_id: course_id,
-      assignment_id: assignment_id,
-    },
   };
 };
 
@@ -22,16 +17,23 @@ export const fetchAssignmentFailure = (errorMessage) => ({
 });
 
 export const submitAssignmentStart = (data) => {
-  console.log('action data', data)
-  return{
+  console.log('action data', data);
+  return {
     type: AssignmentPageActionTypes.SUBMIT_ASSIGNMENT_START,
-    payload: {data: data}
-  }
-}
+    payload: { data: data },
+  };
+};
 
 export const submitAssignmentSuccess = (message) => {
-  return{
-  type: AssignmentPageActionTypes.SUBMIT_ASSIGNMENT_SUCCESS,
-  payload: message
-  }
-}
+  return {
+    type: AssignmentPageActionTypes.SUBMIT_ASSIGNMENT_SUCCESS,
+    payload: message,
+  };
+};
+
+export const submitAssignmentFailure = (message) => {
+  return {
+    type: AssignmentPageActionTypes.SUBMIT_ASSIGNMENT_FAILURE,
+    payload: message,
+  };
+};

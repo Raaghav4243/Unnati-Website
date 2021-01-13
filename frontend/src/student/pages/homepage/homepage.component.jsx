@@ -31,6 +31,7 @@ class HomePage extends React.Component {
   };
 
   componentDidMount() {
+    console.log('HOMEPAGE MOUNTED!');
     const { fetchAllCoursesStart } = this.props;
     fetchAllCoursesStart();
   }

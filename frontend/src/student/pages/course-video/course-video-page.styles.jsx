@@ -30,7 +30,7 @@ export const CourseVideoContainer = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
-  border: 4px solid blue;
+  /* border: 4px solid blue; */
 `;
 
 export const CourseVideoPDFContainer = styled.div`

@@ -1,4 +1,14 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { withRouter } from 'react-router-dom';
+
+import { emailSignInStart } from '../../redux/user/user.actions';
+import {
+  selectCurrentUserRole,
+  selectIsUserSignedIn,
+  selectIsUserSigningIn,
+} from '../../redux/user/user.selectors';
 import FormInput from '../form-input/form-input.component';
 
 import {
@@ -19,6 +29,15 @@ class SignIn extends React.Component {
     };
   }
 
+  componentDidUpdate() {
+    console.log('SIGN IN COMPONENT UPDATED');
+    const { signUpCompleted } = this.props;
+    if (signUpCompleted) {
+      console.log('SIGNUP COMPLETED!');
+      this.handleSignInSuccess();
+    }
+  }
+
   handleOnChange = (e) => {
     const { value, name } = e.target;
     let response = this.state.resp;
@@ -37,27 +56,40 @@ class SignIn extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const data = this.state.resp;
-    fetch('/login', {
-      method: 'POST', // or 'PUT'
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('Success:', data);
-        this.setState({ user: data });
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('user', JSON.stringify(data.user));
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
+    console.log('DATA BEING USED TO SIGN IN FROM LOGIN PAGE', data);
+    this.props.emailSignInStart(data);
+    // fetch('/login', {
+    //   method: 'POST', // or 'PUT'
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify(data),
+    // })
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     console.log('Success:', data);
+    //     this.setState({ user: data });
+    //     localStorage.setItem('token', data.token);
+    //     localStorage.setItem('user', JSON.stringify(data.user));
+    //   })
+    //   .catch((error) => {
+    //     console.error('Error:', error);
+    //   });
+  };
+
+  handleSignInSuccess = () => {
+    console.log('HANDLING SIGN IN SUCCESS AND REDIRECTING,');
+    const { history, userRole } = this.props;
+    history.push('/student/dashboard');
+    // if (userRole === 'STUDENT') {
+    //   history.push('/student/dashboard');
+    // }
   };
 
   render() {
     // console.log(localStorage.getItem('user'));
+    const { signUpstarted, signUpCompleted } = this.props;
+    const { handleSignInSuccess } = this.state;
     return (
       <>
         <SignInContainer>
@@ -95,13 +127,29 @@ class SignIn extends React.Component {
               <input type='password' id='password' name='password' />
             </label> */}
             <ButtonsBarContainer>
-              <button>log in</button>
+              <button>Log in</button>
             </ButtonsBarContainer>
           </form>
+          {signUpstarted ? <div>USER IS SIGNING IN...</div> : null}
+          {/* {signUpCompleted ? {this.handleSignInSuccess()} : null} */}
         </SignInContainer>
       </>
     );
   }
 }
 
-export default SignIn;
+const mapStateToProps = createStructuredSelector({
+  // user_id: selectCurrentUserId,
+  // course_id: selectCurrentCourseId,
+  // course_topic_id: selectCurrentCourseTopicId,
+  // course_topic_type: selectCurrentCourseTopicType,
+  signUpstarted: selectIsUserSigningIn,
+  signUpCompleted: selectIsUserSignedIn,
+  userRole: selectCurrentUserRole,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  emailSignInStart: (data) => dispatch(emailSignInStart(data)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(SignIn));

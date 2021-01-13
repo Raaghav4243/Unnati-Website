@@ -10,10 +10,24 @@ export const selectCourseTopics = createSelector(
 
 export const selectCompletedCourseTopicsId = createSelector(
   [selectCourseTopicsAndCompletionDetails],
-  (selectCompletedCourseTopicId) => selectCompletedCourseTopicId.attemptedTopicList
-)
+  (selectCompletedCourseTopicId) =>
+    selectCompletedCourseTopicId.attemptedTopicList
+);
 
-export const selectCourseId  =createSelector(
+export const selectCourseId = createSelector(
   [selectCourseTopicsAndCompletionDetails],
-  (selectCourseTopicsAndCompletionDetails) => selectCourseTopicsAndCompletionDetails.course_id
-)
+  (selectCourseTopicsAndCompletionDetails) =>
+    selectCourseTopicsAndCompletionDetails.course_id
+);
+
+export const selectCurrentCourseName = createSelector(
+  [selectCourseTopicsAndCompletionDetails],
+  (courseTopicsAndCompletionDetails) =>
+    courseTopicsAndCompletionDetails.course_name
+);
+
+export const selectViewedLectureSuccessConfirmation = createSelector(
+  [selectCourseTopicsAndCompletionDetails],
+  (courseTopicsAndCompletionDetails) =>
+    courseTopicsAndCompletionDetails.viewedLectureForFirstTimeSuccessConfirmation
+);

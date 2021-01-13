@@ -28,7 +28,11 @@ export class CourseVideo extends Component {
   }
 
   render() {
-    const { lecture_youtube_id, lecture_notes_link } = this.props;
+    const {
+      lecture_youtube_id,
+      lecture_notes_link,
+      lecture_drive_id,
+    } = this.props;
     console.log('Lecture Page has rendered');
     console.log('Lecture Notes Link', lecture_notes_link);
     return (
@@ -38,10 +42,20 @@ export class CourseVideo extends Component {
           {/* <SideNav /> */}
           <CourseVideoPDFContainer>
             {/* <CourseVideoPlayer url={`https://www.youtube.com/watch?v=YqQx75OPRa0`}></CourseVideoPlayer> */}
-            <CourseVideoPlayer
+            {/* <CourseVideoPlayer
               // url={`https://www.youtube.com/watch?v=${lecture_youtube_id}`}
               url={lecture_notes_link}
-            ></CourseVideoPlayer>
+            ></CourseVideoPlayer> */}
+            <iframe
+              src={`https://drive.google.com/file/d/${lecture_drive_id}/preview`}
+              width='640'
+              height='480'
+            ></iframe>
+            <iframe
+              src={`https://drive.google.com/file/d/${lecture_drive_id}/preview`}
+              width='640'
+              height='480'
+            ></iframe>
             <CourseNotesDownload download={pdf}></CourseNotesDownload>
           </CourseVideoPDFContainer>
         </CourseVideoContainer>

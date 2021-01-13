@@ -92,7 +92,7 @@ class TestStartPage extends React.Component {
               </>
             ) : null} */}
           {test_message ? (
-            <div>MESSAGE RECEIVED</div>
+            <div>MESSAGE RECEIVED {test_message}</div>
           ) : test_questions ? (
             <>
               {/* <Route path={`${match.path}/test`} component={TestPage} /> */}

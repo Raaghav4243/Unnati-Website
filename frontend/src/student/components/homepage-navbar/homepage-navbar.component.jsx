@@ -5,7 +5,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import { selectCurrentUser } from '../../redux/user/user.selectors';
+import {
+  selectCurrentUser,
+  selectCurrentUserId,
+} from '../../redux/user/user.selectors';
 
 import GoToDashboardButton from '../go-to-dashboard-button-link/go-to-dashboard-button-link.component';
 import SignInButton from '../sign-in-button-link/sign-in-button-link.component';
@@ -55,7 +58,7 @@ class HomePageNavbar extends React.Component {
   };
   render() {
     const { user, toggle } = this.props;
-    console.log('USER OBJ', user);
+    // console.log('USER OBJ', user);
     const { changedColor } = this.state;
     return (
       <>
@@ -162,7 +165,7 @@ class HomePageNavbar extends React.Component {
                   scrollClass={this.state.changedColor ? true : false}
                 />
               )} */}
-              {console.log('USER IS', user)}
+              {/* {console.log('USER IS', user)} */}
               {user ? (
                 <GoToDashboardButton
                   scrollClass={this.state.changedColor ? true : false}
@@ -181,7 +184,7 @@ class HomePageNavbar extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  user: selectCurrentUser,
+  user: selectCurrentUserId,
 });
 
 export default connect(mapStateToProps)(HomePageNavbar);
