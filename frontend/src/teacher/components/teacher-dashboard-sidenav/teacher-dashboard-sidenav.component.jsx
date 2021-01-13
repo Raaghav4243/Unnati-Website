@@ -57,7 +57,7 @@ class TeacherDashboardSidenav extends React.Component {
             <SidenavLink to={`/teacher`}>View Dashboard</SidenavLink>
             <SidenavLink to={`/teacher/enrolled`}>Enrolled Students</SidenavLink>
             <SidenavLink to={`/teacher/approve`}>Approve Student Course</SidenavLink>
-            <SidenavLink to={`/teacher/evaluatetest`}>Evaluate Tests</SidenavLink>
+            <SidenavLink to={`/teacher/testcheck`}>Evaluate Tests</SidenavLink>
             <SidenavLink to={`/teacher/assign`}>Assign Course to Student</SidenavLink>
             <SidenavLink to={`/teacher/studentfees`}>Enter Fee for Student</SidenavLink>
           </Dashboard>
