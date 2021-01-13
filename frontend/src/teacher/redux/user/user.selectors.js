@@ -14,14 +14,13 @@ export const selectCurrentUserUserName = createSelector(
 
 export const selectCurrentUserFirstName = createSelector(
   [selectCurrentUser],
-  (currentUser) => currentUser.firstName,
-  );
+  (currentUser) => currentUser.firstName
+);
 
 export const selectCurrentUserLastName = createSelector(
   [selectCurrentUser],
   (currentUser) => currentUser.lastName
 );
-
 
 export const selectCurrentUserCafeId = createSelector(
   [selectCurrentUser],

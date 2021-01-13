@@ -82,7 +82,10 @@ function App() {
         />
         {/* <Route path='/signup' component={SignUpForm} /> */}
         {/* TEACHER ROUTE */}
-        <Route path='/teacher/enrolled' component={TeacherEnrolledStudents} />{' '}
+        <Route
+          path='/teacher/enrolled'
+          component={TeacherEnrolledStudents}
+        />{' '}
         //enrolled-students list, no functionality
         <Route path='/teacher/approve' component={TeacherApproval} />
         <Route path='/teacher/testcheck' component={TeacherTestCheck} />
@@ -92,9 +95,11 @@ function App() {
           component={TeacherDashboardFeesPage}
         />
         <Route path='/teacher/profile' component={TeacherProfile} />
-        <Route path='/teacher/changepassword' component={TeacherChangePassword}/>
-        <Route path='/teacher/evaluatetest' component={EvaluateTestPage}/>
-
+        <Route
+          path='/teacher/changepassword'
+          component={TeacherChangePassword}
+        />
+        <Route path='/teacher/evaluatetest' component={EvaluateTestPage} />
       </Switch>
     </BrowserRouter>
   );
