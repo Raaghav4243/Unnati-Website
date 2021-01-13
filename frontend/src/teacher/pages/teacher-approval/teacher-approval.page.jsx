@@ -4,8 +4,8 @@ import { createStructuredSelector } from "reselect";
 import TeacherCafeDetails from "../../components/cafe-details/cafe-details.component";
 import TeacherDashboardNavbar from "../../components/teacher-dashboard-navbar/teacher-dashboard-navbar.component";
 import TeacherDashboardSidenav from "../../components/teacher-dashboard-sidenav/teacher-dashboard-sidenav.component";
-import CustomPaginationActionsTable from "../../components/teacher-enrolledstudent/table-component";
-import { selectUnVerifiedStudents } from '../../redux/unverified-students/unverified-student.selectors';
+import CustomPaginationActionsTable from "../../components/teacher-approval.page/table-component";
+import { selectApproveConfirmation, selectUnVerifiedStudents } from '../../redux/unverified-students/unverified-student.selectors';
 import { fetchUnVerifiedStudentStart } from '../../redux/unverified-students/unverified-students.actions';
 // import EnhancedTable2 from '../../components/teacher-enrolledstudent/table2.Component';
 
@@ -28,8 +28,8 @@ class TeacherApproval extends React.Component {
   }
   render() {
 
-    function createData(ID, FirstName, LastName, Age, FullName){
-      return { ID, FirstName, LastName, Age, FullName };
+    function createData(ID, FirstName, LastName, email, ButtonId){
+      return { ID, FirstName, LastName, email, ButtonId };
     }
 
 
@@ -43,26 +43,15 @@ class TeacherApproval extends React.Component {
 
     if(unverifiedStudents){
       unverifiedStudents.map((student, index) => {
-        let rowObj = createData(index+1, student.firstName, student.lastName, 19, 'krishna');
+        let rowObj = createData(index+1, student.firstName, student.lastName, student.email, student._id);
         console.log('rowObj', rowObj)
         rows.push(rowObj)
        })
     }else{
       
     }
-    
-   
 
-    console.log( 'rows', rows)
-
-    // const {
-    //   userId,
-    //   userCafe,
-    //   enrolled_courses,
-    //   no_of_classmates,
-    //   setCurrentCourse,
-    // } = this.props;
-
+    const {approveConfirmation} = this.props
     return (
       <>
         <TeacherDashboardNavbar></TeacherDashboardNavbar>
@@ -74,6 +63,10 @@ class TeacherApproval extends React.Component {
               </CafeDetailsParentWrapper >
               <TextTitle>Approve Students</TextTitle>
             <TableWrapper>
+              
+              {
+                approveConfirmation ? <div>{approveConfirmation}</div> : null
+              }
               <CustomPaginationActionsTable rows={rows}></CustomPaginationActionsTable>
               {/* <EnhancedTable2></EnhancedTable2> */}
             </TableWrapper>
@@ -87,6 +80,7 @@ class TeacherApproval extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
   unverifiedStudents: selectUnVerifiedStudents,
+  approveConfirmation: selectApproveConfirmation
 
 })
 

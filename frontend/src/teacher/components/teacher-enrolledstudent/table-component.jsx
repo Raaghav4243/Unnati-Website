@@ -104,7 +104,7 @@ const useStyles2 = makeStyles({
   },
 });
 
-export default function CustomPaginationActionsTable(props) {
+ function CustomPaginationActionsTable(props) {
   const rows = props.rows
   const classes = useStyles2();
   const [page, setPage] = React.useState(0);
@@ -137,8 +137,8 @@ export default function CustomPaginationActionsTable(props) {
              <TableCell align="center">ID</TableCell>
              <TableCell align="center">First Name</TableCell>
              <TableCell align="center">Last Name</TableCell>
-             <TableCell align="center">Age</TableCell>
-             <TableCell align="center">Full Name</TableCell>
+             <TableCell align="center">Email</TableCell>
+             
           </TableRow>
          </TableHead>
         <TableBody>
@@ -150,8 +150,7 @@ export default function CustomPaginationActionsTable(props) {
             <TableCell align="center" component="th" scope="row">{row.ID}</TableCell>
             <TableCell align="center">{row.FirstName}</TableCell>
             <TableCell align="center">{row.LastName}</TableCell>
-            <TableCell align="center">{row.Age}</TableCell>
-            <TableCell align="center">{row.FullName}</TableCell>
+            <TableCell align="center">{row.email}</TableCell>
             </TableRow>
           ))}
 
@@ -183,3 +182,6 @@ export default function CustomPaginationActionsTable(props) {
     </TableContainer>
   );
 }
+
+
+export default CustomPaginationActionsTable

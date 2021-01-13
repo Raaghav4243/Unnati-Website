@@ -7,6 +7,11 @@ export const selectUnVerifiedStudents = createSelector(
     (unverifiedStudentDetails) => unverifiedStudentDetails.unverifiedStudents
 );
 
+export const selectApproveConfirmation = createSelector(
+    [selectUnVerifiedStudentDetails],
+    (message) => message.approveConfirmation
+)
+
 
 
 
