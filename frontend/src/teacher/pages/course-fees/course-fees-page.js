@@ -95,6 +95,7 @@ class TeacherDashboardFeesPage extends React.Component {
   render() {
     const { verifiedStudents } = this.props;
     console.log("rendered verified students", verifiedStudents);
+
     return (
       <>
         <PageContainer>

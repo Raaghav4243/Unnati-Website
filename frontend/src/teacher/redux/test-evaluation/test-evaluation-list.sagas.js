@@ -4,6 +4,7 @@ import { TestEvaluationType } from "./test-evaluation-list.types";
 
 export function* fetchTestListAsync(){
     try {
+        
         let testList = yield fetch('/loadPendingEvaluations/5fa5796e9542c50df4285b04')
         testList = yield testList.json()
         console.log('testlist is', testList)

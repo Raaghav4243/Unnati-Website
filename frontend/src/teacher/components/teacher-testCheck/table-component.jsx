@@ -147,21 +147,21 @@ const useStyles2 = makeStyles({
             <TableCell align="center">{row.CourseName}</TableCell>
             <TableCell align="center">{row.testName}</TableCell>
               <TableCell align="center">
-              {/* <Link to='/teacher/evaluatetest'></Link> */}
+              <Link to='/teacher/evaluatetest'>
                 <button id={row.ButtonId} color='#2196F3' onClick={() => {
                   
                 const responseSheetId = row.ID
                 console.log(responseSheetId)
                 
                 const courseId = row.ButtonId
-                console.log('course id', row.courseId)
+                console.log('course id', courseId)
                 const {fetchTestSheetStart, test} = props
-                //fetchTestSheetStart(responseSheetId)
+                fetchTestSheetStart(responseSheetId, courseId)
                 console.log(test)
                 
                 
               }}>VIEW RESPONSE</button>
-              
+              </Link>
                </TableCell>
             </TableRow>
           ))}
@@ -200,7 +200,7 @@ const mapStateToProps = createStructuredSelector({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchTestSheetStart: (responseSheetId) => dispatch(fetchTestSheetStart(responseSheetId))
+  fetchTestSheetStart: (responseSheetId, courseId) => dispatch(fetchTestSheetStart(responseSheetId, courseId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)( CustomPaginationActionsTable)

@@ -46,7 +46,7 @@ class TeacherTestCheck extends React.Component {
          //console.log('course names', coursename)
         course.testsDone.map((test) => {
           console.log(test)
-          let rowObj = createData(test.responseSheet, firstName, coursename, test.test, courseid)
+          let rowObj = createData(test.responseSheet, firstName, coursename, test.test.testName, courseid)
           rows.push(rowObj)
         })
        })
@@ -55,7 +55,7 @@ class TeacherTestCheck extends React.Component {
       
     }
 
-
+    
 
     return (
       <>
