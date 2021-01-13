@@ -50,7 +50,7 @@ class TeacherTestCheck extends React.Component {
               test.responseSheet,
               firstName,
               coursename,
-              test.test,
+              test.test.testName,
               courseid
             );
             rows.push(rowObj);

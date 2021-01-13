@@ -6,3 +6,8 @@ export const selectTestDetails = createSelector(
     [selectTest],
     (test) => test.testResponse
 )
+
+export const selectTestCourseId = createSelector(
+    [selectTest],
+    (test) => test.courseId
+)

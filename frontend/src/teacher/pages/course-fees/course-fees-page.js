@@ -95,6 +95,10 @@ class TeacherDashboardFeesPage extends React.Component {
   render() {
     const { verifiedStudents } = this.props;
     console.log("rendered verified students", verifiedStudents);
+    let cafeId = localStorage.getItem('user')
+    cafeId = JSON.parse(cafeId)
+    cafeId = cafeId.cafe
+    console.log(cafeId)
     return (
       <>
         <PageContainer>

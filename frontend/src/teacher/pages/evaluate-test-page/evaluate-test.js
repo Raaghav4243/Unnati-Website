@@ -36,16 +36,17 @@ import {
 } from "./evaluate-test.styles";
 import TeacherDashboardNavbar from "../../components/teacher-dashboard-navbar/teacher-dashboard-navbar.component";
 import TeacherDashboardSidenav from "../../components/teacher-dashboard-sidenav/teacher-dashboard-sidenav.component";
-import { selectTestDetails } from "../../redux/test-sheet/test-sheet.selectors";
+import { selectTestCourseId, selectTestDetails } from "../../redux/test-sheet/test-sheet.selectors";
 import { updateTestScoreStart } from "../../redux/test-evaluation/test-evaluation-list.actions";
 
 class EvaluateTestPage extends React.Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
+    const {courseId} = props
     this.state = {
       score: {marksScored: 0},
       studentId: null,
-      courseId: '5fa6bd6f4afbc52538b49afb',
+      courseId: null,
       testId: null
     }
   }
@@ -60,13 +61,16 @@ class EvaluateTestPage extends React.Component {
     const value = e.target.value
     console.log(value)
     this.setState({score: value}, () => {console.log(this.state)})
-    const { userCafe, test } = this.props;
+    const { userCafe, test, courseId } = this.props;
+    console.log(courseId)
+    this.setState({courseId: courseId})
     this.setState({studentId: test.studentId})
     this.setState({testId: test.testId._id}, () => console.log(this.state))
   }
 
   handleSubmit = (e) => {
-    const {updateTestScoreStart} = this.props
+    const {updateTestScoreStart, } = this.props
+    
     const studentId = this.state.studentId
     const testId = this.state.testId
     const courseId = this.state.courseId
@@ -170,6 +174,7 @@ const mapStateToProps = createStructuredSelector({
   //userId: selectCurrentUserId,
   userCafe: selectUserCafeDetails,
   test: selectTestDetails,
+  courseId: selectTestCourseId
 });
 
 const mapDispatchToProps = (dispatch) => ({

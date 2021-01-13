@@ -4,6 +4,7 @@ const INTIAL_STATE = {
     isUpdating: false,
     errorMessage: null,
     updateConformation: null,
+    courseId: null,
     testResponse: null
 }
 
@@ -15,10 +16,12 @@ const testSheetReducer = (state=INTIAL_STATE, action) => {
                 isUpdating: true
             }
         case testSheetTypes.FETCH_SUBMITTED_TEST_SUCCESS:
+            const {courseId, test} = action.payload
             return{
                 ...state,
                 isUpdating: false,
-                testResponse: action.payload
+                courseId: courseId,
+                testResponse: test
             }
         case testSheetTypes.FETCH_SUBMITTED_TEST_FAILURE:
             return{

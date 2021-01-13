@@ -1,5 +1,5 @@
-import { all, call, put, takeLatest } from "redux-saga/effects";
-import { fetchUnVerifiedStudentFailure, fetchUnVerifiedStudentSuccess } from './unverified-students.actions';
+import { all, call, put, takeEvery, takeLatest } from "redux-saga/effects";
+import { approveStudentFailure, approveStudentSuccess, fetchUnVerifiedStudentFailure, fetchUnVerifiedStudentSuccess } from './unverified-students.actions';
 import { UnVerifiedStudentsType } from "./unverified-students.types";
 
 export function* fetchUnVerifiedStudentAsync(){
@@ -17,10 +17,36 @@ export function* fetchUnVerifiedStudentAsync(){
     }
 }
 
+export function* approveStudentStartAsync({payload: {studentId}}){
+    try {
+        yield fetch(
+            `/studentApproval/${studentId}`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              }
+            }
+          )
+            .then((response) => response.json())
+            .then((data) => {
+              console.log("student approved", data);
+            });
+
+        yield put(approveStudentSuccess('student approved'))
+    } catch (error) {
+        yield put(approveStudentFailure(error))
+    }
+}
+
 export function* fetchUnVerifiedStudentStart(){
     yield takeLatest(UnVerifiedStudentsType.FETCH_UNVERIFIED_STUDENT_START, fetchUnVerifiedStudentAsync)
 }
 
+export function* approveStudentStart(){
+    yield takeEvery(UnVerifiedStudentsType.APPROVE_STUDENT_START, approveStudentStartAsync)
+}
+
 export function* unverifiedStudentsSagas(){
-    yield all([call(fetchUnVerifiedStudentStart)])
+    yield all([call(fetchUnVerifiedStudentStart), call(approveStudentStart)])
 }
