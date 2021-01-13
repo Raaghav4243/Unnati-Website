@@ -144,14 +144,13 @@ export const Prompt = styled.div`
 `;
 export const PopupWrapper= styled.div`
 width: 100%;
-height: 170px;
-padding: 5vh 5vw 5vh 5vw;
+height: 100x;
+padding: 2vh 2vw 2vh 2vw;
 
 /* border: 2px solid orange; */
 border-radius: 10px;
-background-color: #2475B0;
+background-color: #3B83B6;
 display: flex;
-justify-content: space-between;
 align-items: center;
 flex-direction: column;
 

@@ -63,8 +63,8 @@ const TeacherCafeDetails = ({
               <ButtonWrapper>
               <Popup trigger={<ContactButton>Contact Admin</ContactButton>} position="right center">
                 <PopupWrapper>
-                  <ContactDetails>Faculty Email: facultyemail@gmail.com</ContactDetails>
-                  <ContactDetails>Enactus Email: enactusdtu@gmail.com</ContactDetails>
+                  <ContactDetails>Admin Phone Number : 98237273823</ContactDetails>
+                  <ContactDetails>Enactus Email : enactusdtu@gmail.com</ContactDetails>
                   </PopupWrapper>
   </Popup>
                 
