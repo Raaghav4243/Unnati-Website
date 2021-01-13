@@ -66,3 +66,11 @@ overflow-x: auto;
 overflow-y: hidden;
 `; */
 
+export const TextTitle = styled.div`
+width: 100%;
+  height: 25px;
+  /* border: 2px solid red; */
+  font-size: 18px;
+  font-weight: 500;
+  font-family: 'Montserrat', sans-serif;
+`;

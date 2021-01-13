@@ -136,7 +136,7 @@ const mapStateToProps = createStructuredSelector({
   userFeeDetails: selectUserFeeDetails,
   userFeeReciepts: selectUserFeeReciepts,
   user_id: selectCurrentUserId,
-  cafe_if: selectCurrentUserCafeId,
+  cafe_id: selectCurrentUserCafeId,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -1,5 +1,7 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 import {
+  signInSuccess,
+  signInFailure,
   fetchUserFailure,
   fetchUserSuccess,
   updateUserSuccess,
@@ -8,10 +10,12 @@ import { UserActionTypes } from './user.types';
 
 export function* fetchUserAsync() {
   try {
-    let userData = localStorage.getItem('user');
+    console.log('USER ASYNC IS GETTING CALLED');
+    localStorage.removeItem('user');
+    let userData = yield localStorage.getItem('user');
     userData = JSON.parse(userData);
     console.log(userData);
-    yield put(fetchUserSuccess(userData));
+    // yield put(signInSuccess(userData));
   } catch (error) {
     yield put(fetchUserFailure(error));
   }
@@ -36,6 +40,63 @@ export function* updateUserAsync({ payload: { user_id, data } }) {
   } catch (error) {}
 }
 
+export function* signInWithEmail({ payload }) {
+  console.log('DATA BEFORE POST REQUEST IS', payload);
+  let data = payload;
+  try {
+    let UserObj = yield fetch('/login', {
+      method: 'POST', // or 'PUT'
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
+    // let viewedLectureForFirstTimeMessage = yield fetch(
+    //   `/enrolled-course/${userId}/course/${courseId}/lecture/${lectureId}`,
+    //   {
+    //     method: 'POST', // or 'PUT'
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify({ Random: 7 }),
+    //   }
+    // );
+
+    // viewedLectureForFirstTimeMessage = yield viewedLectureForFirstTimeMessage.json();
+
+    UserObj = yield UserObj.json();
+    console.log('USER OBJ IS', UserObj);
+    localStorage.setItem('token', UserObj.token);
+    localStorage.setItem('user', JSON.stringify(UserObj.user));
+    yield put(signInSuccess(UserObj.user));
+    // allCourses.done
+    //   ? yield put(fetchAllCoursesSuccess(allCourses.courses))
+    //   : yield put(fetchAllCoursesFailure(allCourses.message));
+
+    // .then((response) => response.json())
+    // .then((data) => {
+    //   console.log('Success:', data);
+    //   this.setState({ user: data });
+    //   localStorage.setItem('token', data.token);
+    //   localStorage.setItem('user', JSON.stringify(data.user));
+
+    // })
+    // .catch((error) => {
+    //   console.error('Error:', error);
+    // });
+  } catch (error) {
+    yield put(signInFailure(error));
+  }
+  // } catch (error) {
+  //   yield put(fetchAllCoursesFailure(error));
+  // }
+}
+
+export function* onEmailSignInStart() {
+  yield takeLatest(UserActionTypes.EMAIL_SIGN_IN_START, signInWithEmail);
+}
+
 export function* updateUserStart() {
   yield takeLatest(UserActionTypes.UPDATE_USER_START, updateUserAsync);
 }
@@ -45,5 +106,9 @@ export function* fetchUserStart() {
 }
 
 export function* userSagas() {
-  yield all([call(updateUserStart), call(fetchUserAsync)]);
+  yield all([
+    call(updateUserStart),
+    call(fetchUserAsync),
+    call(onEmailSignInStart),
+  ]);
 }

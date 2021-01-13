@@ -39,7 +39,7 @@ class CourseOverview extends React.Component {
         course_summary:
           "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)",
         course_image:
-          'https://s3-alpha-sig.figma.com/img/b0d3/4f4c/a6560cd50fe0c28793710c7c9abdf456?Expires=1609113600&Signature=Q4PNNnUdhd8FakTBuVTBZBUFk7esrTxoIsoS4oX8H2mMiySlLG~HqmNWrft5el4tTNxAfOwbVfdUIvWHVicUtMFsmYYeoTs6IFswTbThcXt22Ubkkzv54uLh73kNwwlAjkUlG7qV1OhNITVmnloGjAr5D7D0Ye7CijXUqltpjz6xRQumaDY6M~azHXmo-YhBrIvBdCoTL8d-CIOm56E9TIIbZu3HsyuFJS0EUPIJlsX4kN0ghz~R~eFs1yBf96M5C~gu~2tgyGmwgSSc43g~gpz4pDcahAgpXwmg85khfXSZYqtgA9vs4WHGLn-M-vBIzbMuJpE2rNybYhTavQ12zw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
+          'https://s3-alpha-sig.figma.com/img/b0d3/4f4c/a6560cd50fe0c28793710c7c9abdf456?Expires=1611532800&Signature=QQ1Hdt6PxFn0sFtyAO94u-3vqeCJATHWXqjNl~MF4jlVTBaRcpjaWAMqYXsU9974uVyEi-6~fCHALFPHGnCgkV8Sviw9SSCifScN5Mz9n5DNUF03HzclDE3ileeIkwAjSbZUTe6PpBiK~Bly9ZtW2Xapmrh3BPTOMGFQX1qV5wznZxxTZLeMum5-zo~2g2s3Hg2x-2~aswSUX5ciosm7Vbg4-sVuAFilT54w2KNJ6dr-d3RzcP~6JuAFo4d1i9VpZpY~7J4LOVoXkiiMpTxXPiN3WwVD5uXclvOJjNeQ5krK4f89gbnD8oeL3t7eirC0lQOj8UOfkVw86mSo1a6CLw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
       },
     };
   }

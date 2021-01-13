@@ -2,10 +2,7 @@ import { createSelector } from 'reselect';
 
 const selectUser = (state) => state.user;
 
-export const selectCurrentUser = createSelector(
-  [selectUser],
-  (user) => user.currentUser
-);
+export const selectCurrentUser = createSelector([selectUser], (user) => user);
 
 export const selectCurrentUserUserName = createSelector(
   [selectCurrentUser],
@@ -14,8 +11,8 @@ export const selectCurrentUserUserName = createSelector(
 
 export const selectCurrentUserFirstName = createSelector(
   [selectCurrentUser],
-  (currentUser) => currentUser.firstName,
-  );
+  (currentUser) => currentUser.firstName
+);
 
 export const selectCurrentUserLastName = createSelector(
   [selectCurrentUser],
@@ -45,4 +42,14 @@ export const selectPhoneNumber = createSelector(
 export const selectCurrentUserRole = createSelector(
   [selectCurrentUser],
   (currentUser) => currentUser.role
+);
+
+export const selectIsUserSigningIn = createSelector(
+  [selectCurrentUser],
+  (currentUser) => currentUser.isUserSigningIn
+);
+
+export const selectIsUserSignedIn = createSelector(
+  [selectCurrentUser],
+  (currentUser) => currentUser.isUserSignedIn
 );

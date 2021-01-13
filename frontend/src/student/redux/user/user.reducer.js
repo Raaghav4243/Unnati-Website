@@ -1,17 +1,28 @@
 import { UserActionTypes } from './user.types';
 
 const INITIAL_STATE = {
-  currentUser: {
-    username: null,
-    email: null,
-    _id: null,
-    cafe: null,
-    firstName: null,
-    lastName: null,
-    phoneNumber: null,
-    role: null,
-  },
+  // currentUser: {
+  //   username: null,
+  //   email: null,
+  //   _id: null,
+  //   cafe: null,
+  //   firstName: null,
+  //   lastName: null,
+  //   phoneNumber: null,
+  //   role: null,
+  // },
+  // currentUser: {},
+  username: null,
+  email: null,
+  _id: null,
+  cafe: null,
+  firstName: null,
+  lastName: null,
+  phoneNumber: null,
+  role: null,
   isFetching: false,
+  isUserSigningIn: false,
+  isUserSignedIn: false,
   errorMessage: undefined,
   userIsUpdating: false,
   updateConformation: null,
@@ -19,10 +30,58 @@ const INITIAL_STATE = {
 
 const userReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case UserActionTypes.SET_CURRENT_USER:
+    // case UserActionTypes.SET_CURRENT_USER:
+    //   return {
+    //     ...state,
+    //     currentUser: action.payload,
+    //   };
+    case UserActionTypes.EMAIL_SIGN_IN_START:
       return {
         ...state,
-        currentUser: action.payload,
+        isUserSigningIn: true,
+        isUserSignedIn: false,
+        error: null,
+      };
+    case UserActionTypes.SIGN_IN_SUCCESS:
+      console.log('USER SIGNED IN!');
+      console.log('USER PAYLOAD IS', action.payload);
+      const {
+        username,
+        email,
+        _id,
+        cafe,
+        firstName,
+        lastName,
+        phoneNumber,
+        role,
+      } = action.payload;
+      return {
+        ...state,
+        // currentUser: action.payload,
+        username: username,
+        email: email,
+        _id: _id,
+        cafe: cafe,
+        firstName: firstName,
+        lastName: lastName,
+        phoneNumber: phoneNumber,
+        role: role,
+        isUserSigningIn: false,
+        isUserSignedIn: true,
+        error: null,
+      };
+    case UserActionTypes.SIGN_OUT_SUCCESS:
+      return {
+        ...state,
+        currentUser: null,
+        error: null,
+      };
+    case UserActionTypes.SIGN_IN_FAILURE:
+    case UserActionTypes.SIGN_OUT_FAILURE:
+    case UserActionTypes.SIGN_UP_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
       };
     case UserActionTypes.FETCH_USER_START:
       return {
@@ -35,6 +94,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isFetching: false,
+        // isUserSignedIn: true,
         currentUser: action.payload,
       };
     case UserActionTypes.FETCH_USER_FAILURE:

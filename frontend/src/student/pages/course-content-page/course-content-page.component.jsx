@@ -11,7 +11,8 @@ import {
 } from '../../redux/student/student.selectors';
 
 import CourseVideo from '../course-video/course-video-page.component';
-import AssignmentPage from '../assignment-page/assignment-page.component';
+// import AssignmentPage from '../assignment-page/assignment-page.component';
+import AssignmentStartPage from '../assignment-start-page/assignment-start-page.component';
 import TestStartPage from '../test-start-page/test-start-page.component';
 
 import { fetchTestStart } from '../../redux/testpage/testpage.actions';
@@ -57,9 +58,12 @@ class CourseContentPage extends React.Component {
     //   ? fetchAssignmentStart(user_id, course_id, course_topic_id)
     //   : null;
     if (course_topic_type === 'LECTURE') {
-      fetchLectureStart(user_id, course_id, course_topic_id);
+      // fetchLectureStart(user_id, course_id, course_topic_id);
+      fetchLectureStart();
     } else if (course_topic_type === 'ASSIGNMENT') {
-      fetchAssignmentStart(user_id, course_id, course_topic_id);
+      console.log('ASSIGNMENT STARTED FETCHING FROM COURSE CONTENT PAGE');
+      // fetchAssignmentStart(user_id, course_id, course_topic_id);
+      fetchAssignmentStart();
     } else if (course_topic_type === 'TEST') {
       fetchTestStart(user_id, course_id, course_topic_id);
     }
@@ -76,7 +80,7 @@ class CourseContentPage extends React.Component {
           {course_topic_type === 'LECTURE' ? (
             <CourseVideo />
           ) : course_topic_type === 'ASSIGNMENT' ? (
-            <AssignmentPage />
+            <AssignmentStartPage />
           ) : course_topic_type === 'TEST' ? (
             <TestStartPage />
           ) : (
@@ -102,7 +106,8 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchTestStart(user_id, course_id, test_id)),
   fetchAssignmentStart: (user_id, course_id, assignment_id) =>
     dispatch(fetchAssignmentStart(user_id, course_id, assignment_id)),
-  fetchLectureStart: (user_id, course_id, lecture_id) =>
-    dispatch(fetchLectureStart(user_id, course_id, lecture_id)),
+  // fetchLectureStart: (user_id, course_id, lecture_id) =>
+  //   dispatch(fetchLectureStart(user_id, course_id, lecture_id)),
+  fetchLectureStart: () => dispatch(fetchLectureStart()),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(CourseContentPage);

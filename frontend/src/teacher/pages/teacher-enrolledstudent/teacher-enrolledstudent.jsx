@@ -17,6 +17,7 @@ import {
   CafeTableWrapper,
   TableWrapper,
   CafeDetailsParentWrapper ,
+  TextTitle
 } from "./teacher-enrolled.styled";
 
 class TeacherEnrolledStudents extends React.Component {
@@ -70,6 +71,7 @@ class TeacherEnrolledStudents extends React.Component {
           <CafeDetailsParentWrapper> 
               <TeacherCafeDetails></TeacherCafeDetails>
               </CafeDetailsParentWrapper >
+              <TextTitle>Enrolled Students</TextTitle>
             <TableWrapper>
               <CustomPaginationActionsTable rows={rows}></CustomPaginationActionsTable>
               {/* <EnhancedTable2></EnhancedTable2> */}

@@ -33,7 +33,11 @@ class StudentCourseTopicPage extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log('STUDENT COURSE TOPIC PAGE UPDATED!');
+    // console.log(
+    //   'STUDENT COURSE TOPIC PAGE UPDATED! SO NOW COURSE TOPICS FETCHED AGAIN'
+    // );
+    // const { user_id, course_id, fetchCourseTopicsStart } = this.props;
+    // fetchCourseTopicsStart(user_id, course_id);
   }
   render() {
     const { match, course_topic_type, course_topic_id } = this.props;
@@ -55,17 +59,17 @@ class StudentCourseTopicPage extends React.Component {
             );
           }}
         />
-        {/* <Route
+        <Route
           exact
           path={`${match.path}/assignment`}
           render={() => {
             return (
               <>
-                <TestPage />
+                <AssignmentPage />
               </>
             );
           }}
-        /> */}
+        />
         <Route
           exact
           path={`${match.path}/test`}

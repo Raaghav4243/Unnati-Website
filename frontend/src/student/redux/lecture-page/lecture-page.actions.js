@@ -15,3 +15,8 @@ export const fetchLectureFailure = (errorMessage) => ({
   type: LecturePageActionTypes.FETCH_LECTURE_FAILURE,
   payload: errorMessage,
 });
+
+export const ViewedLectureForFirstTime = (lectureId) => ({
+  type: LecturePageActionTypes.FETCH_LECTURE_FAILURE,
+  payload: lectureId,
+});
