@@ -43,7 +43,14 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isFetching: false,
-        currentUser: action.payload,
+        username: username,
+        email: email,
+        _id:_id,
+        lastName: lastName,
+        firstName: firstName,
+        phoneNumber: phoneNumber,
+        role: role,
+        cafe: cafe
       };
     case UserActionTypes.FETCH_USER_FAILURE:
       return {
