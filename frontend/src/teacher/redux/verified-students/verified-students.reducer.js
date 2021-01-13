@@ -1,13 +1,7 @@
 const { VerifiedStudentsType } = require("./verified-students.types")
 
 const INITIAL_STATE = {
-    verifiedStudents: {
-        _id: null,
-        email: null,
-        firstname: null,
-        lastName: null,
-        phoneNumer: null
-    },
+    verifiedStudents: null,
     isFetching: false,
     errorMessage: null,
 }

@@ -40,7 +40,8 @@ import TeacherTestCheck from './teacher/pages/teacher-testCheck/teacher-test-che
 
 import TeacherProfile from './teacher/pages/Profile-page/profile-page.component';
 import TeacherChangePassword from './teacher/pages/change-password/change-password';
-
+import EvaluateTestPage from './teacher/pages/evaluate-test-page/evaluate-test';
+import TeacherDashboardLandingPage from './teacher/pages/teacher-dashboard-main-page/teacher-dashboard-page';
 function App() {
   return (
     <BrowserRouter>
@@ -55,11 +56,7 @@ function App() {
         <Route path='/student' component={StudentPage} />
         <Route path='/test' component={TestPage} />
         <Route path='/signup' component={SignInAndSignUpPage} />
-        <Route path='/teacher' exact component={cafeteacher} />
-        {/* <Route path='/login' component={LogInForm} /> */}
-        <Route path='/teacher' exact component={cafeteacher} />
-        {/* <Route path='/signup' component={SignUpForm} />
-        <Route path='/login' component={LogInForm} /> */}
+        <Route path='/teacher' exact component={TeacherDashboardLandingPage} />
         <Route
           path='/teacher/enrolled'
           exact
@@ -85,20 +82,19 @@ function App() {
         />
         {/* <Route path='/signup' component={SignUpForm} /> */}
         {/* TEACHER ROUTE */}
-        <Route path='/enrolled' component={TeacherEnrolledStudents} />{' '}
+        <Route path='/teacher/enrolled' component={TeacherEnrolledStudents} />{' '}
         //enrolled-students list, no functionality
-        <Route path='/approve' component={TeacherApproval} />
-        <Route path='/testcheck' component={TeacherTestCheck} />
+        <Route path='/teacher/approve' component={TeacherApproval} />
+        <Route path='/teacher/testcheck' component={TeacherTestCheck} />
         <Route path='/teacher/assign' component={TeacherDashboardAssignPage} />
         <Route
           path='/teacher/studentfees'
           component={TeacherDashboardFeesPage}
         />
         <Route path='/teacher/profile' component={TeacherProfile} />
-        <Route
-          path='/teacher/changepassword'
-          component={TeacherChangePassword}
-        />
+        <Route path='/teacher/changepassword' component={TeacherChangePassword}/>
+        <Route path='/teacher/evaluatetest' component={EvaluateTestPage}/>
+
       </Switch>
     </BrowserRouter>
   );

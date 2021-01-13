@@ -1,7 +1,15 @@
 import React from 'react';
 
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 // import { ReactComponent as CafeIcon } from '../../icons/cafe.svg';
-
+import {
+  selectUserCafeAddress,
+  selectUserCafeName,
+  selectUserCafeNumberOfClassmates,
+  selectUserCafeTeacherInChargeName,
+} from '../../redux/cafe/cafe.selectors';
+import Popup from "reactjs-popup";
 import CafeImage from '../../assets/image.png';
 
 import {
@@ -21,13 +29,15 @@ import {
   ClassmatesWrapper,
   Number,
   Prompt,
+  PopupWrapper,
+  ContactDetails,
 } from './cafe-details.styles';
 
 const TeacherCafeDetails = ({
   cafeName,
   cafeAddress,
   facultyIncharge,
-  classmates,
+  studentnumber,
 }) => {
   return (
     <>
@@ -42,7 +52,7 @@ const TeacherCafeDetails = ({
               />
             </CafeLogo>
             <CafeDetails>
-              <CafeName>{cafeName}cafeName</CafeName>
+              <CafeName>{cafeName}</CafeName>
               <CafeAddress>
                 <strong>Address :</strong> {cafeAddress}
               </CafeAddress>
@@ -51,7 +61,13 @@ const TeacherCafeDetails = ({
                 {facultyIncharge}
               </CafeFaculty>
               <ButtonWrapper>
-                <ContactButton>Contact Teacher</ContactButton>
+              <Popup trigger={<ContactButton>Contact Admin</ContactButton>} position="right center">
+                <PopupWrapper>
+                  <ContactDetails>Admin Phone Number : 98237273823</ContactDetails>
+                  <ContactDetails>Enactus Email : enactusdtu@gmail.com</ContactDetails>
+                  </PopupWrapper>
+  </Popup>
+                
               </ButtonWrapper>
             </CafeDetails>
           </CafeDetailsWrapper>
@@ -59,7 +75,7 @@ const TeacherCafeDetails = ({
         <ClassmatesContainer>
           <ClassmatesTitle>You have</ClassmatesTitle>
           <ClassmatesWrapper>
-            <Number>{classmates}2</Number>
+            <Number>{studentnumber}</Number>
             <Prompt>Students</Prompt>
           </ClassmatesWrapper>
         </ClassmatesContainer>
@@ -67,5 +83,12 @@ const TeacherCafeDetails = ({
     </>
   );
 };
+const mapStateToProps = createStructuredSelector({
+  cafeName: selectUserCafeName,
+  cafeAddress: selectUserCafeAddress,
+  teacherName: selectUserCafeTeacherInChargeName,
+  studentnumber: selectUserCafeNumberOfClassmates,
+});
 
-export default TeacherCafeDetails;
+export default connect(mapStateToProps)(TeacherCafeDetails);
+

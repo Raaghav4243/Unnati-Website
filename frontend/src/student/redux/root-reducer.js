@@ -14,7 +14,12 @@ import assignmentReducer from './assignment-page/assignment-page.reducer';
 import lectureReducer from './lecture-page/lecture-page.reducer';
 import courseOverviewReducer from './course-overview/course-overview.reducer';
 import verifiedStudentReducer from '../../teacher/redux/verified-students/verified-students.reducer';
+import courseAssignReducer from '../../teacher/redux/course-assign/course-assign.reducer';
+import feeUpdateReducer from '../../teacher/redux/fee-update/fee-update.reducer';
+import testEvaluationListReducer from '../../teacher/redux/test-evaluation/test-evaluation-list.reducer';
+import testSheetReducer from '../../teacher/redux/test-sheet/test-sheet.reducer';
 
+import unverifiedStudentReducer from '../../teacher/redux/unverified-students/unverified-students.reducer';
 // const persistCongfig = {
 //     key: 'root'
 // }
@@ -32,7 +37,12 @@ const rootReducer = combineReducers({
   assignment: assignmentReducer,
   lecture: lectureReducer,
   courseOverview: courseOverviewReducer,
-  verifiedStudent: verifiedStudentReducer
+  verifiedStudent: verifiedStudentReducer,
+  assignCourses: courseAssignReducer,
+  feeUpdate: feeUpdateReducer,
+  testEvaluationList: testEvaluationListReducer,
+  evaluateTests: testSheetReducer,
+  unverifiedStudent: unverifiedStudentReducer,
 });
 
 export default rootReducer;

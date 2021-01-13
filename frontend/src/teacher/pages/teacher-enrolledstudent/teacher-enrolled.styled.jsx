@@ -17,10 +17,18 @@ margin-left: 21vw;
  flex-direction: column;
 `;
 
+export const CafeDetailsParentWrapper = styled.div`
+  width: 100%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  /* min-height: 35%; */
+  /* border: 4px solid yellow; */
+`;
 
 export const TableWrapper = styled.div`
  width: 1000px;
  margin-left: 5vh;
+ margin-top:2vh;
 `;
 
 export const CafeDetailWrapper = styled.div`
@@ -64,3 +72,11 @@ overflow-x: auto;
 overflow-y: hidden;
 `;
 
+export const TextTitle = styled.div`
+width: 100%;
+  height: 25px;
+  /* border: 2px solid red; */
+  font-size: 18px;
+  font-weight: 500;
+  font-family: 'Montserrat', sans-serif;
+`;

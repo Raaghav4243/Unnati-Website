@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 
-//redux used
-// import {
-//   selectCurrentUser,
-//   selectCurrentUserFirstName,
-//   selectCurrentUserLastName,
-// } from '../../redux/user/user.selectors';
+
+import {
+  selectCurrentUser,
+  selectCurrentUserFirstName,
+  selectCurrentUserLastName,
+} from '../../redux/user/user.selectors';
 
 // import { ReactComponent as ProfilePhoto } from '../../icons/profile-user.svg';
 import { ReactComponent as ProfilePhoto } from '../../icons/male-icon.svg';
@@ -54,10 +54,10 @@ class TeacherDashboardSidenav extends React.Component {
           </Profile>
           <Dashboard>
             <DashboardTitle>Dashboard</DashboardTitle>
-            <SidenavLink to={`/`}>View Dashboard</SidenavLink>
-            <SidenavLink to={`/enrolled`}>Enrolled Students</SidenavLink>
-            <SidenavLink to={`/approve`}>Approve Student Course</SidenavLink>
-            <SidenavLink to={`/testcheck`}>Evaluate Tests</SidenavLink>
+            <SidenavLink to={`/teacher`}>View Dashboard</SidenavLink>
+            <SidenavLink to={`/teacher/enrolled`}>Enrolled Students</SidenavLink>
+            <SidenavLink to={`/teacher/approve`}>Approve Student Course</SidenavLink>
+            <SidenavLink to={`/teacher/testcheck`}>Evaluate Tests</SidenavLink>
             <SidenavLink to={`/teacher/assign`}>Assign Course to Student</SidenavLink>
             <SidenavLink to={`/teacher/studentfees`}>Enter Fee for Student</SidenavLink>
           </Dashboard>
@@ -67,10 +67,11 @@ class TeacherDashboardSidenav extends React.Component {
   }
 }
 
-// const mapStateToProps = createStructuredSelector({
-//   user: selectCurrentUser,
-//   firstName: selectCurrentUserFirstName,
-//   lastName: selectCurrentUserLastName,
-// });
+const mapStateToProps = createStructuredSelector({
+  user: selectCurrentUser,
+  firstName: selectCurrentUserFirstName,
+  lastName: selectCurrentUserLastName,
+});
 
-export default TeacherDashboardSidenav;
+
+export default connect(mapStateToProps)(withRouter(TeacherDashboardSidenav));

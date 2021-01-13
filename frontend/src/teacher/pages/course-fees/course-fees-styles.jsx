@@ -75,7 +75,7 @@ export const StudentDropDown = styled.div`
 export const CourseDropDown = styled.div`
   display:flex;
   flex-direction: column;
-  margin-left:10vw;
+  margin-left:7vw;
 `;
 
 export const ButtonWrapper = styled.button`
@@ -88,7 +88,7 @@ border-radius: 10px;
 color: #FFFFFF;
 background-color: #2475B0;
 cursor: pointer;
-padding: 1.3vh 1vw 1vh 1vw;
+padding: 1.3vh 0.5vw 1vh 1vw;
 margin-top: 5vh;
 border: none;
 outline:none;
@@ -102,3 +102,12 @@ export const ImageWrapper = styled.img`
 margin-left: 5vw;
 margin-top: 3vh;
 `
+
+export const RemarksFieldWrapper = styled.div`
+margin-top: 1vh;
+`;
+export const RemarksWrapper = styled.div`
+  display:flex;
+  flex-direction: column;
+  margin-left:5vw;
+`;
