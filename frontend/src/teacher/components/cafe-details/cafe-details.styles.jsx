@@ -149,11 +149,12 @@ padding: 5vh 5vw 5vh 5vw;
 
 /* border: 2px solid orange; */
 border-radius: 10px;
-background-color: #f3f3f3;
+background-color: #2475B0;
 display: flex;
 justify-content: space-between;
 align-items: center;
 flex-direction: column;
+
 `;
 export const ContactDetails= styled.div
 ``

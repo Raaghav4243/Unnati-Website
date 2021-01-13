@@ -16,6 +16,7 @@ import {
   Body,
   CafeTableWrapper,
   TableWrapper,
+  TextTitle
 } from "./teacher-test.-check.styles";
 
 class TeacherTestCheck extends React.Component {
@@ -65,6 +66,7 @@ class TeacherTestCheck extends React.Component {
             < CafeDetailsParentWrapper>
               <TeacherCafeDetails></TeacherCafeDetails>
             </ CafeDetailsParentWrapper>
+            <TextTitle>Evaluate Tests</TextTitle>
             <TableWrapper>
               <CustomPaginationActionsTable
                 rows={rows}

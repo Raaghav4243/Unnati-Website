@@ -17,6 +17,8 @@ import {
   CafeTableWrapper,
   TableWrapper,
   CafeDetailsParentWrapper ,
+  ButtonWrapper,
+  TextTitle
 } from "./teacher-approval.styles";
 
 class TeacherApproval extends React.Component {
@@ -70,10 +72,12 @@ class TeacherApproval extends React.Component {
           <CafeDetailsParentWrapper> 
               <TeacherCafeDetails></TeacherCafeDetails>
               </CafeDetailsParentWrapper >
+              <TextTitle>Approve Students</TextTitle>
             <TableWrapper>
               <CustomPaginationActionsTable rows={rows}></CustomPaginationActionsTable>
               {/* <EnhancedTable2></EnhancedTable2> */}
             </TableWrapper>
+            <ButtonWrapper onClick={this.handleSubmit}>Approve</ButtonWrapper>
           </CafeTableWrapper>
         </Body>
       </>
