@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
-import TeacherCafeDetails from "../../components/cafe-details/cafe-details.component";
-import TeacherDashboardNavbar from "../../components/teacher-dashboard-navbar/teacher-dashboard-navbar.component";
-import TeacherDashboardSidenav from "../../components/teacher-dashboard-sidenav/teacher-dashboard-sidenav.component";
-import CustomPaginationActionsTable from "../../components/teacher-enrolledstudent/table-component";
-import { selectVerifiedStudents } from "../../redux/verified-students/verified-student.selectors";
-import { fetchVerifiedStudentStart } from "../../redux/verified-students/verified-students.actions";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import TeacherCafeDetails from '../../components/cafe-details/cafe-details.component';
+import TeacherDashboardNavbar from '../../components/teacher-dashboard-navbar/teacher-dashboard-navbar.component';
+import TeacherDashboardSidenav from '../../components/teacher-dashboard-sidenav/teacher-dashboard-sidenav.component';
+import CustomPaginationActionsTable from '../../components/teacher-enrolledstudent/table-component';
+import { selectVerifiedStudents } from '../../redux/verified-students/verified-student.selectors';
+import { fetchVerifiedStudentStart } from '../../redux/verified-students/verified-students.actions';
 // import EnhancedTable2 from '../../components/teacher-enrolledstudent/table2.Component';
 
 import {
@@ -16,43 +16,41 @@ import {
   SideNav,
   CafeTableWrapper,
   TableWrapper,
-  CafeDetailsParentWrapper ,
-  TextTitle
-} from "./teacher-enrolled.styled";
+  CafeDetailsParentWrapper,
+  TextTitle,
+} from './teacher-enrolled.styled';
 
 class TeacherEnrolledStudents extends React.Component {
-  componentDidMount(){
-    const {fetchVerifiedStudentStart} = this.props
-    fetchVerifiedStudentStart()
+  componentDidMount() {
+    const { fetchVerifiedStudentStart } = this.props;
+    fetchVerifiedStudentStart();
   }
   render() {
-
-    function createData(ID, FirstName, LastName, Age, FullName){
+    function createData(ID, FirstName, LastName, Age, FullName) {
       return { ID, FirstName, LastName, Age, FullName };
     }
 
+    const { verifiedStudents } = this.props;
+    console.log(verifiedStudents);
 
-    const {verifiedStudents} = this.props;
-    console.log(verifiedStudents)
+    let rows = [];
 
-    let rows = [
-      
-            
-    ];
-
-    if(verifiedStudents){
+    if (verifiedStudents) {
       verifiedStudents.map((student, index) => {
-        let rowObj = createData(index+1, student.firstName, student.lastName, 19, 'krishna');
-        console.log('rowObj', rowObj)
-        rows.push(rowObj)
-       })
-    }else{
-      
+        let rowObj = createData(
+          index + 1,
+          student.firstName,
+          student.lastName,
+          19,
+          'krishna'
+        );
+        console.log('rowObj', rowObj);
+        rows.push(rowObj);
+      });
+    } else {
     }
-    
-   
 
-    console.log( 'rows', rows)
+    console.log('rows', rows);
 
     // const {
     //   userId,
@@ -68,12 +66,14 @@ class TeacherEnrolledStudents extends React.Component {
         <Body>
           <TeacherDashboardSidenav></TeacherDashboardSidenav>
           <CafeTableWrapper>
-          <CafeDetailsParentWrapper> 
+            <CafeDetailsParentWrapper>
               <TeacherCafeDetails></TeacherCafeDetails>
-              </CafeDetailsParentWrapper >
-              <TextTitle>Enrolled Students</TextTitle>
+            </CafeDetailsParentWrapper>
+            <TextTitle>Enrolled Students</TextTitle>
             <TableWrapper>
-              <CustomPaginationActionsTable rows={rows}></CustomPaginationActionsTable>
+              <CustomPaginationActionsTable
+                rows={rows}
+              ></CustomPaginationActionsTable>
               {/* <EnhancedTable2></EnhancedTable2> */}
             </TableWrapper>
           </CafeTableWrapper>
@@ -85,11 +85,13 @@ class TeacherEnrolledStudents extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
   verifiedStudents: selectVerifiedStudents,
-
-})
+});
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchVerifiedStudentStart: () => dispatch(fetchVerifiedStudentStart())
-})
+  fetchVerifiedStudentStart: () => dispatch(fetchVerifiedStudentStart()),
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(TeacherEnrolledStudents);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TeacherEnrolledStudents);

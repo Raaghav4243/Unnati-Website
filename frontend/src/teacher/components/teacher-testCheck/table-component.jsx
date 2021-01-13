@@ -55,24 +55,36 @@ function TablePaginationActions(props) {
       <IconButton
         onClick={handleFirstPageButtonClick}
         disabled={page === 0}
-        aria-label="first page"
+        aria-label='first page'
       >
         {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
       </IconButton>
-      <IconButton onClick={handleBackButtonClick} disabled={page === 0} aria-label="previous page">
-        {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+      <IconButton
+        onClick={handleBackButtonClick}
+        disabled={page === 0}
+        aria-label='previous page'
+      >
+        {theme.direction === 'rtl' ? (
+          <KeyboardArrowRight />
+        ) : (
+          <KeyboardArrowLeft />
+        )}
       </IconButton>
       <IconButton
         onClick={handleNextButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="next page"
+        aria-label='next page'
       >
-        {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+        {theme.direction === 'rtl' ? (
+          <KeyboardArrowLeft />
+        ) : (
+          <KeyboardArrowRight />
+        )}
       </IconButton>
       <IconButton
         onClick={handleLastPageButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="last page"
+        aria-label='last page'
       >
         {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
       </IconButton>
@@ -87,21 +99,20 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-
-
 const useStyles2 = makeStyles({
   table: {
     minWidth: 500,
   },
 });
 
- function CustomPaginationActionsTable(props) {
-  const rows = props.rows
+function CustomPaginationActionsTable(props) {
+  const rows = props.rows;
   const classes = useStyles2();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(4);
 
-  const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+  const emptyRows =
+    rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -112,57 +123,57 @@ const useStyles2 = makeStyles({
     setPage(0);
   };
 
-  
-
-
- 
   return (
     <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="custom pagination table">
-      <colgroup>
-      <col style={{width:'10%'}}/>
-      <col style={{width:'10%'}}/>
-      <col style={{width:'10%'}}/>
-      <col style={{width:'10%'}}/>
-      <col style={{width:'10%'}}/>
-      <col style={{width:'10%'}}/>
-      </colgroup>
-      <TableHead>
-           <TableRow >
-             <TableCell align="center">ID</TableCell>
-             <TableCell align="center">First Name</TableCell>
-             <TableCell align="center">Course Name</TableCell>
-             <TableCell align="center">Test Name</TableCell>
-             <TableCell align="center">VIEW RESPONSE</TableCell>
+      <Table className={classes.table} aria-label='custom pagination table'>
+        <colgroup>
+          <col style={{ width: '10%' }} />
+          <col style={{ width: '10%' }} />
+          <col style={{ width: '10%' }} />
+          <col style={{ width: '10%' }} />
+          <col style={{ width: '10%' }} />
+          <col style={{ width: '10%' }} />
+        </colgroup>
+        <TableHead>
+          <TableRow>
+            <TableCell align='center'>ID</TableCell>
+            <TableCell align='center'>First Name</TableCell>
+            <TableCell align='center'>Course Name</TableCell>
+            <TableCell align='center'>Test Name</TableCell>
+            <TableCell align='center'>VIEW RESPONSE</TableCell>
           </TableRow>
-         </TableHead>
+        </TableHead>
         <TableBody>
           {(rowsPerPage > 0
             ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : rows
           ).map((row) => (
             <TableRow key={row.name}>
-            <TableCell align="center" component="th" scope="row">{row.ID}</TableCell>
-            <TableCell align="center">{row.FirstName}</TableCell>
-            <TableCell align="center">{row.CourseName}</TableCell>
-            <TableCell align="center">{row.testName}</TableCell>
-              <TableCell align="center">
-              {/* <Link to='/teacher/evaluatetest'></Link> */}
-                <button id={row.ButtonId} color='#2196F3' onClick={() => {
-                  
-                const responseSheetId = row.ID
-                console.log(responseSheetId)
-                
-                const courseId = row.ButtonId
-                console.log('course id', row.courseId)
-                const {fetchTestSheetStart, test} = props
-                //fetchTestSheetStart(responseSheetId)
-                console.log(test)
-                
-                
-              }}>VIEW RESPONSE</button>
-              
-               </TableCell>
+              <TableCell align='center' component='th' scope='row'>
+                {row.ID}
+              </TableCell>
+              <TableCell align='center'>{row.FirstName}</TableCell>
+              <TableCell align='center'>{row.CourseName}</TableCell>
+              <TableCell align='center'>{row.testName}</TableCell>
+              <TableCell align='center'>
+                {/* <Link to='/teacher/evaluatetest'></Link> */}
+                <button
+                  id={row.ButtonId}
+                  color='#2196F3'
+                  onClick={() => {
+                    const responseSheetId = row.ID;
+                    console.log(responseSheetId);
+
+                    const courseId = row.ButtonId;
+                    console.log('course id', row.courseId);
+                    const { fetchTestSheetStart, test } = props;
+                    //fetchTestSheetStart(responseSheetId)
+                    console.log(test);
+                  }}
+                >
+                  VIEW RESPONSE
+                </button>
+              </TableCell>
             </TableRow>
           ))}
 
@@ -196,11 +207,15 @@ const useStyles2 = makeStyles({
 }
 
 const mapStateToProps = createStructuredSelector({
-  test: selectTestDetails
-})
+  test: selectTestDetails,
+});
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchTestSheetStart: (responseSheetId) => dispatch(fetchTestSheetStart(responseSheetId))
-})
+  fetchTestSheetStart: (responseSheetId) =>
+    dispatch(fetchTestSheetStart(responseSheetId)),
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)( CustomPaginationActionsTable)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CustomPaginationActionsTable);
