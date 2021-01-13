@@ -19,3 +19,25 @@ export const fetchTestListForEvaluationFailure = (message) => {
         payload: message
     }
 }
+
+export const updateTestScoreStart = (studentId, courseId, testId, data) => {
+    console.log('actions page data', studentId, courseId, testId, data)
+        return{
+            type: TestEvaluationType.SUBMIT_TEST_SCORE_START,
+            payload: {studentId, courseId, testId, data}
+        }
+}
+
+export const updateTestScoreSuccess = (message) => {
+    return{
+        type: TestEvaluationType.SUBMIT_TEST_SCORE_SUCCESS,
+        payload: message
+    }
+}
+
+export const updateTestScoreFailure = (error) => {
+    return{
+        type: TestEvaluationType.SUBMIT_TEST_SCORE_FAILURE,
+        payload: error
+    }
+}

@@ -37,14 +37,15 @@ import {
 import TeacherDashboardNavbar from "../../components/teacher-dashboard-navbar/teacher-dashboard-navbar.component";
 import TeacherDashboardSidenav from "../../components/teacher-dashboard-sidenav/teacher-dashboard-sidenav.component";
 import { selectTestDetails } from "../../redux/test-sheet/test-sheet.selectors";
+import { updateTestScoreStart } from "../../redux/test-evaluation/test-evaluation-list.actions";
 
 class EvaluateTestPage extends React.Component {
   constructor(){
     super()
     this.state = {
-      marks: [],
+      score: {marksScored: 0},
       studentId: null,
-      courseId: null,
+      courseId: '5fa6bd6f4afbc52538b49afb',
       testId: null
     }
   }
@@ -58,18 +59,28 @@ class EvaluateTestPage extends React.Component {
   handleChange =(e) => {
     const value = e.target.value
     console.log(value)
-    this.setState({marks: value}, () => {console.log(this.state)})
+    this.setState({score: value}, () => {console.log(this.state)})
+    const { userCafe, test } = this.props;
+    this.setState({studentId: test.studentId})
+    this.setState({testId: test.testId._id}, () => console.log(this.state))
   }
 
-  handleClick = (e) => {
-    this.setState({studentId: test.studentId})
-    this.setState({testId: test.testId})
+  handleSubmit = (e) => {
+    const {updateTestScoreStart} = this.props
+    const studentId = this.state.studentId
+    const testId = this.state.testId
+    const courseId = this.state.courseId
+    const marksScored = this.state.score
+    const data = {}
+    data['marksScored'] = marksScored
+    console.log('pagedata', studentId, courseId, testId, data)
+    updateTestScoreStart(studentId, courseId, testId, data)
   }
 
   render() {
     const { userCafe, test } = this.props;
     console.log(test);
-    console.log(test.testId)
+    //console.log(test.testId)
 
     return (
       <>
@@ -146,6 +157,7 @@ class EvaluateTestPage extends React.Component {
                   })
                 : null}
             </QuestionsWrapper>
+            <button onClick={this.handleSubmit}>Submit score</button>
           </PageWrapper>
         </PageContainer>
       </>
@@ -161,6 +173,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = (dispatch) => ({
   fetchUserCafeStart: () => dispatch(fetchUserCafeStart()),
+  updateTestScoreStart: (studentId, courseId, testId, data) => dispatch(updateTestScoreStart(studentId, courseId, testId, data))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EvaluateTestPage);

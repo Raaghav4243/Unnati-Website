@@ -40,10 +40,12 @@ class TeacherTestCheck extends React.Component {
        list.coursesEnrolled.map((course) => {
          console.log(course)
          let coursename = course.course.courseName
+         let courseid = course.course._id
+         console.log(courseid)
          //console.log('course names', coursename)
         course.testsDone.map((test) => {
           console.log(test)
-          let rowObj = createData(test.responseSheet, firstName, coursename,  1)
+          let rowObj = createData(test.responseSheet, firstName, coursename,  courseid)
           rows.push(rowObj)
         })
        })
