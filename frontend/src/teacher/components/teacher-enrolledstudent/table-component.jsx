@@ -108,7 +108,7 @@ const useStyles2 = makeStyles({
   const rows = props.rows
   const classes = useStyles2();
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(4);
+  const [rowsPerPage, setRowsPerPage] = React.useState(3);
   
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
@@ -137,6 +137,7 @@ const useStyles2 = makeStyles({
              <TableCell align="center">ID</TableCell>
              <TableCell align="center">First Name</TableCell>
              <TableCell align="center">Last Name</TableCell>
+             <TableCell align="center">Course Name</TableCell>
              <TableCell align="center">Email</TableCell>
              
           </TableRow>
@@ -150,6 +151,7 @@ const useStyles2 = makeStyles({
             <TableCell align="center" component="th" scope="row">{row.ID}</TableCell>
             <TableCell align="center">{row.FirstName}</TableCell>
             <TableCell align="center">{row.LastName}</TableCell>
+            <TableCell align="center">{row.courseName}</TableCell>
             <TableCell align="center">{row.email}</TableCell>
             </TableRow>
           ))}
@@ -163,7 +165,7 @@ const useStyles2 = makeStyles({
         <TableFooter>
           <TableRow>
             <TablePagination
-              rowsPerPageOptions={[4, 10, 25, { label: 'All', value: -1 }]}
+              rowsPerPageOptions={[3, 10, 25, { label: 'All', value: -1 }]}
               colSpan={3}
               count={rows.length}
               rowsPerPage={rowsPerPage}

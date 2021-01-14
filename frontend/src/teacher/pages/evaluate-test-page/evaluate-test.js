@@ -33,6 +33,7 @@ import {
   QuestionAnswers,
   QuestionAndMarksWrapper,
   MarksWrapper,
+  CorrectAnswer,
 } from "./evaluate-test.styles";
 import TeacherDashboardNavbar from "../../components/teacher-dashboard-navbar/teacher-dashboard-navbar.component";
 import TeacherDashboardSidenav from "../../components/teacher-dashboard-sidenav/teacher-dashboard-sidenav.component";
@@ -105,26 +106,26 @@ class EvaluateTestPage extends React.Component {
                       <QuestionAndMarksWrapper>
                         <QuestionAnswers>
                           <Questions>Question: {test.questionId.statement}</Questions>
-                          <Answers>Correct Answer: 
-                            {
+                          <Answers>Correct Answer : 
+                            <CorrectAnswer>{
                               test.questionId.correctAns.map((ans) => {
                                 return ans
                               })
-                            }
+                            }</CorrectAnswer>
                             <br/>
-                            User Response: 
+                            User Response : 
                             {
                               test.response.map((ans) => {
                                 return ans
                               })
                             }
                             <br/>
-                            Max marks for question:
+                            Max marks for question :
                             {
                               test.questionId.maxMarks
                             }
                             <br/>
-                            Question Type:
+                            Question Type :
                             {
                               test.questionId.type
                             }
@@ -140,29 +141,30 @@ class EvaluateTestPage extends React.Component {
                             }
 
                           </Answers>
-                          <TextField
+                          {/* <TextField
                             id={test._id}
                             label="Enter Marks"
                             variant="outlined"
                             onChange={this.handleChange}
                             style={{ maxWidth: 150 }}
-                          />
+                          /> */}
                         </QuestionAnswers>
-                        {/* <MarksWrapper>
+                        <MarksWrapper>
                           <TextField
                             id="outlined-basic"
                             label="Enter Marks"
                             variant="outlined"
-                            style={{ maxWidth: 150 }}
+                            style={{ maxWidth: 115 }}
+                          
                           />
-                        </MarksWrapper> */}
+                        </MarksWrapper>
                       </QuestionAndMarksWrapper>
                     </TestWrapper>
                     );
                   })
                 : null}
             </QuestionsWrapper>
-            <button onClick={this.handleSubmit}>Submit score</button>
+            <ButtonWrapper onClick={this.handleSubmit}>Submit Score</ButtonWrapper>
           </PageWrapper>
         </PageContainer>
       </>

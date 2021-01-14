@@ -3,7 +3,7 @@ import { FeeUpdateTypes } from "./fee-update.types"
 const INITIAL_STATE = {
     isUpdating: false,
     errorMessage: null,
-    updateConformation: null
+    updateConfirmation: null
 }
 
 const feeUpdateReducer = (state = INITIAL_STATE, action) => {
@@ -17,7 +17,7 @@ const feeUpdateReducer = (state = INITIAL_STATE, action) => {
                 return{
                     ...state,
                     isUpdating: false,
-                    updateConformation: action.payload
+                    updateConfirmation: action.payload
                 }
             case FeeUpdateTypes.FEE_UPDATE_FAILURE:
                 return{

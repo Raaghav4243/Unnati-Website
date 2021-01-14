@@ -25,7 +25,7 @@ const INITIAL_STATE = {
   isUserSignedIn: false,
   errorMessage: undefined,
   userIsUpdating: false,
-  updateConformation: null,
+  updateConfirmation: null,
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -115,7 +115,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         userIsUpdating: false,
-        updateConformation: action.payload,
+        updateConfirmation: action.payload,
       };
     default:
       return state;

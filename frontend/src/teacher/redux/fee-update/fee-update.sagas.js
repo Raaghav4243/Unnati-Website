@@ -17,7 +17,7 @@ export function* feeUpdateStartAsync({payload: {userId, data}}){
                 console.log('fees updated', data)
             })
 
-        yield put(feeUpdateSuccess('fees updated'))
+        yield put(feeUpdateSuccess('Fees updated!'))
     } catch (error) {
         yield put(feeUpdateFailure(error))
     }

@@ -78,7 +78,7 @@ export const CourseDropDown = styled.div`
 `;
 
 export const ButtonWrapper = styled.button`
-width: 8vw;
+width: 9vw;
 height:5.7vh;
 display: flex;
 justify-content: center;
@@ -88,9 +88,10 @@ color: #FFFFFF;
 background-color: #2475B0;
 cursor: pointer;
 padding: 1.3vh 1vw 1vh 1vw;
-margin-top: 5vh;
+margin-top: 2vh;
 border: none;
 outline:none;
+margin-left:1vw;
 `;
 
 export const DropWrapper = styled.div`
@@ -133,14 +134,21 @@ margin-top: 1vh;
 export const QuestionAnswers = styled.div`
 display: flex;
 flex-direction: column;
+width:50vw;
 
 `
 export const QuestionAndMarksWrapper = styled.div`
 display: flex;
-
+align-content: space-around;
 `
 export const MarksWrapper = styled.div`
 margin-top: 7vh;
-margin-left: 43vw;
+margin
 
+
+`
+export const CorrectAnswer = styled.span`
+color: #3DBA0D;
+
+font-style: oblique;
 `

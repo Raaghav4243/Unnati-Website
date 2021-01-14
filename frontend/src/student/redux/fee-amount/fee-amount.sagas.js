@@ -15,9 +15,7 @@ export function* fetchFeeAmountAsync({ payload: { user_id, cafe_id } }) {
     feeAmountDetails = yield feeAmountDetails.json();
     console.log('fee amount object', feeAmountDetails);
 
-    feeAmountDetails.done
-      ? yield put(fetchFeeAmountSuccess(feeAmountDetails.user))
-      : yield put(fetchFeeAmountFailure(feeAmountDetails.message));
+    yield put(fetchFeeAmountSuccess(feeAmountDetails.user));
   } catch (error) {
     yield put(fetchFeeAmountFailure(error));
   }

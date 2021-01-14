@@ -53,3 +53,8 @@ export const selectIsUserSignedIn = createSelector(
   [selectCurrentUser],
   (currentUser) => currentUser.isUserSignedIn
 );
+
+export const selectUpdateConfirmation = createSelector(
+  [selectCurrentUser],
+  (message) => message.updateConfirmation
+);
