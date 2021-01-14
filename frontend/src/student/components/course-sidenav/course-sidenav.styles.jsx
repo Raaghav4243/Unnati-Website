@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const SideNavContainer = styled.div`
-  /* background-color: #c4c4c4; */
+  background-color: #f4f4f4;
   width: 300px;
   height: calc(100vh - 75px);
   display: flex;
