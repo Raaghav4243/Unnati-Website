@@ -99,7 +99,7 @@ const useStyles2 = makeStyles({
   const rows = props.rows
   const classes = useStyles2();
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(4);
+  const [rowsPerPage, setRowsPerPage] = React.useState(3);
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
@@ -120,7 +120,6 @@ const useStyles2 = makeStyles({
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="custom pagination table">
       <colgroup>
-      <col style={{width:'10%'}}/>
       <col style={{width:'10%'}}/>
       <col style={{width:'10%'}}/>
       <col style={{width:'10%'}}/>
@@ -175,7 +174,7 @@ const useStyles2 = makeStyles({
         <TableFooter>
           <TableRow>
             <TablePagination
-              rowsPerPageOptions={[4, 10, 25, { label: 'All', value: -1 }]}
+              rowsPerPageOptions={[3, 10, 25, { label: 'All', value: -1 }]}
               colSpan={3}
               count={rows.length}
               rowsPerPage={rowsPerPage}
