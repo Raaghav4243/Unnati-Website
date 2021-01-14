@@ -134,7 +134,7 @@ margin-top: 1vh;
 export const QuestionAnswers = styled.div`
 display: flex;
 flex-direction: column;
-width:55vw;
+width:50vw;
 
 `
 export const QuestionAndMarksWrapper = styled.div`
@@ -146,4 +146,9 @@ margin-top: 7vh;
 margin
 
 
+`
+export const CorrectAnswer = styled.span`
+color: #3DBA0D;
+
+font-style: oblique;
 `
