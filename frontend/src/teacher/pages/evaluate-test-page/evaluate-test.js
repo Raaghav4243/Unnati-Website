@@ -140,22 +140,22 @@ class EvaluateTestPage extends React.Component {
                             }
 
                           </Answers>
-                          <TextField
+                          {/* <TextField
                             id={test._id}
                             label="Enter Marks"
                             variant="outlined"
                             onChange={this.handleChange}
                             style={{ maxWidth: 150 }}
-                          />
+                          /> */}
                         </QuestionAnswers>
-                        {/* <MarksWrapper>
+                        <MarksWrapper>
                           <TextField
                             id="outlined-basic"
                             label="Enter Marks"
                             variant="outlined"
                             style={{ maxWidth: 150 }}
                           />
-                        </MarksWrapper> */}
+                        </MarksWrapper>
                       </QuestionAndMarksWrapper>
                     </TestWrapper>
                     );

@@ -30,6 +30,7 @@ import {
   selectCurrentUserLastName,
   selectCurrentUserRole,
   selectCurrentUserCafeId,
+  selectUpdateConfirmation,
 } from '../../redux/user/user.selectors';
 import {
   selectUserCafeDetails,
@@ -132,6 +133,7 @@ class Profile extends React.Component {
       cafeName,
       cafeLocation,
       cafeTeacherName,
+      updateConfirmation
     } = this.props;
     console.log(userfirstname);
     console.log(userCafe);
@@ -150,6 +152,9 @@ class Profile extends React.Component {
               onSubmit={this.handleSubmit}
             >
               <PersonalDetailsHeading>Personal Details</PersonalDetailsHeading>
+              {
+                updateConfirmation ? <div style={{color: "green"}}>{updateConfirmation}</div> : null
+              }
               <WrapperContainer>
                 <DetailsWrapper>
                   <DetailsHeading htmlFor='firstName'>
@@ -247,6 +252,7 @@ const mapStateToProps = createStructuredSelector({
   cafeName: selectUserCafeName,
   cafeLocation: selectUserCafeLocation,
   cafeTeacherName: selectUserCafeTeacherInChargeName,
+  updateConfirmation: selectUpdateConfirmation
 });
 
 const mapDispatchToProps = (dispatch) => ({

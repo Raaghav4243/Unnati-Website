@@ -27,8 +27,8 @@ class TeacherEnrolledStudents extends React.Component {
   }
   render() {
 
-    function createData(ID, FirstName, LastName, email){
-      return { ID, FirstName, LastName, email };
+    function createData(ID, FirstName, LastName, courseName, email){
+      return { ID, FirstName, LastName, courseName, email };
     }
 
 
@@ -42,7 +42,7 @@ class TeacherEnrolledStudents extends React.Component {
 
     if(verifiedStudents){
       verifiedStudents.map((student, index) => {
-        let rowObj = createData(index+1, student.firstName, student.lastName, student.email);
+        let rowObj = createData(index+1, student.firstName, student.lastName, 2, student.email);
         console.log('rowObj', rowObj)
         rows.push(rowObj)
        })

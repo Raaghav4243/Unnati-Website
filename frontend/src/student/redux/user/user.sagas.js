@@ -36,7 +36,7 @@ export function* updateUserAsync({ payload: { user_id, data } }) {
         console.log('Success:', data);
       });
 
-    yield put(updateUserSuccess('user updated'));
+    yield put(updateUserSuccess('User updated!'));
   } catch (error) {}
 }
 

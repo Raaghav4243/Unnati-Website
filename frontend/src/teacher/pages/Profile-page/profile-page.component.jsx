@@ -38,6 +38,7 @@ import { fetchUserCafeStartAsync } from '../../redux/cafe/cafe.actions';
 import { updateUserStart } from '../../redux/user/user.actions';
 import TeacherDashboardSidenav from '../../components/teacher-dashboard-sidenav/teacher-dashboard-sidenav.component';
 import TeacherDashboardNavbar from '../../components/teacher-dashboard-navbar/teacher-dashboard-navbar.component'
+import { selectUpdateConfirmation } from '../../../student/redux/user/user.selectors';
 
 class TeacherProfile extends React.Component {
   constructor(props) {
@@ -124,7 +125,7 @@ class TeacherProfile extends React.Component {
       userlastname,
       userfirstname,
       userCafe,
-      userId,
+      updateConfirmation
     } = this.props;
     console.log(userfirstname);
     console.log(userCafe);
@@ -139,6 +140,9 @@ class TeacherProfile extends React.Component {
               onSubmit={this.handleSubmit}
             >
               <PersonalDetailsHeading>Personal Details</PersonalDetailsHeading>
+              {
+                updateConfirmation ? <div style={{color: "green"}}>{updateConfirmation}</div> : null
+              }
               <WrapperContainer>
                 <DetailsWrapper>
                   <DetailsHeading htmlFor='firstName'>
@@ -234,6 +238,7 @@ const mapStateToProps = createStructuredSelector({
   userphonenumber: selectPhoneNumber,
   userrole: selectCurrentUserRole,
   cafeId: selectCurrentUserCafeId,
+  updateConfirmation: selectUpdateConfirmation
 });
 
 const mapDispatchToProps = (dispatch) => ({
