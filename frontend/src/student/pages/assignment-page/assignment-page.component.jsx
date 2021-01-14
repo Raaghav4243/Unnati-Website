@@ -360,12 +360,14 @@ class AssignmentPage extends React.Component {
                           //     </ul>
                           //   })
                           // })
-                           Object.entries(this.state.resp).map( ([key, value]) => {
+                          Object.entries(this.state.resp).map( ([key, value]) => {
                              return  (
                                <ul style={{margin: 0}}>
                                  <li>{value}</li>
                                </ul>
-                               )} )
+                               )})
+                            
+
                   
                           //Object.entries(this.state.resp).map()
 
