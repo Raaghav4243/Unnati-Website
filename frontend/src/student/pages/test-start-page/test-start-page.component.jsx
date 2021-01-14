@@ -1,16 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Route } from 'react-router-dom';
+// import { Route } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 
-import { selectCurrentCourseId } from '../../redux/student/student.selectors';
+// import { selectCurrentCourseId } from '../../redux/student/student.selectors';
 
 import { selectCurrentUserId } from '../../redux/user/user.selectors';
 
-import { fetchTestStart } from '../../redux/testpage/testpage.actions';
+// import { fetchTestStart } from '../../redux/testpage/testpage.actions';
 
 import {
+  selectCurrentCourseId,
   selectCurrentCourseTopicId,
   selectCurrentCourseTopicName,
 } from '../../redux/student/student.selectors';
@@ -18,6 +19,8 @@ import {
 import {
   selectTestMessageFromBackend,
   selectTestQuestions,
+  selectTestDuration,
+  selectTestMaxMarksPossible,
 } from '../../redux/testpage/testpage.selectors';
 
 //components used

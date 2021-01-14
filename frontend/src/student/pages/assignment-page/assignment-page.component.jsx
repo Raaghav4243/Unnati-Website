@@ -56,6 +56,7 @@ class AssignmentPage extends React.Component {
     this.state = {
       resp: {},
       score: null,
+      questionsForGeneratingResponseSheet: null,
       assignmentDone: null,
     };
   }
@@ -169,9 +170,12 @@ class AssignmentPage extends React.Component {
     console.log('SCORE IS', score);
     let data = {};
     data['marksScored'] = score;
+    this.setState({
+      score: score,
+      questionsForGeneratingResponseSheet: assignment_questions,
+    });
     submitAssignmentStart(data);
     // alert('YOUR SCORE FOR THIS ATTEMPT IS', score);
-    this.setState({ score: score });
   };
 
   //   handleClick = (e) => {
@@ -223,99 +227,111 @@ class AssignmentPage extends React.Component {
       assignmentSubmittedConfirmation,
       assignmentSubmissionFailed,
     } = this.props;
-    const { score } = this.state;
+    const { score, resp, questionsForGeneratingResponseSheet } = this.state;
     console.log('ASSIGNMENT QUESTIONS RECIEVED', assignment_questions);
     return (
       <>
         <StudentDashboardNavbar />
         <AssignmentAndTestSidenav forAssignment />
         <PageWrapper>
-          <form onSubmit={this.handleSubmit} onChange={this.handleOnChange}>
-            <AssignmentTitle>ASSIGNMENT : {assignmentName}</AssignmentTitle>
-            <QuestionsWrapper>
-              {/* {assignment_questions} */}
-              {assignment_questions
-                ? assignment_questions.map((question, index) => {
-                    return (
-                      <QuestionCardWrapper>
-                        <QuestionStatementContainer>
-                          {question.statement}
-                        </QuestionStatementContainer>
-                        <QuestionsOptionsContainer>
-                          {question.type === 'MULTICORRECT' ? (
-                            <>
-                              {question.options.map((option, optionIndex) => {
-                                return (
-                                  <CheckedLabel
-                                    htmlFor={`${option}${index}${optionIndex}`}
-                                  >
-                                    {/* <label key={index} htmlFor={option}> */}
-                                    {option}
-                                    <CheckedInput
-                                      type='checkbox'
-                                      key={question.statement}
-                                      id={`${option}${index}${optionIndex}`}
-                                      name={index}
-                                      value={option}
-                                    />
-                                    <CheckedIndicator />
-                                  </CheckedLabel>
-                                );
-                              })}
-                            </>
-                          ) : question.type === 'SINGLECORRECT' ? (
-                            <>
-                              {question.options.map((option, optionIndex) => {
-                                return (
-                                  <RadioLabel
-                                    htmlFor={`${option}${index}${optionIndex}`}
-                                  >
-                                    {option}
-                                    <RadioInput
-                                      type='radio'
-                                      key={question.statement}
-                                      id={`${option}${index}${optionIndex}`}
-                                      name={index}
-                                      value={option}
-                                    />
-                                    <RadioIndicator />
-                                  </RadioLabel>
-                                );
-                              })}
-                            </>
-                          ) : null}
-                        </QuestionsOptionsContainer>
-                      </QuestionCardWrapper>
-                    );
-                  })
-                : null}
-            </QuestionsWrapper>
-            <div>ARE YOU SURE YOU WANT TO SUBMIT? YOU CAN'T GO BACK...</div>
-            <button>Yes, Submit</button>
-          </form>
+          {assignmentSubmittedConfirmation ? null : (
+            <form onSubmit={this.handleSubmit} onChange={this.handleOnChange}>
+              <AssignmentTitle>ASSIGNMENT : {assignmentName}</AssignmentTitle>
+              <QuestionsWrapper>
+                {/* {assignment_questions} */}
+                {assignment_questions
+                  ? assignment_questions.map((question, index) => {
+                      return (
+                        <QuestionCardWrapper>
+                          <QuestionStatementContainer>
+                            {question.statement}
+                          </QuestionStatementContainer>
+                          <QuestionsOptionsContainer>
+                            {question.type === 'MULTICORRECT' ? (
+                              <>
+                                {question.options.map((option, optionIndex) => {
+                                  return (
+                                    <CheckedLabel
+                                      htmlFor={`${option}${index}${optionIndex}`}
+                                    >
+                                      {/* <label key={index} htmlFor={option}> */}
+                                      {option}
+                                      <CheckedInput
+                                        type='checkbox'
+                                        key={question.statement}
+                                        id={`${option}${index}${optionIndex}`}
+                                        name={index}
+                                        value={option}
+                                      />
+                                      <CheckedIndicator />
+                                    </CheckedLabel>
+                                  );
+                                })}
+                              </>
+                            ) : question.type === 'SINGLECORRECT' ? (
+                              <>
+                                {question.options.map((option, optionIndex) => {
+                                  return (
+                                    <RadioLabel
+                                      htmlFor={`${option}${index}${optionIndex}`}
+                                    >
+                                      {option}
+                                      <RadioInput
+                                        type='radio'
+                                        key={question.statement}
+                                        id={`${option}${index}${optionIndex}`}
+                                        name={index}
+                                        value={option}
+                                      />
+                                      <RadioIndicator />
+                                    </RadioLabel>
+                                  );
+                                })}
+                              </>
+                            ) : null}
+                          </QuestionsOptionsContainer>
+                        </QuestionCardWrapper>
+                      );
+                    })
+                  : null}
+              </QuestionsWrapper>
+              <div>ARE YOU SURE YOU WANT TO SUBMIT? YOU CAN'T GO BACK...</div>
+              <button>Yes, Submit</button>
+            </form>
+          )}
           {/* For the time when SUBMIT ASSIGNMENT BUTTON IS CLICKED */}
-          <div>
-            {isAssignmentSubmitting ? (
-              <div>ASSIGNMENT IS SUBMITTING...PLEASE WAIT.</div>
-            ) : null}
-            {assignmentSubmittedConfirmation ? (
-              <>
-                <div>ASSIGNMENT SUBMITTED SUCCESSFULLY</div>
-                <div>YOUR SCORE IS : {score}</div>
-                <div
-                  onClick={this.handleSubmitSuccess}
-                  style={{ background: 'orange', color: 'white' }}
-                >
-                  GO BACK TO COURSE PAGE
-                </div>
-              </>
-            ) : null}
-            {assignmentSubmissionFailed ? (
-              <>
-                <div>SUBMISSION FAILED, PLEASE TRY AGAIN...</div>
-              </>
-            ) : null}
-          </div>
+
+          {isAssignmentSubmitting ? (
+            <div>ASSIGNMENT IS SUBMITTING...PLEASE WAIT.</div>
+          ) : null}
+
+          {/* AFTER SUBMISSION IS SUCCESSFUL */}
+          {!isAssignmentSubmitting && assignmentSubmittedConfirmation ? (
+            <>
+              <div>ASSIGNMENT SUBMITTED SUCCESSFULLY</div>
+              <div>YOUR SCORE IS : {score}</div>
+              <div>WHAT WE GOT FROM YOU :</div>
+              {console.log('USER RESPONSES ARE', resp)}
+              {console.log('ACTUAL ANSWERS ARE', assignment_questions)}
+              <div>INSERT RESPONSE SHEET</div>
+              <div
+                onClick={this.handleSubmitSuccess}
+                style={{
+                  background: 'orange',
+                  color: 'white',
+                  cursor: 'pointer',
+                }}
+              >
+                GO BACK TO COURSE PAGE
+              </div>
+            </>
+          ) : null}
+          {/* IF SUBMISSION FAILED */}
+          {assignmentSubmissionFailed ? (
+            <>
+              <div>SUBMISSION FAILED, PLEASE TRY AGAIN...</div>
+            </>
+          ) : null}
         </PageWrapper>
       </>
     );
