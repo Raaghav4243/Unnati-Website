@@ -137,7 +137,7 @@ const useStyles2 = makeStyles({
              <TableCell align="center">ID</TableCell>
              <TableCell align="center">First Name</TableCell>
              <TableCell align="center">Last Name</TableCell>
-             <TableCell align="center">Course Name</TableCell>
+             
              <TableCell align="center">Email</TableCell>
              
           </TableRow>
@@ -151,7 +151,7 @@ const useStyles2 = makeStyles({
             <TableCell align="center" component="th" scope="row">{row.ID}</TableCell>
             <TableCell align="center">{row.FirstName}</TableCell>
             <TableCell align="center">{row.LastName}</TableCell>
-            <TableCell align="center">{row.courseName}</TableCell>
+            
             <TableCell align="center">{row.email}</TableCell>
             </TableRow>
           ))}

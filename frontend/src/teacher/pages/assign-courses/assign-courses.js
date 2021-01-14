@@ -44,6 +44,7 @@ import { fetchVerifiedStudentStart } from "../../redux/verified-students/verifie
 import { selectAllCourses } from "../../../student/redux/allCourses/all-courses.selectors";
 import { fetchAllCoursesStart } from "../../../student/redux/allCourses/all-courses.actions";
 import { courseAssignStart } from "../../redux/course-assign/course-assign.actions";
+import { selectCourseUpdateConfirmation } from "../../redux/course-assign/course-assign.selector";
 class TeacherDashboardAssignPage extends React.Component {
   constructor(){
     super()
@@ -88,7 +89,7 @@ class TeacherDashboardAssignPage extends React.Component {
   }
 
   render() {
-    const { userCafe, verifiedStudents, allCourses } = this.props;
+    const { userCafe, verifiedStudents, allCourses, updateConfirmation } = this.props;
     console.log('courses are', allCourses)
     console.log('verified user are', verifiedStudents)
     console.log(this.state.userId)
@@ -102,6 +103,7 @@ class TeacherDashboardAssignPage extends React.Component {
               <TeacherCafeDetails />
             </CafeDetailsParentWrapper>
             <TextTitle>Assign Course to Student</TextTitle>
+            {updateConfirmation ? <div style={{color: "green"}}>{updateConfirmation}</div> : null}
             <DropDownWrapper>
               <StudentDropDown>
                 <StudentTitle>Student</StudentTitle>
@@ -189,7 +191,8 @@ const mapStateToProps = createStructuredSelector({
   //userId: selectCurrentUserId,
   userCafe: selectUserCafeDetails,
   verifiedStudents: selectVerifiedStudents,
-  allCourses: selectAllCourses
+  allCourses: selectAllCourses,
+  updateConfirmation: selectCourseUpdateConfirmation
 });
 
 const mapDispatchToProps = (dispatch) => ({
