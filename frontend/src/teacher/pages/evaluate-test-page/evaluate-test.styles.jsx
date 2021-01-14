@@ -134,15 +134,16 @@ margin-top: 1vh;
 export const QuestionAnswers = styled.div`
 display: flex;
 flex-direction: column;
+width:55vw;
 
 `
 export const QuestionAndMarksWrapper = styled.div`
 display: flex;
-
+align-content: space-around;
 `
 export const MarksWrapper = styled.div`
 margin-top: 7vh;
-margin-right:3vw;
-position: absolute;
-margin-left:55vw;
+margin
+
+
 `
