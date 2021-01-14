@@ -155,7 +155,7 @@ class EvaluateTestPage extends React.Component {
                             label="Enter Marks"
                             variant="outlined"
                             style={{ maxWidth: 115 }}
-                          
+                            onChange={this.handleChange}
                           />
                         </MarksWrapper>
                       </QuestionAndMarksWrapper>
