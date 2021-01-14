@@ -78,7 +78,7 @@ export const CourseDropDown = styled.div`
 `;
 
 export const ButtonWrapper = styled.button`
-width: 8vw;
+width: 9vw;
 height:5.7vh;
 display: flex;
 justify-content: center;
@@ -88,9 +88,10 @@ color: #FFFFFF;
 background-color: #2475B0;
 cursor: pointer;
 padding: 1.3vh 1vw 1vh 1vw;
-margin-top: 5vh;
+margin-top: 2vh;
 border: none;
 outline:none;
+margin-left:1vw;
 `;
 
 export const DropWrapper = styled.div`
@@ -141,6 +142,7 @@ display: flex;
 `
 export const MarksWrapper = styled.div`
 margin-top: 7vh;
-margin-left: 43vw;
-
+margin-right:3vw;
+position: absolute;
+margin-left:55vw;
 `

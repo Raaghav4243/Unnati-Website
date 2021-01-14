@@ -153,7 +153,8 @@ class EvaluateTestPage extends React.Component {
                             id="outlined-basic"
                             label="Enter Marks"
                             variant="outlined"
-                            style={{ maxWidth: 150 }}
+                            style={{ maxWidth: 80 }}
+                            style={{ minWidth: 80 }}
                           />
                         </MarksWrapper>
                       </QuestionAndMarksWrapper>
@@ -162,7 +163,7 @@ class EvaluateTestPage extends React.Component {
                   })
                 : null}
             </QuestionsWrapper>
-            <button onClick={this.handleSubmit}>Submit score</button>
+            <ButtonWrapper onClick={this.handleSubmit}>Submit Score</ButtonWrapper>
           </PageWrapper>
         </PageContainer>
       </>
