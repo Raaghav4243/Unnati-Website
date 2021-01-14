@@ -70,7 +70,6 @@ class TeacherApproval extends React.Component {
               <CustomPaginationActionsTable rows={rows}></CustomPaginationActionsTable>
               {/* <EnhancedTable2></EnhancedTable2> */}
             </TableWrapper>
-            <ButtonWrapper onClick={this.handleSubmit}>Approve</ButtonWrapper>
           </CafeTableWrapper>
         </Body>
       </>
