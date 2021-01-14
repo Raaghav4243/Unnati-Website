@@ -80,10 +80,12 @@ class SignIn extends React.Component {
   handleSignInSuccess = () => {
     console.log('HANDLING SIGN IN SUCCESS AND REDIRECTING,');
     const { history, userRole } = this.props;
-    history.push('/student/dashboard');
-    // if (userRole === 'STUDENT') {
-    //   history.push('/student/dashboard');
-    // }
+    // history.push('/student/dashboard');
+    if (userRole === 'STUDENT') {
+      history.push('/student/dashboard');
+    } else if (userRole === 'TEACHER') {
+      history.push('/teacher');
+    }
   };
 
   render() {

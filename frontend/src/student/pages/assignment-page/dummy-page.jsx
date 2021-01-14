@@ -29,7 +29,7 @@ import {
   AssignmentTitle,
   QuestionsWrapper,
   QuestionCardWrapper,
-  // QuestionCardContainer,
+  QuestionCardContainer,
   QuestionStatementContainer,
   QuestionsOptionsContainer,
   RadioLabel,
@@ -115,7 +115,7 @@ class AssignmentPage extends React.Component {
         response[name].push(value);
       }
     } else {
-      response[name] = [value];
+      response[name] = value;
     }
 
     console.log('RESPONSE BECOMES', response);
@@ -228,7 +228,7 @@ class AssignmentPage extends React.Component {
     return (
       <>
         <StudentDashboardNavbar />
-        <AssignmentAndTestSidenav forAssignment />
+        <AssignmentAndTestSidenav />
         <PageWrapper>
           <form onSubmit={this.handleSubmit} onChange={this.handleOnChange}>
             <AssignmentTitle>ASSIGNMENT : {assignmentName}</AssignmentTitle>
@@ -244,17 +244,15 @@ class AssignmentPage extends React.Component {
                         <QuestionsOptionsContainer>
                           {question.type === 'MULTICORRECT' ? (
                             <>
-                              {question.options.map((option, optionIndex) => {
+                              {question.options.map((option) => {
                                 return (
-                                  <CheckedLabel
-                                    htmlFor={`${option}${index}${optionIndex}`}
-                                  >
+                                  <CheckedLabel htmlFor={option}>
                                     {/* <label key={index} htmlFor={option}> */}
                                     {option}
                                     <CheckedInput
                                       type='checkbox'
                                       key={question.statement}
-                                      id={`${option}${index}${optionIndex}`}
+                                      id={option}
                                       name={index}
                                       value={option}
                                     />
@@ -263,18 +261,16 @@ class AssignmentPage extends React.Component {
                                 );
                               })}
                             </>
-                          ) : question.type === 'SINGLECORRECT' ? (
+                          ) : (
                             <>
-                              {question.options.map((option, optionIndex) => {
+                              {question.options.map((option) => {
                                 return (
-                                  <RadioLabel
-                                    htmlFor={`${option}${index}${optionIndex}`}
-                                  >
+                                  <RadioLabel htmlFor={option}>
                                     {option}
                                     <RadioInput
                                       type='radio'
                                       key={question.statement}
-                                      id={`${option}${index}${optionIndex}`}
+                                      id={option}
                                       name={index}
                                       value={option}
                                     />
@@ -283,7 +279,7 @@ class AssignmentPage extends React.Component {
                                 );
                               })}
                             </>
-                          ) : null}
+                          )}
                         </QuestionsOptionsContainer>
                       </QuestionCardWrapper>
                     );

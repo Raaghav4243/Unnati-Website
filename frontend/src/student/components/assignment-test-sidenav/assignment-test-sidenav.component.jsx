@@ -17,13 +17,15 @@ const AssignmentAndTestSidenav = ({
   forTest,
   currentCourseName,
   currentAssignmentName,
+  currentTestName,
 }) => {
   return (
     <>
       <SideNavContainer>
         <SidebarWrap>
           <Tile name={currentCourseName} />
-          <Tile small name={currentAssignmentName} />
+          {forAssignment ? <Tile small name={currentAssignmentName} /> : null}
+          {forTest ? <Tile small name={currentTestName} /> : null}
         </SidebarWrap>
       </SideNavContainer>
     </>

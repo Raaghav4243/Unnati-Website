@@ -3,13 +3,15 @@ import TestPageActionTypes from './testpage.types';
 const INITIAL_STATE = {
   isFetching: false,
   isTestSubmitting: false,
-  message: null,
+  messageFromBackend: null,
   testId: null,
   testName: null,
-  subjectName: null,
+  // subjectName: null,
   duration: null,
-  maxMarks: null,
+  maxMarksPossible: null,
   questions: null,
+  submitConformation: null,
+  submissionFailed: false,
   errorMessage: null,
 };
 
@@ -20,13 +22,15 @@ const testReducer = (state = INITIAL_STATE, action) => {
         ...state,
         isFetching: true,
         isTestSubmitting: false,
-        message: null,
+        messageFromBackend: null,
         testId: null,
         testName: null,
-        subjectName: null,
+        // subjectName: null,
         duration: null,
-        maxMarks: null,
+        maxMarksPossible: null,
         questions: null,
+        submitConformation: null,
+        submissionFailed: false,
         errorMessage: null,
       };
     case TestPageActionTypes.FETCH_TEST_SUCCESS:
@@ -38,20 +42,27 @@ const testReducer = (state = INITIAL_STATE, action) => {
         return {
           ...state,
           isFetching: false,
-          message: action.payload.message,
+          messageFromBackend: action.payload.message,
         };
       } else {
         const {
-          test: { questions, _id, subjectName, testName, duration, maxMarks },
+          test: {
+            questions,
+            _id,
+            // subjectName,
+            testName,
+            duration,
+            maxMarks,
+          },
         } = action.payload;
         return {
           ...state,
           isFetching: false,
           testId: _id,
           testName: testName,
-          subjectName: subjectName,
+          // subjectName: subjectName,
           duration: duration,
-          maxMarks: maxMarks,
+          maxMarksPossible: maxMarks,
           questions: questions,
         };
       }
@@ -59,6 +70,27 @@ const testReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isFetching: false,
+        errorMessage: action.payload,
+      };
+    case TestPageActionTypes.SUBMIT_TEST_START:
+      return {
+        ...state,
+        isTestSubmitting: true,
+        submissionFailed: false,
+        submitConformation: null,
+      };
+    case TestPageActionTypes.SUBMIT_TEST_SUCCESS:
+      return {
+        ...state,
+        isTestSubmitting: false,
+        submitConformation: action.payload,
+        submissionFailed: false,
+      };
+    case TestPageActionTypes.SUBMIT_TEST_FAILURE:
+      return {
+        ...state,
+        isTestSubmitting: false,
+        submissionFailed: true,
         errorMessage: action.payload,
       };
     default:

@@ -2,9 +2,39 @@ import { createSelector } from 'reselect';
 
 const selectTestDetails = (state) => state.test;
 
+export const selectIsTestFetching = createSelector(
+  [selectTestDetails],
+  (testDetails) => testDetails.isFetching
+);
+
+export const selectIsTestSubmitting = createSelector(
+  [selectTestDetails],
+  (testDetails) => testDetails.isTestSubmitting
+);
+
+export const selectTestMessageFromBackend = createSelector(
+  [selectTestDetails],
+  (testDetails) => testDetails.messageFromBackend
+);
+
+export const selectTestId = createSelector(
+  [selectTestDetails],
+  (testDetails) => testDetails.testId
+);
+
 export const selectTestName = createSelector(
   [selectTestDetails],
   (testDetails) => testDetails.testName
+);
+
+export const selectTestDuration = createSelector(
+  [selectTestDetails],
+  (testDetails) => testDetails.duration
+);
+
+export const selectTestMaxMarksPossible = createSelector(
+  [selectTestDetails],
+  (testDetails) => testDetails.maxMarksPossible
 );
 
 export const selectTestQuestions = createSelector(
@@ -12,7 +42,12 @@ export const selectTestQuestions = createSelector(
   (testDetails) => testDetails.questions
 );
 
-export const selectTestMessage = createSelector(
+export const selectTestSubmittedConfirmationMessage = createSelector(
   [selectTestDetails],
-  (testDetails) => testDetails.message
+  (testDetails) => testDetails.submitConformation
+);
+
+export const selectHasTestSubmissionFailed = createSelector(
+  [selectTestDetails],
+  (testDetails) => testDetails.submitConformation
 );

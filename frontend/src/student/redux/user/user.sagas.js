@@ -5,19 +5,33 @@ import {
   fetchUserFailure,
   fetchUserSuccess,
   updateUserSuccess,
+  signOutSuccess,
+  signOutFailure,
 } from './user.actions';
 import { UserActionTypes } from './user.types';
 
 export function* fetchUserAsync() {
   try {
     console.log('USER ASYNC IS GETTING CALLED');
-   // localStorage.removeItem('user');
+    // localStorage.removeItem('user');
     let userData = yield localStorage.getItem('user');
     userData = JSON.parse(userData);
-    console.log(userData);
+    console.log('USER DATA INSIDE SAGA IS', userData);
     yield put(signInSuccess(userData));
   } catch (error) {
     yield put(fetchUserFailure(error));
+  }
+}
+
+export function* signOutAsync() {
+  try {
+    console.log('SIGN OUT USER ASYNC IS GETTING CALLED');
+    // localStorage.removeItem('user');
+    let userData = yield localStorage.removeItem('user');
+    userData = JSON.parse(userData);
+    yield put(signOutSuccess());
+  } catch (error) {
+    yield put(signOutFailure(error));
   }
 }
 
@@ -52,49 +66,22 @@ export function* signInWithEmail({ payload }) {
       body: JSON.stringify(data),
     });
 
-    // let viewedLectureForFirstTimeMessage = yield fetch(
-    //   `/enrolled-course/${userId}/course/${courseId}/lecture/${lectureId}`,
-    //   {
-    //     method: 'POST', // or 'PUT'
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify({ Random: 7 }),
-    //   }
-    // );
-
-    // viewedLectureForFirstTimeMessage = yield viewedLectureForFirstTimeMessage.json();
-
     UserObj = yield UserObj.json();
     console.log('USER OBJ IS', UserObj);
     localStorage.setItem('token', UserObj.token);
     localStorage.setItem('user', JSON.stringify(UserObj.user));
     yield put(signInSuccess(UserObj.user));
-    // allCourses.done
-    //   ? yield put(fetchAllCoursesSuccess(allCourses.courses))
-    //   : yield put(fetchAllCoursesFailure(allCourses.message));
-
-    // .then((response) => response.json())
-    // .then((data) => {
-    //   console.log('Success:', data);
-    //   this.setState({ user: data });
-    //   localStorage.setItem('token', data.token);
-    //   localStorage.setItem('user', JSON.stringify(data.user));
-
-    // })
-    // .catch((error) => {
-    //   console.error('Error:', error);
-    // });
   } catch (error) {
     yield put(signInFailure(error));
   }
-  // } catch (error) {
-  //   yield put(fetchAllCoursesFailure(error));
-  // }
 }
 
 export function* onEmailSignInStart() {
   yield takeLatest(UserActionTypes.EMAIL_SIGN_IN_START, signInWithEmail);
+}
+
+export function* onSignOutStart() {
+  yield takeLatest(UserActionTypes.SIGN_OUT_START, signOutAsync);
 }
 
 export function* updateUserStart() {
@@ -110,5 +97,6 @@ export function* userSagas() {
     call(updateUserStart),
     call(fetchUserAsync),
     call(onEmailSignInStart),
+    call(onSignOutStart),
   ]);
 }

@@ -4,7 +4,7 @@ import styled, { keyframes } from 'styled-components';
 
 export const TestPageContainer = styled.div`
   margin-left: 500px;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 `;
 
 export const PageWrapper = styled.div`
@@ -20,7 +20,7 @@ export const PageWrapper = styled.div`
   /* height: calc(100vh - 90px); */
   /* height: calc(100vh-75px); */
   width: calc(100% - 340px);
-  border: 4px solid red;
+  /* border: 4px solid red; */
 
   @media screen and (max-width: 768px) {
     /* font-size: 20px; */
@@ -31,7 +31,17 @@ export const PageWrapper = styled.div`
   }
 `;
 
-export const AssignmentTitle = styled.div`
+export const TimerWrapper = styled.div`
+  position: fixed;
+  bottom: 0;
+  z-index: 100;
+  background-color: red;
+  color: white;
+  width: 100%;
+  /* left: 10; */
+`;
+
+export const TestTitle = styled.div`
   font-size: 20px;
   margin-bottom: 10px;
 `;
@@ -135,6 +145,64 @@ export const RadioIndicator = styled.div`
 `;
 
 export const CheckedLabel = styled.label`
+  position: relative;
+  display: inline-block;
+  cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
+  margin: 0.6em 1.75em;
+  font-size: 16px;
+`;
+
+export const CheckedInput = styled.input`
+  height: 0;
+  width: 0;
+  opacity: 0;
+  z-index: -1;
+`;
+
+export const CheckedIndicator = styled.div`
+  border: 1px solid;
+  /* border-radius: 1em; */
+  width: 1.2em;
+  height: 1.2em;
+  position: absolute;
+  top: 0;
+  left: -1.5em;
+
+  ${RadioLabel}:hover & {
+    background: #ccc;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    display: none;
+  }
+
+  ${CheckedInput}:checked + &::after {
+    display: block;
+    /* border: solid #263238; */
+    /* border-radius: 1em; */
+    background-color: #f8971d;
+    /* width: 0.5em; */
+    /* height: 0.5em; */
+    width: 1em;
+    height: 1em;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-name: ${popIn};
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+  }
+
+  ${CheckedInput}:disabled + & {
+    pointer-events: none;
+    opacity: 0.6;
+    background: #e6e6e6;
+  }
+`;
+
+export const TextLabel = styled.label`
   /* input[type='radio'] {
   }
   display: inline-block;
@@ -156,25 +224,14 @@ export const CheckedLabel = styled.label`
   font-size: 16px;
 `;
 
-export const CheckedInput = styled.input`
+export const TextInput = styled.input`
   height: 0;
   width: 0;
   opacity: 0;
   z-index: -1;
 `;
 
-// const popIn = keyframes`
-// from {
-//   opacity: 0;
-//   transform: translate(-50%, -50%) scale(1.5) ;
-// }
-// to {
-//   opacity: 1;
-//   transform: translate(-50%, -50%) scale(1) ;
-// }
-// `;
-
-export const CheckedIndicator = styled.div`
+export const TextIndicator = styled.div`
   border: 1px solid;
   /* border-radius: 1em; */
   width: 1.2em;

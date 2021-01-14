@@ -48,7 +48,7 @@ const assignmentReducer = (state = INITIAL_STATE, action) => {
           assignment: {
             questions,
             _id,
-            subjectName,
+            // subjectName,
             assignmentName,
             duration,
             maxMarks,
@@ -63,7 +63,7 @@ const assignmentReducer = (state = INITIAL_STATE, action) => {
           isAssignmentSubmitting: false,
           assignmentId: _id,
           assignmentName: assignmentName,
-          subjectName: subjectName,
+          // subjectName: subjectName,
           duration: duration,
           maxMarksPossible: maxMarks,
           maxMarksScored: marksScored,

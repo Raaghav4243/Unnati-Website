@@ -58,7 +58,7 @@ export function* fetchAssignmentAsync() {
 //   yield takeLatest(StudentActionTypes.SET_CURRENT_COURSE_TOPIC_CONTENT);
 // }
 
-export function* submitStartAsync({ payload: { data } }) {
+export function* submitAssignmentStartAsync({ payload: { data } }) {
   try {
     const userId = yield select(selectCurrentUserId);
     const assignmentId = yield select(selectCurrentCourseTopicId);
@@ -94,7 +94,7 @@ export function* fetchAssignmentStart() {
 export function* submitAssignmentStart() {
   yield takeLatest(
     AssignmentPageActionTypes.SUBMIT_ASSIGNMENT_START,
-    submitStartAsync
+    submitAssignmentStartAsync
   );
 }
 

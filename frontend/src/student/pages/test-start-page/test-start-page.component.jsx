@@ -16,7 +16,7 @@ import {
 } from '../../redux/student/student.selectors';
 
 import {
-  selectTestMessage,
+  selectTestMessageFromBackend,
   selectTestQuestions,
 } from '../../redux/testpage/testpage.selectors';
 
@@ -74,6 +74,7 @@ class TestStartPage extends React.Component {
       match,
       history,
     } = this.props;
+    console.log('Test message from backend!', test_message);
     return (
       <>
         <TestStartPageContainer>
@@ -127,7 +128,7 @@ const mapStateToProps = createStructuredSelector({
   current_user_id: selectCurrentUserId,
   current_course_id: selectCurrentCourseId,
   test_questions: selectTestQuestions,
-  test_message: selectTestMessage,
+  test_message: selectTestMessageFromBackend,
 });
 
 export default connect(mapStateToProps)(withRouter(TestStartPage));
