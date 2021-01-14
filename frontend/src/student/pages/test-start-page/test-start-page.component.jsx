@@ -4,11 +4,13 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 
-// import { selectCurrentCourseId } from '../../redux/student/student.selectors';
-
-import { selectCurrentUserId } from '../../redux/user/user.selectors';
-
-// import { fetchTestStart } from '../../redux/testpage/testpage.actions';
+import {
+  selectTestMessageFromBackend,
+  selectTestQuestions,
+  selectTestDuration,
+  selectTestMaxMarksPossible,
+  selectTestMarksScored,
+} from '../../redux/testpage/testpage.selectors';
 
 import {
   selectCurrentCourseId,
@@ -16,22 +18,21 @@ import {
   selectCurrentCourseTopicName,
 } from '../../redux/student/student.selectors';
 
-import {
-  selectTestMessageFromBackend,
-  selectTestQuestions,
-  selectTestDuration,
-  selectTestMaxMarksPossible,
-} from '../../redux/testpage/testpage.selectors';
-
+import TestBackendResponseTypes from './test-backend-response.types';
 //components used
 import {
   TestStartPageContainer,
-  TestTitle,
+  TestTitleWrapper,
+  TestPrompt,
+  PromptWrapper,
+  TestName,
+  TestDuration,
+  TestMessage,
   QuestionsPromptContainer,
   Prompt,
   StartTestButton,
 } from './test-start-page.styles';
-import TestPage from '../test-page/test-page.component';
+// import TestPage from '../test-page/test-page.component';
 
 class TestStartPage extends React.Component {
   constructor() {
@@ -48,56 +49,69 @@ class TestStartPage extends React.Component {
       fetchTestStart,
     } = this.props;
     console.log('TestStartPage mounted');
-    // fetchTestStart(current_user_id, current_course_id, current_test_id);
   }
 
   componentWillUnmount() {
     console.log('TestStartPage Will unmount now');
   }
 
-  // componentDidUpdate() {
-  //   const {
-  //     current_user_id,
-  //     current_course_id,
-  //     current_test_id,
-  //     fetchTestStart,
-  //   } = this.props;
-  //   console.log('When test updated');
-  //   fetchTestStart(current_user_id, current_course_id, current_test_id);
-  // }
   render() {
     console.log('Test start page rendered!');
     const {
-      current_test_name,
-      current_user_id,
-      current_course_id,
-      current_test_id,
-      test_questions,
-      test_message,
       match,
       history,
+      current_test_name,
+      test_message_from_backend,
+      marksScoredOnTest,
+      maxMarksPossible,
+      testDuration,
+      test_questions,
     } = this.props;
-    console.log('Test message from backend!', test_message);
+    console.log('Test message from backend!', test_message_from_backend);
     return (
       <>
         <TestStartPageContainer>
-          {/* Do you want to start this test? : {current_test_name}
-            {current_user_id}
-            Course:
-            {current_course_id}
-            Test:
-            {current_test_id}
-            {test_message ? (
-              <div> Message from backend {test_message}</div>
-            ) : test_questions ? (
+          <TestTitleWrapper>Test</TestTitleWrapper>
+          <TestPrompt>
+            <TestName>
+              <PromptWrapper>Test Name :</PromptWrapper>
+              {current_test_name}
+            </TestName>
+            {testDuration ? (
+              <TestDuration>
+                <PromptWrapper>Test Duration : </PromptWrapper>
+                {testDuration} minutes
+              </TestDuration>
+            ) : null}
+            {test_message_from_backend ===
+            TestBackendResponseTypes.TEACHER_HAS_EVALUATED ? (
               <>
-                <div>Questions Received</div>
-                <TestPage />
+                <TestMessage>
+                  <PromptWrapper>
+                    <strong>
+                      Your Teacher has evaluated the test and your marks are
+                      out.
+                    </strong>
+                  </PromptWrapper>
+                  {marksScoredOnTest !== null ? ` ${marksScoredOnTest}` : null}
+                  {maxMarksPossible !== null ? ` / ${maxMarksPossible}` : null}
+                </TestMessage>
               </>
-            ) : null} */}
-          {test_message ? (
-            <div>MESSAGE RECEIVED {test_message}</div>
-          ) : test_questions ? (
+            ) : test_message_from_backend ===
+              TestBackendResponseTypes.TEACHER_WILL_EVALUATE ? (
+              <>
+                <TestMessage>
+                  <PromptWrapper>
+                    <strong>
+                      Your test has been submitted and will soon be evaluated by
+                      your teacher.
+                    </strong>
+                  </PromptWrapper>
+                </TestMessage>
+              </>
+            ) : null}
+          </TestPrompt>
+          {test_questions ? (
             <>
               {/* <Route path={`${match.path}/test`} component={TestPage} /> */}
               {console.log('QUESTIONS ARRAY:', test_questions)}
@@ -115,9 +129,7 @@ class TestStartPage extends React.Component {
                 </StartTestButton>
               </QuestionsPromptContainer>
             </>
-          ) : (
-            <div>WE ARE FINDING YOUR TEST... </div>
-          )}
+          ) : null}
         </TestStartPageContainer>
       </>
     );
@@ -128,10 +140,13 @@ class TestStartPage extends React.Component {
 const mapStateToProps = createStructuredSelector({
   current_test_id: selectCurrentCourseTopicId,
   current_test_name: selectCurrentCourseTopicName,
-  current_user_id: selectCurrentUserId,
+  // current_user_id: selectCurrentUserId,
   current_course_id: selectCurrentCourseId,
+  test_message_from_backend: selectTestMessageFromBackend,
+  marksScoredOnTest: selectTestMarksScored,
+  maxMarksPossible: selectTestMaxMarksPossible,
+  testDuration: selectTestDuration,
   test_questions: selectTestQuestions,
-  test_message: selectTestMessageFromBackend,
 });
 
 export default connect(mapStateToProps)(withRouter(TestStartPage));

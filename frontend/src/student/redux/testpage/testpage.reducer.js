@@ -8,6 +8,7 @@ const INITIAL_STATE = {
   testName: null,
   // subjectName: null,
   duration: null,
+  marksScored: null,
   maxMarksPossible: null,
   questions: null,
   submitConformation: null,
@@ -27,6 +28,7 @@ const testReducer = (state = INITIAL_STATE, action) => {
         testName: null,
         // subjectName: null,
         duration: null,
+        marksScored: null,
         maxMarksPossible: null,
         questions: null,
         submitConformation: null,
@@ -39,11 +41,20 @@ const testReducer = (state = INITIAL_STATE, action) => {
       //   message,
       // } = action.payload;
       if (action.payload.message) {
-        return {
-          ...state,
-          isFetching: false,
-          messageFromBackend: action.payload.message,
-        };
+        if (action.payload.marksScored) {
+          return {
+            ...state,
+            isFetching: false,
+            marksScored: action.payload.marksScored,
+            messageFromBackend: action.payload.message,
+          };
+        } else {
+          return {
+            ...state,
+            isFetching: false,
+            messageFromBackend: action.payload.message,
+          };
+        }
       } else {
         const {
           test: {

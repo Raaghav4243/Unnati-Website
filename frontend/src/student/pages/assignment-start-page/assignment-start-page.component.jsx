@@ -4,17 +4,6 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 
-// import { selectCurrentCourseId } from '../../redux/student/student.selectors';
-
-// import { selectCurrentUserId } from '../../redux/user/user.selectors';
-
-// import { fetchTestStart } from '../../redux/testpage/testpage.actions';
-
-// import {
-//   selectCurrentCourseTopicId,
-//   selectCurrentCourseTopicName,
-// } from '../../redux/student/student.selectors';
-
 import {
   selectAssignmentMessageFromBackend,
   selectAssignmentMarksScored,
@@ -36,7 +25,7 @@ import {
 
 //styles used
 import {
-  AssignmentPageContainer,
+  AssignmentStartPageContainer,
   AssignmentTitleWrapper,
   AssignmentPrompt,
   PromptWrapper,
@@ -108,7 +97,7 @@ class AssignmentStartPage extends React.Component {
 
     return (
       <>
-        <AssignmentPageContainer>
+        <AssignmentStartPageContainer>
           <AssignmentTitleWrapper>Assignment</AssignmentTitleWrapper>
           <AssignmentPrompt>
             <AssignmentName>
@@ -118,7 +107,7 @@ class AssignmentStartPage extends React.Component {
             {assignmentDuration ? (
               <AssignmentDuration>
                 <PromptWrapper>Assignment Duration : </PromptWrapper>
-                {assignmentDuration}
+                {assignmentDuration} minutes
               </AssignmentDuration>
             ) : null}
             {assignmentAttemptsLeft === 3 ? (
@@ -151,7 +140,7 @@ class AssignmentStartPage extends React.Component {
               </AttemptsWrapper>
             </AssignmentAttemptsContainer>
           ) : null}
-        </AssignmentPageContainer>
+        </AssignmentStartPageContainer>
       </>
     );
     // return (

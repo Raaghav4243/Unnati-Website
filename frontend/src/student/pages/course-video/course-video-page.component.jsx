@@ -6,7 +6,10 @@ import CourseNotesDownload from '../../components/course-video/course-notes.comp
 import {
   CourseVideoPDFContainer,
   CourseVideoContainer,
-  NavBar,
+  LectureTitleWrapper,
+  LectureVideoWrapper,
+  LectureNotesWrapper,
+  LectureNotesTitleWrapper,
 } from './course-video-page.styles';
 import pdf from '../../assets/TopicNotes.pdf';
 import SideNav from '../../components/SideNav/SideNav';
@@ -46,17 +49,23 @@ export class CourseVideo extends Component {
               // url={`https://www.youtube.com/watch?v=${lecture_youtube_id}`}
               url={lecture_notes_link}
             ></CourseVideoPlayer> */}
-            <iframe
-              src={`https://drive.google.com/file/d/${lecture_drive_id}/preview`}
-              width='640'
-              height='480'
-            ></iframe>
-            <iframe
-              src={`https://drive.google.com/file/d/${lecture_drive_id}/preview`}
-              width='640'
-              height='480'
-            ></iframe>
-            <CourseNotesDownload download={pdf}></CourseNotesDownload>
+            <LectureTitleWrapper>Lecture</LectureTitleWrapper>
+            <LectureVideoWrapper>
+              <iframe
+                src={`https://drive.google.com/file/d/${lecture_drive_id}/preview`}
+                width='100%'
+                height='480'
+              ></iframe>
+            </LectureVideoWrapper>
+            <LectureNotesTitleWrapper>Lecture Notes</LectureNotesTitleWrapper>
+            <LectureNotesWrapper>
+              <iframe
+                src={`https://drive.google.com/file/d/${lecture_notes_link}/preview`}
+                width='100%'
+                height='480'
+              ></iframe>
+            </LectureNotesWrapper>
+            {/* <CourseNotesDownload download={pdf}></CourseNotesDownload> */}
           </CourseVideoPDFContainer>
         </CourseVideoContainer>
       </>
