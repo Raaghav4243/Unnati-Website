@@ -1,17 +1,6 @@
 import { UserActionTypes } from './user.types';
 
 const INITIAL_STATE = {
-  // currentUser: {
-  //   username: null,
-  //   email: null,
-  //   _id: null,
-  //   cafe: null,
-  //   firstName: null,
-  //   lastName: null,
-  //   phoneNumber: null,
-  //   role: null,
-  // },
-  // currentUser: {},
   username: null,
   email: null,
   _id: null,
@@ -23,9 +12,9 @@ const INITIAL_STATE = {
   isFetching: false,
   isUserSigningIn: false,
   isUserSignedIn: false,
-  errorMessage: undefined,
   userIsUpdating: false,
   updateConfirmation: null,
+  errorMessage: undefined,
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -35,7 +24,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
         ...state,
         isUserSigningIn: true,
         isUserSignedIn: false,
-        error: null,
+        errorMessage: null,
       };
     case UserActionTypes.SIGN_IN_SUCCESS:
       console.log('USER SIGNED IN!');
@@ -63,7 +52,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
         role: role,
         isUserSigningIn: false,
         isUserSignedIn: true,
-        error: null,
+        errorMessage: null,
       };
     case UserActionTypes.SIGN_OUT_SUCCESS:
       return {
@@ -77,33 +66,13 @@ const userReducer = (state = INITIAL_STATE, action) => {
         phoneNumber: null,
         role: null,
         isUserSignedIn: false,
-        error: null,
+        errorMessage: null,
       };
     case UserActionTypes.SIGN_IN_FAILURE:
     case UserActionTypes.SIGN_OUT_FAILURE:
     case UserActionTypes.SIGN_UP_FAILURE:
       return {
         ...state,
-        error: action.payload,
-      };
-    case UserActionTypes.FETCH_USER_START:
-      return {
-        ...state,
-        isFetching: true,
-      };
-    case UserActionTypes.FETCH_USER_SUCCESS:
-      // const {username, email, _id, lastName,
-      //    firstName, phoneNumber, role, cafe} = action.payload
-      return {
-        ...state,
-        isFetching: false,
-        // isUserSignedIn: true,
-        currentUser: action.payload,
-      };
-    case UserActionTypes.FETCH_USER_FAILURE:
-      return {
-        ...state,
-        isFetching: false,
         errorMessage: action.payload,
       };
     case UserActionTypes.UPDATE_USER_START:
@@ -116,6 +85,12 @@ const userReducer = (state = INITIAL_STATE, action) => {
         ...state,
         userIsUpdating: false,
         updateConfirmation: action.payload,
+      };
+    case UserActionTypes.UPDATE_USER_FAILURE:
+      return {
+        ...state,
+        userIsUpdating: false,
+        errorMessage: action.payload,
       };
     default:
       return state;

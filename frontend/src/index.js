@@ -4,15 +4,20 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
-import { store } from './student/redux/store';
+// import { store } from './student/redux/store';
 import { BrowserRouter } from 'react-router-dom';
-import {TeacherDashboard} from '../src/teacher/pages/teacher-dashboard-main-page/teacher-dashboard-page'
+import { PersistGate } from 'redux-persist/integration/react';
+import { store, persistor } from './student/redux/store';
+
+// import {TeacherDashboard} from '../src/teacher/pages/teacher-dashboard-main-page/teacher-dashboard-page'
 
 ReactDOM.render(
   <Provider store={store}>
     {/* <React.StrictMode> */}
     <BrowserRouter>
-      <App />
+      <PersistGate persistor={persistor}>
+        <App />
+      </PersistGate>
     </BrowserRouter>
     {/* </React.StrictMode> */}
   </Provider>,

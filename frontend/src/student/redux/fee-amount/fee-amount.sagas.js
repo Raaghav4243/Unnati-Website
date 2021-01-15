@@ -8,12 +8,12 @@ import FeeAmountTypes from './fee-amount.types';
 
 export function* fetchFeeAmountAsync({ payload: { user_id, cafe_id } }) {
   try {
+    console.log('FEE AMOUNT SAGA IS GETTING CALLED', feeAmountDetails);
     let feeAmountDetails = yield fetch(
       `/FeesStatus/${user_id}/cafe/${cafe_id}`
     );
 
     feeAmountDetails = yield feeAmountDetails.json();
-    console.log('fee amount object', feeAmountDetails);
 
     yield put(fetchFeeAmountSuccess(feeAmountDetails.user));
   } catch (error) {

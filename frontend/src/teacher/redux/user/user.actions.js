@@ -31,18 +31,18 @@ export const updateUserSuccess = (message) => {
   };
 };
 
-export const fetchUserStartAsync = () => {
-  //using async/await
+// export const fetchUserStartAsync = () => {
+//   //using async/await
 
-  return async (dispatch) => {
-    try {
-      //   dispatch(fetchUserStart());
-      //   let allCourses = await fetch('/all-courses');
-      //   allCourses = await allCourses.json();
-      //   allCourses = allCourses.courses;
-      //   dispatch(fetchAllCoursesSuccess(allCourses));
-    } catch (error) {
-      //   dispatch(fetchAllCoursesFailure(error.message));
-    }
-  };
-};
+//   return async (dispatch) => {
+//     try {
+//       //   dispatch(fetchUserStart());
+//       //   let allCourses = await fetch('/all-courses');
+//       //   allCourses = await allCourses.json();
+//       //   allCourses = allCourses.courses;
+//       //   dispatch(fetchAllCoursesSuccess(allCourses));
+//     } catch (error) {
+//       //   dispatch(fetchAllCoursesFailure(error.message));
+//     }
+//   };
+// };

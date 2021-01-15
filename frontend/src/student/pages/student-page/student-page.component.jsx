@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import GoToDashboardButton from '../../components/go-to-dashboard-button-link/go-to-dashboard-button-link.component';
 import studentCourseTopicPage from '../student-course-topic-page/student-course-topic-page';
 import studentDashboard from '../student-dashboard/student-dashboard.component';
@@ -42,4 +42,4 @@ class StudentPage extends React.Component {
   }
 }
 
-export default StudentPage;
+export default withRouter(StudentPage);
