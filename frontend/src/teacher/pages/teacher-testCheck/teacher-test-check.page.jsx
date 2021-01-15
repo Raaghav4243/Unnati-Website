@@ -4,10 +4,11 @@ import { createStructuredSelector } from 'reselect';
 import TeacherCafeDetails from '../../components/cafe-details/cafe-details.component';
 import TeacherDashboardNavbar from '../../components/teacher-dashboard-navbar/teacher-dashboard-navbar.component';
 import TeacherDashboardSidenav from '../../components/teacher-dashboard-sidenav/teacher-dashboard-sidenav.component';
-import CustomPaginationActionsTable from '../../components/teacher-testCheck/table-component';
+import CustomPaginationActionsTable from '../../components/teacher-testCheck/styledtable-component';
 import { fetchTestListForEvaluationStart } from '../../redux/test-evaluation/test-evaluation-list.actions';
 import { selectTestList } from '../../redux/test-evaluation/test-evaluation-list.selectors';
 import { selectTestDetails } from '../../redux/test-sheet/test-sheet.selectors';
+import ContainedButtons from '../../components/styled-button/styled-button-component'
 // import EnhancedTable2 from '../../components/teacher-enrolledstudent/table2.Component';
 
 import {
@@ -29,7 +30,10 @@ class TeacherTestCheck extends React.Component {
       return { ID, FirstName, CourseName, testName, ButtonId };
     }
 
-    const rows = [createData(1, 'Raaghav', 'Raj', 1)];
+    const rows = [createData(1, 'Raaghav', 'Raj', 1),
+    createData(2, 'Raaghav', 'Raj', 1), 
+    createData(3, 'Raaghav', 'Raj', 1) 
+  ];
 
     const { testList } = this.props;
     console.log(testList);
@@ -64,6 +68,7 @@ class TeacherTestCheck extends React.Component {
       <>
         <TeacherDashboardNavbar></TeacherDashboardNavbar>
         <Body>
+          {/* <ContainedButtons></ContainedButtons> */}
           <TeacherDashboardSidenav></TeacherDashboardSidenav>
           <CafeTableWrapper>
             <CafeDetailsParentWrapper>

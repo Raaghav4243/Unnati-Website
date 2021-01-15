@@ -26,7 +26,7 @@ margin-left: 21vw;
 
 export const TableWrapper = styled.div`
  width: 1000px;
- margin-left: 5vh;
+ margin-left: 1vh;
 `;
 
 export const CafeDetailWrapper = styled.div`
