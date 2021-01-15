@@ -32,6 +32,11 @@ export const selectTestDuration = createSelector(
   (testDetails) => testDetails.duration
 );
 
+export const selectTestMarksScored = createSelector(
+  [selectTestDetails],
+  (testDetails) => testDetails.marksScored
+);
+
 export const selectTestMaxMarksPossible = createSelector(
   [selectTestDetails],
   (testDetails) => testDetails.maxMarksPossible

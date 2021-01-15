@@ -1,21 +1,5 @@
 import { UserActionTypes } from './user.types';
 
-export const fetchUserStart = () => ({
-  type: UserActionTypes.FETCH_USER_START,
-});
-
-export const fetchUserSuccess = (user) => {
-  return {
-    type: UserActionTypes.FETCH_USER_SUCCESS,
-    payload: user,
-  };
-};
-
-export const fetchUserFailure = (errorMessage) => ({
-  type: UserActionTypes.FETCH_USER_FAILURE,
-  payload: errorMessage,
-});
-
 export const emailSignInStart = (emailAndPasswordData) => ({
   type: UserActionTypes.EMAIL_SIGN_IN_START,
   payload: emailAndPasswordData,
@@ -31,9 +15,9 @@ export const signInFailure = (error) => ({
   payload: error,
 });
 
-// export const checkUserSession = () => ({
-//   type: UserActionTypes.CHECK_USER_SESSION,
-// });
+export const checkUserSession = () => ({
+  type: UserActionTypes.CHECK_USER_SESSION,
+});
 
 export const signOutStart = () => ({
   type: UserActionTypes.SIGN_OUT_START,
@@ -75,6 +59,13 @@ export const updateUserSuccess = (message) => {
   return {
     type: UserActionTypes.UPDATE_USER_SUCCESS,
     payload: message,
+  };
+};
+
+export const updateUserFailure = (error) => {
+  return {
+    type: UserActionTypes.UPDATE_USER_SUCCESS,
+    payload: error,
   };
 };
 

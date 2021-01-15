@@ -37,7 +37,7 @@ import { fetchUserCafeStartAsync } from '../../redux/cafe/cafe.actions';
 // import StudentNavbar from '../../components/student-dashboard-navbar/student-dashboard-navbar.component';
 import { updateUserStart } from '../../redux/user/user.actions';
 import TeacherDashboardSidenav from '../../components/teacher-dashboard-sidenav/teacher-dashboard-sidenav.component';
-import TeacherDashboardNavbar from '../../components/teacher-dashboard-navbar/teacher-dashboard-navbar.component'
+import TeacherDashboardNavbar from '../../components/teacher-dashboard-navbar/teacher-dashboard-navbar.component';
 import { selectUpdateConfirmation } from '../../../student/redux/user/user.selectors';
 
 class TeacherProfile extends React.Component {
@@ -113,10 +113,10 @@ class TeacherProfile extends React.Component {
   };
 
   render() {
-  //   let userData = localStorage.getItem('user')
-  // userData = JSON.parse(userData)
-  // console.log(userData)
-  // console.log(userData.username)
+    //   let userData = localStorage.getItem('user')
+    // userData = JSON.parse(userData)
+    // console.log(userData)
+    // console.log(userData.username)
     // const { userusername, useremail, userphonenumber, userlastname, userfirstname, userCafe, userId } = this.props;
     const {
       userusername,
@@ -125,106 +125,103 @@ class TeacherProfile extends React.Component {
       userlastname,
       userfirstname,
       userCafe,
-      updateConfirmation
+      updateConfirmation,
     } = this.props;
     console.log(userfirstname);
     console.log(userCafe);
     console.log(this.props.userId);
     return (
-      <>  <TeacherDashboardNavbar/>
-          <TeacherDashboardSidenav/>
-          <ContainerWrapper>
-            <ProfileHeading>PROFILE </ProfileHeading>
-            <ProfileDetailsContainer
-              onChange={(e) => this.handleOnChange(e)}
-              onSubmit={this.handleSubmit}
-            >
-              <PersonalDetailsHeading>Personal Details</PersonalDetailsHeading>
-              {
-                updateConfirmation ? <div style={{color: "green"}}>{updateConfirmation}</div> : null
-              }
-              <WrapperContainer>
-                <DetailsWrapper>
-                  <DetailsHeading htmlFor='firstName'>
-                    First Name
-                  </DetailsHeading>
-                  <DetailsHeading htmlFor='lastName'>
-                    Middle Name
-                  </DetailsHeading>
-                  <DetailsHeading htmlFor='lastName'>Last Name*</DetailsHeading>
-                </DetailsWrapper>
-                <DetailsWrapper>
-                  <Details
-                    type='type'
-                    placeholder={userfirstname}
-                    name='firstName'
-                    id='firstname'
-                  />
-                  <Details
-                    type='type'
-                    placeholder={userlastname}
-                    name='lastName'
-                    id='lastName'
-                  />
-                  <Details
-                    type='type'
-                    placeholder={userlastname}
-                    name='lastName'
-                    id='lastName'
-                  />
-                </DetailsWrapper>
-              </WrapperContainer>
+      <>
+        {' '}
+        <TeacherDashboardNavbar />
+        <TeacherDashboardSidenav />
+        <ContainerWrapper>
+          <ProfileHeading>PROFILE </ProfileHeading>
+          <ProfileDetailsContainer
+            onChange={(e) => this.handleOnChange(e)}
+            onSubmit={this.handleSubmit}
+          >
+            <PersonalDetailsHeading>Personal Details</PersonalDetailsHeading>
+            {updateConfirmation ? (
+              <div style={{ color: 'green' }}>{updateConfirmation}</div>
+            ) : null}
+            <WrapperContainer>
+              <DetailsWrapper>
+                <DetailsHeading htmlFor='firstName'>First Name</DetailsHeading>
+                <DetailsHeading htmlFor='lastName'>Middle Name</DetailsHeading>
+                <DetailsHeading htmlFor='lastName'>Last Name*</DetailsHeading>
+              </DetailsWrapper>
+              <DetailsWrapper>
+                <Details
+                  type='type'
+                  placeholder={userfirstname}
+                  name='firstName'
+                  id='firstname'
+                />
+                <Details
+                  type='type'
+                  placeholder={userlastname}
+                  name='lastName'
+                  id='lastName'
+                />
+                <Details
+                  type='type'
+                  placeholder={userlastname}
+                  name='lastName'
+                  id='lastName'
+                />
+              </DetailsWrapper>
+            </WrapperContainer>
 
-              <WrapperContainer>
-                <DetailsWrapper>
-                  <DetailsHeading htmlFor='username'>Username</DetailsHeading>
-                  <DetailsHeading htmlFor='email'> Email ID</DetailsHeading>
-                  <DetailsHeading htmlFor='phoneNumber'>
-                    {' '}
-                    Phone Number
-                  </DetailsHeading>
-                </DetailsWrapper>
-                <DetailsWrapper>
-                  <Details
-                    type='type'
-                    placeholder={userusername}
-                    name='username'
-                    id='username'
-                  />
-                  <Details
-                    type='email'
-                    placeholder={useremail}
-                    name='email'
-                    id='email'
-                  />
-                  <Details
-                    type='number'
-                    placeholder={userphonenumber}
-                    name='phoneNumber'
-                    id='phoneNumber'
-                  />
-                </DetailsWrapper>
-              </WrapperContainer>
-              <SaveButton>Save Changes</SaveButton>
-            </ProfileDetailsContainer>
-            <CafeDetailsContainer>
-              <PersonalDetailsHeading>Cafe Details</PersonalDetailsHeading>
-              <WrapperContainer>
-                <DetailsWrapper>
-                  <DetailsHeading>Username</DetailsHeading>
-                  <DetailsHeading> Email ID</DetailsHeading>
-                  <DetailsHeading> Phone Number</DetailsHeading>
-                </DetailsWrapper>
-                <DetailsWrapper>
-                  <CafeInfo>uug</CafeInfo>
-                  <CafeInfo>uug</CafeInfo>
-                  <CafeInfo>uug</CafeInfo>
-                </DetailsWrapper>
-              </WrapperContainer>
-            </CafeDetailsContainer>
-          </ContainerWrapper>
+            <WrapperContainer>
+              <DetailsWrapper>
+                <DetailsHeading htmlFor='username'>Username</DetailsHeading>
+                <DetailsHeading htmlFor='email'> Email ID</DetailsHeading>
+                <DetailsHeading htmlFor='phoneNumber'>
+                  {' '}
+                  Phone Number
+                </DetailsHeading>
+              </DetailsWrapper>
+              <DetailsWrapper>
+                <Details
+                  type='type'
+                  placeholder={userusername}
+                  name='username'
+                  id='username'
+                />
+                <Details
+                  type='email'
+                  placeholder={useremail}
+                  name='email'
+                  id='email'
+                />
+                <Details
+                  type='number'
+                  placeholder={userphonenumber}
+                  name='phoneNumber'
+                  id='phoneNumber'
+                />
+              </DetailsWrapper>
+            </WrapperContainer>
+            <SaveButton>Save Changes</SaveButton>
+          </ProfileDetailsContainer>
+          <CafeDetailsContainer>
+            <PersonalDetailsHeading>Cafe Details</PersonalDetailsHeading>
+            <WrapperContainer>
+              <DetailsWrapper>
+                <DetailsHeading>Username</DetailsHeading>
+                <DetailsHeading> Email ID</DetailsHeading>
+                <DetailsHeading> Phone Number</DetailsHeading>
+              </DetailsWrapper>
+              <DetailsWrapper>
+                <CafeInfo>uug</CafeInfo>
+                <CafeInfo>uug</CafeInfo>
+                <CafeInfo>uug</CafeInfo>
+              </DetailsWrapper>
+            </WrapperContainer>
+          </CafeDetailsContainer>
+        </ContainerWrapper>
       </>
-  
     );
   }
 }
@@ -238,7 +235,7 @@ const mapStateToProps = createStructuredSelector({
   userphonenumber: selectPhoneNumber,
   userrole: selectCurrentUserRole,
   cafeId: selectCurrentUserCafeId,
-  updateConfirmation: selectUpdateConfirmation
+  updateConfirmation: selectUpdateConfirmation,
 });
 
 const mapDispatchToProps = (dispatch) => ({

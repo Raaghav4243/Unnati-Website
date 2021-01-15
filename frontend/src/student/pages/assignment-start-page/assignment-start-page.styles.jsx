@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const AssignmentPageContainer = styled.div`
+export const AssignmentStartPageContainer = styled.div`
   width: 100%;
   /* border: 4px solid black; */
   display: flex;
