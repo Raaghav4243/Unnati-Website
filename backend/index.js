@@ -39,6 +39,6 @@ mongoose.connection.on('connected',()=>{
 mongoose.connection.on('err',()=>{
     console.log("error while connecting",err);
 })
-app.listen('3000',()=>{
-    console.log("server running at port 3000" )
+app.listen('5000',()=>{
+    console.log("server running at port 5000" )
 })
