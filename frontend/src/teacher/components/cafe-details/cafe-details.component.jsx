@@ -56,10 +56,10 @@ const TeacherCafeDetails = ({
               <CafeAddress>
                 <strong>Address :</strong> {cafeAddress}
               </CafeAddress>
-              <CafeFaculty>
+              {/* <CafeFaculty>
                 <strong>Faculty Incharge :</strong>
                 {facultyIncharge}
-              </CafeFaculty>
+              </CafeFaculty> */}
               <ButtonWrapper>
               <Popup trigger={<ContactButton>Contact Admin</ContactButton>} position="right center">
                 <PopupWrapper>
