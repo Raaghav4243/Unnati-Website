@@ -75,7 +75,7 @@ flex-direction: column;
 export const FlexBox = styled.div
 `display: flex;
 margin-top: 5vh;
-margin-left: 320px;
+margin-left: 21vw;
 
 `
 

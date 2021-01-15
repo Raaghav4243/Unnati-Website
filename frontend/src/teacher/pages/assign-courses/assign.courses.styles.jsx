@@ -16,7 +16,7 @@ export const CafeDetailsParentWrapper = styled.div`
 `;
 export const PageWrapper = styled.div`
   margin-top: 90px;
-  margin-left: 320px;
+  margin-left: 21vw;
   /* margin-right: 20px; */
   display: flex;
   flex-direction: column;

@@ -70,8 +70,8 @@ display: flex;
 flex-direction: column;
 flex-wrap: wrap;
 font-family: 'Montserrat', sans-serif;
-margin-top: 90px;
-margin-left: 320px;
+margin-top: 10vh;
+margin-left: 21vw;
 `
 
 export const CafeDetailsContainer = styled.div`
