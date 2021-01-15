@@ -161,7 +161,7 @@ class TeacherDashboardFeesPage extends React.Component {
                 <DropWrapper>
                   <TextField
                     id="filled-basic"
-                    label="Filled"
+                    label="Fees"
                     variant="filled"
                     onChange={this.handleFeeAmount}
                   />
@@ -172,7 +172,7 @@ class TeacherDashboardFeesPage extends React.Component {
                 <RemarksFieldWrapper>
                   <TextField
                     id="filled-basic"
-                    label="Filled"
+                    label="Remarks"
                     variant="filled"
                     onChange={this.handleRemarks}
                   />

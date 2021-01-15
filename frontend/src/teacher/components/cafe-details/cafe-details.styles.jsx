@@ -85,6 +85,7 @@ export const ButtonWrapper = styled.div`
   width: 100%;
   font-size: 16px;
   /* border: 2px solid blue; */
+  margin-top: 2vh;
 `;
 export const ContactButton = styled.div`
   width: 150px;
