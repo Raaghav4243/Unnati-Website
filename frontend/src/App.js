@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-
+import { ThemeProvider } from '@material-ui/styles';
+import { websiteTheme } from './material-ui.styles';
 import './App.css';
 // import AssignmentPage from './student/pages/assignment-page/assignment-page.component';
 
@@ -44,92 +45,98 @@ class App extends React.Component {
     const { isUserSignedIn, userRole } = this.props;
     return (
       <BrowserRouter>
-        <Switch>
-          <Route path='/' exact component={HomePage} />
-          <Route
-            path='/discover'
-            exact
-            render={() => <CourseOverview forHome />}
-          />
-          <Route
-            path='/signup'
-            render={() =>
-              isUserSignedIn ? (
-                userRole === 'STUDENT' ? (
-                  <Redirect to='/student/dashboard' />
-                ) : userRole === 'TEACHER' ? (
-                  <Redirect to='/teacher' />
+        <ThemeProvider theme={websiteTheme}>
+          <Switch>
+            <Route path='/' exact component={HomePage} />
+            <Route
+              path='/discover'
+              exact
+              render={() => <CourseOverview forHome />}
+            />
+            <Route
+              path='/signup'
+              render={() =>
+                isUserSignedIn ? (
+                  userRole === 'STUDENT' ? (
+                    <Redirect to='/student/dashboard' />
+                  ) : userRole === 'TEACHER' ? (
+                    <Redirect to='/teacher' />
+                  ) : (
+                    <Redirect to='/' />
+                  )
+                ) : (
+                  <SignInAndSignUpPage />
+                )
+              }
+            />
+            {/* STUDENT ROUTES */}
+            <Route
+              path='/student'
+              // component={StudentPage}
+              render={() =>
+                isUserSignedIn && userRole === 'STUDENT' ? (
+                  <StudentPage />
                 ) : (
                   <Redirect to='/' />
                 )
-              ) : (
-                <SignInAndSignUpPage />
-              )
-            }
-          />
-          {/* STUDENT ROUTES */}
-          <Route
-            path='/student'
-            // component={StudentPage}
-            render={() =>
-              isUserSignedIn && userRole === 'STUDENT' ? (
-                <StudentPage />
-              ) : (
-                <Redirect to='/' />
-              )
-            }
-          />
+              }
+            />
 
-          <Route
-            path='/teacher'
-            exact
-            component={TeacherDashboardLandingPage}
-          />
-          <Route
-            path='/teacher/enrolled'
-            exact
-            component={TeacherEnrolledStudents}
-          />
-          <Route path='/teacher/approve' exact component={TeacherApproval} />
-          <Route path='/teacher/testcheck' exact component={TeacherTestCheck} />
-          <Route
-            path='/teacher/assign'
-            exact
-            component={TeacherDashboardAssignPage}
-          />
-          <Route
-            path='/teacher/studentfees'
-            exact
-            component={TeacherDashboardFeesPage}
-          />
-          <Route path='/teacher/profile' exact component={TeacherProfile} />
-          <Route
-            path='/teacher/changepassword'
-            exact
-            component={TeacherChangePassword}
-          />
-          <Route path='/teacher/evaluatetest' component={EvaluateTestPage} />
-          {/* <Route path='/teacher/enrolled' component={TeacherEnrolledStudents} /> */}
+            <Route
+              path='/teacher'
+              exact
+              component={TeacherDashboardLandingPage}
+            />
+            <Route
+              path='/teacher/enrolled'
+              exact
+              component={TeacherEnrolledStudents}
+            />
+            <Route path='/teacher/approve' exact component={TeacherApproval} />
+            <Route
+              path='/teacher/testcheck'
+              exact
+              component={TeacherTestCheck}
+            />
+            <Route
+              path='/teacher/assign'
+              exact
+              component={TeacherDashboardAssignPage}
+            />
+            <Route
+              path='/teacher/studentfees'
+              exact
+              component={TeacherDashboardFeesPage}
+            />
+            <Route path='/teacher/profile' exact component={TeacherProfile} />
+            <Route
+              path='/teacher/changepassword'
+              exact
+              component={TeacherChangePassword}
+            />
+            <Route path='/teacher/evaluatetest' component={EvaluateTestPage} />
+            {/* <Route path='/teacher/enrolled' component={TeacherEnrolledStudents} /> */}
 
-          {
-            // enrolled-students list, no functionality
-          }
-          {/* <Route path='/teacher/approve' component={TeacherApproval} /> */}
-          {/* <Route path='/teacher/testcheck' component={TeacherTestCheck} /> */}
-          {/* <Route
+            {
+              // enrolled-students list, no functionality
+            }
+            {/* <Route path='/teacher/approve' component={TeacherApproval} /> */}
+            {/* <Route path='/teacher/testcheck' component={TeacherTestCheck} /> */}
+            {/* <Route
             path='/teacher/assign'
             component={TeacherDashboardAssignPage}
           /> */}
-          {/* <Route
+            {/* <Route
             path='/teacher/studentfees'
             component={TeacherDashboardFeesPage}
           /> */}
-          {/* <Route path='/teacher/profile' component={TeacherProfile} /> */}
-          {/* <Route
+            {/* <Route path='/teacher/profile' component={TeacherProfile} /> */}
+            {/* <Route
             path='/teacher/changepassword'
             component={TeacherChangePassword}
           /> */}
-        </Switch>
+          </Switch>
+        </ThemeProvider>
       </BrowserRouter>
     );
   }
