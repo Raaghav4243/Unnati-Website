@@ -22,6 +22,8 @@ import { createStructuredSelector } from 'reselect';
 import { selectTestDetails } from '../../redux/test-sheet/test-sheet.selectors';
 import { createMuiTheme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import StyledButton from '../button-component/styled-button';
+// import 'BootstrapButton' from '../styled-button-component/styled-button'
 // import TableRow from '@material-ui/core/TableRow';
 
 const useStyles1 = makeStyles((theme) => ({
@@ -114,14 +116,14 @@ const useStyles2 = makeStyles({
   },
 });
 
-const styles = (theme) => ({
-  button: {
-    margin: theme.spacing.unit,
-  },
-  input: {
-    display: 'none',
-  },
-});
+// const styles = (theme) => ({
+//   button: {
+//     margin: theme.spacing.unit,
+//   },
+//   input: {
+//     display: 'none',
+//   },
+// });
 
 const theme = createMuiTheme({
   palette: {
@@ -220,11 +222,11 @@ function CustomPaginationActionsTable(props) {
               <StyledTableCell align='center'>{row.testName}</StyledTableCell>
               <StyledTableCell align='center'>
                 <Link to='/teacher/evaluatetest'>
-                  <Button
+                  <StyledButton
                     // variant="contained"
                     size='small'
                     variant='outlined'
-                    className={classes.button}
+                    // className={classes.button}
                     id={row.ButtonId}
                     // color='#2196F3'
                     onClick={() => {
@@ -239,7 +241,7 @@ function CustomPaginationActionsTable(props) {
                     }}
                   >
                     VIEW RESPONSE
-                  </Button>
+                  </StyledButton>
                 </Link>
               </StyledTableCell>
             </StyledTableRow>

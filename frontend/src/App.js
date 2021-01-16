@@ -34,6 +34,9 @@ import {
   selectIsUserSignedIn,
 } from './student/redux/user/user.selectors';
 import { checkUserSession } from './student/redux/user/user.actions';
+import { Button } from '@material-ui/core';
+// import StyledButton from './teacher/components/styled-button-component/styled-button'
+// import demo from './teacher/pages/demo';
 
 class App extends React.Component {
   componentDidMount() {
@@ -87,6 +90,11 @@ class App extends React.Component {
               exact
               component={TeacherDashboardLandingPage}
             />
+            {/* <Route
+              path='/teacher/button'
+              exact
+              component={demo}
+            /> */}
             <Route
               path='/teacher/enrolled'
               exact

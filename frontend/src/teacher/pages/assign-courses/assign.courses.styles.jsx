@@ -93,6 +93,21 @@ margin-top: 5vh;
 border: none;
 outline:none;
 `;
+export const ButtonWrapperdiv = styled.div`
+width: 11vw;
+height:5.7vh;
+/* display: flex; */
+/* justify-content: center; */
+/* font-size: 18px; */
+/* border-radius: 10px; */
+/* color: #FFFFFF; */
+/* background-color: #2475B0; */
+cursor: pointer;
+/* padding: 1.3vh 1vw 1vh 1vw; */
+margin-top: 2vh;
+border: none;
+outline:none;
+`;
 
 export const DropWrapper = styled.div`
 margin-top: 1vh;
