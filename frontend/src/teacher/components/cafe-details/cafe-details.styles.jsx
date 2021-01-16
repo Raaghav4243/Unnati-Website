@@ -34,7 +34,7 @@ export const CafeDetailsWrapper = styled.div`
 
   /* border: 2px solid orange; */
   border-radius: 10px;
-  background-color: #f3f3f3;
+  background-color: #e5e5e5;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -96,7 +96,7 @@ export const ContactButton = styled.div`
   color: #2475b0;
   background-color: #ffffff;
   cursor: pointer;
-  /* border: 1px solid blue; */
+  border: 1px solid black;
 `;
 
 export const ClassmatesContainer = styled.div`
@@ -131,7 +131,7 @@ export const ClassmatesWrapper = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  background-color: #2475b0;
+  background-color: #f48c06;
   color: #ffffff;
   /* border: 2px solid blue; */
 `;
@@ -150,7 +150,7 @@ padding: 2vh 2vw 2vh 2vw;
 
 /* border: 2px solid orange; */
 border-radius: 10px;
-background-color: #3B83B6;
+background-color: #ffc222;
 display: flex;
 align-items: center;
 flex-direction: column;

@@ -105,6 +105,13 @@ const useStyles2 = makeStyles({
   table: {
     minWidth: 500,
   },
+  button: {
+    background: '#f1f1f1',
+    '&:hover': {
+      background: '#ffc222',
+      color: '#000',
+    },
+  },
 });
 
 const styles = (theme) => ({
@@ -134,9 +141,9 @@ const theme = createMuiTheme({
 });
 const StyledTableCell = withStyles((theme) => ({
   head: {
-    // backgroundColor: theme.palette.primary.dark,
     backgroundColor: '#ffc222',
-    // color: theme.palette.common.white,
+    // backgroundColor: '#f48c06',
+    color: theme.palette.common.black,
     // size: 'small'
   },
   body: {
@@ -151,6 +158,15 @@ const StyledTableRow = withStyles((theme) => ({
     },
   },
 }))(TableRow);
+
+// const styles = {
+//   tr: {
+//     background: "#f1f1f1",
+//     '&:hover': {
+//       background: "#f00",
+//     }
+//   }
+// };
 
 function CustomPaginationActionsTable(props) {
   const rows = props.rows;
@@ -208,7 +224,6 @@ function CustomPaginationActionsTable(props) {
                     // variant="contained"
                     size='small'
                     variant='outlined'
-                    color='primary'
                     className={classes.button}
                     id={row.ButtonId}
                     // color='#2196F3'

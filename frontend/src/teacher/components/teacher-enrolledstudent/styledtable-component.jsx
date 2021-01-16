@@ -43,8 +43,8 @@ const theme = createMuiTheme({
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
-    backgroundColor: theme.palette.primary.dark,
-    color: theme.palette.common.white,
+    backgroundColor: '#ffc222',
+    color: theme.palette.common.black,
   },
   body: {
     fontSize: 14,

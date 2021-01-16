@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
   /* border: 1px solid black; */
-  background-color: #c4c4c4;
+  background-color: #202020;
   width: 20vw;
   height: calc(100vh - 75px);
   display: flex;
@@ -35,7 +35,7 @@ export const PictureContainer = styled.div`
 export const UserPrompt = styled.div`
   margin-top: 20px;
   font-size: 1.75rem;
-  color: #404040;
+  color: #fff;
 `;
 
 export const Profile = styled.div`
@@ -56,11 +56,11 @@ export const ProfileTitle = styled.div`
   font-weight: 600;
   margin-bottom: 10px;
   font-size: 1.25rem;
-  color: #868686;
+  color: #fff;
 `;
 
 export const SidenavLink = styled(Link)`
-  color: #000;
+  color: #fff;
   /* border: 1px solid blue; */
   padding-left: 10px;
   margin-bottom: 5px;
@@ -70,7 +70,7 @@ export const SignOutButton = styled.div`
   width: 100%;
   /* border: 1px solid blue; */
   padding-left: 10px;
-
+  color: #fff;
   &:hover {
     cursor: pointer;
   }
@@ -94,5 +94,5 @@ export const DashboardTitle = styled.div`
   font-weight: 600;
   margin-bottom: 10px;
   font-size: 1.25rem;
-  color: #868686;
+  color: #fff;
 `;
