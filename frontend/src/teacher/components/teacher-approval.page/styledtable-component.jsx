@@ -19,6 +19,7 @@ import TableHead from '@material-ui/core/TableHead';
 import { connect } from 'react-redux';
 import { approveStudentStart } from '../../redux/unverified-students/unverified-students.actions';
 // import { websiteTheme } from '../../../material-ui.styles';
+import StyledButton from '../button-component/styled-button';
 
 // import { fetchTestSheetStart } from '../../redux/test-sheet/test-sheet.actions';
 // import { Link, Route } from 'react-router-dom';
@@ -219,7 +220,7 @@ function CustomPaginationActionsTable(props) {
               <StyledTableCell align='center'>{row.LastName}</StyledTableCell>
               <StyledTableCell align='center'>{row.email}</StyledTableCell>
               <StyledTableCell align='center'>
-                <Button
+                <StyledButton
                   // variant="contained"
                   size='small'
                   variant='outlined'
@@ -234,7 +235,7 @@ function CustomPaginationActionsTable(props) {
                   }}
                 >
                   APPROVE
-                </Button>
+                </StyledButton>
               </StyledTableCell>
             </StyledTableRow>
           ))}

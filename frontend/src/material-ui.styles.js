@@ -9,6 +9,7 @@ export const websiteTheme = createMuiTheme({
       main: '#ffc222',
       tableHeader: '#ffc222',
       tableButtonOnHover: '#ffc222',
+      tableButtonOnHoverBorder: '#000',
       tableButtonTextOnHover: '#000000',
     },
     secondary: {
