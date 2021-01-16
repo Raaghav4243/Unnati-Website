@@ -97,6 +97,13 @@ const useStyles2 = makeStyles({
   table: {
     minWidth: 500,
   },
+  button: {
+    background: "#f1f1f1",
+    '&:hover': {
+      background: "#ffc222",
+      color:"#000",
+    }
+  }
 });
 
 const styles = theme => ({
@@ -126,8 +133,8 @@ const theme = createMuiTheme({
 });
 const StyledTableCell = withStyles((theme) => ({
   head: {
-    backgroundColor: theme.palette.primary.dark,
-    color: theme.palette.common.white,
+    backgroundColor: "#ffc222",
+    color: theme.palette.common.black,
     // size: 'small'
   },
   body: {
@@ -178,8 +185,8 @@ const StyledTableRow = withStyles((theme) => ({
              <StyledTableCell align="center">First Name</StyledTableCell>
              <StyledTableCell align="center">Last Name</StyledTableCell>
              <StyledTableCell align="center">Email</StyledTableCell>
-             
-             <StyledTableCell align="center">Approve</StyledTableCell>
+             <StyledTableCell align="center"></StyledTableCell>
+             {/* <StyledTableCell align="center">Approve</StyledTableCell> */}
           </TableRow>
          </TableHead>
         <TableBody>
@@ -197,7 +204,9 @@ const StyledTableRow = withStyles((theme) => ({
                // variant="contained"
                size="small" 
                variant="outlined" 
-               color="primary"
+              //  color="primary"
+               className={classes.button}
+               
               id={row.ButtonId} 
               onClick={() => {
                 const studentId = row.ButtonId
