@@ -30,6 +30,10 @@ export function* courseAssignStart(){
     yield takeLatest(CourseAssignTypes.ASSIGN_COURSE_START, courseAssignAsync)
 }
 
+export function* courseAssignSuccessReload(){
+    yield takeLatest(CourseAssignTypes.ASSIGN_COURSE_SUCCESS, courseAssignAsync)
+}
+
 export function* courseAssignSagas(){
-    yield all([call(courseAssignStart)])
+    yield all([call(courseAssignStart), call(courseAssignSuccessReload)])
 }
