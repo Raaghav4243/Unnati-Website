@@ -10,13 +10,19 @@ export function* fetchFeeAmountAsync({ payload: { user_id, cafe_id } }) {
   try {
     console.log('FEE AMOUNT SAGA IS GETTING CALLED', feeAmountDetails);
     let feeAmountDetails = yield fetch(
-      `/FeesStatus/${user_id}/cafe/${cafe_id}`
+      `/FeesStatus/${user_id}/cafe/${cafe_id}`,
+      {
+        method: 'GET', // or 'PUT'
+        headers: {
+          "content-type": "application/json",
+        },
+      }
     );
 
     feeAmountDetails = yield feeAmountDetails.json();
 
     yield put(fetchFeeAmountSuccess(feeAmountDetails.user));
-  } catch (error) {
+  }catch (error) {
     yield put(fetchFeeAmountFailure(error));
   }
 }
