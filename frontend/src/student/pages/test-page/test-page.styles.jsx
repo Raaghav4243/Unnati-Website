@@ -31,14 +31,40 @@ export const PageWrapper = styled.div`
   }
 `;
 
-export const TimerWrapper = styled.div`
+export const BottomNav = styled.div`
   position: fixed;
   bottom: 0;
   z-index: 100;
-  background-color: red;
-  color: white;
-  width: 100%;
+  /* color: ; */
+  width: calc(100% - 320px);
+  max-width: 800px;
+  display: flex;
+  background-color: #f5f5f5;
+  /* border: 4px solid blue; */
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+
+  @media screen and (max-width: 768px) {
+    /* font-size: 20px; */
+    /* padding: 0 10px; */
+    width: 100%;
+  }
+`;
+
+export const TimerWrapper = styled.div`
   /* left: 10; */
+  /* background-color: red; */
+  display: flex;
+`;
+
+export const TimeHeader = styled.div`
+  font-size: 20px;
+`;
+
+export const TimeWrapper = styled.div`
+  font-size: 20px;
+  font-weight: bolder;
 `;
 
 export const TestTitle = styled.div`
@@ -48,19 +74,24 @@ export const TestTitle = styled.div`
 export const QuestionsWrapper = styled.div``;
 export const QuestionCardWrapper = styled.div`
   background-color: #f5f5f5;
-  height: 200px;
-  width: 800px;
+  min-height: 200px;
+  max-width: 800px;
+  width: 100%;
   border-radius: 6px;
   margin-bottom: 10px;
   padding: 1rem;
 `;
 export const QuestionStatementContainer = styled.div`
   font-size: 20px;
+  display: flex;
+  flex-wrap: wrap;
 `;
 export const QuestionsOptionsContainer = styled.div`
   font-size: 10px;
   display: flex;
   flex-direction: column;
+  margin-left: 40px;
+  margin-top: 10px;
 `;
 
 export const RadioLabel = styled.label`

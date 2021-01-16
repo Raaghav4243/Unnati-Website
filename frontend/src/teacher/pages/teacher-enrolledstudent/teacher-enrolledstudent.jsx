@@ -4,7 +4,7 @@ import { createStructuredSelector } from 'reselect';
 import TeacherCafeDetails from '../../components/cafe-details/cafe-details.component';
 import TeacherDashboardNavbar from '../../components/teacher-dashboard-navbar/teacher-dashboard-navbar.component';
 import TeacherDashboardSidenav from '../../components/teacher-dashboard-sidenav/teacher-dashboard-sidenav.component';
-import CustomPaginationActionsTable from '../../components/teacher-enrolledstudent/table-component';
+import CustomPaginationActionsTable from '../../components/teacher-enrolledstudent/styledtable-component';
 import { selectVerifiedStudents } from '../../redux/verified-students/verified-student.selectors';
 import { fetchVerifiedStudentStart } from '../../redux/verified-students/verified-students.actions';
 // import EnhancedTable2 from '../../components/teacher-enrolledstudent/table2.Component';

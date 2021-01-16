@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux';
 // import persistReducer from 'redux-persist/es/persistReducer';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 import cafeReducer from './cafe/cafe.reducers';
 import allCoursesReducer from './allCourses/all-courses.reducer';
@@ -24,6 +26,30 @@ import unverifiedStudentReducer from '../../teacher/redux/unverified-students/un
 //     key: 'root'
 // }
 
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: [
+    'user',
+    'allCourses',
+    'cafeDetails',
+    'courseTopicsAndCompletionDetails',
+    'feeDetails',
+    'feeAmount',
+    'student',
+    'test',
+    'assignment',
+    'lecture',
+    'courseOverview',
+    'verifiedStudent',
+    'assignCourses',
+    'feeUpdate',
+    'testEvaluationList',
+    'evaluateTests',
+    'unverifiedStudent',
+  ],
+};
+
 const rootReducer = combineReducers({
   user: userReducer,
   allCourses: allCoursesReducer,
@@ -45,4 +71,4 @@ const rootReducer = combineReducers({
   unverifiedStudent: unverifiedStudentReducer,
 });
 
-export default rootReducer;
+export default persistReducer(persistConfig, rootReducer);

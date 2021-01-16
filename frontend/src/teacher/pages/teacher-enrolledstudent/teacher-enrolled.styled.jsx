@@ -27,8 +27,8 @@ export const CafeDetailsParentWrapper = styled.div`
 
 export const TableWrapper = styled.div`
  width: 1000px;
- margin-left: 5vh;
- margin-top:2vh;
+ margin-left: 1vh;
+ margin-top:0.5vh;
 `;
 
 export const CafeDetailWrapper = styled.div`

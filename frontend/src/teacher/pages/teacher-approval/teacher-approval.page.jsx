@@ -4,7 +4,7 @@ import { createStructuredSelector } from "reselect";
 import TeacherCafeDetails from "../../components/cafe-details/cafe-details.component";
 import TeacherDashboardNavbar from "../../components/teacher-dashboard-navbar/teacher-dashboard-navbar.component";
 import TeacherDashboardSidenav from "../../components/teacher-dashboard-sidenav/teacher-dashboard-sidenav.component";
-import CustomPaginationActionsTable from "../../components/teacher-approval.page/table-component";
+import CustomPaginationActionsTable from "../../components/teacher-approval.page/styledtable-component";
 import { selectApproveConfirmation, selectUnVerifiedStudents } from '../../redux/unverified-students/unverified-student.selectors';
 import { fetchUnVerifiedStudentStart } from '../../redux/unverified-students/unverified-students.actions';
 // import EnhancedTable2 from '../../components/teacher-enrolledstudent/table2.Component';
@@ -37,8 +37,9 @@ class TeacherApproval extends React.Component {
     console.log(unverifiedStudents)
 
     let rows = [
-      
-            
+      // createData(1,'Raaghav','Raj','Raaghav',1),
+      // createData(2,'Raaghav','Raj','Raaghav',1),
+      // createData(2,'Raaghav','Raj','Raaghav',1),
     ];
 
     if(unverifiedStudents){

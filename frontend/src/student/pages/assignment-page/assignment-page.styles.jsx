@@ -13,7 +13,7 @@ export const PageWrapper = styled.div`
   /* height: calc(100vh - 90px); */
   /* height: calc(100vh-75px); */
   width: calc(100% - 340px);
-  border: 4px solid red;
+  /* border: 4px solid red; */
 
   @media screen and (max-width: 768px) {
     /* font-size: 20px; */

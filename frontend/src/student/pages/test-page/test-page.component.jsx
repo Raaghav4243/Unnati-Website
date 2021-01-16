@@ -28,7 +28,10 @@ import StudentDashboardNavbar from '../../components/student-dashboard-navbar/st
 
 import {
   PageWrapper,
+  BottomNav,
   TimerWrapper,
+  TimeHeader,
+  TimeWrapper,
   TestTitle,
   QuestionsWrapper,
   QuestionCardWrapper,
@@ -226,7 +229,7 @@ class TestPage extends React.Component {
                       <>
                         <QuestionCardWrapper>
                           <QuestionStatementContainer>
-                            {question.statement}
+                            <strong>Q{index + 1}. </strong> {question.statement}
                           </QuestionStatementContainer>
                           <QuestionsOptionsContainer>
                             {question.type === 'MULTICORRECT' ? (
@@ -301,34 +304,37 @@ class TestPage extends React.Component {
           </form>
           {test_questions ? (
             <>
-              <div>QUESTIONS RECEIVED</div>
-
-              <TimerWrapper>
-                Time Left :
-                <Timer
-                  initialTime={10000}
-                  direction='backward'
-                  checkpoints={[
-                    {
-                      time: 0,
-                      callback: () => console.log('Time UP!'),
-                    },
-                    {
-                      time: 5000,
-                      callback: () => console.log('5 seconds left!'),
-                    },
-                  ]}
-                >
-                  {() => (
-                    <React.Fragment>
-                      <Timer.Hours />:
-                      <Timer.Minutes />:
-                      <Timer.Seconds />
-                    </React.Fragment>
-                  )}
-                </Timer>
+              {/* <div>QUESTIONS RECEIVED</div> */}
+              <BottomNav>
+                <TimerWrapper>
+                  <TimeHeader>Time Left :</TimeHeader>
+                  <Timer
+                    initialTime={testDuration * 60 * 1000}
+                    direction='backward'
+                    checkpoints={[
+                      {
+                        time: 0,
+                        callback: () => console.log('Time UP!'),
+                      },
+                      {
+                        time: 5000,
+                        callback: () => console.log('5 seconds left!'),
+                      },
+                    ]}
+                  >
+                    {() => (
+                      <React.Fragment>
+                        <TimeWrapper>
+                          <Timer.Hours />:
+                          <Timer.Minutes />:
+                          <Timer.Seconds />
+                        </TimeWrapper>
+                      </React.Fragment>
+                    )}
+                  </Timer>
+                </TimerWrapper>
                 <button onClick={this.handleSubmit}>SUBMIT THIS TEST</button>
-              </TimerWrapper>
+              </BottomNav>
             </>
           ) : null}
         </PageWrapper>

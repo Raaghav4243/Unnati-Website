@@ -84,7 +84,7 @@ const CourseSideNavSubmenu = ({
                 <ContentName>{content_item.contentName}</ContentName>
                 <TickIconWrapper>
                   {attemptedTopicsMap[content_item.id] ? (
-                    <IoIosCheckbox />
+                    <IoIosCheckbox style={{ color: 'green' }} />
                   ) : null}
                 </TickIconWrapper>
               </ContentItemContainer>

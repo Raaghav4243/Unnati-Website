@@ -315,68 +315,64 @@ class AssignmentPage extends React.Component {
               {console.log('USER RESPONSES ARE', resp)}
               {console.log('ACTUAL ANSWERS ARE', assignment_questions)}
               <div>
-                {    
-                    assignment_questions.map((question, index) => {
-                      return(
+                {assignment_questions.map((question, index) => {
+                  return (
+                    <>
+                      <div key={index} className='questions'>
+                        Q{index + 1}: {question.statement}
+                      </div>
+                      Options:
+                      {question.options.map((option, optionNo) => {
+                        return (
+                          <>
+                            <ul style={{ margin: 0 }}>
+                              <li key={optionNo}>{option}</li>
+                            </ul>
+                          </>
+                        );
+                      })}
+                      Correct Anwer:
+                      {question.correctAns.map((ans, answerNo) => {
+                        return (
+                          <ul style={{ margin: 0 }}>
+                            <li key={answerNo}>{ans}</li>
+                          </ul>
+                        );
+                      })}
+                      Your Response:
+                      {
                         <>
-                        <div key={index} className='questions'>Q{index+1}: {question.statement}</div>
-                        
-                        Options:
-                        {
-                          question.options.map((option, optionNo) => {
-                            return(
-                              <>
-                              <ul style={{margin: 0}}>
-                                <li key={optionNo}>{option}</li>
-                              </ul>
-                              </>
-                            )
-                          })
-                        }
-                        Correct Anwer:
-                        {
-                          question.correctAns.map((ans, answerNo) => {
-                            return(
-                              <ul style={{margin: 0}}>
-                                <li key={answerNo}>
-                                  {ans}
-                                </li>
-                              </ul>
-                            )
-                          })
-                        }
-                        Your Response:
-                        {
-                          //  this.state.resp[index+1].map((response, respNo) => {
-                          //    <ul>
-                          //      <li key={respNo}>{response}</li>
-                          //    </ul>
-                          // })
-                          //this.state.resp[1].map((resp) => {return({resp})})
-                          // Object.keys(this.state.resp).map((ansArr) => {
-                          //   ansArr.map((ans, ansNo) => {
-                          //     <ul style={{margin: 0}}>
-                          //       <li key={ansNo}>{ans}</li>
-                          //     </ul>
-                          //   })
-                          // })
-                          Object.entries(this.state.resp).map( ([key, value]) => {
-                             return  (
-                               <ul style={{margin: 0}}>
-                                 <li>{value}</li>
-                               </ul>
-                               )})
-                            
-
-                  
-                          //Object.entries(this.state.resp).map()
-
-                        }
+                          <ul style={{ margin: 0 }}>
+                            {this.state.resp[index].map((response, respNo) => {
+                              return <li key={respNo}>{response}</li>;
+                            })}
+                          </ul>
                         </>
-                      )
-
-                    })
-                }
+                        //this.state.resp[1].map((resp) => {return({resp})})
+                        // Object.keys(this.state.resp).map((ansArr) => {
+                        //   ansArr.map((ans, ansNo) => {
+                        //     <ul style={{margin: 0}}>
+                        //       <li key={ansNo}>{ans}</li>
+                        //     </ul>
+                        //   })
+                        // })
+                        // Object.entries(this.state.resp).map(([key, value]) => {
+                        //   return (
+                        //     <ul style={{ margin: 0 }}>
+                        //       <li>{value}</li>
+                        //     </ul>
+                        //   );
+                        // })
+                        // <ul style={{ margin: 0 }}>
+                        //   {this.state.resp[index].map((option) => {
+                        //     return <li>{option}</li>;
+                        //   })}
+                        // </ul>
+                        //Object.entries(this.state.resp).map()
+                      }
+                    </>
+                  );
+                })}
               </div>
               <div
                 onClick={this.handleSubmitSuccess}

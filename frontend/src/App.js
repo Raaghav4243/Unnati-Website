@@ -1,31 +1,16 @@
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import React from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
 import './App.css';
-import AssignmentPage from './student/pages/assignment-page/assignment-page.component';
-// import CourseOverview from './pages/course-overview/course-overview.component';
-// import CourseVideo from './pages/course-video/course-video-page.component';
-// import DemoPage from './pages/demo-page/demo-page.component';
-// import HomePage from './pages/homepage/homepage.component';
-
-// //import { SideNav } from './pages/Profile-page/profile-page.styled.components';
-// import StudentDashboard from './pages/student-dashboard/StudentDashboard';
-// import SideNav from './components/SideNav/SideNav';
-// import CourseSideNav from './components/course-sidenav/course-sidenav.components';
-// //import StudentCoursePage from './pages/demo-student-course-page/demo-student-course-page';
-// import TestPage from './pages/test-page/test-page.component';
-// import UserProfileCard from './components/SideNav/UserProfile/UserProfileCard';
-// import FeesPage from './pages/FeesPage/App';
-// // import StudentCourseTopicPage from './pages/student-course-topic-page/student-course-topic-page';
-// import StudentPage from './pages/student-page/student-page.component';
-// // import StudentCoursePage from './pages/demo-student-course-page/demo-student-course-page';
+// import AssignmentPage from './student/pages/assignment-page/assignment-page.component';
 
 import HomePage from './student/pages/homepage/homepage.component';
 import CourseOverview from './student/pages/course-overview/course-overview.component';
 import StudentPage from './student/pages/student-page/student-page.component';
 import FeesPage from './student/pages/FeesPage/App';
-// import SignUpForm from './student/pages/Signup-page/SignupForm';
-// import SignUpForm from './student/components/signup/signup.component';
-// import LogInForm from './student/components/login/LoginForm.page';
+
 import Profile from './student/pages/Profile-page/profile-page.component';
 import TestPage from './student/pages/test-page/test-page.component';
 import cafeteacher from './teacher/pages/teacher-enrolledstudent/teacher-enrolledstudent';
@@ -42,67 +27,112 @@ import TeacherProfile from './teacher/pages/Profile-page/profile-page.component'
 import TeacherChangePassword from './teacher/pages/change-password/change-password';
 import EvaluateTestPage from './teacher/pages/evaluate-test-page/evaluate-test';
 import TeacherDashboardLandingPage from './teacher/pages/teacher-dashboard-main-page/teacher-dashboard-page';
-function App() {
-  return (
-    <BrowserRouter>
-      <Switch>
-        {/* STUDENT ROUTES */}
-        <Route path='/' exact component={HomePage} />
-        <Route
-          path='/discover'
-          exact
-          render={() => <CourseOverview forHome />}
-        />
-        <Route path='/student' component={StudentPage} />
-        <Route path='/test' component={TestPage} />
-        <Route path='/signup' component={SignInAndSignUpPage} />
-        <Route path='/teacher' exact component={TeacherDashboardLandingPage} />
-        <Route
-          path='/teacher/enrolled'
-          exact
-          component={TeacherEnrolledStudents}
-        />
-        <Route path='/teacher/approve' exact component={TeacherApproval} />
-        <Route path='/teacher/testcheck' exact component={TeacherTestCheck} />
-        <Route
-          path='/teacher/assign'
-          exact
-          component={TeacherDashboardAssignPage}
-        />
-        <Route
-          path='/teacher/studentfees'
-          exact
-          component={TeacherDashboardFeesPage}
-        />
-        <Route path='/teacher/profile' exact component={TeacherProfile} />
-        <Route
-          path='/teacher/changepassword'
-          exact
-          component={TeacherChangePassword}
-        />
-        {/* <Route path='/signup' component={SignUpForm} /> */}
-        {/* TEACHER ROUTE */}
-        <Route
-          path='/teacher/enrolled'
-          component={TeacherEnrolledStudents}
-        />{' '}
-        //enrolled-students list, no functionality
-        <Route path='/teacher/approve' component={TeacherApproval} />
-        <Route path='/teacher/testcheck' component={TeacherTestCheck} />
-        <Route path='/teacher/assign' component={TeacherDashboardAssignPage} />
-        <Route
-          path='/teacher/studentfees'
-          component={TeacherDashboardFeesPage}
-        />
-        <Route path='/teacher/profile' component={TeacherProfile} />
-        <Route
-          path='/teacher/changepassword'
-          component={TeacherChangePassword}
-        />
-        <Route path='/teacher/evaluatetest' component={EvaluateTestPage} />
-      </Switch>
-    </BrowserRouter>
-  );
+import {
+  selectCurrentUserId,
+  selectCurrentUserRole,
+  selectIsUserSignedIn,
+} from './student/redux/user/user.selectors';
+import { checkUserSession } from './student/redux/user/user.actions';
+
+class App extends React.Component {
+  componentDidMount() {
+    const { checkUserSession } = this.props;
+    checkUserSession();
+  }
+
+  render() {
+    const { isUserSignedIn, userRole } = this.props;
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route path='/' exact component={HomePage} />
+          <Route
+            path='/discover'
+            exact
+            render={() => <CourseOverview forHome />}
+          />
+          <Route
+            path='/signup'
+            render={() =>
+              isUserSignedIn ? (
+                userRole === 'STUDENT' ? (
+                  <Redirect to='/student/dashboard' />
+                ) : userRole === 'TEACHER' ? (
+                  <Redirect to='/teacher' />
+                ) : (
+                  <Redirect to='/' />
+                )
+              ) : (
+                <SignInAndSignUpPage />
+              )
+            }
+          />
+          {/* STUDENT ROUTES */}
+          <Route
+            path='/student'
+            // component={StudentPage}
+            render={() =>
+              isUserSignedIn && userRole === 'STUDENT' ? (
+                <StudentPage />
+              ) : (
+                <Redirect to='/' />
+              )
+            }
+          />
+
+          <Route
+            path='/teacher'
+            exact
+            component={TeacherDashboardLandingPage}
+          />
+          <Route
+            path='/teacher/enrolled'
+            exact
+            component={TeacherEnrolledStudents}
+          />
+          <Route path='/teacher/approve' exact component={TeacherApproval} />
+          <Route path='/teacher/testcheck' exact component={TeacherTestCheck} />
+          <Route
+            path='/teacher/assign'
+            exact
+            component={TeacherDashboardAssignPage}
+          />
+          <Route
+            path='/teacher/studentfees'
+            exact
+            component={TeacherDashboardFeesPage}
+          />
+          <Route path='/teacher/profile' exact component={TeacherProfile} />
+          <Route
+            path='/teacher/changepassword'
+            exact
+            component={TeacherChangePassword}
+          />
+          <Route path='/teacher/evaluatetest' component={EvaluateTestPage} />
+          {/* <Route path='/teacher/enrolled' component={TeacherEnrolledStudents} /> */}
+
+          {
+            // enrolled-students list, no functionality
+          }
+          {/* <Route path='/teacher/approve' component={TeacherApproval} /> */}
+          {/* <Route path='/teacher/testcheck' component={TeacherTestCheck} /> */}
+          {/* <Route
+            path='/teacher/assign'
+            component={TeacherDashboardAssignPage}
+          /> */}
+          {/* <Route
+            path='/teacher/studentfees'
+            component={TeacherDashboardFeesPage}
+          /> */}
+          {/* <Route path='/teacher/profile' component={TeacherProfile} /> */}
+          {/* <Route
+            path='/teacher/changepassword'
+            component={TeacherChangePassword}
+          /> */}
+        </Switch>
+      </BrowserRouter>
+    );
+  }
 }
 
 // import './App.css';
@@ -120,4 +150,13 @@ function App() {
 //   );
 // }
 
-export default App;
+const mapStateToProps = createStructuredSelector({
+  isUserSignedIn: selectIsUserSignedIn,
+  userRole: selectCurrentUserRole,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  checkUserSession: () => dispatch(checkUserSession()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
