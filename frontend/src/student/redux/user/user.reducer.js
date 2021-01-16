@@ -12,6 +12,9 @@ const INITIAL_STATE = {
   isFetching: false,
   isUserSigningIn: false,
   isUserSignedIn: false,
+  didUserSignInFail: false,
+  didUserSignUpFail: false,
+  didUserSignOutFail: false,
   userIsUpdating: false,
   updateConfirmation: null,
   errorMessage: undefined,
@@ -24,6 +27,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
         ...state,
         isUserSigningIn: true,
         isUserSignedIn: false,
+        didUserSignInFail: false,
         errorMessage: null,
       };
     case UserActionTypes.SIGN_IN_SUCCESS:
@@ -52,6 +56,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
         role: role,
         isUserSigningIn: false,
         isUserSignedIn: true,
+        didUserSignInFail: false,
         errorMessage: null,
       };
     case UserActionTypes.SIGN_OUT_SUCCESS:
@@ -66,13 +71,25 @@ const userReducer = (state = INITIAL_STATE, action) => {
         phoneNumber: null,
         role: null,
         isUserSignedIn: false,
+        didUserSignOutFail: false,
         errorMessage: null,
       };
     case UserActionTypes.SIGN_IN_FAILURE:
+      return {
+        ...state,
+        didUserSignInFail: true,
+        errorMessage: action.payload,
+      };
     case UserActionTypes.SIGN_OUT_FAILURE:
+      return {
+        ...state,
+        didUserSignOutFail: true,
+        errorMessage: action.payload,
+      };
     case UserActionTypes.SIGN_UP_FAILURE:
       return {
         ...state,
+        didUserSignUpFail: true,
         errorMessage: action.payload,
       };
     case UserActionTypes.UPDATE_USER_START:
