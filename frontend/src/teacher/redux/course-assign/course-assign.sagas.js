@@ -1,4 +1,5 @@
 import { all, call, put, takeLatest } from "redux-saga/effects";
+import { fetchVerifiedStudentAsync } from "../verified-students/verified-students.sagas";
 import { courseAssignFailure, courseAssignSuccess } from "./course-assign.actions";
 import { CourseAssignTypes } from "./course-assign.types";
 
@@ -19,7 +20,7 @@ export function* courseAssignAsync({payload: {
                 console.log("course assigned", data)
             })
         
-        yield put(courseAssignSuccess('course assigned to student'))
+        yield put(courseAssignSuccess('Course assigned to student!'))
 
     } catch (error) {
         yield put(courseAssignFailure(error))
@@ -30,10 +31,8 @@ export function* courseAssignStart(){
     yield takeLatest(CourseAssignTypes.ASSIGN_COURSE_START, courseAssignAsync)
 }
 
-export function* courseAssignSuccessReload(){
-    yield takeLatest(CourseAssignTypes.ASSIGN_COURSE_SUCCESS, courseAssignAsync)
-}
+
 
 export function* courseAssignSagas(){
-    yield all([call(courseAssignStart), call(courseAssignSuccessReload)])
+    yield all([call(courseAssignStart)])
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import CustomPaginationActionsTable from '../../components/fees-table/styled-table-component'
 // import { fetchCourseTopicsStart } from '../../redux/course-topic/course-topic.sagas';
 import { fetchFeeAmountStart } from '../../redux/fee-amount/fee-amount.actions';
 import {
@@ -17,12 +18,14 @@ import {
   selectCurrentUserId,
 } from '../../redux/user/user.selectors';
 import ProfileSideNav from '../../components/SideNav/SideNav';
+import StyledButton  from '../../../teacher/components/button-component/styled-button';
 
 import {
   FullPage,
   DueAmount,
   OnlineButton,
   PaidAmount,
+  TableWrapper,
   FeesCat,
   FeesBox,
   FeesHead,
@@ -34,7 +37,10 @@ import {
   FlexHeadCol,
   PastBody,
   BothBox,
+  ButtonWrapper,
 } from './FeesElements';
+// import { Button } from '@material-ui/core';
+// import { TableWrapper } from '../../../teacher/pages/teacher-testCheck/teacher-test.-check.styles';
 
 class FeesPage extends React.Component {
   componentDidMount() {
@@ -56,20 +62,23 @@ class FeesPage extends React.Component {
     return (
       <>
         <FullPage>
-          <BothBox>
+          {/* <BothBox> */}
             {/* <ProfileSideNav /> */}
             <BoxAndHead>
-              <FeesHead>Fees</FeesHead>
               <FeesBox>
-                <FeesCat>Due Fees</FeesCat>
+              <FeesHead>Fees</FeesHead>
+                <FeesCat>Due Fees :-</FeesCat>
                 <DueAmount>{dueFees}</DueAmount>
-                <FeesCat>Paid Amount</FeesCat>
+                <FeesCat>Paid Amount :-</FeesCat>
                 <PaidAmount>{paidFees}</PaidAmount>
-                <OnlineButton type='submit'>Make Online Payment</OnlineButton>
+                {/* <OnlineButton type='submit'>Make Online Payment</OnlineButton> */}
+                <ButtonWrapper>
+                <StyledButton type='submit'>Make Online Payment</StyledButton>
+                </ButtonWrapper>
               </FeesBox>
             </BoxAndHead>
             <BoxAndHead>
-              <PastHead>Past Receipts</PastHead>
+              {/* <PastHead>Past Receipts</PastHead>
               <PastBody>
                 <FlexHeadCol>
                   <SubCol>
@@ -121,9 +130,12 @@ class FeesPage extends React.Component {
                     ) : null}
                   </SubCol>
                 </FlexHeadCol>
-              </PastBody>
+              </PastBody> */}
+              <TableWrapper>
+              <CustomPaginationActionsTable></CustomPaginationActionsTable>
+              </TableWrapper>
             </BoxAndHead>
-          </BothBox>
+          {/* </BothBox> */}
         </FullPage>
       </>
     );

@@ -42,7 +42,7 @@ const StyledButton = withStyles({
   },
 })(Button);
 
-export  default StyledButton;
+export default StyledButton;
 
 
 
