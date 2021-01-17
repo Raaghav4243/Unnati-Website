@@ -94,6 +94,7 @@ class TeacherDashboardFeesPage extends React.Component {
     console.log("page data", userId, data);
     const { feeUpdateStart } = this.props;
     feeUpdateStart(userId, data);
+    window.location.reload()
   };
 
   render() {

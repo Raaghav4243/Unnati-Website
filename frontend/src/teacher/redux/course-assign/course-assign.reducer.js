@@ -3,7 +3,7 @@ import { CourseAssignTypes } from "./course-assign.types"
 const INITIAL_STATE = {
     isUpdating: false,
     errorMessage: null,
-    updateConformation: null
+    updateConfirmation: null
 }
 
 const courseAssignReducer = (state= INITIAL_STATE, action) => {
@@ -17,7 +17,7 @@ const courseAssignReducer = (state= INITIAL_STATE, action) => {
             return{
                 ...state,
                 isUpdating: false,
-                updateConformation: action.payload
+                updateConfirmation: action.payload
             }
         case CourseAssignTypes.ASSIGN_COURSE_FAILURE:
             return{
