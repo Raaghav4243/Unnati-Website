@@ -55,9 +55,9 @@ export const FeesCat = styled.div`
 export const FeesBox = styled.div`
   display: inline-block;
   /* border: 1px solid #fff; */
-  border: 2px solid #000;
+  /* border: 2px solid #000; */
   
-  /* box-shadow: 0px 3px 3px #d3d3d3, -3px 5px 5px #d3d3d3, 3px 3px 5px #d3d3d3; */
+  box-shadow: 0px 1.5px 1.2px grey;
   width: 30vw;
   height: 60vh;
   /* color: '#ffc222'; */
@@ -66,22 +66,22 @@ export const FeesBox = styled.div`
   margin-top: 10.3vh;
   /* overflow: visible; */
   /* width: 30vw; */
-  border: 2px solid black;
-  border-radius: 3px;
-  height: 30vw;
+  /* border: 2px solid black; */
+  border-radius: 4px;
+  height: 29.7vw;
 `;
 
 export const FeesHead = styled.div`
   /* margin-top: 3vh; */
-  padding-top: 2.2vh;
-  padding-bottom: 2.2vh;
+  padding-top: 2.6vh;
+  padding-bottom: 2.5vh;
   /* margin-left: 3vw; */
   padding-left: 3vw;
   font-size: 42vh;
   /* color: #ffc222; */
   /* background: 'red'; */
   background-color:#ffc222;
-
+  border-radius: 4px;
   font-weight: 550;
   font-size: 1.2rem;
 border: 1px solid #ffc222;
@@ -153,7 +153,7 @@ export const TableWrapper = styled.div`
 margin-left: 5vw;
 margin-top: 10.3vh;
 width: 30vw;
-  border: 2px solid black;
+  /* border: 2px solid black; */
   border-radius: 3px;
   height: 30vw;
 
