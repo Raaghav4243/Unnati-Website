@@ -7,6 +7,9 @@ export const TopicContainer = styled.div`
   border: 1px solid black;
   /* width: 400px; */
   height: 50px;
+  &:hover {
+    background: rgba(255, 194, 34, 0.45);
+  }
 `;
 export const TopicIconWrapper = styled.div`
   /* border: 1px solid yellow; */
@@ -35,28 +38,46 @@ export const ContentItemContainer = styled.div`
   border: 1px solid black;
   /* width: 400px; */
   height: 50px;
+  /* &:hover {
+    background-color: ${({ contentType }) =>
+    contentType === 'LECTURE' ? 'red' : null};
+    background-color: ${({ contentType }) =>
+    contentType === 'ASSIGNMENT' ? 'blue' : null};
+    background-color: ${({ contentType }) =>
+    contentType === 'TEST' ? 'yellow' : null};
+  } */
+`;
+
+export const ContentWrapper = styled.div`
+  width: 95%;
+  border-radius: 0px 20px 20px 0px;
+  background: transparent;
+  display: flex;
+  padding-left: 20px;
+  justify-content: space-between;
   &:hover {
-    background-color: ${({ contentType }) =>
-      contentType === 'LECTURE' ? 'red' : null};
-    background-color: ${({ contentType }) =>
-      contentType === 'ASSIGNMENT' ? 'blue' : null};
-    background-color: ${({ contentType }) =>
-      contentType === 'TEST' ? 'yellow' : null};
+    background: rgba(255, 194, 34, 0.45);
   }
 `;
+
 export const ContentIconWrapper = styled.div`
+  /* border: 1px solid white; */
   width: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 export const ContentName = styled.div`
+  /* border: 1px solid white; */
+
   width: 150px;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 export const TickIconWrapper = styled.div`
+  /* border: 1px solid white; */
+
   width: 50px;
   display: flex;
   justify-content: center;

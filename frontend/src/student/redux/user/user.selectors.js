@@ -54,6 +54,21 @@ export const selectIsUserSignedIn = createSelector(
   (currentUser) => currentUser.isUserSignedIn
 );
 
+export const selectDidUserSignInFail = createSelector(
+  [selectCurrentUser],
+  (currentUser) => currentUser.didUserSignInFail
+);
+
+export const selectDidUserSignUpFail = createSelector(
+  [selectCurrentUser],
+  (currentUser) => currentUser.didUserSignUpFail
+);
+
+export const selectDidUserSignOutFail = createSelector(
+  [selectCurrentUser],
+  (currentUser) => currentUser.didUserSignOutFail
+);
+
 export const selectUpdateConfirmation = createSelector(
   [selectCurrentUser],
   (message) => message.updateConfirmation

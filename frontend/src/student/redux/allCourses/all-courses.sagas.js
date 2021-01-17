@@ -3,6 +3,8 @@ import { takeLatest, put, all, call, delay } from 'redux-saga/effects';
 import {
   fetchAllCoursesSuccess,
   fetchAllCoursesFailure,
+  fetchAllCafesSuccess,
+  fetchAllCafesFailure,
 } from './all-courses.actions';
 
 import AllCoursesActionTypes from './all-courses.types';
@@ -24,6 +26,23 @@ export function* fetchAllCoursesAsync() {
   }
 }
 
+export function* fetchAllCafesAsync() {
+  try {
+    //yield delay(3000);
+    let allCafes = yield fetch(`/cafe-list`);
+
+    allCafes = yield allCafes.json();
+
+    console.log('allCafes are ', allCafes);
+
+    allCafes.done
+      ? yield put(fetchAllCafesSuccess(allCafes.cafes))
+      : yield put(fetchAllCafesFailure(allCafes.message));
+  } catch (error) {
+    yield put(fetchAllCafesFailure(error));
+  }
+}
+
 // export function* fetchTestOnCurrentCourseContentTypeChange() {
 //   yield takeLatest(StudentActionTypes.SET_CURRENT_COURSE_TOPIC_CONTENT);
 // }
@@ -35,6 +54,13 @@ export function* fetchAllCoursesStart() {
   );
 }
 
+export function* fetchAllCafesStart() {
+  yield takeLatest(
+    AllCoursesActionTypes.FETCH_ALL_CAFES_START,
+    fetchAllCafesAsync
+  );
+}
+
 export function* allCoursesSagas() {
-  yield all([call(fetchAllCoursesStart)]);
+  yield all([call(fetchAllCoursesStart), call(fetchAllCafesStart)]);
 }

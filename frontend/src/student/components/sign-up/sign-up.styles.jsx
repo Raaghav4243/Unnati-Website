@@ -104,3 +104,5 @@ export const RadioIndicator = styled.div`
     background: #e6e6e6;
   }
 `;
+
+export const CafeSelector = styled.div``;

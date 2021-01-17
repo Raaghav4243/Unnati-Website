@@ -31,6 +31,7 @@ import {
   QuestionCardWrapper,
   // QuestionCardContainer,
   QuestionStatementContainer,
+  QuestionNoSpan,
   QuestionsOptionsContainer,
   RadioLabel,
   RadioInput,
@@ -86,23 +87,6 @@ class AssignmentPage extends React.Component {
     }
 
     let response = this.state.resp;
-    /*
-      if (questionType === 'MULTICORRECT') {
-      if (response[id] == undefined) {
-        response[id] = [value];
-      } else if (response[id].includes(value)) {
-        let temp = response[id].filter((item) => {
-          return item !== value;
-        });
-        response[id] = temp;
-      } else {
-        response[id].push(value);
-      }
-    } else {
-      response[id] = [value];
-    }
-    */
-
     let questionType = assignment_questions[name].type;
     console.log('QUESTION TYPE IS', questionType);
     if (questionType === 'MULTICORRECT') {
@@ -179,43 +163,6 @@ class AssignmentPage extends React.Component {
     // alert('YOUR SCORE FOR THIS ATTEMPT IS', score);
   };
 
-  //   handleClick = (e) => {
-  //     e.preventDefault();
-  //     const questionNumbers = questionData.assignment.questions.map(
-  //       (number) => number.number
-  //     );
-  //     let responses = [];
-  //     questionNumbers.forEach((questionNumber) => {
-  //       let response = this.state.resp[questionNumber];
-  //       responses.push(response);
-  //     });
-  //     console.log(responses);
-  //     this.setState({ jawab: responses });
-  //     const answers = questionData.assignment.questions.map(
-  //       (answer) => answer.correctAns[0]
-  //     );
-  //     this.setState({ sahijawab: answers });
-  //     console.log(answers);
-  //     const compareArray = (a, b) => {
-  //       let marks = 0;
-  //       for (let i = 0; i < a.length; i++) {
-  //         if (a[i] == b[i]) {
-  //           marks = marks + 1;
-  //         }
-  //         //console.log(a[i], b[i])
-  //       }
-  //       console.log(marks);
-  //       this.setState({ score: marks, done: true });
-  //     };
-  //     compareArray(responses, answers);
-  //     console.log(this.state);
-
-  //     let data = this.state.score;
-  //     console.log('page data', data);
-  //     const { submitAssignmentStart } = this.props;
-  //     submitAssignmentStart(data);
-  //   };
-
   componentWillUnmount = () => {
     // SUBMIT ASSIGNMENT
   };
@@ -245,6 +192,7 @@ class AssignmentPage extends React.Component {
                       return (
                         <QuestionCardWrapper>
                           <QuestionStatementContainer>
+                            <QuestionNoSpan>{index + 1}.&nbsp; </QuestionNoSpan>
                             {question.statement}
                           </QuestionStatementContainer>
                           <QuestionsOptionsContainer>
@@ -348,27 +296,6 @@ class AssignmentPage extends React.Component {
                             })}
                           </ul>
                         </>
-                        //this.state.resp[1].map((resp) => {return({resp})})
-                        // Object.keys(this.state.resp).map((ansArr) => {
-                        //   ansArr.map((ans, ansNo) => {
-                        //     <ul style={{margin: 0}}>
-                        //       <li key={ansNo}>{ans}</li>
-                        //     </ul>
-                        //   })
-                        // })
-                        // Object.entries(this.state.resp).map(([key, value]) => {
-                        //   return (
-                        //     <ul style={{ margin: 0 }}>
-                        //       <li>{value}</li>
-                        //     </ul>
-                        //   );
-                        // })
-                        // <ul style={{ margin: 0 }}>
-                        //   {this.state.resp[index].map((option) => {
-                        //     return <li>{option}</li>;
-                        //   })}
-                        // </ul>
-                        //Object.entries(this.state.resp).map()
                       }
                     </>
                   );
