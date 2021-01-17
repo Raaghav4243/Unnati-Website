@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
+// import StyledButton from '../button-component/styled-button';
 
 
 import {
@@ -51,6 +52,7 @@ class TeacherDashboardSidenav extends React.Component {
               Change Password
             </SidenavLink>
             <SignOutButton onClick={this.handleSignOut}>Sign Out</SignOutButton>
+            {/* <StyledButton onClick={this.handleSignOut}>Sign Out</StyledButton> */}
           </Profile>
           <Dashboard>
             <DashboardTitle>Dashboard</DashboardTitle>

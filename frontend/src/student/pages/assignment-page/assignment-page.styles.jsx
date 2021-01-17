@@ -31,14 +31,21 @@ export const AssignmentTitle = styled.div`
 export const QuestionsWrapper = styled.div``;
 export const QuestionCardWrapper = styled.div`
   background-color: #f5f5f5;
-  height: 200px;
+  min-height: 200px;
   width: 800px;
-  border-radius: 6px;
+  border-radius: 15px;
   margin-bottom: 10px;
-  padding: 1rem;
+  padding: 20px;
+  margin-bottom: 15px;
+`;
+
+export const QuestionNoSpan = styled.div`
+  font-weight: 600;
 `;
 export const QuestionStatementContainer = styled.div`
   font-size: 20px;
+  margin-bottom: 10px;
+  display: flex;
 `;
 export const QuestionsOptionsContainer = styled.div`
   font-size: 10px;
@@ -64,7 +71,9 @@ export const RadioLabel = styled.label`
   position: relative;
   display: inline-block;
   cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
-  margin: 0.6em 1.75em;
+  margin-top: 10px;
+  margin-left: 30px;
+  /* padding: 1rem; */
   font-size: 16px;
 `;
 

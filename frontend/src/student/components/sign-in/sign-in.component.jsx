@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 
 import { emailSignInStart } from '../../redux/user/user.actions';
 import {
-  selectCurrentUserRole,
+  selectDidUserSignInFail,
   selectIsUserSignedIn,
   selectIsUserSigningIn,
 } from '../../redux/user/user.selectors';
@@ -29,15 +29,6 @@ class SignIn extends React.Component {
     };
   }
 
-  componentDidUpdate() {
-    console.log('SIGN IN COMPONENT UPDATED');
-    const { signUpCompleted } = this.props;
-    if (signUpCompleted) {
-      console.log('SIGNUP COMPLETED!');
-      this.handleSignInSuccess();
-    }
-  }
-
   handleOnChange = (e) => {
     const { value, name } = e.target;
     let response = this.state.resp;
@@ -58,40 +49,10 @@ class SignIn extends React.Component {
     const data = this.state.resp;
     console.log('DATA BEING USED TO SIGN IN FROM LOGIN PAGE', data);
     this.props.emailSignInStart(data);
-    // fetch('/login', {
-    //   method: 'POST', // or 'PUT'
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(data),
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     console.log('Success:', data);
-    //     this.setState({ user: data });
-    //     localStorage.setItem('token', data.token);
-    //     localStorage.setItem('user', JSON.stringify(data.user));
-    //   })
-    //   .catch((error) => {
-    //     console.error('Error:', error);
-    //   });
-  };
-
-  handleSignInSuccess = () => {
-    // console.log('HANDLING SIGN IN SUCCESS AND REDIRECTING,');
-    // const { history, userRole } = this.props;
-    // // history.push('/student/dashboard');
-    // if (userRole === 'STUDENT') {
-    //   history.push('/student/dashboard');
-    // } else if (userRole === 'TEACHER') {
-    //   history.push('/teacher');
-    // }
   };
 
   render() {
-    // console.log(localStorage.getItem('user'));
-    const { signUpstarted, signUpCompleted } = this.props;
-    const { handleSignInSuccess } = this.state;
+    const { signInstarted, didSignInFail } = this.props;
     return (
       <>
         <SignInContainer>
@@ -106,7 +67,6 @@ class SignIn extends React.Component {
             <FormInput
               name='email'
               type='email'
-              // handleChange={this.handleChange}
               value={this.state.resp.email}
               label='Email'
               required
@@ -115,25 +75,15 @@ class SignIn extends React.Component {
               name='password'
               type='password'
               value={this.state.resp.password}
-              // handleChange={this.handleChange}
               label='Password'
               required
             />
-
-            {/* <label htmlFor='email'>
-              email:
-              <input type='email' id='email' name='email' />
-            </label>
-            <label htmlFor='password'>
-              password:
-              <input type='password' id='password' name='password' />
-            </label> */}
             <ButtonsBarContainer>
               <button>Log in</button>
             </ButtonsBarContainer>
           </form>
-          {signUpstarted ? <div>USER IS SIGNING IN...</div> : null}
-          {/* {signUpCompleted ? {this.handleSignInSuccess()} : null} */}
+          {signInstarted ? <div>USER IS SIGNING IN...</div> : null}
+          {didSignInFail ? <div>INVALID USERNAME/PASSWORD</div> : null}
         </SignInContainer>
       </>
     );
@@ -141,13 +91,9 @@ class SignIn extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  // user_id: selectCurrentUserId,
-  // course_id: selectCurrentCourseId,
-  // course_topic_id: selectCurrentCourseTopicId,
-  // course_topic_type: selectCurrentCourseTopicType,
-  signUpstarted: selectIsUserSigningIn,
-  signUpCompleted: selectIsUserSignedIn,
-  userRole: selectCurrentUserRole,
+  signInstarted: selectIsUserSigningIn,
+  signInCompleted: selectIsUserSignedIn,
+  didSignInFail: selectDidUserSignInFail,
 });
 
 const mapDispatchToProps = (dispatch) => ({

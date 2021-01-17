@@ -10,6 +10,7 @@ import {
   RadioLabel,
   RadioInput,
   RadioIndicator,
+  CafeSelector,
 } from './sign-up.styles';
 
 class SignUp extends React.Component {
@@ -184,6 +185,8 @@ class SignUp extends React.Component {
                 </RadioLabel>
               </RadioWrapper>
             </RoleContainer>
+
+            <CafeSelector>SELECT YOUR CAFE!</CafeSelector>
 
             <button>sign up</button>
           </form>

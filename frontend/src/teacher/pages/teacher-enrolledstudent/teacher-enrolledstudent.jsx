@@ -33,7 +33,12 @@ class TeacherEnrolledStudents extends React.Component {
     const { verifiedStudents } = this.props;
     console.log(verifiedStudents);
 
-    let rows = [];
+    let rows = [
+      // createData(1,"Raaghav","Raj","raaghav"),
+      // createData(1,"Raaghav","Raj","raaghav"),
+      // createData(1,"Raaghav","Raj","raaghav")
+
+    ];
 
     
 

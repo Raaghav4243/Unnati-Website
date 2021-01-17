@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles, useTheme ,withStyles} from '@material-ui/core/styles';
+import { makeStyles, useTheme, withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -22,6 +22,8 @@ import { createStructuredSelector } from 'reselect';
 import { selectTestDetails } from '../../redux/test-sheet/test-sheet.selectors';
 import { createMuiTheme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import StyledButton from '../button-component/styled-button';
+// import 'BootstrapButton' from '../styled-button-component/styled-button'
 // import TableRow from '@material-ui/core/TableRow';
 
 const useStyles1 = makeStyles((theme) => ({
@@ -105,23 +107,30 @@ const useStyles2 = makeStyles({
   table: {
     minWidth: 500,
   },
+  button: {
+    background: '#f1f1f1',
+    '&:hover': {
+      background: '#ffc222',
+      color: '#000',
+    },
+  },
 });
 
-const styles = theme => ({
-  button: {
-    margin: theme.spacing.unit,
-  },
-  input: {
-    display: 'none',
-  },
-});
+// const styles = (theme) => ({
+//   button: {
+//     margin: theme.spacing.unit,
+//   },
+//   input: {
+//     display: 'none',
+//   },
+// });
 
 const theme = createMuiTheme({
   palette: {
     primary: {
       light: '#ff9800',
       main: '#3f50b5',
-      dark: '#002884',
+      dark: '#ffc222',
       contrastText: '#fff',
     },
     secondary: {
@@ -134,8 +143,9 @@ const theme = createMuiTheme({
 });
 const StyledTableCell = withStyles((theme) => ({
   head: {
-    backgroundColor: theme.palette.primary.dark,
-    color: theme.palette.common.white,
+    backgroundColor: '#ffc222',
+    // backgroundColor: '#f48c06',
+    color: theme.palette.common.black,
     // size: 'small'
   },
   body: {
@@ -150,6 +160,15 @@ const StyledTableRow = withStyles((theme) => ({
     },
   },
 }))(TableRow);
+
+// const styles = {
+//   tr: {
+//     background: "#f1f1f1",
+//     '&:hover': {
+//       background: "#f00",
+//     }
+//   }
+// };
 
 function CustomPaginationActionsTable(props) {
   const rows = props.rows;
@@ -171,7 +190,7 @@ function CustomPaginationActionsTable(props) {
 
   return (
     <TableContainer component={Paper}>
-      <Table className={classes.table}  aria-label='custom pagination table'>
+      <Table className={classes.table} aria-label='custom pagination table'>
         <colgroup>
           <col style={{ width: '10%' }} />
           <col style={{ width: '10%' }} />
@@ -185,7 +204,8 @@ function CustomPaginationActionsTable(props) {
             <StyledTableCell align='center'>First Name</StyledTableCell>
             <StyledTableCell align='center'>Course Name</StyledTableCell>
             <StyledTableCell align='center'>Test Name</StyledTableCell>
-            <StyledTableCell align='center'>VIEW RESPONSE</StyledTableCell>
+            {/* <StyledTableCell align='center'>VIEW RESPONSE</StyledTableCell> */}
+            <StyledTableCell align='center'></StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -193,7 +213,7 @@ function CustomPaginationActionsTable(props) {
             ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : rows
           ).map((row) => (
-            <StyledTableRow style={{height: 1}} key={row.name}>
+            <StyledTableRow style={{ height: 1 }} key={row.name}>
               <StyledTableCell align='center' component='th' scope='row'>
                 {row.ID}
               </StyledTableCell>
@@ -202,12 +222,11 @@ function CustomPaginationActionsTable(props) {
               <StyledTableCell align='center'>{row.testName}</StyledTableCell>
               <StyledTableCell align='center'>
                 <Link to='/teacher/evaluatetest'>
-                  <Button 
-                  // variant="contained"
-                  size="small" 
-                  variant="outlined" 
-                  color="primary"
-                  className={classes.button}
+                  <StyledButton
+                    // variant="contained"
+                    size='small'
+                    variant='outlined'
+                    // className={classes.button}
                     id={row.ButtonId}
                     // color='#2196F3'
                     onClick={() => {
@@ -222,7 +241,7 @@ function CustomPaginationActionsTable(props) {
                     }}
                   >
                     VIEW RESPONSE
-                  </Button>
+                  </StyledButton>
                 </Link>
               </StyledTableCell>
             </StyledTableRow>

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const SideNavContainer = styled.div`
-  background-color: #f4f4f4;
+  background-color: #202020;
   width: 300px;
   height: calc(100vh - 75px);
   display: flex;
@@ -13,6 +13,7 @@ export const SideNavContainer = styled.div`
   z-index: 10;
   overflow: auto;
   left: 0;
+  color: #ffffff;
 
   @media screen and (max-width: 768px) {
     /* font-size: 20px; */

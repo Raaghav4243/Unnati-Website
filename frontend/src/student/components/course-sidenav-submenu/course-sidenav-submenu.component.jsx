@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 import { FaBook } from 'react-icons/fa';
-import { RiArrowUpSFill, RiArrowDownSFill } from 'react-icons/ri';
+import {
+  RiArrowUpSFill,
+  RiArrowDownSFill,
+  RiArrowRightSFill,
+} from 'react-icons/ri';
 import { MdOndemandVideo, MdAssignment, MdFlag } from 'react-icons/md';
 import { IoIosCheckbox } from 'react-icons/io';
 
@@ -13,6 +17,7 @@ import {
   TopicIconWrapper,
   TopicName,
   ArrowIconWrapper,
+  ContentWrapper,
   ContentItemContainer,
   ContentIconWrapper,
   ContentName,
@@ -38,7 +43,7 @@ const CourseSideNavSubmenu = ({
         </TopicIconWrapper>
         <TopicName>{topicName}</TopicName>
         <ArrowIconWrapper>
-          {subnav ? <RiArrowUpSFill /> : <RiArrowDownSFill />}
+          {subnav ? <RiArrowUpSFill /> : <RiArrowRightSFill />}
         </ArrowIconWrapper>
       </TopicContainer>
       {subnav
@@ -72,21 +77,32 @@ const CourseSideNavSubmenu = ({
                     : null
                 }
               >
-                <ContentIconWrapper>
-                  {content_item.content === 'LECTURE' ? (
-                    <MdOndemandVideo style={{ height: '50%', width: '50%' }} />
-                  ) : content_item.content === 'ASSIGNMENT' ? (
-                    <MdAssignment style={{ height: '50%', width: '50%' }} />
-                  ) : content_item.content === 'TEST' ? (
-                    <MdFlag style={{ height: '50%', width: '50%' }} />
-                  ) : null}
-                </ContentIconWrapper>
-                <ContentName>{content_item.contentName}</ContentName>
-                <TickIconWrapper>
-                  {attemptedTopicsMap[content_item.id] ? (
-                    <IoIosCheckbox style={{ color: 'green' }} />
-                  ) : null}
-                </TickIconWrapper>
+                <ContentWrapper>
+                  <ContentIconWrapper>
+                    {content_item.content === 'LECTURE' ? (
+                      <MdOndemandVideo
+                        style={{ height: '50%', width: '50%' }}
+                      />
+                    ) : content_item.content === 'ASSIGNMENT' ? (
+                      <MdAssignment style={{ height: '50%', width: '50%' }} />
+                    ) : content_item.content === 'TEST' ? (
+                      <MdFlag style={{ height: '50%', width: '50%' }} />
+                    ) : null}
+                  </ContentIconWrapper>
+                  <ContentName>{content_item.contentName}</ContentName>
+                  <TickIconWrapper>
+                    {attemptedTopicsMap[content_item.id] ? (
+                      <IoIosCheckbox
+                        style={{
+                          color: 'green',
+                          // background: '#fff',
+                          height: '55%',
+                          width: '55%',
+                        }}
+                      />
+                    ) : null}
+                  </TickIconWrapper>
+                </ContentWrapper>
               </ContentItemContainer>
             );
           })

@@ -13,7 +13,7 @@ Login :
 */
 
 import React from 'react';
-import SignUpForm from '../../components/sign-up/sign-up.component';
+import SignUp from '../../components/sign-up/sign-up.component';
 import SignIn from '../../components/sign-in/sign-in.component';
 // import SignUpForm from '../../components/Signup-page/SignupForm';
 import { SignInAndSignUpContainer } from './signup-and-signin-page.styles';
@@ -30,7 +30,7 @@ class SignInAndSignUpPage extends React.Component {
         <SignInPageNavbar />
         <SignInAndSignUpContainer>
           <SignIn />
-          <SignUpForm />
+          <SignUp />
         </SignInAndSignUpContainer>
       </>
     );

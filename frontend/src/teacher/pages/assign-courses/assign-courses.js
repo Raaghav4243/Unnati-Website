@@ -9,6 +9,8 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import NativeSelect from "@material-ui/core/NativeSelect";
 import Button from "@material-ui/core/Button/Button";
+import StyledButton from '../../components/button-component/styled-button';
+
 //redux
 import { fetchUserCafeStart } from "../../redux/cafe/cafe.actions";
 import {
@@ -35,6 +37,7 @@ import {
   StudentDropDown,
   CourseDropDown,
   ButtonWrapper,
+  ButtonWrapperdiv,
   DropWrapper,
   ImageWrapper,
 } from "./assign.courses.styles";
@@ -203,7 +206,10 @@ class TeacherDashboardAssignPage extends React.Component {
                 </DropWrapper>
               </CourseDropDown>
             </DropDownWrapper>
-            
+            {/* <ButtonWrapper onClick={this.handleSubmit}>Assign</ButtonWrapper> */}
+            <ButtonWrapperdiv>
+            <StyledButton size='large' fullWidth='true' onClick={this.handleSubmit}>ASSIGN</StyledButton>
+            </ButtonWrapperdiv>
           </PageWrapper>
         </PageContainer>
       </>

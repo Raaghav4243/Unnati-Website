@@ -17,6 +17,16 @@ export const selectIsAllCoursesFetching = createSelector(
   (course) => course.isFetching
 );
 
+export const selectAllCafes = createSelector(
+  [selectCourses],
+  (course) => course.allCafes
+);
+
+export const selectIsAllCafesFetching = createSelector(
+  [selectCourses],
+  (course) => course.isFetchingCafes
+);
+
 // const selectCart = state => state.cart;
 
 // export const selectCartItems = createSelector(

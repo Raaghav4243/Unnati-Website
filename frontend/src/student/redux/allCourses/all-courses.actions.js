@@ -16,6 +16,20 @@ export const fetchAllCoursesFailure = (errorMessage) => ({
   payload: errorMessage,
 });
 
+export const fetchAllCafesStart = () => ({
+  type: AllCoursesActionTypes.FETCH_ALL_CAFES_START,
+});
+
+export const fetchAllCafesSuccess = (allCourses) => ({
+  type: AllCoursesActionTypes.FETCH_ALL_CAFES_SUCCESS,
+  payload: allCourses,
+});
+
+export const fetchAllCafesFailure = (errorMessage) => ({
+  type: AllCoursesActionTypes.FETCH_ALL_CAFES_FAILURE,
+  payload: errorMessage,
+});
+
 // export const fetchAllCoursesStartAsync = () => {
 //   //using promises
 

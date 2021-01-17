@@ -6,6 +6,8 @@ import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField/TextField";
+import StyledButton from '../../components/button-component/styled-button';
+
 //redux
 import { fetchUserCafeStart } from "../../redux/cafe/cafe.actions";
 import {
@@ -31,6 +33,7 @@ import {
   StudentDropDown,
   CourseDropDown,
   ButtonWrapper,
+  ButtonWrapperdiv,
   DropWrapper,
   ImageWrapper,
   RemarksFieldWrapper,
@@ -180,7 +183,12 @@ class TeacherDashboardFeesPage extends React.Component {
                 </RemarksFieldWrapper>
               </RemarksWrapper>
             </DropDownWrapper>
-            <ButtonWrapper onClick={this.handleSubmit}>Update</ButtonWrapper>
+            {/* <ButtonWrapper onClick={this.handleSubmit}>Update</ButtonWrapper> */}
+            {/* <ButtonWrapperdiv  */}
+            {/* <StyledButton onClick={this.handleSubmit}>Update</ButtonWrapper> */}
+            <ButtonWrapperdiv>
+            <StyledButton size='large' fullWidth='true' onClick={this.handleSubmit}>UPDATE</StyledButton>
+            </ButtonWrapperdiv>
           </PageWrapper>
         </PageContainer>
       </>
