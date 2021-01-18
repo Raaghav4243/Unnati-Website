@@ -49,6 +49,12 @@ class SignIn extends React.Component {
     const data = this.state.resp;
     console.log('DATA BEING USED TO SIGN IN FROM LOGIN PAGE', data);
     this.props.emailSignInStart(data);
+    this.setState({
+      resp: {
+        email: '',
+        password: '',
+      },
+    });
   };
 
   render() {

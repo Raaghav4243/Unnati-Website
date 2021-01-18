@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
   /* border: 1px solid black; */
-  background-color: #c4c4c4;
+  /* background-color: #c4c4c4; */
+  background-color: #202020;
+  color: #fff;
   width: 300px;
   height: calc(100vh - 75px);
   display: flex;
@@ -36,7 +38,6 @@ export const PictureContainer = styled.div`
 export const UserPrompt = styled.div`
   margin-top: 20px;
   font-size: 1.75rem;
-  color: #404040;
 `;
 
 export const Profile = styled.div`
@@ -46,7 +47,7 @@ export const Profile = styled.div`
   /* border-bottom: 1px solid red; */
   display: flex;
   flex-direction: column;
-  padding-left: 10px;
+  padding-left: 20px;
 `;
 
 export const ProfileTitle = styled.div`
@@ -56,11 +57,11 @@ export const ProfileTitle = styled.div`
   font-weight: 600;
   margin-bottom: 10px;
   font-size: 1.25rem;
-  color: #868686;
+  /* color: #868686; */
 `;
 
 export const SidenavLink = styled(Link)`
-  color: #000;
+  color: #fff;
   /* border: 1px solid blue; */
   padding-left: 10px;
   margin-bottom: 5px;
@@ -83,7 +84,7 @@ export const Dashboard = styled.div`
   /* border-bottom: 1px solid red; */
   display: flex;
   flex-direction: column;
-  padding-left: 10px;
+  padding-left: 20px;
 `;
 
 export const DashboardTitle = styled.div`
@@ -93,5 +94,5 @@ export const DashboardTitle = styled.div`
   font-weight: 600;
   margin-bottom: 10px;
   font-size: 1.25rem;
-  color: #868686;
+  /* color: #868686; */
 `;

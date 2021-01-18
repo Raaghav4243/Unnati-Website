@@ -88,12 +88,13 @@ export const ButtonWrapper = styled.div`
 `;
 export const ContactButton = styled.div`
   width: 150px;
+  padding: 5px;
   display: flex;
   justify-content: center;
   font-size: 14px;
   border-radius: 10px;
-  color: #2475b0;
-  background-color: #ffffff;
+  color: #fff;
+  background-color: #f48c06;
   cursor: pointer;
   /* border: 1px solid blue; */
 `;
@@ -106,7 +107,7 @@ export const ClassmatesContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   /* align-items: center; */
-  margin-left: 20px;
+  margin-left: 55px;
   /* border: 4px solid blue; */
   @media screen and (max-width: 1200px) {
     margin-left: 0;
@@ -130,7 +131,8 @@ export const ClassmatesWrapper = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  background-color: #2475b0;
+  /* background-color: #2475b0; */
+  background-color: #f48c06;
   color: #ffffff;
   /* border: 2px solid blue; */
 `;
@@ -142,18 +144,17 @@ export const Prompt = styled.div`
   font-size: 18px;
   font-family: 'Montserrat', sans-serif;
 `;
-export const PopupWrapper= styled.div`
-width: 100%;
-height: 120px;
-padding: 2.5vh 2.5vw 2.5vh 2.5vw;
-
-/* border: 2px solid orange; */
-border-radius: 10px;
-background-color: #3B83B6;
-display: flex;
-align-items: center;
-flex-direction: column;
-
+export const PopupWrapper = styled.div`
+  width: 100%;
+  /* height: 120px; */
+  /* padding: 2.5vh 2.5vw 2.5vh 2.5vw; */
+  padding: 20px;
+  border: 2px solid orange;
+  border-radius: 10px;
+  background-color: #f48c06;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 `;
-export const ContactDetails= styled.div
-``
+export const ContactDetails = styled.div``;

@@ -189,13 +189,16 @@ class TeacherDashboardAssignPage extends React.Component {
                           })
                         : null}
                     </Select>
-                    <ButtonWrapper onClick={this.handleSubmit}>Assign</ButtonWrapper>
+                    {/* <ButtonWrapper onClick={this.handleSubmit}>Assign</ButtonWrapper> */}
+                    {/* <ButtonWrapperdiv> */}
+                    {/* </ButtonWrapperdiv> */}
                   </FormControl>
                 </DropWrapper>
               </CourseDropDown>
             </DropDownWrapper>
             <ButtonWrapperdiv>
-            <StyledButton size='large' fullWidth='true' onClick={this.handleSubmit}>ASSIGN</StyledButton>
+                    <Button variant='contained' color='primary' size='large' fullWidth='true' onClick={this.handleSubmit}>Assign</Button>
+            {/* <StyledButton size='large' fullWidth='true' onClick={this.handleSubmit}>ASSIGN</StyledButton> */}
             </ButtonWrapperdiv>
           </PageWrapper>
         </PageContainer>
