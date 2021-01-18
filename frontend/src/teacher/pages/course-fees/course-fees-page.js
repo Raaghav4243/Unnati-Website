@@ -7,6 +7,7 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField/TextField";
 import StyledButton from '../../components/button-component/styled-button';
+import Button from "@material-ui/core/Button/Button";
 
 //redux
 import { fetchUserCafeStart } from "../../redux/cafe/cafe.actions";
@@ -187,7 +188,8 @@ class TeacherDashboardFeesPage extends React.Component {
             {/* <ButtonWrapperdiv  */}
             {/* <StyledButton onClick={this.handleSubmit}>Update</ButtonWrapper> */}
             <ButtonWrapperdiv>
-            <StyledButton size='large' fullWidth='true' onClick={this.handleSubmit}>UPDATE</StyledButton>
+            {/* <StyledButton size='large' fullWidth='true' onClick={this.handleSubmit}>UPDATE</StyledButton> */}
+            <Button variant='contained' color='primary' size='large' fullWidth='true' onClick={this.handleSubmit}>UPDATE</Button>
             </ButtonWrapperdiv>
           </PageWrapper>
         </PageContainer>
