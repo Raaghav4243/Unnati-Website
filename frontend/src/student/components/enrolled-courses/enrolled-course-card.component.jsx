@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { ReactComponent as MSExcelLogo } from '../../icons/excel.svg';
+import { ReactComponent as CourseLogo } from '../../icons/enrolled-course.svg';
 import { setCurrentCourse } from '../../redux/student/student.actions';
 
 import {
@@ -32,7 +32,7 @@ const EnrolledCourseCard = ({
       <CardTitle>
         <LogoWrapper>
           {/* <img src={MicrosoftLogo}  /> */}
-          <MSExcelLogo style={{ height: '100%', width: '100%' }} />
+          <CourseLogo style={{ height: '100%', width: '100%' }} />
         </LogoWrapper>
         <TitleWrapper>
           <Title>{courseName}</Title>

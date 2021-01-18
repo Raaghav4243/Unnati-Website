@@ -8,6 +8,8 @@ import {
   updateUserSuccess,
   signOutSuccess,
   signOutFailure,
+  signUpSuccess,
+  signUpFailure,
 } from './user.actions';
 import { UserActionTypes } from './user.types';
 
@@ -103,6 +105,30 @@ export function* signInWithEmail({ payload }) {
   }
 }
 
+export function* signUp({ payload }) {
+  console.log('DATA BEFORE POST REQUEST IS', payload);
+  let data = payload;
+  try {
+    let UserObj = yield fetch('/signup', {
+      method: 'POST', // or 'PUT'
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
+    UserObj = yield UserObj.json();
+    console.log('USER OBJ IS', UserObj);
+    if (UserObj.done) {
+      yield put(signUpSuccess());
+    } else {
+      yield put(signUpFailure(UserObj.message));
+    }
+  } catch (error) {
+    yield put(signUpFailure(error));
+  }
+}
+
 export function* onEmailSignInStart() {
   yield takeLatest(UserActionTypes.EMAIL_SIGN_IN_START, signInWithEmail);
 }
@@ -115,13 +141,13 @@ export function* onSignOutStart() {
   yield takeLatest(UserActionTypes.SIGN_OUT_START, signOutAsync);
 }
 
-export function* updateUserStart() {
+export function* onUpdateUserStart() {
   yield takeLatest(UserActionTypes.UPDATE_USER_START, updateUserAsync);
 }
 
 export function* userSagas() {
   yield all([
-    call(updateUserStart),
+    call(onUpdateUserStart),
     call(onEmailSignInStart),
     call(onSignOutStart),
     call(onCheckUserSession),
