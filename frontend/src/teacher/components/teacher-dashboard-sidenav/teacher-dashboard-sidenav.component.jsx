@@ -24,6 +24,8 @@ import {
   Dashboard,
   DashboardTitle,
 } from './teacher-dashboard-sidenav.styles';
+import {signOutStart} from '../../../student/redux/user/user.actions'
+import {selectIsUserSignedIn} from '../../../student/redux/user/user.selectors'
 
 class TeacherDashboardSidenav extends React.Component {
   constructor() {
@@ -31,7 +33,15 @@ class TeacherDashboardSidenav extends React.Component {
   }
 
   handleSignOut = () => {
+    const { signOutStart, isUserSignedIn, history } = this.props;
     console.log('User wants to sign out');
+    signOutStart();
+
+    if (isUserSignedIn) {
+    } else {
+      console.log('USER HAS SIGNED OUT SO NOW GO BACK TO HOMEPAGE');
+      history.push('/');
+    }
   };
 
   render() {
@@ -73,7 +83,12 @@ const mapStateToProps = createStructuredSelector({
   user: selectCurrentUser,
   firstName: selectCurrentUserFirstName,
   lastName: selectCurrentUserLastName,
+  isUserSignedIn: selectIsUserSignedIn
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  signOutStart: () => dispatch(signOutStart())
+})
 
-export default connect(mapStateToProps)(withRouter(TeacherDashboardSidenav));
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(TeacherDashboardSidenav));
