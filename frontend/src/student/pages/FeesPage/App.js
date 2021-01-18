@@ -39,7 +39,7 @@ import {
   BothBox,
   ButtonWrapper,
 } from './FeesElements';
-// import { Button } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 // import { TableWrapper } from '../../../teacher/pages/teacher-testCheck/teacher-test.-check.styles';
 
 class FeesPage extends React.Component {
@@ -73,7 +73,8 @@ class FeesPage extends React.Component {
                 <PaidAmount>{paidFees}</PaidAmount>
                 {/* <OnlineButton type='submit'>Make Online Payment</OnlineButton> */}
                 <ButtonWrapper>
-                <StyledButton type='submit'>Make Online Payment</StyledButton>
+                {/* <StyledButton  type='submit'>Make Online Payment</StyledButton> */}
+                <Button variant= 'contained' color ='primary' type='submit'>Make Online Payment</Button>
                 </ButtonWrapper>
               </FeesBox>
             </BoxAndHead>
