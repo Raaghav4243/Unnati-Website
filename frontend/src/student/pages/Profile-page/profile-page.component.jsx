@@ -2,13 +2,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import Button from "@material-ui/core/Button/Button";
 
 //styles used
 import {
   NavBar,
-  SideNav,
+  SideNav,  
   PageWrapper,
   WrapperContainer,
+  ButtonWrapper,
   Details,
   DetailsWrapper,
   DetailsHeading,
@@ -49,6 +51,7 @@ class Profile extends React.Component {
     super(props);
     const {
       userId,
+      ButtonWrapper,
       userfirstname,
       userlastname,
       userphonenumber,
@@ -217,7 +220,10 @@ class Profile extends React.Component {
                   />
                 </DetailsWrapper>
               </WrapperContainer>
-              <button>save changes</button>
+              <ButtonWrapper>
+            <Button size='small' variant='contained' color='primary' fullWidth='True'>Save Changes</Button>
+            </ButtonWrapper>
+              {/* <button>save changes</button> */}
             </ProfileDetailsContainer>
             <CafeDetailsContainer>
               <PersonalDetailsHeading>Cafe Details</PersonalDetailsHeading>
