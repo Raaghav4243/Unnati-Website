@@ -253,19 +253,21 @@ class AssignmentPage extends React.Component {
           {isAssignmentSubmitting ? (
             <div>ASSIGNMENT IS SUBMITTING...PLEASE WAIT.</div>
           ) : null}
-
+          {}
           {/* AFTER SUBMISSION IS SUCCESSFUL */}
           {!isAssignmentSubmitting && assignmentSubmittedConfirmation ? (
+            
             <>
               <div>ASSIGNMENT SUBMITTED SUCCESSFULLY</div>
               <div>YOUR SCORE IS : {score}</div>
               <div>WHAT WE GOT FROM YOU :</div>
               {console.log('USER RESPONSES ARE', resp)}
               {console.log('ACTUAL ANSWERS ARE', assignment_questions)}
-              <div>
+              
+              <div style={{margin: '0.5vh 0'}}>
                 {assignment_questions.map((question, index) => {
                   return (
-                    <>
+                    <div>
                       <div key={index} className='questions'>
                         Q{index + 1}: {question.statement}
                       </div>
@@ -281,6 +283,7 @@ class AssignmentPage extends React.Component {
                       })}
                       Correct Anwer:
                       {question.correctAns.map((ans, answerNo) => {
+                        const correctAns = {ans}
                         return (
                           <ul style={{ margin: 0 }}>
                             <li key={answerNo}>{ans}</li>
@@ -292,16 +295,17 @@ class AssignmentPage extends React.Component {
                         <>
                           <ul style={{ margin: 0 }}>
                             {this.state.resp[index].map((response, respNo) => {
+                              // const UserResponse = {response}
                               return <li key={respNo}>{response}</li>;
                             })}
                           </ul>
                         </>
                       }
-                    </>
+                    </div>
                   );
                 })}
               </div>
-              <div
+              <button
                 onClick={this.handleSubmitSuccess}
                 style={{
                   background: 'orange',
@@ -310,7 +314,7 @@ class AssignmentPage extends React.Component {
                 }}
               >
                 GO BACK TO COURSE PAGE
-              </div>
+              </button>
             </>
           ) : null}
           {/* IF SUBMISSION FAILED */}

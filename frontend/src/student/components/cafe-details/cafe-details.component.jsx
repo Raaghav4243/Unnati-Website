@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-// import { ReactComponent as CafeIcon } from '../../icons/cafe.svg';
+import { ReactComponent as CafeIcon } from '../../icons/school.svg';
 
-import Popup from "reactjs-popup";
+import Popup from 'reactjs-popup';
 import CafeImage from '../../assets/image.png';
 import {
   selectUserCafeAddress,
@@ -47,10 +47,7 @@ const StudentCafeDetails = ({
           <CafeTitle>Cafe Details</CafeTitle>
           <CafeDetailsWrapper>
             <CafeLogo>
-              <img
-                src={CafeImage}
-                style={{ height: '100px', width: '100px' }}
-              />
+              <CafeIcon style={{ height: '100px', width: '100px' }} />
             </CafeLogo>
             <CafeDetails>
               <CafeName>{cafeName}</CafeName>
@@ -62,13 +59,22 @@ const StudentCafeDetails = ({
                 {teacherName}
               </CafeFaculty>
               <ButtonWrapper>
-              <Popup trigger={<ContactButton>Contact Teacher</ContactButton>} position="right center">
-                <PopupWrapper>
-                <ContactDetails>Faculty Phone Number: 982738271323</ContactDetails>
-                  <ContactDetails>Faculty Email: facultyemail@gmail.com</ContactDetails>
-                  <ContactDetails>Enactus Email: enactusdtu@gmail.com</ContactDetails>
+                <Popup
+                  trigger={<ContactButton>Contact Teacher</ContactButton>}
+                  position='right center'
+                >
+                  <PopupWrapper>
+                    <ContactDetails>
+                      Faculty Phone Number: 982738271323
+                    </ContactDetails>
+                    <ContactDetails>
+                      Faculty Email: facultyemail@gmail.com
+                    </ContactDetails>
+                    <ContactDetails>
+                      Enactus Email: enactusdtu@gmail.com
+                    </ContactDetails>
                   </PopupWrapper>
-  </Popup>
+                </Popup>
               </ButtonWrapper>
             </CafeDetails>
           </CafeDetailsWrapper>

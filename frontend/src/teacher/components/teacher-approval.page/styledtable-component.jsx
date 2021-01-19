@@ -232,6 +232,7 @@ function CustomPaginationActionsTable(props) {
                     console.log('studentId', studentId);
                     const { approveStudentStart } = props;
                     approveStudentStart(studentId);
+                    window.location.reload()
                   }}
                 >
                   APPROVE

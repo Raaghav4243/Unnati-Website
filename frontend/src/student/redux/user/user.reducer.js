@@ -12,11 +12,14 @@ const INITIAL_STATE = {
   isFetching: false,
   isUserSigningIn: false,
   isUserSignedIn: false,
+  isUserSigningUp: false,
+  wasSignUpSuccessful: false,
   didUserSignInFail: false,
   didUserSignUpFail: false,
   didUserSignOutFail: false,
   userIsUpdating: false,
   updateConfirmation: null,
+  updationFailed: false,
   errorMessage: undefined,
 };
 
@@ -28,6 +31,20 @@ const userReducer = (state = INITIAL_STATE, action) => {
         isUserSigningIn: true,
         isUserSignedIn: false,
         didUserSignInFail: false,
+        errorMessage: null,
+      };
+    case UserActionTypes.SIGN_OUT_START:
+      return {
+        ...state,
+        didUserSignOutFail: false,
+        errorMessage: null,
+      };
+    case UserActionTypes.SIGN_UP_START:
+      return {
+        ...state,
+        isUserSigningUp: true,
+        wasSignUpSuccessful: false,
+        didUserSignUpFail: false,
         errorMessage: null,
       };
     case UserActionTypes.SIGN_IN_SUCCESS:
@@ -56,8 +73,6 @@ const userReducer = (state = INITIAL_STATE, action) => {
         role: role,
         isUserSigningIn: false,
         isUserSignedIn: true,
-        didUserSignInFail: false,
-        errorMessage: null,
       };
     case UserActionTypes.SIGN_OUT_SUCCESS:
       return {
@@ -71,12 +86,17 @@ const userReducer = (state = INITIAL_STATE, action) => {
         phoneNumber: null,
         role: null,
         isUserSignedIn: false,
-        didUserSignOutFail: false,
-        errorMessage: null,
+      };
+    case UserActionTypes.SIGN_UP_SUCCESS:
+      return {
+        ...state,
+        isUserSigningUp: false,
+        wasSignUpSuccessful: true,
       };
     case UserActionTypes.SIGN_IN_FAILURE:
       return {
         ...state,
+        isUserSigningIn: false,
         didUserSignInFail: true,
         errorMessage: action.payload,
       };
@@ -89,6 +109,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
     case UserActionTypes.SIGN_UP_FAILURE:
       return {
         ...state,
+        isUserSigningUp: false,
         didUserSignUpFail: true,
         errorMessage: action.payload,
       };
@@ -96,6 +117,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         userIsUpdating: true,
+        updationFailed: false,
       };
     case UserActionTypes.UPDATE_USER_SUCCESS:
       return {
@@ -107,6 +129,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         userIsUpdating: false,
+        updationFailed: true,
         errorMessage: action.payload,
       };
     default:

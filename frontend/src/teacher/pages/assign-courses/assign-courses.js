@@ -75,7 +75,7 @@ class TeacherDashboardAssignPage extends React.Component {
 
   handleNameChange = (e) => {
     const value = e.target.value;
-    const name = e.target.name
+    const name = e.target.key
     console.log(name);
     this.setState({ userId: value, name: name }, () => {
       console.log(this.state);
@@ -85,7 +85,8 @@ class TeacherDashboardAssignPage extends React.Component {
   handleCourseChange = (e) => {
     const {cafeId} = this.props
     const value = e.target.value;
-    this.setState({ courseId: value, cafeId: cafeId }, () => {
+    const name = e.target.key
+    this.setState({ courseId: value, cafeId: cafeId, course: name }, () => {
       console.log(this.state);
     });
   };
@@ -100,8 +101,6 @@ class TeacherDashboardAssignPage extends React.Component {
     courseAssignStart(userId, cafeId, courseId);
     console.log(updateConfirmation)
     window.location.reload()
-
-
   };
 
  
@@ -113,6 +112,7 @@ class TeacherDashboardAssignPage extends React.Component {
       allCourses,
       updateConfirmation,
     } = this.props;
+ 
     console.log("courses are", allCourses);
     console.log("verified user are", verifiedStudents);
     console.log(this.state.userId);
@@ -127,7 +127,7 @@ class TeacherDashboardAssignPage extends React.Component {
             </CafeDetailsParentWrapper>
             <TextTitle>Assign Course to Student</TextTitle>
             {updateConfirmation ? (
-              alert('Course assigned to student!')
+              <div style={{color: "green"}}>Course assigned to student!</div>
             ) : null}
             <DropDownWrapper>
               <StudentDropDown>
@@ -143,9 +143,6 @@ class TeacherDashboardAssignPage extends React.Component {
                       Select
                     </InputLabel>
                     <Select
-                      // native
-                      // value={state.age}
-                      //value={this.state.name}
                       onChange={this.handleNameChange}
                       label="student"
                       
@@ -156,7 +153,7 @@ class TeacherDashboardAssignPage extends React.Component {
                       {verifiedStudents
                         ? verifiedStudents.map((student, index) => {
                             return (
-                              <option key={index} name={student.firstName} value={student._id}>
+                              <option style={{cursor: "pointer"}} key={index} id={student.firstName} value={student._id}>
                                 {student.firstName}
                               </option>
                             );
@@ -178,23 +175,14 @@ class TeacherDashboardAssignPage extends React.Component {
                     <InputLabel htmlFor="outlined-age-native-simple">
                       Select
                     </InputLabel>
-                    <Select
-                      // native
-                      // value={state.age}
-                      onChange={this.handleCourseChange}
-                      label="Age"
-                      inputProps={{
-                        name: "age",
-                        id: "outlined-age-native-simple",
-                      }}
-                    >
-                      <option aria-label="None" value="none">
+                    <Select style={{cursor: "pointer"}} onChange={this.handleCourseChange}>
+                      <option style={{cursor: "pointer"}} aria-label="None" value="none">
                         NONE
                       </option>
                       {allCourses
                         ? allCourses.map((course, index) => {
                             return (
-                              <option key={index} value={course._id}>
+                              <option style={{cursor: "pointer"}} key={index} id={course.courseName} value={course._id}>
                                 {course.courseName}
                               </option>
                             );
@@ -208,7 +196,6 @@ class TeacherDashboardAssignPage extends React.Component {
                 </DropWrapper>
               </CourseDropDown>
             </DropDownWrapper>
-            {/* <ButtonWrapper onClick={this.handleSubmit}>Assign</ButtonWrapper> */}
             <ButtonWrapperdiv>
                     <Button variant='contained' color='primary' size='large' fullWidth='true' onClick={this.handleSubmit}>Assign</Button>
             {/* <StyledButton size='large' fullWidth='true' onClick={this.handleSubmit}>ASSIGN</StyledButton> */}

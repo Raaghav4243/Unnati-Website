@@ -9,7 +9,19 @@ export const CardWrapper = styled.div`
   border-radius: 12px;
   /* border: 1px solid black; */
   padding: 0.5rem 1rem;
-  background-image: linear-gradient(to right, #1e8983, #0dc985);
+  /* background-image: linear-gradient(to right, #1e8983, #0dc985); */
+  background: #ff0099; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #493240,
+    #ff0099
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #493240,
+    #ff0099
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
   margin-right: 20px;
 `;
 export const CardTitle = styled.div`
@@ -56,7 +68,7 @@ export const ExploreButton = styled.div`
   width: 100%;
   cursor: pointer;
   /* width: 50%; */
-  color: #11bb85;
+  /* color: #11bb85; */
   background-color: #ffffff;
   border-radius: 10px;
   /* border: 1px solid black; */
