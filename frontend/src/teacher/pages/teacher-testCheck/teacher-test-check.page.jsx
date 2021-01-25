@@ -31,7 +31,11 @@ class TeacherTestCheck extends React.Component {
     }
 
     const rows = [
-  ];
+  
+      createData(1, 'Raaghav', 'Raj', 1),
+      createData(2, 'Raaghav', 'Raj', 1),
+      createData(3, 'Raaghav', 'Raj', 1),
+];
 
     const { testList } = this.props;
     console.log(testList);

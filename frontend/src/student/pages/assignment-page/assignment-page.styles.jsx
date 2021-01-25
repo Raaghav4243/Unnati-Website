@@ -136,6 +136,15 @@ export const RadioIndicator = styled.div`
   }
 `;
 
+export const ScoreDiv = styled.div`
+  background-color: orange;
+  color: white;
+  width: 30vw;
+  text-align: center;
+  margin: 1vh 0;
+  padding: 0.5rem;
+`
+
 export const CheckedLabel = styled.label`
   /* input[type='radio'] {
   }
