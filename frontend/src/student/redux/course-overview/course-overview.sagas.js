@@ -1,6 +1,7 @@
 import { takeLatest, put, all, call, select } from 'redux-saga/effects';
 
 import {
+  fetchCourseForOverviewStart,
   fetchCourseForOverviewSuccess,
   fetchCourseForOverviewFailure,
 } from './course-overview.actions';
@@ -48,13 +49,28 @@ export function* fetchCourseForOverviewAsync() {
   }
 }
 
-export function* fetchCourseForOverviewStart() {
+export function* fetchCourseForOverviewStartOnSetCourseForOverview() {
+  console.log('Event listener for set course invoked');
+  yield put(fetchCourseForOverviewStart());
+}
+
+export function* fetchCourseForOverviewStartAsync() {
   yield takeLatest(
     CourseOverviewActionTypes.FETCH_COURSE_FOR_OVERVIEW_START,
     fetchCourseForOverviewAsync
   );
 }
 
+export function* onSetCourseForOverview() {
+  yield takeLatest(
+    CourseOverviewActionTypes.SET_CURRENT_COURSE_FOR_OVERVIEW,
+    fetchCourseForOverviewStartOnSetCourseForOverview
+  );
+}
+
 export function* courseOverviewSagas() {
-  yield all([call(fetchCourseForOverviewStart)]);
+  yield all([
+    call(fetchCourseForOverviewStartAsync),
+    call(onSetCourseForOverview),
+  ]);
 }

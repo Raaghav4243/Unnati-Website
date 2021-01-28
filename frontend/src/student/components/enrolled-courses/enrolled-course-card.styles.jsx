@@ -10,7 +10,7 @@ export const CardWrapper = styled.div`
   /* border: 1px solid black; */
   padding: 1rem;
   /* background-image: linear-gradient(to right, #1e8983, #0dc985); */
-  background: #f12711; /* fallback for old browsers */
+  background: #ffc222; /* fallback for old browsers */
   background: -webkit-linear-gradient(
     to right,
     #ffc222,

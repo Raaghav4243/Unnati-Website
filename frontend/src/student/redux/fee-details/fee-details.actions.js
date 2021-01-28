@@ -1,8 +1,7 @@
 import FeeDetailTypes from './fee-details.types';
 
-export const fetchFeeDetailStart = (user_id) => ({
+export const fetchFeeDetailStart = () => ({
   type: FeeDetailTypes.FETCH_FEE_DETAILS_START,
-  payload: { user_id: user_id },
 });
 
 export const fetchFeeDetailSuccess = (feeDetail) => ({

@@ -1,6 +1,3 @@
-// NavLogo should be a react-scroll-link when the user is on the homepage , however it should be a react router link to redirect the user
-// to the homepage of the website
-
 import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -8,6 +5,7 @@ import { createStructuredSelector } from 'reselect';
 import {
   selectCurrentUser,
   selectCurrentUserId,
+  selectIsUserSignedIn,
 } from '../../redux/user/user.selectors';
 
 import GoToDashboardButton from '../go-to-dashboard-button-link/go-to-dashboard-button-link.component';
@@ -50,15 +48,13 @@ class HomePageNavbar extends React.Component {
   }
 
   handleScroll = () => {
-    // const { scrollPos } = this.state;
     this.setState({
       scrollPos: document.body.getBoundingClientRect().top,
       changedColor: document.body.getBoundingClientRect().top < -20,
     });
   };
   render() {
-    const { user, toggle } = this.props;
-    // console.log('USER OBJ', user);
+    const { isUserSignedIn, toggle } = this.props;
     const { changedColor } = this.state;
     return (
       <>
@@ -76,11 +72,6 @@ class HomePageNavbar extends React.Component {
                 exact='true'
                 offset={-120}
               >
-                {/* <img
-                  src={UnnatiLogo}
-                  alt='UnnatiLogo'
-                  style={{ height: '60px' }}
-                /> */}
                 <UnnatiLogo style={{ height: '60px' }} />
                 <NavName scrollOn={changedColor}>UNNATI</NavName>
               </NavLogo>
@@ -155,18 +146,7 @@ class HomePageNavbar extends React.Component {
               </NavMenu>
             </NavbarMiddle>
             <NavbarRight>
-              {/* <NavBtnLink to='/signin'>Sign In</NavBtnLink> */}
-              {/* {user ? (
-                <GoToDashboardButton
-                  scrollClass={this.state.changedColor ? true : false}
-                />
-              ) : (
-                <SignInButton
-                  scrollClass={this.state.changedColor ? true : false}
-                />
-              )} */}
-              {/* {console.log('USER IS', user)} */}
-              {user ? (
+              {isUserSignedIn ? (
                 <GoToDashboardButton
                   scrollClass={this.state.changedColor ? true : false}
                 />
@@ -184,7 +164,7 @@ class HomePageNavbar extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  user: selectCurrentUserId,
+  isUserSignedIn: selectIsUserSignedIn,
 });
 
 export default connect(mapStateToProps)(HomePageNavbar);

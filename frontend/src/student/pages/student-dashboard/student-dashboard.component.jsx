@@ -34,7 +34,7 @@ import {
 } from '../../redux/student/student.selectors';
 import ProfileSideNav from '../../components/SideNav/SideNav';
 import Profile from '../Profile-page/profile-page.component';
-import FeesPage from '../FeesPage/App';
+import FeesPage from '../fees-page/fees-page.component';
 import StudentDashboardSidenav from '../../components/student-dashboard-sidenav/student-dashboard-sidenav.component';
 import StudentDashboardNavbar from '../../components/student-dashboard-navbar/student-dashboard-navbar.component';
 import StudentDashboardOverviewPage from '../student-dashboard-overview-page/student-dashboard-overview.component';
@@ -81,20 +81,4 @@ class studentDashboard extends React.Component {
     );
   }
 }
-const mapStateToProps = createStructuredSelector({
-  // allCourses: selectAllCourses,
-  userId: selectCurrentUserId,
-  // userCafe: selectUserCafeDetails,
-  enrolled_courses: selectUserEnrolledCourses,
-  all_courses_id_map: selectAllCoursesIdMap,
-  no_of_classmates: selectUserCafeNumberOfClassmates,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  fetchEnrolledCoursesStart: (user_id) =>
-    dispatch(fetchEnrolledCoursesStart(user_id)),
-  setCurrentCourse: (course_id) => dispatch(setCurrentCourse(course_id)),
-  fetchUserCafeStart: () => dispatch(fetchUserCafeStart()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(studentDashboard);
+export default studentDashboard;

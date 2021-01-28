@@ -1,4 +1,3 @@
-import { connect } from 'react-redux';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 import {
   signInSuccess,
@@ -10,6 +9,7 @@ import {
   signOutFailure,
   signUpSuccess,
   signUpFailure,
+  userSessionExpired,
 } from './user.actions';
 import { UserActionTypes } from './user.types';
 
@@ -36,14 +36,12 @@ export function* isUserAuthenticated() {
       console.log('USER DATA NOT FOUND!');
       yield localStorage.removeItem('token');
       yield localStorage.removeItem('user');
-      yield put(
-        signInFailure('FAILED TO SIGN IN AS TOKEN HAS EXPIRED OR DOESNOT EXIST')
-      );
+      yield put(userSessionExpired());
     }
   } catch (error) {
     yield localStorage.removeItem('token');
     yield localStorage.removeItem('user');
-    yield put(signInFailure(error));
+    yield put(userSessionExpired());
   }
 }
 
@@ -122,7 +120,7 @@ export function* signUp({ payload }) {
     if (UserObj.done) {
       yield put(signUpSuccess());
     } else {
-      yield put(signUpFailure(UserObj.message));
+      yield put(signUpFailure(UserObj.error));
     }
   } catch (error) {
     yield put(signUpFailure(error));
@@ -131,6 +129,10 @@ export function* signUp({ payload }) {
 
 export function* onEmailSignInStart() {
   yield takeLatest(UserActionTypes.EMAIL_SIGN_IN_START, signInWithEmail);
+}
+
+export function* onSignUpStart() {
+  yield takeLatest(UserActionTypes.SIGN_UP_START, signUp);
 }
 
 export function* onCheckUserSession() {
@@ -149,6 +151,7 @@ export function* userSagas() {
   yield all([
     call(onUpdateUserStart),
     call(onEmailSignInStart),
+    call(onSignUpStart),
     call(onSignOutStart),
     call(onCheckUserSession),
   ]);

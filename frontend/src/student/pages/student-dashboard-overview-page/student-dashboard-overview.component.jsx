@@ -3,11 +3,6 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
 //redux
-import { fetchAllCoursesStart } from '../../redux/allCourses/all-courses.actions';
-import {
-  selectAllCourses,
-  selectAllCoursesIdMap,
-} from '../../redux/allCourses/all-courses.selectors';
 import { fetchUserCafeStart } from '../../redux/cafe/cafe.actions';
 import {
   // selectUserCafeDetails,
@@ -36,20 +31,8 @@ import StudentDiscoverCourses from '../../components/discover-courses/discover-c
 
 class StudentDashboardOverviewPage extends React.Component {
   componentDidMount() {
-    const {
-      userId,
-      fetchUserCafeStart,
-      fetchEnrolledCoursesStart,
-      all_courses_id_map,
-      fetchAllCoursesStart,
-    } = this.props;
-    // if(allCourses is null), then fetchAllCoursesStart() as well.
-    if (all_courses_id_map) {
-    } else {
-      console.log('ALL COURSES ID MAP IS', all_courses_id_map);
-      fetchAllCoursesStart();
-    }
-    fetchEnrolledCoursesStart(userId);
+    const { fetchUserCafeStart, fetchEnrolledCoursesStart } = this.props;
+    fetchEnrolledCoursesStart();
     fetchUserCafeStart();
   }
   render() {
@@ -73,21 +56,9 @@ class StudentDashboardOverviewPage extends React.Component {
   }
 }
 
-const mapStateToProps = createStructuredSelector({
-  userId: selectCurrentUserId,
-  // userCafe: selectUserCafeDetails,
-  allCourses: selectAllCourses,
-  all_courses_id_map: selectAllCoursesIdMap,
-});
-
 const mapDispatchToProps = (dispatch) => ({
-  fetchEnrolledCoursesStart: (user_id) =>
-    dispatch(fetchEnrolledCoursesStart(user_id)),
+  fetchEnrolledCoursesStart: () => dispatch(fetchEnrolledCoursesStart()),
   fetchUserCafeStart: () => dispatch(fetchUserCafeStart()),
-  fetchAllCoursesStart: () => dispatch(fetchAllCoursesStart()),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(StudentDashboardOverviewPage);
+export default connect(null, mapDispatchToProps)(StudentDashboardOverviewPage);

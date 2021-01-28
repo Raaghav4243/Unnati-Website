@@ -147,9 +147,15 @@ class AssignmentPage extends React.Component {
         }
       });
       console.log('answers marked correct are', answersMarkedCorrect);
-      if (answersMarkedCorrect === correctAnswerArray.length) {
+      if (
+        answersMarkedCorrect === correctAnswerArray.length &&
+        userAnswerArray.length === correctAnswerArray.length
+      ) {
+        // mark answer as correct
         score = score + totalScorableMarksForQuestion;
         console.log('score after this question', score);
+      } else {
+        // mark answer as incorrect
       }
     });
     console.log('SCORE IS', score);

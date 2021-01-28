@@ -1,4 +1,8 @@
-import { all, call, put, takeLatest } from 'redux-saga/effects';
+import { all, call, put, takeLatest, select } from 'redux-saga/effects';
+import {
+  selectCurrentUserCafeId,
+  selectCurrentUserId,
+} from '../user/user.selectors';
 import {
   fetchFeeAmountFailure,
   fetchFeeAmountSuccess,
@@ -6,23 +10,28 @@ import {
 
 import FeeAmountTypes from './fee-amount.types';
 
-export function* fetchFeeAmountAsync({ payload: { user_id, cafe_id } }) {
+export function* fetchFeeAmountAsync() {
   try {
-    console.log('FEE AMOUNT SAGA IS GETTING CALLED', feeAmountDetails);
-    let feeAmountDetails = yield fetch(
-      `/FeesStatus/${user_id}/cafe/${cafe_id}`,
-      {
-        method: 'GET', // or 'PUT'
-        headers: {
-          "content-type": "application/json",
-        },
-      }
-    );
+    console.log('FEE AMOUNT SAGA IS GETTING CALLED');
+    const userId = yield select(selectCurrentUserId);
+    // const cafeId = yield select(selectCurrentUserCafeId);
+    // let feeAmountDetails = yield fetch(`/FeesStatus/${userId}/cafe/${cafeId}`, {
+    //   method: 'GET', // or 'PUT'
+    //   headers: {
+    //     'content-type': 'application/json',
+    //   },
+    // });
+
+    let feeAmountDetails = yield fetch(`/FeesStatus/user/${userId}`);
 
     feeAmountDetails = yield feeAmountDetails.json();
 
-    yield put(fetchFeeAmountSuccess(feeAmountDetails.user));
-  }catch (error) {
+    console.log('feeAmountDetails are ', feeAmountDetails);
+
+    feeAmountDetails.done
+      ? yield put(fetchFeeAmountSuccess(feeAmountDetails.user))
+      : yield put(fetchFeeAmountFailure(feeAmountDetails.message));
+  } catch (error) {
     yield put(fetchFeeAmountFailure(error));
   }
 }

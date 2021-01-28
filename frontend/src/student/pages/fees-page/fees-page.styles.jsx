@@ -1,6 +1,6 @@
 // import React from 'react';
 import styled from 'styled-components';
-import { websiteTheme} from '../../../material-ui.styles'
+import { websiteTheme } from '../../../material-ui.styles';
 
 export const OnlineButton = styled.button`
   margin: 5vh 8vw;
@@ -13,9 +13,9 @@ export const OnlineButton = styled.button`
 export const ButtonWrapper = styled.div`
   margin-left: 9vw;
   margin-top: 20vh;
-/* border: 1px solid #ffc222; */
-/* margin-left: 5vw; */
-/* margin-top: 5vw; */
+  /* border: 1px solid #ffc222; */
+  /* margin-left: 5vw; */
+  /* margin-top: 5vw; */
   /* width: 30vw;
   border: 2px solid black;
   border-radius: 3px;
@@ -56,7 +56,7 @@ export const FeesBox = styled.div`
   display: inline-block;
   /* border: 1px solid #fff; */
   /* border: 2px solid #000; */
-  
+
   box-shadow: 0px 1.5px 1.2px grey;
   width: 30vw;
   height: 60vh;
@@ -80,19 +80,18 @@ export const FeesHead = styled.div`
   font-size: 42vh;
   /* color: #ffc222; */
   /* background: 'red'; */
-  background-color:#ffc222;
+  background-color: #ffc222;
   border-radius: 4px;
   font-weight: 550;
   font-size: 1.2rem;
-border: 1px solid #ffc222;
+  border: 1px solid #ffc222;
 `;
 
 export const BoxAndHead = styled.div`
   display: flex;
   flex-direction: column;
   /* border: 2px solid #000; */
-/* border: 1px solid #ffc222; */
-
+  /* border: 1px solid #ffc222; */
 `;
 export const PastHead = styled.div`
   margin-top: 10vh;
@@ -102,7 +101,6 @@ export const PastHead = styled.div`
   font-weight: 550;
   font-size: 1.7rem;
   /* border: 2px solid #000; */
-
 `;
 
 export const SubCol = styled.div`
@@ -114,8 +112,7 @@ export const SubCol = styled.div`
   text-align: center;
   color: #7b7b7b;
   overflow: visible;
-/* border: 1px solid #ffc222; */
-
+  /* border: 1px solid #ffc222; */
 `;
 // border: 1px solid #ffc222;
 
@@ -130,7 +127,6 @@ export const SubCol1 = styled.div`
   text-align: center;
   color: #7b7b7b;
   /* border: 1px solid #ffc222; */
-
 `;
 
 export const FlexHeadCol = styled.div`
@@ -146,18 +142,16 @@ export const PastBody = styled.div`
   margin-left: 4vw;
   overflow: visible;
   /* border: 1px solid #ffc222; */
-
 `;
 
 export const TableWrapper = styled.div`
-margin-left: 5vw;
-margin-top: 10.3vh;
-width: 30vw;
+  margin-left: 5vw;
+  margin-top: 10.3vh;
+  width: 30vw;
   /* border: 2px solid black; */
   border-radius: 3px;
   height: 30vw;
-
-`
+`;
 
 // export const BothBox = styled.div`
 //   display: flex;
@@ -168,8 +162,8 @@ width: 30vw;
 export const FullPage = styled.div`
   display: flex;
   flex-direction: row;
-  flex-wrap:wrap;
-  /* border: 2px solid #000; */
+  flex-wrap: wrap;
+  border: 2px solid #000;
   /* margin-left: 1vw; */
   font-family: Montserrat;
 `;

@@ -1,4 +1,5 @@
-import { takeLatest, put, all, call } from 'redux-saga/effects';
+import { takeLatest, put, all, call, select } from 'redux-saga/effects';
+import { selectCurrentUserId } from '../user/user.selectors';
 
 import {
   fetchEnrolledCoursesSuccess,
@@ -7,9 +8,10 @@ import {
 
 import StudentActionTypes from './student.types';
 
-export function* fetchEnrolledCoursesAsync({ payload: { user_id } }) {
+export function* fetchEnrolledCoursesAsync() {
   try {
-    let enrolledCoursesDetails = yield fetch(`/enrolled-courses/${user_id}`);
+    const userId = yield select(selectCurrentUserId);
+    let enrolledCoursesDetails = yield fetch(`/enrolled-courses/${userId}`);
 
     enrolledCoursesDetails = yield enrolledCoursesDetails.json();
 

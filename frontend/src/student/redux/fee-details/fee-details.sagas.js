@@ -1,23 +1,25 @@
-import { all, call, put, takeLatest } from "redux-saga/effects";
-import { fetchFeeAmountStart } from "../fee-amount/fee-amount.actions";
-import FeeDetailTypes from "./fee-details.types";
+import { all, call, put, takeLatest, select } from 'redux-saga/effects';
+import { fetchFeeAmountStart } from '../fee-amount/fee-amount.actions';
+import FeeDetailTypes from './fee-details.types';
 import {
   fetchFeeDetailFailure,
   fetchFeeDetailSuccess,
-} from "./fee-details.actions";
+} from './fee-details.actions';
+import { selectCurrentUserId } from '../user/user.selectors';
 
-export function* FetchFeeDetailAsync({ payload: { user_id } }) {
+export function* FetchFeeDetailAsync() {
   try {
-    let feeDetail = yield fetch(`/user-receipts/${user_id}`, {
-      method: "GET", // or 'PUT'
-      headers: {
-        "content-type": "application/json",
-      },
-    });
-    feeDetail = yield feeDetail.json();
-    console.log("fee details are", feeDetail.userReceipts);
+    const userId = yield select(selectCurrentUserId);
 
-    yield put(fetchFeeDetailSuccess(feeDetail.userReceipts));
+    let feeTransactionDetails = yield fetch(`/user-receipts/${userId}`);
+
+    feeTransactionDetails = yield feeTransactionDetails.json();
+
+    console.log('feeTransactionDetails are ', feeTransactionDetails);
+
+    feeTransactionDetails.done
+      ? yield put(fetchFeeDetailSuccess(feeTransactionDetails.userReceipts))
+      : yield put(fetchFeeDetailFailure(feeTransactionDetails.message));
   } catch (error) {
     yield put(fetchFeeDetailFailure(error));
   }
