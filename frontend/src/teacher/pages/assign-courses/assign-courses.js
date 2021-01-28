@@ -9,7 +9,7 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import NativeSelect from "@material-ui/core/NativeSelect";
 import Button from "@material-ui/core/Button/Button";
-import StyledButton from '../../components/button-component/styled-button';
+import StyledButton from "../../components/button-component/styled-button";
 
 //redux
 import { fetchUserCafeStart } from "../../redux/cafe/cafe.actions";
@@ -57,12 +57,11 @@ class TeacherDashboardAssignPage extends React.Component {
       cafeId: null,
       courseId: null,
       name: null,
-      course: null
+      course: null,
     };
   }
   componentDidMount() {
     const {
-      userId,
       fetchUserCafeStart,
       fetchVerifiedStudentStart,
       fetchAllCoursesStart,
@@ -75,47 +74,27 @@ class TeacherDashboardAssignPage extends React.Component {
 
   handleNameChange = (e) => {
     const value = e.target.value;
-    const name = e.target.key
-    console.log(name);
-    this.setState({ userId: value, name: name }, () => {
-      console.log(this.state);
-    });
+    const name = e.target.key;
+    this.setState({ userId: value, name: name });
   };
 
   handleCourseChange = (e) => {
-    const {cafeId} = this.props
+    const { cafeId } = this.props;
     const value = e.target.value;
-    const name = e.target.key
-    this.setState({ courseId: value, cafeId: cafeId, course: name }, () => {
-      console.log(this.state);
-    });
+    const name = e.target.key;
+    this.setState({ courseId: value, cafeId: cafeId, course: name });
   };
 
   handleSubmit = (e) => {
     const userId = this.state.userId;
     const courseId = this.state.courseId;
     const cafeId = this.state.cafeId;
-    const { courseAssignStart, updateConfirmation } = this.props;
-    console.log("page data", userId, courseId, cafeId);
-    console.log("this function is working");
+    const { courseAssignStart } = this.props;
     courseAssignStart(userId, cafeId, courseId);
-    console.log(updateConfirmation)
-    window.location.reload()
   };
 
- 
-
   render() {
-    const {
-      userCafe,
-      verifiedStudents,
-      allCourses,
-      updateConfirmation,
-    } = this.props;
- 
-    console.log("courses are", allCourses);
-    console.log("verified user are", verifiedStudents);
-    console.log(this.state.userId);
+    const { verifiedStudents, allCourses, updateConfirmation } = this.props;
     return (
       <>
         <PageContainer>
@@ -127,7 +106,7 @@ class TeacherDashboardAssignPage extends React.Component {
             </CafeDetailsParentWrapper>
             <TextTitle>Assign Course to Student</TextTitle>
             {updateConfirmation ? (
-              <div style={{color: "green"}}>Course assigned to student!</div>
+              <div style={{ color: "green" }}>Course assigned to student!</div>
             ) : null}
             <DropDownWrapper>
               <StudentDropDown>
@@ -137,23 +116,21 @@ class TeacherDashboardAssignPage extends React.Component {
                     variant="outlined"
                     className="hello"
                     style={{ minWidth: 150 }}
-                    id='assign-course-form'
+                    id="assign-course-form"
                   >
                     <InputLabel htmlFor="outlined-age-native-simple">
                       Select
                     </InputLabel>
-                    <Select
-                      onChange={this.handleNameChange}
-                      label="student"
-                      
-                    >
-                      <option aria-label="None" value="none">
-                        NONE
-                      </option>
+                    <Select onChange={this.handleNameChange} label="student">
                       {verifiedStudents
                         ? verifiedStudents.map((student, index) => {
                             return (
-                              <option style={{cursor: "pointer"}} key={index} id={student.firstName} value={student._id}>
+                              <option
+                                style={{ cursor: "pointer" }}
+                                key={index}
+                                id={student.firstName}
+                                value={student._id}
+                              >
                                 {student.firstName}
                               </option>
                             );
@@ -175,30 +152,39 @@ class TeacherDashboardAssignPage extends React.Component {
                     <InputLabel htmlFor="outlined-age-native-simple">
                       Select
                     </InputLabel>
-                    <Select style={{cursor: "pointer"}} onChange={this.handleCourseChange}>
-                      <option style={{cursor: "pointer"}} aria-label="None" value="none">
-                        NONE
-                      </option>
+                    <Select
+                      style={{ cursor: "pointer" }}
+                      onChange={this.handleCourseChange}
+                    >
                       {allCourses
                         ? allCourses.map((course, index) => {
                             return (
-                              <option style={{cursor: "pointer"}} key={index} id={course.courseName} value={course._id}>
+                              <option
+                                style={{ cursor: "pointer" }}
+                                key={index}
+                                id={course.courseName}
+                                value={course._id}
+                              >
                                 {course.courseName}
                               </option>
                             );
                           })
                         : null}
                     </Select>
-                    {/* <ButtonWrapper onClick={this.handleSubmit}>Assign</ButtonWrapper> */}
-                    {/* <ButtonWrapperdiv> */}
-                    {/* </ButtonWrapperdiv> */}
                   </FormControl>
                 </DropWrapper>
               </CourseDropDown>
             </DropDownWrapper>
             <ButtonWrapperdiv>
-                    <Button variant='contained' color='primary' size='large' fullWidth='true' onClick={this.handleSubmit}>Assign</Button>
-            {/* <StyledButton size='large' fullWidth='true' onClick={this.handleSubmit}>ASSIGN</StyledButton> */}
+              <Button
+                variant="contained"
+                color="primary"
+                size="large"
+                fullWidth="true"
+                onClick={this.handleSubmit}
+              >
+                Assign
+              </Button>
             </ButtonWrapperdiv>
           </PageWrapper>
         </PageContainer>
@@ -213,8 +199,7 @@ const mapStateToProps = createStructuredSelector({
   verifiedStudents: selectVerifiedStudents,
   allCourses: selectAllCourses,
   updateConfirmation: selectCourseUpdateConfirmation,
-  cafeId: selectUserCafeId
-
+  cafeId: selectUserCafeId,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -7,6 +7,10 @@ export const selectVerifiedStudents = createSelector(
     (verifiedStudentDetails) => verifiedStudentDetails.verifiedStudents
 );
 
+export const selectVerifiedStudentsIsFetching = createSelector(
+    [selectVerifiedStudentDetails],
+    (isFetching) => isFetching.isFetching
+)
 
 
 

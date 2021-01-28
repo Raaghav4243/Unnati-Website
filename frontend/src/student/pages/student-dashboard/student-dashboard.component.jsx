@@ -69,12 +69,6 @@ class studentDashboard extends React.Component {
               path={`${match.path}/password`}
               component={ChangePassword}
             />
-
-            {/* <Route
-              exact
-              path={`${match.path}/discover`}
-              component={CourseOverview}
-            /> */}
           </PageWrapper>
         </Container>
       </>

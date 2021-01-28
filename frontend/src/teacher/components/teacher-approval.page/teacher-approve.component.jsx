@@ -130,23 +130,6 @@ const styles = (theme) => ({
   },
 });
 
-// const theme = createMuiTheme({
-//   palette: {
-//     primary: {
-//       light: '#ff9800',
-//       main: '#3f50b5',
-//       dark: '#0e2e2c',
-//       contrastText: '#fff',
-//     },
-//     secondary: {
-//       light: '#ff7961',
-//       main: '#f44336',
-//       dark: '#ba000d',
-//       contrastText: '#000',
-//     },
-//   },
-// });
-
 const StyledTableCell = withStyles((theme) => ({
   head: {
     // backgroundColor: '#ffc222',
@@ -166,7 +149,7 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-function CustomPaginationActionsTable(props) {
+function ApproveStudentTableComponent(props) {
   const rows = props.rows;
   const classes = useStyles2();
   const [page, setPage] = React.useState(0);
@@ -193,12 +176,10 @@ function CustomPaginationActionsTable(props) {
           <col style={{ width: '10%' }} />
           <col style={{ width: '10%' }} />
           <col style={{ width: '10%' }} />
-          {/* <col style={{width:'10%'}}/> */}
         </colgroup>
         <TableHead>
-          {/* <ThemeProvider theme={tableTheme}> */}
           <TableRow>
-            <StyledTableCell align='center'>ID</StyledTableCell>
+            <StyledTableCell align='center'>S.No</StyledTableCell>
             <StyledTableCell align='center'>First Name</StyledTableCell>
             <StyledTableCell align='center'>Last Name</StyledTableCell>
             <StyledTableCell align='center'>Email</StyledTableCell>
@@ -221,10 +202,7 @@ function CustomPaginationActionsTable(props) {
               <StyledTableCell align='center'>{row.email}</StyledTableCell>
               <StyledTableCell align='center'>
                 <StyledButton
-                  // variant="contained"
-                  size='small'
                   variant='outlined'
-                  //  color="primary"
                   className={classes.button}
                   id={row.ButtonId}
                   onClick={() => {
@@ -274,4 +252,4 @@ const mapDispatchToProps = (dispatch) => ({
   approveStudentStart: (studentId) => dispatch(approveStudentStart(studentId)),
 });
 
-export default connect(null, mapDispatchToProps)(CustomPaginationActionsTable);
+export default connect(null, mapDispatchToProps)(ApproveStudentTableComponent);
