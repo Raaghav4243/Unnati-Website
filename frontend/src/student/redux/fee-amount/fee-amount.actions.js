@@ -1,16 +1,9 @@
 import FeeAmountTypes from './fee-amount.types';
 
-export const fetchFeeAmountStart = (user_id, cafe_id) => {
-  console.log(
-    'FEE ACTION , FEE AMOUNT START ',
-    user_id,
-    'USER',
-    cafe_id,
-    'CAFE'
-  );
+export const fetchFeeAmountStart = () => {
+  console.log('FEE ACTION , FEE AMOUNT START ');
   return {
     type: FeeAmountTypes.FETCH_FEE_AMOUNT_START,
-    payload: { user_id: user_id, cafe_id: cafe_id },
   };
 };
 

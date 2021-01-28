@@ -19,6 +19,10 @@ class StudentEnrolledCourses extends React.Component {
     super();
   }
 
+  componentDidMount() {
+    console.log('ENROLLED COURSES MOUNTED!');
+  }
+
   render() {
     const { enrolled_courses, percentStatusArray } = this.props;
     console.log('ENROLLED COURSES ARRAY IS', enrolled_courses);
@@ -35,6 +39,7 @@ class StudentEnrolledCourses extends React.Component {
                       courseName={course.course.courseName}
                       PercentageStatus={Math.round(percentStatusArray[index])}
                       courseId={course.course._id}
+                      key={course.course._id}
                     />
                   </>
                 ))

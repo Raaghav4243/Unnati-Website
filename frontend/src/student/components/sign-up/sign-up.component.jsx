@@ -1,5 +1,18 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+
 import FormInput from '../form-input/form-input.component';
+import { withStyles } from '@material-ui/core/styles';
+// import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+// import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormLabel from '@material-ui/core/FormLabel';
 
 import {
   SignUpContainer,
@@ -11,7 +24,38 @@ import {
   RadioInput,
   RadioIndicator,
   CafeSelector,
+  CafePrompt,
+  ButtonWrapper,
 } from './sign-up.styles';
+import {
+  selectDidUserSignUpFail,
+  selectIsUserSigningUp,
+  selectWasSignUpSuccessful,
+} from '../../redux/user/user.selectors';
+import { signUpStart } from '../../redux/user/user.actions';
+import { selectAllCafes } from '../../redux/allCourses/all-courses.selectors';
+
+// material ui styling
+const useStyles = (theme) => ({
+  formControlForCafeList: {
+    // marginTop: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    marginBottom: theme.spacing(1),
+    // marginTop: 5,
+    minWidth: 150,
+  },
+  formControlForRoleSelection: {
+    // marginTop: theme.spacing(1),
+    paddingTop: theme.spacing(2),
+    // marginRight: theme.spacing(1),
+    // marginBottom: theme.spacing(1),
+    // marginTop: 15,
+    // minWidth: 150,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+});
 
 class SignUp extends React.Component {
   constructor() {
@@ -24,10 +68,11 @@ class SignUp extends React.Component {
         username: '',
         email: '',
         password: '',
-        role: '',
+        role: 'STUDENT',
+        cafe: '',
       },
       confirmPassword: '',
-      cafe: '5fa5796e9542c50df4285b04',
+      // cafeName: '',
     };
   }
 
@@ -57,6 +102,10 @@ class SignUp extends React.Component {
     );
   };
 
+  // handleFormControlChange = (event) => {
+  //   this.setState({ cafeName: event.target.value });
+  // };
+
   handleSubmit = (e) => {
     e.preventDefault();
     const {
@@ -70,26 +119,43 @@ class SignUp extends React.Component {
     }
 
     const data = { ...this.state.resp };
-    data['cafe'] = this.state.cafe;
+    // data['cafe'] = this.state.cafe;
     console.log('handle submit called', data);
 
-    fetch('/signup', {
-      method: 'POST', // or 'PUT'
-      headers: {
-        'Content-Type': 'application/json',
+    this.props.signUpStart(data);
+    this.setState({
+      resp: {
+        firstName: '',
+        lastName: '',
+        phoneNumber: '',
+        username: '',
+        email: '',
+        password: '',
+        role: 'STUDENT',
+        cafe: '',
       },
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('Success:', data);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
+      confirmPassword: '',
+    });
+
+    // fetch('/signup', {
+    //   method: 'POST', // or 'PUT'
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify(data),
+    // })
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     console.log('Success:', data);
+    //   })
+    //   .catch((error) => {
+    //     console.error('Error:', error);
+    //   });
   };
 
   render() {
+    const { classes, cafeList } = this.props;
+    // console.log('CAFE LIST IS', cafeList);
     return (
       <>
         <SignUpContainer>
@@ -119,48 +185,8 @@ class SignUp extends React.Component {
               label='Last Name'
               required
             />
-            <FormInput
-              type='text'
-              name='phoneNumber'
-              value={this.state.resp.phoneNumber}
-              // onChange={this.handleChange}
-              label='Phone Number'
-              required
-            />
-            <FormInput
-              type='text'
-              name='username'
-              value={this.state.resp.username}
-              // onChange={this.handleChange}
-              label='Username'
-              required
-            />
-            <FormInput
-              type='email'
-              name='email'
-              value={this.state.resp.email}
-              // onChange={this.handleChange}
-              label='Email'
-              required
-            />
-            <FormInput
-              type='password'
-              name='password'
-              value={this.state.resp.password}
-              // onChange={this.handleChange}
-              label='Password'
-              required
-            />
-            <FormInput
-              type='password'
-              name='confirmPassword'
-              value={this.state.confirmPassword}
-              // onChange={this.handleChange}
-              label='Confirm Password'
-              required
-            />
 
-            <RoleContainer>
+            {/* <RoleContainer>
               <RolePrompt>Who are you registering as?</RolePrompt>
               <RadioWrapper>
                 <RadioLabel htmlFor='student'>
@@ -184,11 +210,107 @@ class SignUp extends React.Component {
                   <RadioIndicator />
                 </RadioLabel>
               </RadioWrapper>
+            </RoleContainer> */}
+            <RoleContainer>
+              <FormControl
+                component='fieldset'
+                className={classes.formControlForRoleSelection}
+                required
+              >
+                {/* <FormControl component='fieldset'> */}
+                <FormLabel component='legend'>
+                  Who are you registering as?
+                </FormLabel>
+                <RadioGroup
+                  row
+                  aria-label='role'
+                  name='role'
+                  value={this.state.resp.role}
+                  onChange={this.handleOnChange}
+                >
+                  <FormControlLabel
+                    value='STUDENT'
+                    control={<Radio />}
+                    label='Student'
+                  />
+                  <FormControlLabel
+                    value='TEACHER'
+                    control={<Radio />}
+                    label='Teacher'
+                  />
+                </RadioGroup>
+              </FormControl>
             </RoleContainer>
 
-            <CafeSelector>SELECT YOUR CAFE!</CafeSelector>
+            <FormInput
+              type='email'
+              name='email'
+              value={this.state.resp.email}
+              // onChange={this.handleChange}
+              label='Email'
+              required
+            />
 
-            <button>sign up</button>
+            <FormInput
+              type='text'
+              name='username'
+              value={this.state.resp.username}
+              // onChange={this.handleChange}
+              label='Username'
+              required
+            />
+
+            <FormInput
+              type='password'
+              name='password'
+              value={this.state.resp.password}
+              // onChange={this.handleChange}
+              label='Password'
+              required
+            />
+            <FormInput
+              type='password'
+              name='confirmPassword'
+              value={this.state.confirmPassword}
+              // onChange={this.handleChange}
+              label='Confirm Password'
+              required
+            />
+
+            <FormInput
+              type='text'
+              name='phoneNumber'
+              value={this.state.resp.phoneNumber}
+              // onChange={this.handleChange}
+              label='Phone Number'
+              required
+            />
+
+            <CafeSelector>
+              <CafePrompt>Select Your Unnati Cafe</CafePrompt>
+              <FormControl required className={classes.formControlForCafeList}>
+                <Select
+                  // labelId='demo-simple-select-label'
+                  // id='demo-simple-select'
+                  value={this.state.resp.cafe}
+                  name='cafe'
+                  displayEmpty
+                  className={classes.selectEmpty}
+                  onChange={this.handleOnChange}
+                >
+                  <MenuItem value='' disabled>
+                    None
+                  </MenuItem>
+                  {cafeList.map((cafe) => (
+                    <MenuItem value={cafe._id}>{cafe.name}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </CafeSelector>
+
+            <ButtonWrapper>
+              <button>sign up</button>
+            </ButtonWrapper>
           </form>
         </SignUpContainer>
       </>
@@ -196,4 +318,18 @@ class SignUp extends React.Component {
   }
 }
 
-export default SignUp;
+const mapStateToProps = createStructuredSelector({
+  signUpstarted: selectIsUserSigningUp,
+  signUpCompleted: selectWasSignUpSuccessful,
+  didSignUpFail: selectDidUserSignUpFail,
+  cafeList: selectAllCafes,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  signUpStart: (data) => dispatch(signUpStart(data)),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(useStyles)(SignUp));

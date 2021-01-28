@@ -2,21 +2,21 @@ import { UserActionTypes } from './user.types';
 
 const INITIAL_STATE = {
   username: null,
-  email: null,
-  _id: null,
-  cafe: null,
   firstName: null,
   lastName: null,
+  _id: null,
+  cafe: null,
+  email: null,
   phoneNumber: null,
   role: null,
-  isFetching: false,
   isUserSigningIn: false,
   isUserSignedIn: false,
+  didUserSignInFail: false,
   isUserSigningUp: false,
   wasSignUpSuccessful: false,
-  didUserSignInFail: false,
   didUserSignUpFail: false,
   didUserSignOutFail: false,
+  didUserSessionExpire: false,
   userIsUpdating: false,
   updateConfirmation: null,
   updationFailed: false,
@@ -105,6 +105,11 @@ const userReducer = (state = INITIAL_STATE, action) => {
         ...state,
         didUserSignOutFail: true,
         errorMessage: action.payload,
+      };
+    case UserActionTypes.USER_SESSION_EXPIRED:
+      return {
+        ...state,
+        didUserSessionExpire: true,
       };
     case UserActionTypes.SIGN_UP_FAILURE:
       return {

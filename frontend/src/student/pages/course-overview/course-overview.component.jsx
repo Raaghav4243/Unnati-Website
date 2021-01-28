@@ -44,18 +44,6 @@ class CourseOverview extends React.Component {
     };
   }
 
-  componentDidMount() {
-    const { fetchCourseForOverviewStart } = this.props;
-    console.log('FETCH OVERVIEW FROM MOUNT');
-    fetchCourseForOverviewStart();
-  }
-
-  componentDidUpdate() {
-    console.log('FETCH OVERVIEW FROM UPDATE');
-    const { fetchCourseForOverviewStart } = this.props;
-    fetchCourseForOverviewStart();
-  }
-
   render() {
     const {
       // course_name,
@@ -100,8 +88,4 @@ const mapStateToProps = createStructuredSelector({
   coursePrice: selectCurrentCourseOverviewPrice,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  fetchCourseForOverviewStart: () => dispatch(fetchCourseForOverviewStart()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(CourseOverview);
+export default connect(mapStateToProps)(CourseOverview);

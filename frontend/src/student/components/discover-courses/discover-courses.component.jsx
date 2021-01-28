@@ -23,31 +23,7 @@ class StudentDiscoverCourses extends React.Component {
       <>
         <Container>
           <Title>Discover More Courses</Title>
-          {/* {allCourses && enrolled_courses_id_map ? (
-            allCourses.map((course) => {
-              if (enrolled_courses_id_map[course._id]) {
-                return <div>ALREADY ENROLLED!</div>;
-              } else {
-                return <div>{course.courseName}</div>;
-              }
-            })
-          ) : (
-            <div>DISCOVERING COURSES FOR YOU...</div>
-          )} */}
           <DiscoverCoursesCardWrapper>
-            {/* {allCourses && enrolled_courses_id_map ? 
-            let noOfEnrolledCourses = Object.keys(enrolled_courses_id_map).length;
-            (
-              noOfEnrolledCourses === allCourses.length ? (
-                <div>You have completed All courses. Stay tuned for more.</div>
-              ) : (
-                allCourses.map((course) => {
-                  return (
-                    <DiscoverCourseCard courseName={'Microsoft Powerpoint'} />
-                  );
-                })
-              )
-            ) : null} */}
             {allCourses && enrolled_courses_id_map
               ? allCourses.map((course) => {
                   return (

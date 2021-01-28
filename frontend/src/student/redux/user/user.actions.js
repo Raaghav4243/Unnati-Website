@@ -19,6 +19,10 @@ export const checkUserSession = () => ({
   type: UserActionTypes.CHECK_USER_SESSION,
 });
 
+export const userSessionExpired = () => ({
+  type: UserActionTypes.USER_SESSION_EXPIRED,
+});
+
 export const signOutStart = () => ({
   type: UserActionTypes.SIGN_OUT_START,
 });

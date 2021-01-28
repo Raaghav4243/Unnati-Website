@@ -1,11 +1,11 @@
-import React from "react";
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
-import { withRouter } from "react-router-dom";
-import AssignmentAndTestSidenav from "../../components/assignment-test-sidenav/assignment-test-sidenav.component";
+import React from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { withRouter } from 'react-router-dom';
+import AssignmentAndTestSidenav from '../../components/assignment-test-sidenav/assignment-test-sidenav.component';
 
 // import SideNav from '../../components/SideNav/SideNav';
-import { submitAssignmentStart } from "../../redux/assignment-page/assignment-page.actions";
+import { submitAssignmentStart } from '../../redux/assignment-page/assignment-page.actions';
 // import { fetchAssignmentStart } from '../../redux/assignment-page/assignment-page.actions';
 import {
   selectAssignmentMessageFromBackend,
@@ -14,15 +14,15 @@ import {
   selectAssignmentSubmittedConfirmationMessage,
   selectHasAssignmentSubmissionFailed,
   selectAssignmentName,
-} from "../../redux/assignment-page/assignment-page.selectors";
+} from '../../redux/assignment-page/assignment-page.selectors';
 import {
   selectCurrentCourseId,
   selectCurrentCourseTopicId,
   selectCurrentCourseTopicName,
-} from "../../redux/student/student.selectors";
-import { selectCurrentUserId } from "../../redux/user/user.selectors";
+} from '../../redux/student/student.selectors';
+import { selectCurrentUserId } from '../../redux/user/user.selectors';
 
-import StudentDashboardNavbar from "../../components/student-dashboard-navbar/student-dashboard-navbar.component";
+import StudentDashboardNavbar from '../../components/student-dashboard-navbar/student-dashboard-navbar.component';
 
 import {
   PageWrapper,
@@ -48,7 +48,7 @@ import {
   // AllQuestions,
   // Questions,
   // Options,
-} from "./assignment-page.styles";
+} from './assignment-page.styles';
 // import questionData from './data';
 
 class AssignmentPage extends React.Component {
@@ -80,18 +80,18 @@ class AssignmentPage extends React.Component {
     } = this.props;
     const value = e.target.value;
     const name = e.target.name;
-    console.log("NAME:", name);
-    console.log("VALUE:", value);
-    console.log("QUESTIONS ARRAY", assignment_questions);
+    console.log('NAME:', name);
+    console.log('VALUE:', value);
+    console.log('QUESTIONS ARRAY', assignment_questions);
 
     if (assignment_questions) {
-      console.log("QUESTION REFERRED TO IS", assignment_questions[name]);
+      console.log('QUESTION REFERRED TO IS', assignment_questions[name]);
     }
 
     let response = this.state.resp;
     let questionType = assignment_questions[name].type;
-    console.log("QUESTION TYPE IS", questionType);
-    if (questionType === "MULTICORRECT") {
+    console.log('QUESTION TYPE IS', questionType);
+    if (questionType === 'MULTICORRECT') {
       if (response[name] == undefined) {
         response[name] = [value];
       } else if (response[name].includes(value)) {
@@ -106,7 +106,7 @@ class AssignmentPage extends React.Component {
       response[name] = [value];
     }
 
-    console.log("RESPONSE BECOMES", response);
+    console.log('RESPONSE BECOMES', response);
     this.setState({
       resp: response,
     });
@@ -115,31 +115,31 @@ class AssignmentPage extends React.Component {
   handleSubmitSuccess = () => {
     // only call when post request is completed
     const { history } = this.props;
-    history.push("/student/course");
+    history.push('/student/course');
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
     const { assignment_questions, submitAssignmentStart } = this.props;
     const { resp } = this.state;
-    console.log("SUBMITTING ASSIGNMENT NOW");
-    console.log("QUESTIONS ARE NOW", assignment_questions);
-    console.log("RESPONSES OF USER are", resp);
+    console.log('SUBMITTING ASSIGNMENT NOW');
+    console.log('QUESTIONS ARE NOW', assignment_questions);
+    console.log('RESPONSES OF USER are', resp);
     // calculate score
     let userResponses = Object.values(resp);
-    console.log("RESPONSES OF USER IN ARRAY FORM are", userResponses);
+    console.log('RESPONSES OF USER IN ARRAY FORM are', userResponses);
     let score = 0;
     userResponses.map((userAnswerArray, index) => {
       let totalScorableMarksForQuestion = assignment_questions[index].maxMarks;
       let correctAnswerArray = assignment_questions[index].correctAns;
       let correctAnswerObj = {};
       correctAnswerArray.map((correctOption) => {
-        correctAnswerObj[correctOption] = "correct";
+        correctAnswerObj[correctOption] = 'correct';
       });
       console.log(
-        "CORRECT OPTIONS FOR EACH QUESTION FORM are",
+        'CORRECT OPTIONS FOR EACH QUESTION FORM are',
         index,
-        "OBJ - ",
+        'OBJ - ',
         correctAnswerObj
       );
       let answersMarkedCorrect = 0;
@@ -148,21 +148,21 @@ class AssignmentPage extends React.Component {
           answersMarkedCorrect = answersMarkedCorrect + 1;
         }
       });
-      console.log("answers marked correct are", answersMarkedCorrect);
-      if (answersMarkedCorrect === 0) {
-        this.state.isAnswerCorrect.push(false);
-      } else {
-        this.state.isAnswerCorrect.push(true);
-      }
-      console.log(this.state.isAnswerCorrect);
-      if (answersMarkedCorrect === correctAnswerArray.length) {
+      console.log('answers marked correct are', answersMarkedCorrect);
+      if (
+        answersMarkedCorrect === correctAnswerArray.length &&
+        userAnswerArray.length === correctAnswerArray.length
+      ) {
+        // mark answer as correct
         score = score + totalScorableMarksForQuestion;
-        console.log("score after this question", score);
+        console.log('score after this question', score);
+      } else {
+        // mark answer as incorrect
       }
     });
-    console.log("SCORE IS", score);
+    console.log('SCORE IS', score);
     let data = {};
-    data["marksScored"] = score;
+    data['marksScored'] = score;
     this.setState({
       score: score,
       questionsForGeneratingResponseSheet: assignment_questions,
@@ -183,7 +183,7 @@ class AssignmentPage extends React.Component {
       assignmentSubmissionFailed,
     } = this.props;
     const { score, resp, questionsForGeneratingResponseSheet } = this.state;
-    console.log("ASSIGNMENT QUESTIONS RECIEVED", assignment_questions);
+    console.log('ASSIGNMENT QUESTIONS RECIEVED', assignment_questions);
     return (
       <>
         <StudentDashboardNavbar />
@@ -203,7 +203,7 @@ class AssignmentPage extends React.Component {
                             {question.statement}
                           </QuestionStatementContainer>
                           <QuestionsOptionsContainer>
-                            {question.type === "MULTICORRECT" ? (
+                            {question.type === 'MULTICORRECT' ? (
                               <>
                                 {question.options.map((option, optionIndex) => {
                                   return (
@@ -213,7 +213,7 @@ class AssignmentPage extends React.Component {
                                       {/* <label key={index} htmlFor={option}> */}
                                       {option}
                                       <CheckedInput
-                                        type="checkbox"
+                                        type='checkbox'
                                         key={question.statement}
                                         id={`${option}${index}${optionIndex}`}
                                         name={index}
@@ -224,7 +224,7 @@ class AssignmentPage extends React.Component {
                                   );
                                 })}
                               </>
-                            ) : question.type === "SINGLECORRECT" ? (
+                            ) : question.type === 'SINGLECORRECT' ? (
                               <>
                                 {question.options.map((option, optionIndex) => {
                                   return (
@@ -233,7 +233,7 @@ class AssignmentPage extends React.Component {
                                     >
                                       {option}
                                       <RadioInput
-                                        type="radio"
+                                        type='radio'
                                         key={question.statement}
                                         id={`${option}${index}${optionIndex}`}
                                         name={index}
@@ -266,37 +266,37 @@ class AssignmentPage extends React.Component {
             <>
               <div>ASSIGNMENT SUBMITTED SUCCESSFULLY</div>
               <ScoreDiv>YOUR SCORE IS : {score}</ScoreDiv>
-              
-              {console.log("USER RESPONSES ARE", resp)}
-              {console.log("ACTUAL ANSWERS ARE", assignment_questions)}
+
+              {console.log('USER RESPONSES ARE', resp)}
+              {console.log('ACTUAL ANSWERS ARE', assignment_questions)}
 
               <div>
                 {assignment_questions.map((question, index) => {
                   const isAnswerCorrect = this.state.isAnswerCorrect[index];
-                  console.log("is answer correct?", isAnswerCorrect);
+                  console.log('is answer correct?', isAnswerCorrect);
                   let color = null;
                   let correctStatement = null;
                   let statementColor = null;
                   if (isAnswerCorrect === true) {
-                    color = "#F1F8E9";
+                    color = '#F1F8E9';
                     statementColor = 'green';
-                    correctStatement = "Your answer is correct.";
+                    correctStatement = 'Your answer is correct.';
                   } else {
-                    color = "#FBE9E7";
+                    color = '#FBE9E7';
                     statementColor = 'red';
-                    correctStatement = "Your answer is incorrect.";
+                    correctStatement = 'Your answer is incorrect.';
                   }
 
                   return (
                     <div
                       style={{
                         backgroundColor: color,
-                        margin: "1vh 0",
-                        borderRadius: "15px",
-                        padding: "1rem 1rem",
+                        margin: '1vh 0',
+                        borderRadius: '15px',
+                        padding: '1rem 1rem',
                       }}
                     >
-                      <div key={index} className="questions">
+                      <div key={index} className='questions'>
                         Q{index + 1}: {question.statement}
                       </div>
                       Options:
@@ -331,9 +331,9 @@ class AssignmentPage extends React.Component {
                       }
                       <div
                         style={{
-                          margin: "0.5vh 0",
+                          margin: '0.5vh 0',
                           backgroundColor: statementColor,
-                          padding: "1rem 1rem",
+                          padding: '1rem 1rem',
                         }}
                       >
                         {correctStatement}
@@ -345,13 +345,12 @@ class AssignmentPage extends React.Component {
               <button
                 onClick={this.handleSubmitSuccess}
                 style={{
-                  background: "orange",
-                  color: "white",
-                  cursor: "pointer",
-                  width: "20vw",
-                  alignContent: "center",
+                  background: 'orange',
+                  color: 'white',
+                  cursor: 'pointer',
+                  width: '20vw',
+                  alignContent: 'center',
                   margin: '1vh 0',
-                  
                 }}
               >
                 GO BACK TO COURSE PAGE

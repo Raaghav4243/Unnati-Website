@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
+import { Checkbox } from '@material-ui/core';
 import { FaBook } from 'react-icons/fa';
 import {
   RiArrowUpSFill,
@@ -92,15 +93,18 @@ const CourseSideNavSubmenu = ({
                   <ContentName>{content_item.contentName}</ContentName>
                   <TickIconWrapper>
                     {attemptedTopicsMap[content_item.id] ? (
-                      <IoIosCheckbox
-                        style={{
-                          color: 'green',
-                          // background: '#fff',
-                          height: '55%',
-                          width: '55%',
-                        }}
+                      <Checkbox
+                        checked={true}
+                        color='primary'
+                        inputProps={{ 'aria-label': 'checked checkbox' }}
                       />
-                    ) : null}
+                    ) : (
+                      <Checkbox
+                        checked={false}
+                        color='primary'
+                        inputProps={{ 'aria-label': 'disabled checkbox' }}
+                      />
+                    )}
                   </TickIconWrapper>
                 </ContentWrapper>
               </ContentItemContainer>

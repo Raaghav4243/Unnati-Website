@@ -1,12 +1,7 @@
 //libraries used
 import React from 'react';
-import { connect } from 'react-redux';
 
 //redux used
-import {
-  fetchAllCafesStart,
-  fetchAllCoursesStart,
-} from '../../redux/allCourses/all-courses.actions';
 
 //components used
 import HomePageNavbar from '../../components/homepage-navbar/homepage-navbar.component';
@@ -34,9 +29,6 @@ class HomePage extends React.Component {
 
   componentDidMount() {
     console.log('HOMEPAGE MOUNTED!');
-    const { fetchAllCoursesStart, fetchAllCafesStart } = this.props;
-    fetchAllCoursesStart();
-    fetchAllCafesStart();
   }
 
   render() {
@@ -55,17 +47,4 @@ class HomePage extends React.Component {
   }
 }
 
-// const mapStateToProps = createStructuredSelector({
-//   allCourses: selectAllCourses,
-//   userId: selectCurrentUserId,
-//   userCafe: selectUserCafeDetails,
-//   enrolled_courses: selectUserEnrolledCourses,
-//   all_courses_id_map: selectAllCoursesIdMap,
-// });
-
-const mapDispatchToProps = (dispatch) => ({
-  fetchAllCoursesStart: () => dispatch(fetchAllCoursesStart()),
-  fetchAllCafesStart: () => dispatch(fetchAllCafesStart()),
-});
-
-export default connect(null, mapDispatchToProps)(HomePage);
+export default HomePage;

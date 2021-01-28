@@ -10,7 +10,7 @@ import './App.css';
 import HomePage from './student/pages/homepage/homepage.component';
 import CourseOverview from './student/pages/course-overview/course-overview.component';
 import StudentPage from './student/pages/student-page/student-page.component';
-import FeesPage from './student/pages/FeesPage/App';
+// import FeesPage from './student/pages/FeesPage/App';
 
 import Profile from './student/pages/Profile-page/profile-page.component';
 import TestPage from './student/pages/test-page/test-page.component';
@@ -34,13 +34,23 @@ import {
 } from './student/redux/user/user.selectors';
 import { checkUserSession } from './student/redux/user/user.actions';
 import { Button } from '@material-ui/core';
+import {
+  fetchAllCafesStart,
+  fetchAllCoursesStart,
+} from './student/redux/allCourses/all-courses.actions';
 // import StyledButton from './teacher/components/styled-button-component/styled-button'
 // import demo from './teacher/pages/demo';
 
 class App extends React.Component {
   componentDidMount() {
-    const { checkUserSession } = this.props;
+    const {
+      checkUserSession,
+      fetchAllCoursesStart,
+      fetchAllCafesStart,
+    } = this.props;
     checkUserSession();
+    fetchAllCoursesStart();
+    fetchAllCafesStart();
   }
 
   render() {
@@ -146,6 +156,8 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = (dispatch) => ({
   checkUserSession: () => dispatch(checkUserSession()),
+  fetchAllCoursesStart: () => dispatch(fetchAllCoursesStart()),
+  fetchAllCafesStart: () => dispatch(fetchAllCafesStart()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

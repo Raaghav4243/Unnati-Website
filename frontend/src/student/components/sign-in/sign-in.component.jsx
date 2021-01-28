@@ -59,6 +59,7 @@ class SignIn extends React.Component {
 
   render() {
     const { signInstarted, didSignInFail } = this.props;
+    console.log('DID SIGN IN FAIL', didSignInFail);
     return (
       <>
         <SignInContainer>

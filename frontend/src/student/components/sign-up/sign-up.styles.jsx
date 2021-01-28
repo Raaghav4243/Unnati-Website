@@ -21,24 +21,9 @@ export const RolePrompt = styled.div`
 `;
 export const RadioWrapper = styled.div`
   display: flex;
-  /* justify-content: space-between; */
 `;
 
 export const RadioLabel = styled.label`
-  /* input[type='radio'] {
-  }
-  display: inline-block;
-  background-color: #ddd;
-  padding: 10px 20px;
-  font-family: sans-serif, Arial;
-  font-size: 16px;
-  border: 2px solid #444;
-  border-radius: 4px;
-
-  input[type='radio']::checked {
-    background-color: #bfb;
-    border-color: #4c4;
-  } */
   position: relative;
   display: inline-block;
   cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
@@ -105,4 +90,17 @@ export const RadioIndicator = styled.div`
   }
 `;
 
-export const CafeSelector = styled.div``;
+export const CafeSelector = styled.div`
+  margin-top: 15px;
+  width: 100%;
+`;
+export const CafePrompt = styled.div`
+  margin: 10px 0;
+  color: grey;
+  font-size: 16px;
+  font-weight: normal;
+`;
+
+export const ButtonWrapper = styled.div`
+  margin-top: 15px;
+`;
