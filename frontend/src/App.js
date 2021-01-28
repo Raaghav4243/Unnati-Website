@@ -23,7 +23,6 @@ import TeacherDashboardFeesPage from './teacher/pages/course-fees/course-fees-pa
 import TeacherEnrolledStudents from './teacher/pages/teacher-enrolledstudent/teacher-enrolledstudent';
 import TeacherApproval from './teacher/pages/teacher-approval/teacher-approval.page';
 import TeacherTestCheck from './teacher/pages/teacher-testCheck/teacher-test-check.page';
-
 import TeacherProfile from './teacher/pages/Profile-page/profile-page.component';
 import TeacherChangePassword from './teacher/pages/change-password/change-password';
 import EvaluateTestPage from './teacher/pages/evaluate-test-page/evaluate-test';
@@ -133,26 +132,6 @@ class App extends React.Component {
               component={TeacherChangePassword}
             />
             <Route path='/teacher/evaluatetest' component={EvaluateTestPage} />
-            {/* <Route path='/teacher/enrolled' component={TeacherEnrolledStudents} /> */}
-
-            {
-              // enrolled-students list, no functionality
-            }
-            {/* <Route path='/teacher/approve' component={TeacherApproval} /> */}
-            {/* <Route path='/teacher/testcheck' component={TeacherTestCheck} /> */}
-            {/* <Route
-            path='/teacher/assign'
-            component={TeacherDashboardAssignPage}
-          /> */}
-            {/* <Route
-            path='/teacher/studentfees'
-            component={TeacherDashboardFeesPage}
-          /> */}
-            {/* <Route path='/teacher/profile' component={TeacherProfile} /> */}
-            {/* <Route
-            path='/teacher/changepassword'
-            component={TeacherChangePassword}
-          /> */}
           </Switch>
         </ThemeProvider>
       </BrowserRouter>

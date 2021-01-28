@@ -9,7 +9,7 @@ const GoToHomePageButton = ({ scrollOn, fontColor }) => {
     <>
       <GoToHomepageLink to='/'>
         <UnnatiLogo style={{ height: '60px' }} />
-        <Name fontColor={fontColor}>UNNATI</Name>
+        <Name fontColor='white'>UNNATI</Name>
       </GoToHomepageLink>
     </>
   );

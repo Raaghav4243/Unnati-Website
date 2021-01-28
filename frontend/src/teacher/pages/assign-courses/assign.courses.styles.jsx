@@ -116,4 +116,4 @@ margin-top: 1vh;
 export const ImageWrapper = styled.img`
 margin-left: 5vw;
 margin-top: 3vh;
-`
+`;

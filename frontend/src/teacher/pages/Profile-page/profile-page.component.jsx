@@ -2,12 +2,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import Button from "@material-ui/core/Button/Button";
 
 //styles used
 import {
   NavBar,
   SideNav,
   PageWrapper,
+  ButtonWrapper,
   WrapperContainer,
   Details,
   DetailsWrapper,
@@ -39,6 +41,7 @@ import { updateUserStart } from '../../redux/user/user.actions';
 import TeacherDashboardSidenav from '../../components/teacher-dashboard-sidenav/teacher-dashboard-sidenav.component';
 import TeacherDashboardNavbar from '../../components/teacher-dashboard-navbar/teacher-dashboard-navbar.component';
 import { selectUpdateConfirmation } from '../../../student/redux/user/user.selectors';
+// import { ButtonWrapper } from '../../components/cafe-details/cafe-details.styles';
 
 class TeacherProfile extends React.Component {
   constructor(props) {
@@ -203,7 +206,10 @@ class TeacherProfile extends React.Component {
                 />
               </DetailsWrapper>
             </WrapperContainer>
-            <SaveButton>Save Changes</SaveButton>
+            {/* <SaveButton>Save Changes</SaveButton> */}
+            <ButtonWrapper>
+            <Button size='small' variant='contained' color='primary' fullWidth='True'>Save Changes</Button>
+            </ButtonWrapper>
           </ProfileDetailsContainer>
           <CafeDetailsContainer>
             <PersonalDetailsHeading>Cafe Details</PersonalDetailsHeading>

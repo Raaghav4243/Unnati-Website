@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles, useTheme ,withStyles} from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -15,7 +15,49 @@ import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
 import TableHead from '@material-ui/core/TableHead';
-// import TableRow from '@material-ui/core/TableRow';
+// import { fetchTestSheetStart } from '../../redux/test-sheet/test-sheet.actions';
+// import { connect } from 'react-redux';
+// import { Link, Route } from 'react-router-dom';
+// import { createStructuredSelector } from 'reselect';
+// import { selectTestDetails } from '../../redux/test-sheet/test-sheet.selectors';
+import { createMuiTheme } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: '#ff9800',
+      main: '#3f50b5',
+      dark: '#002884',
+      contrastText: '#fff',
+    },
+    secondary: {
+      light: '#ff7961',
+      main: '#f44336',
+      dark: '#ba000d',
+      contrastText: '#000',
+    },
+  },
+});
+
+const StyledTableCell = withStyles((theme) => ({
+  head: {
+    backgroundColor: '#ffc222',
+    color: theme.palette.common.black,
+  },
+  body: {
+    fontSize: 14,
+  },
+}))(TableCell);
+
+const StyledTableRow = withStyles((theme) => ({
+  root: {
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.action.hover,
+    },
+  },
+}))(TableRow);
 
 const useStyles1 = makeStyles((theme) => ({
   root: {
@@ -104,7 +146,7 @@ const useStyles2 = makeStyles({
   },
 });
 
- function CustomPaginationActionsTable(props) {
+ function EnrolledStudentsTableComponent(props) {
   const rows = props.rows
   const classes = useStyles2();
   const [page, setPage] = React.useState(0);
@@ -134,11 +176,11 @@ const useStyles2 = makeStyles({
    </colgroup>
       <TableHead>
            <TableRow >
-             <TableCell align="center">ID</TableCell>
-             <TableCell align="center">First Name</TableCell>
-             <TableCell align="center">Last Name</TableCell>
+             <StyledTableCell align="center">ID</StyledTableCell>
+             <StyledTableCell align="center">First Name</StyledTableCell>
+             <StyledTableCell align="center">Last Name</StyledTableCell>
              
-             <TableCell align="center">Email</TableCell>
+             <StyledTableCell align="center">Email</StyledTableCell>
              
           </TableRow>
          </TableHead>
@@ -147,18 +189,18 @@ const useStyles2 = makeStyles({
             ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : rows
           ).map((row) => (
-            <TableRow key={row.name}>
-            <TableCell align="center" component="th" scope="row">{row.ID}</TableCell>
-            <TableCell align="center">{row.FirstName}</TableCell>
-            <TableCell align="center">{row.LastName}</TableCell>
+            <StyledTableRow key={row.name}>
+            <StyledTableCell align="center" component="th" scope="row">{row.ID}</StyledTableCell>
+            <StyledTableCell align="center">{row.FirstName}</StyledTableCell>
+            <StyledTableCell align="center">{row.LastName}</StyledTableCell>
             
-            <TableCell align="center">{row.email}</TableCell>
-            </TableRow>
+            <StyledTableCell align="center">{row.email}</StyledTableCell>
+            </StyledTableRow>
           ))}
 
           {emptyRows > 0 && (
             <TableRow style={{ height: 30 * emptyRows }}>
-              <TableCell colSpan={6} />
+              <StyledTableCell colSpan={6} />
             </TableRow>
           )}
         </TableBody>
@@ -186,4 +228,4 @@ const useStyles2 = makeStyles({
 }
 
 
-export default CustomPaginationActionsTable
+export default EnrolledStudentsTableComponent

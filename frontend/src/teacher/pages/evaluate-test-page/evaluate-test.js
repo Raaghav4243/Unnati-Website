@@ -39,6 +39,7 @@ import TeacherDashboardNavbar from "../../components/teacher-dashboard-navbar/te
 import TeacherDashboardSidenav from "../../components/teacher-dashboard-sidenav/teacher-dashboard-sidenav.component";
 import { selectTestCourseId, selectTestDetails } from "../../redux/test-sheet/test-sheet.selectors";
 import { updateTestScoreStart } from "../../redux/test-evaluation/test-evaluation-list.actions";
+import { Link } from "react-router-dom";
 
 class EvaluateTestPage extends React.Component {
   constructor(props){
@@ -71,7 +72,6 @@ class EvaluateTestPage extends React.Component {
 
   handleSubmit = (e) => {
     const {updateTestScoreStart, } = this.props
-    
     const studentId = this.state.studentId
     const testId = this.state.testId
     const courseId = this.state.courseId
@@ -97,7 +97,6 @@ class EvaluateTestPage extends React.Component {
             <CafeDetailsParentWrapper>
               <TeacherCafeDetails />
             </CafeDetailsParentWrapper>
-            <TextTitle>MA-103 Test Submitted by Kartik Verma</TextTitle>
             <QuestionsWrapper>
               {test
                 ? test.responses.map((test) => {
@@ -164,7 +163,9 @@ class EvaluateTestPage extends React.Component {
                   })
                 : null}
             </QuestionsWrapper>
+            <Link to='/teacher/testcheck'>
             <ButtonWrapper onClick={this.handleSubmit}>Submit Score</ButtonWrapper>
+            </Link>
           </PageWrapper>
         </PageContainer>
       </>

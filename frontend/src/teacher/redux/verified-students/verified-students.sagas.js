@@ -1,11 +1,13 @@
-import { all, call, put, takeLatest } from "redux-saga/effects";
+import { all, call, put, select, takeLatest } from "redux-saga/effects";
+import { selectUserCafeId } from "../cafe/cafe.selectors";
 import { fetchVerifiedStudentFailure, fetchVerifiedStudentSuccess } from "./verified-students.actions";
 import { VerifiedStudentsType } from "./verified-students.types";
 
 export function* fetchVerifiedStudentAsync(){
     try {
+        const cafe_id = yield select(selectUserCafeId)
         console.log('verified student async started')
-        let student = yield fetch('/verified-students/5fa5796e9542c50df4285b04')
+        let student = yield fetch(`/verified-students/${cafe_id}`)
         student = yield student.json()
         console.log('verified student are', student)
 

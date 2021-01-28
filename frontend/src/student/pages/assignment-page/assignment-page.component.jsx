@@ -39,6 +39,7 @@ import {
   CheckedLabel,
   CheckedInput,
   CheckedIndicator,
+  ScoreDiv,
   // QuestionWrapper,
   // AssignmentWrapper,
   // WrappingQuestions,
@@ -59,6 +60,7 @@ class AssignmentPage extends React.Component {
       score: null,
       questionsForGeneratingResponseSheet: null,
       assignmentDone: null,
+      isAnswerCorrect: [],
     };
   }
 
@@ -165,12 +167,11 @@ class AssignmentPage extends React.Component {
       score: score,
       questionsForGeneratingResponseSheet: assignment_questions,
     });
+
+    console.log(this.state.isAnswerCorrect);
+
     submitAssignmentStart(data);
     // alert('YOUR SCORE FOR THIS ATTEMPT IS', score);
-  };
-
-  componentWillUnmount = () => {
-    // SUBMIT ASSIGNMENT
   };
 
   render() {
@@ -259,19 +260,42 @@ class AssignmentPage extends React.Component {
           {isAssignmentSubmitting ? (
             <div>ASSIGNMENT IS SUBMITTING...PLEASE WAIT.</div>
           ) : null}
-
+          {}
           {/* AFTER SUBMISSION IS SUCCESSFUL */}
           {!isAssignmentSubmitting && assignmentSubmittedConfirmation ? (
             <>
               <div>ASSIGNMENT SUBMITTED SUCCESSFULLY</div>
-              <div>YOUR SCORE IS : {score}</div>
-              <div>WHAT WE GOT FROM YOU :</div>
+              <ScoreDiv>YOUR SCORE IS : {score}</ScoreDiv>
+
               {console.log('USER RESPONSES ARE', resp)}
               {console.log('ACTUAL ANSWERS ARE', assignment_questions)}
+
               <div>
                 {assignment_questions.map((question, index) => {
+                  const isAnswerCorrect = this.state.isAnswerCorrect[index];
+                  console.log('is answer correct?', isAnswerCorrect);
+                  let color = null;
+                  let correctStatement = null;
+                  let statementColor = null;
+                  if (isAnswerCorrect === true) {
+                    color = '#F1F8E9';
+                    statementColor = 'green';
+                    correctStatement = 'Your answer is correct.';
+                  } else {
+                    color = '#FBE9E7';
+                    statementColor = 'red';
+                    correctStatement = 'Your answer is incorrect.';
+                  }
+
                   return (
-                    <>
+                    <div
+                      style={{
+                        backgroundColor: color,
+                        margin: '1vh 0',
+                        borderRadius: '15px',
+                        padding: '1rem 1rem',
+                      }}
+                    >
                       <div key={index} className='questions'>
                         Q{index + 1}: {question.statement}
                       </div>
@@ -287,6 +311,7 @@ class AssignmentPage extends React.Component {
                       })}
                       Correct Anwer:
                       {question.correctAns.map((ans, answerNo) => {
+                        const correctAns = ans;
                         return (
                           <ul style={{ margin: 0 }}>
                             <li key={answerNo}>{ans}</li>
@@ -298,25 +323,38 @@ class AssignmentPage extends React.Component {
                         <>
                           <ul style={{ margin: 0 }}>
                             {this.state.resp[index].map((response, respNo) => {
+                              const UserResponse = response;
                               return <li key={respNo}>{response}</li>;
                             })}
                           </ul>
                         </>
                       }
-                    </>
+                      <div
+                        style={{
+                          margin: '0.5vh 0',
+                          backgroundColor: statementColor,
+                          padding: '1rem 1rem',
+                        }}
+                      >
+                        {correctStatement}
+                      </div>
+                    </div>
                   );
                 })}
               </div>
-              <div
+              <button
                 onClick={this.handleSubmitSuccess}
                 style={{
                   background: 'orange',
                   color: 'white',
                   cursor: 'pointer',
+                  width: '20vw',
+                  alignContent: 'center',
+                  margin: '1vh 0',
                 }}
               >
                 GO BACK TO COURSE PAGE
-              </div>
+              </button>
             </>
           ) : null}
           {/* IF SUBMISSION FAILED */}

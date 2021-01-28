@@ -2,6 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import Button from '@material-ui/core/Button/Button';
 
 //styles used
 import {
@@ -9,6 +10,7 @@ import {
   SideNav,
   PageWrapper,
   WrapperContainer,
+  ButtonWrapper,
   Details,
   DetailsWrapper,
   DetailsHeading,
@@ -49,6 +51,7 @@ class Profile extends React.Component {
     super(props);
     const {
       userId,
+      ButtonWrapper,
       userfirstname,
       userlastname,
       userphonenumber,
@@ -133,7 +136,7 @@ class Profile extends React.Component {
       cafeName,
       cafeLocation,
       cafeTeacherName,
-      updateConfirmation
+      updateConfirmation,
     } = this.props;
     console.log(userfirstname);
     console.log(userCafe);
@@ -152,9 +155,9 @@ class Profile extends React.Component {
               onSubmit={this.handleSubmit}
             >
               <PersonalDetailsHeading>Personal Details</PersonalDetailsHeading>
-              {
-                updateConfirmation ? <div style={{color: "green"}}>{updateConfirmation}</div> : null
-              }
+              {updateConfirmation ? (
+                <div style={{ color: 'green' }}>{updateConfirmation}</div>
+              ) : null}
               <WrapperContainer>
                 <DetailsWrapper>
                   <DetailsHeading htmlFor='firstName'>
@@ -217,7 +220,17 @@ class Profile extends React.Component {
                   />
                 </DetailsWrapper>
               </WrapperContainer>
-              <button>save changes</button>
+              <ButtonWrapper>
+                <Button
+                  size='small'
+                  variant='contained'
+                  color='primary'
+                  fullWidth='True'
+                >
+                  Save Changes
+                </Button>
+              </ButtonWrapper>
+              {/* <button>save changes</button> */}
             </ProfileDetailsContainer>
             <CafeDetailsContainer>
               <PersonalDetailsHeading>Cafe Details</PersonalDetailsHeading>
@@ -252,7 +265,7 @@ const mapStateToProps = createStructuredSelector({
   cafeName: selectUserCafeName,
   cafeLocation: selectUserCafeLocation,
   cafeTeacherName: selectUserCafeTeacherInChargeName,
-  updateConfirmation: selectUpdateConfirmation
+  updateConfirmation: selectUpdateConfirmation,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles, useTheme ,withStyles} from '@material-ui/core/styles';
+import { makeStyles, useTheme, withStyles } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -15,49 +16,20 @@ import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
 import TableHead from '@material-ui/core/TableHead';
+import { connect } from 'react-redux';
+import { approveStudentStart } from '../../redux/unverified-students/unverified-students.actions';
+// import { websiteTheme } from '../../../material-ui.styles';
+import StyledButton from '../button-component/styled-button';
+
 // import { fetchTestSheetStart } from '../../redux/test-sheet/test-sheet.actions';
-// import { connect } from 'react-redux';
 // import { Link, Route } from 'react-router-dom';
+// import { connect } from 'react-redux';
 // import { createStructuredSelector } from 'reselect';
 // import { selectTestDetails } from '../../redux/test-sheet/test-sheet.selectors';
+// import TableRow from '@material-ui/core/TableRow';
+// import TableRow from '@material-ui/core/TableRow';
 import { createMuiTheme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-
-
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      light: '#ff9800',
-      main: '#3f50b5',
-      dark: '#002884',
-      contrastText: '#fff',
-    },
-    secondary: {
-      light: '#ff7961',
-      main: '#f44336',
-      dark: '#ba000d',
-      contrastText: '#000',
-    },
-  },
-});
-
-const StyledTableCell = withStyles((theme) => ({
-  head: {
-    backgroundColor: '#ffc222',
-    color: theme.palette.common.black,
-  },
-  body: {
-    fontSize: 14,
-  },
-}))(TableCell);
-
-const StyledTableRow = withStyles((theme) => ({
-  root: {
-    '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.action.hover,
-    },
-  },
-}))(TableRow);
 
 const useStyles1 = makeStyles((theme) => ({
   root: {
@@ -92,24 +64,36 @@ function TablePaginationActions(props) {
       <IconButton
         onClick={handleFirstPageButtonClick}
         disabled={page === 0}
-        aria-label="first page"
+        aria-label='first page'
       >
         {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
       </IconButton>
-      <IconButton onClick={handleBackButtonClick} disabled={page === 0} aria-label="previous page">
-        {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+      <IconButton
+        onClick={handleBackButtonClick}
+        disabled={page === 0}
+        aria-label='previous page'
+      >
+        {theme.direction === 'rtl' ? (
+          <KeyboardArrowRight />
+        ) : (
+          <KeyboardArrowLeft />
+        )}
       </IconButton>
       <IconButton
         onClick={handleNextButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="next page"
+        aria-label='next page'
       >
-        {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+        {theme.direction === 'rtl' ? (
+          <KeyboardArrowLeft />
+        ) : (
+          <KeyboardArrowRight />
+        )}
       </IconButton>
       <IconButton
         onClick={handleLastPageButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="last page"
+        aria-label='last page'
       >
         {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
       </IconButton>
@@ -124,36 +108,55 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-// function createData(ID, FirstName, LastName, Age, FullName) {
-//     return { ID, FirstName, LastName, Age, FullName };
-//   }
-
-// const rows = [
-//     createData(1 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
-//     createData(2 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
-//     createData(3 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
-//     createData(4 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
-//     createData(5 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
-//     createData(6 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
-//     createData(7 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
-//     createData(8 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
-//     createData(9 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'), 
-// ];
-
 const useStyles2 = makeStyles({
   table: {
     minWidth: 500,
   },
+  button: {
+    background: '#f1f1f1',
+    '&:hover': {
+      background: '#ffc222',
+      color: '#000',
+    },
+  },
 });
 
- function CustomPaginationActionsTable(props) {
-  const rows = props.rows
+const styles = (theme) => ({
+  button: {
+    margin: theme.spacing.unit,
+  },
+  input: {
+    display: 'none',
+  },
+});
+
+const StyledTableCell = withStyles((theme) => ({
+  head: {
+    // backgroundColor: '#ffc222',
+    backgroundColor: theme.palette.primary.tableHeader,
+    // size: 'small'
+  },
+  body: {
+    fontSize: 14,
+  },
+}))(TableCell);
+
+const StyledTableRow = withStyles((theme) => ({
+  root: {
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.action.hover,
+    },
+  },
+}))(TableRow);
+
+function ApproveStudentTableComponent(props) {
+  const rows = props.rows;
   const classes = useStyles2();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(3);
-  
 
-  const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+  const emptyRows =
+    rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -166,35 +169,53 @@ const useStyles2 = makeStyles({
 
   return (
     <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="custom pagination table">
-      <colgroup>
-      <col style={{width:'10%'}}/>
-      <col style={{width:'10%'}}/>
-      <col style={{width:'10%'}}/>
-      <col style={{width:'10%'}}/>
-      <col style={{width:'13%'}}/>
-   </colgroup>
-      <TableHead>
-           <TableRow >
-             <StyledTableCell align="center">ID</StyledTableCell>
-             <StyledTableCell align="center">First Name</StyledTableCell>
-             <StyledTableCell align="center">Last Name</StyledTableCell>
-             
-             <StyledTableCell align="center">Email</StyledTableCell>
-             
+      <Table className={classes.table} aria-label='custom pagination table'>
+        <colgroup>
+          <col style={{ width: '10%' }} />
+          <col style={{ width: '10%' }} />
+          <col style={{ width: '10%' }} />
+          <col style={{ width: '10%' }} />
+          <col style={{ width: '10%' }} />
+        </colgroup>
+        <TableHead>
+          <TableRow>
+            <StyledTableCell align='center'>S.No</StyledTableCell>
+            <StyledTableCell align='center'>First Name</StyledTableCell>
+            <StyledTableCell align='center'>Last Name</StyledTableCell>
+            <StyledTableCell align='center'>Email</StyledTableCell>
+            <StyledTableCell align='center'></StyledTableCell>
+            {/* <StyledTableCell align="center">Approve</StyledTableCell> */}
           </TableRow>
-         </TableHead>
+          {/* </ThemeProvider> */}
+        </TableHead>
         <TableBody>
           {(rowsPerPage > 0
             ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : rows
           ).map((row) => (
             <StyledTableRow key={row.name}>
-            <StyledTableCell align="center" component="th" scope="row">{row.ID}</StyledTableCell>
-            <StyledTableCell align="center">{row.FirstName}</StyledTableCell>
-            <StyledTableCell align="center">{row.LastName}</StyledTableCell>
-            
-            <StyledTableCell align="center">{row.email}</StyledTableCell>
+              <StyledTableCell align='center' component='th' scope='row'>
+                {row.ID}
+              </StyledTableCell>
+              <StyledTableCell align='center'>{row.FirstName}</StyledTableCell>
+              <StyledTableCell align='center'>{row.LastName}</StyledTableCell>
+              <StyledTableCell align='center'>{row.email}</StyledTableCell>
+              <StyledTableCell align='center'>
+                <StyledButton
+                  variant='outlined'
+                  className={classes.button}
+                  id={row.ButtonId}
+                  onClick={() => {
+                    const studentId = row.ButtonId;
+                    console.log('studentId', studentId);
+                    const { approveStudentStart } = props;
+                    approveStudentStart(studentId);
+                    window.location.reload()
+                  }}
+                >
+                  APPROVE
+                </StyledButton>
+              </StyledTableCell>
             </StyledTableRow>
           ))}
 
@@ -227,5 +248,8 @@ const useStyles2 = makeStyles({
   );
 }
 
+const mapDispatchToProps = (dispatch) => ({
+  approveStudentStart: (studentId) => dispatch(approveStudentStart(studentId)),
+});
 
-export default CustomPaginationActionsTable
+export default connect(null, mapDispatchToProps)(ApproveStudentTableComponent);

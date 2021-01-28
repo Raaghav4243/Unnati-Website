@@ -12,6 +12,11 @@ export const selectApproveConfirmation = createSelector(
     (message) => message.approveConfirmation
 )
 
+export const selectUnVerifiedStudentsIsFetching = createSelector(
+    [selectUnVerifiedStudentDetails],
+    isFetching => isFetching.isFetching
+)
+
 
 
 
