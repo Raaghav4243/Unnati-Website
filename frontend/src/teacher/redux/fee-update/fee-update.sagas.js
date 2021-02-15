@@ -4,7 +4,6 @@ import { FeeUpdateTypes } from "./fee-update.types";
 
 export function* feeUpdateStartAsync({payload: {userId, data}}){
     try {
-        console.log('saga data', userId, data)
         yield fetch(`/user/${userId}/feesUpdate`,{
             method: "POST",
             headers: {
@@ -13,9 +12,7 @@ export function* feeUpdateStartAsync({payload: {userId, data}}){
             body: JSON.stringify(data)
         })
             .then((response) => response.json())
-            .then((data) => {
-                console.log('fees updated', data)
-            })
+            
 
         yield put(feeUpdateSuccess('Fees updated!'))
     } catch (error) {

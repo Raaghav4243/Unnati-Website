@@ -20,14 +20,12 @@ const DiscoverCourseCard = ({
   courseId,
   enrolled,
   setCurrentCourseForOverview,
-  history,
-  match,
+  history
 }) => {
   return (
     <CardWrapper>
       <CardTitle>
         <LogoWrapper>
-          {/* <img src={MicrosoftLogo}  /> */}
           <MSExcelLogo style={{ height: '100%', width: '100%' }} />
         </LogoWrapper>
         <TitleWrapper>
@@ -37,13 +35,8 @@ const DiscoverCourseCard = ({
       <ButtonWrapper>
         <ExploreButton
           onClick={() => {
-            // setCurrentCourse(courseId);
-            console.log('DISPATCHING ACTION TO SET CURRENT OVERVIEW COURSE');
             setCurrentCourseForOverview(courseId);
-            console.log(history);
-            console.log('COURSE ID', courseId);
             history.push(`/student/discover`);
-            // <Redirect to='/student/discover' />;
           }}
         >
           {enrolled ? 'Already Purchased!' : 'Explore More'}
@@ -54,7 +47,6 @@ const DiscoverCourseCard = ({
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  //   setCurrentCourse: (course_id) => dispatch(setCurrentCourse(course_id)),
   setCurrentCourseForOverview: (courseId) =>
     dispatch(setCurrentCourseForOverview(courseId)),
 });

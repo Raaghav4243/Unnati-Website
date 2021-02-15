@@ -1,4 +1,4 @@
-import { all, call, delay, put, select, takeEvery, takeLatest } from "redux-saga/effects";
+import { all, call, put, select, takeEvery, takeLatest } from "redux-saga/effects";
 import { selectUserCafeId } from "../cafe/cafe.selectors";
 import { approveStudentFailure, approveStudentSuccess, fetchUnVerifiedStudentFailure, fetchUnVerifiedStudentSuccess } from './unverified-students.actions';
 import { UnVerifiedStudentsType } from "./unverified-students.types";
@@ -6,10 +6,8 @@ import { UnVerifiedStudentsType } from "./unverified-students.types";
 export function* fetchUnVerifiedStudentAsync(){
     try {
         const cafe_id = yield select(selectUserCafeId)
-        console.log('unverified student async started')
         let student = yield fetch(`/unverified-students/${cafe_id}`)
         student = yield student.json()
-        console.log('unverified student are', student)
 
         student.done
         ? yield put(fetchUnVerifiedStudentSuccess(student))
@@ -31,9 +29,7 @@ export function* approveStudentStartAsync({payload: {studentId}}){
             }
           )
             .then((response) => response.json())
-            .then((data) => {
-              console.log("student approved", data);
-            });
+            
 
         yield put(approveStudentSuccess('student approved'))
     } catch (error) {

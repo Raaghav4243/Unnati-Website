@@ -21,7 +21,6 @@ import {
   CafeDetails,
   CafeName,
   CafeAddress,
-  CafeFaculty,
   ButtonWrapper,
   ContactButton,
   ClassmatesContainer,
@@ -36,7 +35,6 @@ import {
 const TeacherCafeDetails = ({
   cafeName,
   cafeAddress,
-  facultyIncharge,
   studentnumber,
 }) => {
   return (
@@ -56,10 +54,6 @@ const TeacherCafeDetails = ({
               <CafeAddress>
                 <strong>Address :</strong> {cafeAddress}
               </CafeAddress>
-              {/* <CafeFaculty>
-                <strong>Faculty Incharge :</strong>
-                {facultyIncharge}
-              </CafeFaculty> */}
               <ButtonWrapper>
               <Popup trigger={<ContactButton>Contact Admin</ContactButton>} position="right center">
                 <PopupWrapper>

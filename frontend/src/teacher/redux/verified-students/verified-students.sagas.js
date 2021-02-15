@@ -6,10 +6,8 @@ import { VerifiedStudentsType } from "./verified-students.types";
 export function* fetchVerifiedStudentAsync(){
     try {
         const cafe_id = yield select(selectUserCafeId)
-        console.log('verified student async started')
         let student = yield fetch(`/verified-students/${cafe_id}`)
         student = yield student.json()
-        console.log('verified student are', student)
 
         student.done
         ? yield put(fetchVerifiedStudentSuccess(student))

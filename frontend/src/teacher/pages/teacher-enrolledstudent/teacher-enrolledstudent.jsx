@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import TeacherCafeDetails from '../../components/cafe-details/cafe-details.component';
@@ -27,10 +27,7 @@ class TeacherEnrolledStudents extends React.Component {
     }
     const { verifiedStudents } = this.props;
     let rows = [
-      // createData(1,"Raaghav","Raj","raaghav"),
-      // createData(1,"Raaghav","Raj","raaghav"),
       // createData(1,"Raaghav","Raj","raaghav")
-
     ];
     if (verifiedStudents) {
       verifiedStudents.map((student, index) => {

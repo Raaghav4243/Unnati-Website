@@ -14,18 +14,8 @@ import TeacherCafeDetails from "../../components/cafe-details/cafe-details.compo
 import {
   PageContainer,
   CafeDetailsParentWrapper,
-  EnrolledCoursesParentWrapper,
-  DiscoverCourseParentWrapper,
   PageWrapper,
-  TextTitle,
-  DropDownWrapper,
-  StudentTitle,
-  CourseTitle,
-  StudentDropDown,
-  CourseDropDown,
   ButtonWrapper,
-  DropWrapper,
-  ImageWrapper,
   TestWrapper,
   QuestionsWrapper,
   Questions,
@@ -44,25 +34,28 @@ import { Link } from "react-router-dom";
 class EvaluateTestPage extends React.Component {
   constructor(props){
     super(props)
-    const {courseId} = props
     this.state = {
       score: {marksScored: 0},
       studentId: null,
       courseId: null,
-      testId: null
+      testId: null,
+      indiScore: {}
     }
   }
 
   componentDidMount() {
-    const { userId, fetchUserCafeStart, } = this.props;
+    const { fetchUserCafeStart, } = this.props;
     // if(allCourses is null), then fetchAllCoursesStart() as well.
     fetchUserCafeStart();
   }
 
   handleChange =(e) => {
     const value = e.target.value
-    console.log(value)
-    this.setState({score: value}, () => {console.log(this.state)})
+    let individualScore = []
+    individualScore.push(value)
+    console.log(individualScore)
+    this.setState({indiScore: individualScore})
+    this.setState({score: value})
     const { userCafe, test, courseId } = this.props;
     console.log(courseId)
     this.setState({courseId: courseId})
@@ -83,11 +76,7 @@ class EvaluateTestPage extends React.Component {
   }
 
   render() {
-    const { userCafe, test } = this.props;
-    console.log(test);
-    //console.log(userCafe)
-    //console.log(test.testId)
-
+    const { test } = this.props;
     return (
       <>
         <PageContainer>
@@ -99,7 +88,7 @@ class EvaluateTestPage extends React.Component {
             </CafeDetailsParentWrapper>
             <QuestionsWrapper>
               {test
-                ? test.responses.map((test) => {
+                ? test.responses.map((test, index) => {
                     return (
                       <TestWrapper>
                       <QuestionAndMarksWrapper>
@@ -140,17 +129,10 @@ class EvaluateTestPage extends React.Component {
                             }
 
                           </Answers>
-                          {/* <TextField
-                            id={test._id}
-                            label="Enter Marks"
-                            variant="outlined"
-                            onChange={this.handleChange}
-                            style={{ maxWidth: 150 }}
-                          /> */}
                         </QuestionAnswers>
                         <MarksWrapper>
                           <TextField
-                            id="outlined-basic"
+                            id={index}
                             label="Enter Marks"
                             variant="outlined"
                             style={{ maxWidth: 115 }}

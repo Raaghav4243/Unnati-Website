@@ -49,6 +49,7 @@ import {
   // Questions,
   // Options,
 } from './assignment-page.styles';
+import { ThemeConsumer } from 'styled-components';
 // import questionData from './data';
 
 class AssignmentPage extends React.Component {
@@ -148,6 +149,11 @@ class AssignmentPage extends React.Component {
           answersMarkedCorrect = answersMarkedCorrect + 1;
         }
       });
+      if(answersMarkedCorrect == 0){
+        this.state.isAnswerCorrect.push(false)
+      }else{
+        this.state.isAnswerCorrect.push(true)
+      }
       console.log('answers marked correct are', answersMarkedCorrect);
       if (
         answersMarkedCorrect === correctAnswerArray.length &&

@@ -207,10 +207,8 @@ function ApproveStudentTableComponent(props) {
                   id={row.ButtonId}
                   onClick={() => {
                     const studentId = row.ButtonId;
-                    console.log('studentId', studentId);
                     const { approveStudentStart } = props;
                     approveStudentStart(studentId);
-                    window.location.reload()
                   }}
                 >
                   APPROVE

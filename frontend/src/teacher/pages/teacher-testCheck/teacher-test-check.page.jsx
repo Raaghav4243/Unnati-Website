@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import TeacherCafeDetails from '../../components/cafe-details/cafe-details.component';
@@ -8,12 +8,8 @@ import CustomPaginationActionsTable from '../../components/teacher-testCheck/sty
 import { fetchTestListForEvaluationStart } from '../../redux/test-evaluation/test-evaluation-list.actions';
 import { selectTestList } from '../../redux/test-evaluation/test-evaluation-list.selectors';
 import { selectTestDetails } from '../../redux/test-sheet/test-sheet.selectors';
-// import ContainedButtons from '../../components/zbutton/styled-button-component'
-// import EnhancedTable2 from '../../components/teacher-enrolledstudent/table2.Component';
-
 import {
   CafeDetailsParentWrapper,
-  CafeDetailWrapper,
   Body,
   CafeTableWrapper,
   TableWrapper,
@@ -32,26 +28,18 @@ class TeacherTestCheck extends React.Component {
 
     const rows = [
   
-      createData(1, 'Raaghav', 'Raj', 1),
-      createData(2, 'Raaghav', 'Raj', 1),
-      createData(3, 'Raaghav', 'Raj', 1),
+      //createData(1, 'Raaghav', 'Raj', 1),
+      
 ];
 
-    const { testList } = this.props;
-    console.log(testList);
+    const { testList } = this.props
     if (testList) {
       testList.map((list, index) => {
-        //console.log(list)
         let firstName = list.firstName;
-        //console.log('firstnames', firstName)
         list.coursesEnrolled.map((course) => {
-          console.log(course);
           let coursename = course.course.courseName;
           let courseid = course.course._id;
-          console.log(courseid);
-          //console.log('course names', coursename)
           course.testsDone.map((test) => {
-            console.log(test);
             let rowObj = createData(
               test.responseSheet,
               firstName,

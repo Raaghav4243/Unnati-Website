@@ -6,26 +6,13 @@ import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField/TextField";
-import StyledButton from '../../components/button-component/styled-button';
 import Button from "@material-ui/core/Button/Button";
-
-//redux
 import { fetchUserCafeStart } from "../../redux/cafe/cafe.actions";
-import {
-  selectUserCafeDetails,
-  selectUserCafeNumberOfClassmates,
-} from "../../redux/cafe/cafe.selectors";
-//import { selectCurrentUserId } from '../../redux/user/user.selectors';
-
-//components
-// import EnrolledCourseCard from '../../components/enrolled-course-card/enrolled-course-card.component';
+import { selectUserCafeDetails } from "../../redux/cafe/cafe.selectors";
 import TeacherCafeDetails from "../../components/cafe-details/cafe-details.component";
-
 import {
   PageContainer,
   CafeDetailsParentWrapper,
-  EnrolledCoursesParentWrapper,
-  DiscoverCourseParentWrapper,
   PageWrapper,
   TextTitle,
   DropDownWrapper,
@@ -33,7 +20,6 @@ import {
   CourseTitle,
   StudentDropDown,
   CourseDropDown,
-  ButtonWrapper,
   ButtonWrapperdiv,
   DropWrapper,
   ImageWrapper,
@@ -53,11 +39,13 @@ class TeacherDashboardFeesPage extends React.Component {
       userId: null,
       FeeAmount: null,
       Remarks: null,
+      name: null,
+      fee: null,
+      remarks: null,
     };
   }
   componentDidMount() {
     const {
-      userId,
       fetchUserCafeStart,
       fetchVerifiedStudentStart,
     } = this.props;
@@ -68,26 +56,17 @@ class TeacherDashboardFeesPage extends React.Component {
 
   handleNameChange = (e) => {
     const id = e.target.value;
-    console.log(id);
-    this.setState({ userId: id }, () => {
-      console.log(this.state);
-    });
+    this.setState({ userId: id });
   };
 
   handleFeeAmount = (e) => {
     const feeValue = e.target.value;
-    console.log(feeValue);
-    this.setState({ FeeAmount: feeValue }, () => {
-      console.log(this.state);
-    });
+    this.setState({ FeeAmount: feeValue });
   };
 
   handleRemarks = (e) => {
     const value = e.target.value;
-    console.log(value);
-    this.setState({ Remarks: value }, () => {
-      console.log(this.state);
-    });
+    this.setState({ Remarks: value });
   };
 
   handleSubmit = (e) => {
@@ -95,7 +74,6 @@ class TeacherDashboardFeesPage extends React.Component {
     const remarks = this.state.Remarks;
     const amount = this.state.FeeAmount;
     const data = { amount, remarks };
-    console.log("page data", userId, data);
     const { feeUpdateStart } = this.props;
     feeUpdateStart(userId, data);
     window.location.reload()
@@ -103,13 +81,6 @@ class TeacherDashboardFeesPage extends React.Component {
 
   render() {
     const { verifiedStudents, updateConfirmation } = this.props;
-    console.log("rendered verified students", verifiedStudents);
-    console.log(updateConfirmation);
-    // let cafeId = localStorage.getItem('user')
-    // cafeId = JSON.parse(cafeId)
-    // cafeId = cafeId.cafe
-    // console.log(cafeId)
-
     return (
       <>
         <PageContainer>
@@ -120,11 +91,13 @@ class TeacherDashboardFeesPage extends React.Component {
               <TeacherCafeDetails />
             </CafeDetailsParentWrapper>
             <TextTitle>Enter Fee</TextTitle>
-            {updateConfirmation ? <div style={{color: "green"}}>{updateConfirmation}</div> : null}
+            {updateConfirmation ? (
+              <div style={{ color: "green" }}>{updateConfirmation}</div>
+            ) : null}
             <DropDownWrapper>
               <StudentDropDown>
                 <StudentTitle>Student</StudentTitle>
-                
+
                 <DropWrapper>
                   <FormControl
                     variant="outlined"
@@ -135,8 +108,6 @@ class TeacherDashboardFeesPage extends React.Component {
                       Select
                     </InputLabel>
                     <Select
-                      // native
-                      // value={state.age}
                       onChange={this.handleNameChange}
                       label="Age"
                       inputProps={{
@@ -169,6 +140,7 @@ class TeacherDashboardFeesPage extends React.Component {
                     label="Fees"
                     variant="filled"
                     onChange={this.handleFeeAmount}
+                    value={this.state.fee}
                   />
                 </DropWrapper>
               </CourseDropDown>
@@ -180,16 +152,21 @@ class TeacherDashboardFeesPage extends React.Component {
                     label="Remarks"
                     variant="filled"
                     onChange={this.handleRemarks}
+                    value={this.state.remarks}
                   />
                 </RemarksFieldWrapper>
               </RemarksWrapper>
             </DropDownWrapper>
-            {/* <ButtonWrapper onClick={this.handleSubmit}>Update</ButtonWrapper> */}
-            {/* <ButtonWrapperdiv  */}
-            {/* <StyledButton onClick={this.handleSubmit}>Update</ButtonWrapper> */}
             <ButtonWrapperdiv>
-            {/* <StyledButton size='large' fullWidth='true' onClick={this.handleSubmit}>UPDATE</StyledButton> */}
-            <Button variant='contained' color='primary' size='large' fullWidth='true' onClick={this.handleSubmit}>UPDATE</Button>
+              <Button
+                variant="contained"
+                color="primary"
+                size="large"
+                fullWidth="true"
+                onClick={this.handleSubmit}
+              >
+                UPDATE
+              </Button>
             </ButtonWrapperdiv>
           </PageWrapper>
         </PageContainer>
@@ -199,7 +176,6 @@ class TeacherDashboardFeesPage extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  //userId: selectCurrentUserId,
   userCafe: selectUserCafeDetails,
   verifiedStudents: selectVerifiedStudents,
   updateConfirmation: selectFeeUpdateConfirmation,

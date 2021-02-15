@@ -14,7 +14,7 @@ export const CafeDetailsParentWrapper = styled.div`
   /* min-height: 35%; */
   /* border: 4px solid yellow; */
 `;
-export const PageWrapper = styled.div`
+export const PageWrapper = styled.form`
   margin-top: 90px;
   margin-left: 21vw;
   /* margin-right: 20px; */

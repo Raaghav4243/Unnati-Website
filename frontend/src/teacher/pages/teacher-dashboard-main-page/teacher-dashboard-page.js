@@ -1,21 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import { ReactComponent as ArrowsEqual } from "../../icons/arrows.svg";
-import arrows from "../../icons/arrows.svg";
-import InputLabel from "@material-ui/core/InputLabel";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
-import NativeSelect from "@material-ui/core/NativeSelect";
-import Button from "@material-ui/core/Button/Button";
 //redux
 import { fetchUserCafeStart } from "../../redux/cafe/cafe.actions";
 import {
   selectUserCafeDetails,
-  selectUserCafeNumberOfClassmates,
 } from "../../redux/cafe/cafe.selectors";
-//import { selectCurrentUserId } from '../../redux/user/user.selectors';
 
 //components
 // import EnrolledCourseCard from '../../components/enrolled-course-card/enrolled-course-card.component';
@@ -28,7 +18,6 @@ import {
   PageWrapper,
   TextTitle,
   Container,
-  Title,
   DiscoverCoursesCardWrapper,
 } from "./teacher-dashboard-main-page.styles";
 import TeacherDashboardNavbar from '../../components/teacher-dashboard-navbar/teacher-dashboard-navbar.component';
@@ -46,7 +35,6 @@ class TeacherDashboardLandingPage extends React.Component {
   }
   componentDidMount() {
     const {
-      userId,
       fetchUserCafeStart,
       fetchAllCoursesStart
     } = this.props;
@@ -54,9 +42,7 @@ class TeacherDashboardLandingPage extends React.Component {
     fetchAllCoursesStart();
   }
   render() {
-    const { userCafe, verifiedStudents, allCourses } = this.props;
-    console.log('courses are', allCourses)
-    console.log('verified user are', verifiedStudents)
+    const { allCourses } = this.props;
     return (
       <>
         <PageContainer>
@@ -71,13 +57,12 @@ class TeacherDashboardLandingPage extends React.Component {
             <Container>
           <DiscoverCoursesCardWrapper>
                {allCourses
-                        ? allCourses.map((course, index) => { 
+                        ? allCourses.map((course) => { 
                             return(
                                 <DiscoverCourseCard
                                 courseId={course._id}
                                 courseName={course.courseName}
                               />
-                          
                               );
                             })
                             : null}
