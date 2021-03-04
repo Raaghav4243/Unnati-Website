@@ -8,6 +8,12 @@ export const selectCourseTopics = createSelector(
   (courseTopicsAndCompletionDetails) => courseTopicsAndCompletionDetails.topics
 );
 
+export const selectIsCourseTopicsFetching = createSelector(
+  [selectCourseTopicsAndCompletionDetails],
+  (courseTopicsAndCompletionDetails) =>
+    courseTopicsAndCompletionDetails.isFetching
+);
+
 export const selectCompletedCourseTopicsId = createSelector(
   [selectCourseTopicsAndCompletionDetails],
   (selectCompletedCourseTopicId) =>

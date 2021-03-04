@@ -1,29 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import CourseVideoPlayer from '../../components/course-video/course-video.component';
-import CourseNotesDownload from '../../components/course-video/course-notes.component';
-import {
-  CourseVideoPDFContainer,
-  CourseVideoContainer,
-  LectureTitleWrapper,
-  LectureVideoWrapper,
-  LectureNotesWrapper,
-  LectureNotesTitleWrapper,
-} from './course-video-page.styles';
-import pdf from '../../assets/TopicNotes.pdf';
-import SideNav from '../../components/SideNav/SideNav';
-import {
-  selectCurrentCourseId,
-  selectCurrentCourseTopicId,
-  selectCurrentCourseTopicName,
-} from '../../redux/student/student.selectors';
+
 import { selectCurrentUserId } from '../../redux/user/user.selectors';
 import {
   selectLectureDriveId,
   selectLectureNotesLink,
 } from '../../redux/lecture-page/lecture-page.selectors';
 import { fetchLectureStart } from '../../redux/lecture-page/lecture-page.actions';
+
+import {
+  CourseVideoContainer,
+  Title,
+  // LectureTitleWrapper,
+  LectureVideoWrapper,
+  LectureNotesWrapper,
+  // LectureNotesTitleWrapper,
+} from './course-video-page.styles';
+// import pdf from '../../assets/TopicNotes.pdf';
+// import SideNav from '../../components/SideNav/SideNav';
+import {
+  selectCurrentCourseId,
+  selectCurrentCourseTopicId,
+  selectCurrentCourseTopicName,
+} from '../../redux/student/student.selectors';
 
 export class CourseVideo extends Component {
   componentWillUnmount() {
@@ -40,33 +40,69 @@ export class CourseVideo extends Component {
     console.log('Lecture Notes Link', lecture_notes_link);
     return (
       <>
-        {/* <NavBar>NAVBAR</NavBar> */}
         <CourseVideoContainer>
-          {/* <SideNav /> */}
-          <CourseVideoPDFContainer>
-            {/* <CourseVideoPlayer url={`https://www.youtube.com/watch?v=YqQx75OPRa0`}></CourseVideoPlayer> */}
-            {/* <CourseVideoPlayer
-              // url={`https://www.youtube.com/watch?v=${lecture_youtube_id}`}
-              url={lecture_notes_link}
-            ></CourseVideoPlayer> */}
-            <LectureTitleWrapper>Lecture</LectureTitleWrapper>
-            <LectureVideoWrapper>
+          <LectureVideoWrapper>
+            <div
+              style={{ width: '100%', height: '100%', position: ' relative' }}
+            >
               <iframe
+                // src='https://drive.google.com/file/d/0BxLbnVHP6GWpV2ZIZEc4SkNTOTQ/preview'
                 src={`https://drive.google.com/file/d/${lecture_drive_id}/preview`}
                 width='100%'
-                height='480'
+                height='100%'
+                // frameBorder='0'
+                // scrolling='no'
+                // seamless=''
               ></iframe>
-            </LectureVideoWrapper>
-            <LectureNotesTitleWrapper>Lecture Notes</LectureNotesTitleWrapper>
-            <LectureNotesWrapper>
+              <div
+                style={{
+                  width: '80px',
+                  height: '80px',
+                  position: 'absolute',
+                  background: 'red',
+                  opacity: 0,
+                  right: '0px',
+                  top: '0px',
+                }}
+              >
+                {' '}
+              </div>
+            </div>
+          </LectureVideoWrapper>
+          <Title>Lecture Notes</Title>
+          <LectureNotesWrapper>
+            {/* <iframe
+              src={`https://drive.google.com/file/d/${lecture_notes_link}/preview`}
+              width='100%'
+              height='100%'
+            ></iframe> */}
+            <div
+              style={{ width: '100%', height: '100%', position: ' relative' }}
+            >
               <iframe
+                // src='https://drive.google.com/file/d/0BxLbnVHP6GWpV2ZIZEc4SkNTOTQ/preview'
                 src={`https://drive.google.com/file/d/${lecture_notes_link}/preview`}
                 width='100%'
-                height='480'
+                height='100%'
+                // frameBorder='0'
+                // scrolling='no'
+                // seamless=''
               ></iframe>
-            </LectureNotesWrapper>
-            {/* <CourseNotesDownload download={pdf}></CourseNotesDownload> */}
-          </CourseVideoPDFContainer>
+              <div
+                style={{
+                  width: '80px',
+                  height: '80px',
+                  position: 'absolute',
+                  background: 'red',
+                  opacity: 0,
+                  right: '0px',
+                  top: '0px',
+                }}
+              >
+                {' '}
+              </div>
+            </div>
+          </LectureNotesWrapper>
         </CourseVideoContainer>
       </>
     );

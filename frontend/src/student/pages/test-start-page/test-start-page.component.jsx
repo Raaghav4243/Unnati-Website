@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import { Route } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
+import { withStyles } from '@material-ui/core/styles';
 
 import {
   selectTestMessageFromBackend,
@@ -20,10 +20,23 @@ import {
 
 import TestBackendResponseTypes from './test-backend-response.types';
 //components used
+import Button from '@material-ui/core/Button';
+// import MuiAlert from '@material-ui/lab/Alert';
+import Alert from '@material-ui/lab/Alert';
+
+//styles used
 import {
+  TestStartPageWrapper,
+  LogoWrapper,
+  UnnatiLogo,
+  Title,
+  TestPrompt,
+  PromptField,
+  FieldTitle,
+  FieldValue,
   TestStartPageContainer,
   TestTitleWrapper,
-  TestPrompt,
+  // TestPrompt,
   PromptWrapper,
   TestName,
   TestDuration,
@@ -33,6 +46,17 @@ import {
   StartTestButton,
 } from './test-start-page.styles';
 // import TestPage from '../test-page/test-page.component';
+
+const useStyles = (theme) => ({
+  button: {
+    // marginRight: theme.spacing(4),
+    marginTop: theme.spacing(0.5),
+    marginBottom: theme.spacing(1),
+    color: 'white',
+    fontWeight: 500,
+    width: '100%',
+  },
+});
 
 class TestStartPage extends React.Component {
   constructor() {
@@ -66,27 +90,35 @@ class TestStartPage extends React.Component {
       maxMarksPossible,
       testDuration,
       test_questions,
+      classes,
     } = this.props;
     console.log('Test message from backend!', test_message_from_backend);
     return (
       <>
-        <TestStartPageContainer>
-          <TestTitleWrapper>Test</TestTitleWrapper>
+        <TestStartPageWrapper>
+          <LogoWrapper>
+            <UnnatiLogo style={{ height: '80px', fill: 'white' }} />
+          </LogoWrapper>
+          <Title>{current_test_name}</Title>
           <TestPrompt>
-            <TestName>
+            {/* <TestName>
               <PromptWrapper>Test Name :</PromptWrapper>
               {current_test_name}
-            </TestName>
+            </TestName> */}
             {testDuration ? (
-              <TestDuration>
-                <PromptWrapper>Test Duration : </PromptWrapper>
-                {testDuration} minutes
-              </TestDuration>
+              // <TestDuration>
+              //   <PromptWrapper>Test Duration : </PromptWrapper>
+              //   {testDuration} minutes
+              // </TestDuration>
+              <PromptField>
+                <FieldTitle>Test Duration : </FieldTitle>
+                <FieldValue>{testDuration} minutes</FieldValue>
+              </PromptField>
             ) : null}
             {test_message_from_backend ===
             TestBackendResponseTypes.TEACHER_HAS_EVALUATED ? (
               <>
-                <TestMessage>
+                {/* <TestMessage>
                   <PromptWrapper>
                     <strong>
                       Your Teacher has evaluated the test and your marks are
@@ -95,19 +127,42 @@ class TestStartPage extends React.Component {
                   </PromptWrapper>
                   {marksScoredOnTest !== null ? ` ${marksScoredOnTest}` : null}
                   {maxMarksPossible !== null ? ` / ${maxMarksPossible}` : null}
-                </TestMessage>
+                </TestMessage> */}
+                <PromptField>
+                  <FieldTitle>
+                    Your Teacher has evaluated the test and your marks are out.
+                  </FieldTitle>
+                  <FieldValue>
+                    {' '}
+                    {marksScoredOnTest !== null
+                      ? ` ${marksScoredOnTest}`
+                      : null}
+                    {maxMarksPossible !== null
+                      ? ` / ${maxMarksPossible}`
+                      : null}
+                  </FieldValue>
+                </PromptField>
               </>
             ) : test_message_from_backend ===
               TestBackendResponseTypes.TEACHER_WILL_EVALUATE ? (
               <>
-                <TestMessage>
+                {/* <TestMessage>
                   <PromptWrapper>
                     <strong>
                       Your test has been submitted and will soon be evaluated by
                       your teacher.
                     </strong>
                   </PromptWrapper>
-                </TestMessage>
+                </TestMessage> */}
+                <PromptField>
+                  {/* <FieldTitle>
+                    Your Teacher has evaluated the test and your marks are out.
+                  </FieldTitle> */}
+                  <FieldValue>
+                    Your test has been submitted and will soon be evaluated by
+                    your teacher.
+                  </FieldValue>
+                </PromptField>
               </>
             ) : null}
           </TestPrompt>
@@ -116,7 +171,21 @@ class TestStartPage extends React.Component {
               {/* <Route path={`${match.path}/test`} component={TestPage} /> */}
               {console.log('QUESTIONS ARRAY:', test_questions)}
               <QuestionsPromptContainer>
-                <Prompt>
+                <Button
+                  variant='contained'
+                  color='secondary'
+                  size='large'
+                  type='submit'
+                  className={classes.button}
+                  onClick={() => {
+                    history.push(`${match.path}/test`);
+                  }}
+                  // startIcon={<SaveIcon />}
+                >
+                  Start Test
+                </Button>
+
+                {/* <Prompt>
                   Are you sure you want to start this test? Once Started, it
                   cannot be paused without submission.
                 </Prompt>
@@ -126,11 +195,15 @@ class TestStartPage extends React.Component {
                   }}
                 >
                   Start Test
-                </StartTestButton>
+                </StartTestButton> */}
               </QuestionsPromptContainer>
+              <Alert severity='info'>
+                Are you sure you want to start this test? Once started, it
+                cannot be paused without submission.
+              </Alert>
             </>
           ) : null}
-        </TestStartPageContainer>
+        </TestStartPageWrapper>
       </>
     );
   }
@@ -149,4 +222,6 @@ const mapStateToProps = createStructuredSelector({
   test_questions: selectTestQuestions,
 });
 
-export default connect(mapStateToProps)(withRouter(TestStartPage));
+export default connect(mapStateToProps)(
+  withRouter(withStyles(useStyles)(TestStartPage))
+);

@@ -3,12 +3,14 @@ import { selectCurrentCourseId } from '../student/student.selectors';
 import { selectCurrentUserId } from '../user/user.selectors';
 
 import {
+  fetchCourseTopicsStart,
   fetchCourseTopicsSuccess,
   fetchCourseTopicsFailure,
   viewedLectureForFirstTimeSuccess,
   viewedLectureForFirstTimeFailure,
 } from './course-topic.actions';
 
+import StudentActionTypes from '../student/student.types';
 import CourseTopicActionTypes from './course-topic.types';
 import AssignmentPageActionTypes from '../assignment-page/assignment-page.types';
 export function* fetchCourseTopicsAsync() {
@@ -94,24 +96,37 @@ export function* viewedLectureForFirstTimeAsync({ payload: { lectureId } }) {
   }
 }
 
-export function* fetchCourseTopicsStart() {
+// on set current course, fetch course topics start
+
+export function* fetchCourseTopicsOnOtherActions() {
+  yield put(fetchCourseTopicsStart());
+}
+
+export function* onSetCurrentCourse() {
+  yield takeLatest(
+    StudentActionTypes.SET_CURRENT_COURSE,
+    fetchCourseTopicsOnOtherActions
+  );
+}
+
+export function* onfetchCourseTopicsStart() {
   yield takeLatest(
     CourseTopicActionTypes.FETCH_COURSE_TOPICS_START,
     fetchCourseTopicsAsync
   );
 }
 
-export function* fetchCourseTopicsStartOnAssignmentSubmitSuccess() {
+export function* OnAssignmentSubmitSuccess() {
   yield takeLatest(
     AssignmentPageActionTypes.SUBMIT_ASSIGNMENT_SUCCESS,
-    fetchCourseTopicsAsync
+    fetchCourseTopicsOnOtherActions
   );
 }
 
-export function* fetchCourseTopicsStartOnViewedLectureForFirstTimeSuccess() {
+export function* OnViewedLectureForFirstTimeSuccess() {
   yield takeLatest(
     CourseTopicActionTypes.VIEWED_LECTURE_FOR_FIRST_TIME_SUCCESS,
-    fetchCourseTopicsAsync
+    fetchCourseTopicsOnOtherActions
   );
 }
 
@@ -124,9 +139,10 @@ export function* viewedLectureForFirstTimeStart() {
 
 export function* courseTopicSagas() {
   yield all([
-    call(fetchCourseTopicsStart),
-    call(fetchCourseTopicsStartOnAssignmentSubmitSuccess),
-    call(fetchCourseTopicsStartOnViewedLectureForFirstTimeSuccess),
+    call(onfetchCourseTopicsStart),
+    call(onSetCurrentCourse),
+    call(OnAssignmentSubmitSuccess),
+    call(OnViewedLectureForFirstTimeSuccess),
     call(viewedLectureForFirstTimeStart),
   ]);
 }

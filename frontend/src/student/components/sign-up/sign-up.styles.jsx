@@ -10,8 +10,18 @@ export const SignUpTitle = styled.h2`
   margin: 10px 0;
 `;
 
+export const SelectionWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  /* border: 4px solid red; */
+`;
+
 export const RoleContainer = styled.div`
   margin-top: 15px;
+  margin-right: 1.5rem;
+
+  /* border: 4px solid red; */
+  max-width: 350px;
 `;
 export const RolePrompt = styled.div`
   margin: 10px 0;
@@ -91,8 +101,11 @@ export const RadioIndicator = styled.div`
 `;
 
 export const CafeSelector = styled.div`
-  margin-top: 15px;
+  /* margin-top: 15px; */
+  margin-right: 1rem;
   width: 100%;
+  max-width: 350px;
+  /* border: 4px solid black; */
 `;
 export const CafePrompt = styled.div`
   margin: 10px 0;
@@ -102,5 +115,8 @@ export const CafePrompt = styled.div`
 `;
 
 export const ButtonWrapper = styled.div`
-  margin-top: 15px;
+  /* margin-top: 15px; */
+  width: 100%;
+  max-width: 250px;
+  /* border: 4px solid red; */
 `;

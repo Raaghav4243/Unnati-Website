@@ -57,7 +57,7 @@ class StudentDashboardSidenav extends React.Component {
             <SidenavLink to={`${match.path}/profile`}>
               Update Profile Info
             </SidenavLink>
-            <SidenavLink to={`${match.path}/password`}>
+            <SidenavLink to={`${match.path}/profile`}>
               Change Password
             </SidenavLink>
             <SidenavLink to={`${match.path}/fees`}>Fees</SidenavLink>

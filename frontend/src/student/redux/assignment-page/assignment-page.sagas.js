@@ -1,6 +1,7 @@
 import { takeLatest, put, all, call, select } from 'redux-saga/effects';
 
 import {
+  fetchAssignmentStart,
   fetchAssignmentSuccess,
   fetchAssignmentFailure,
   submitAssignmentSuccess,
@@ -84,7 +85,18 @@ export function* submitAssignmentStartAsync({ payload: { data } }) {
   }
 }
 
-export function* fetchAssignmentStart() {
+export function* fetchAssignmentAgain() {
+  yield put(fetchAssignmentStart());
+}
+
+export function* onSubmittingAssignment() {
+  yield takeLatest(
+    AssignmentPageActionTypes.SUBMIT_ASSIGNMENT_SUCCESS,
+    fetchAssignmentAgain
+  );
+}
+
+export function* onFetchAssignmentStart() {
   yield takeLatest(
     AssignmentPageActionTypes.FETCH_ASSIGNMENT_START,
     fetchAssignmentAsync
@@ -99,5 +111,9 @@ export function* submitAssignmentStart() {
 }
 
 export function* assignmentSagas() {
-  yield all([call(fetchAssignmentStart), call(submitAssignmentStart)]);
+  yield all([
+    call(onFetchAssignmentStart),
+    call(submitAssignmentStart),
+    // call(onSubmittingAssignment),
+  ]);
 }

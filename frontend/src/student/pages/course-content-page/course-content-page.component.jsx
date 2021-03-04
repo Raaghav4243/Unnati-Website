@@ -10,23 +10,53 @@ import {
   selectCurrentCourseTopicType,
 } from '../../redux/student/student.selectors';
 
+import { fetchTestStart } from '../../redux/testpage/testpage.actions';
+import { fetchAssignmentStart } from '../../redux/assignment-page/assignment-page.actions';
+import { fetchLectureStart } from '../../redux/lecture-page/lecture-page.actions';
+
 import CourseVideo from '../course-video/course-video-page.component';
 // import AssignmentPage from '../assignment-page/assignment-page.component';
 import AssignmentStartPage from '../assignment-start-page/assignment-start-page.component';
 import TestStartPage from '../test-start-page/test-start-page.component';
 
-import { fetchTestStart } from '../../redux/testpage/testpage.actions';
-import { fetchAssignmentStart } from '../../redux/assignment-page/assignment-page.actions';
-import { fetchLectureStart } from '../../redux/lecture-page/lecture-page.actions';
+// import { ReactComponent as UnnatiLogo } from '../../icons/UnnatiTree.svg';
 
-import { PageWrapper } from './course-content-page.styles';
+import {
+  PageWrapper,
+  SelectTopicWrapper,
+  LogoWrapper,
+  UnnatiLogo,
+  Title,
+} from './course-content-page.styles';
+import AssignmentStartPageContainer from '../assignment-start-page/assignment-start-page.container';
+import TestStartPageContainer from '../test-start-page/test-start-page.container';
 
 class CourseContentPage extends React.Component {
   constructor() {
     super();
   }
   componentDidMount() {
+    const {
+      course_topic_type,
+      fetchTestStart,
+      fetchAssignmentStart,
+      fetchLectureStart,
+    } = this.props;
+
     console.log('Course content page did mount.');
+    if (!course_topic_type) {
+      return;
+    }
+    if (course_topic_type === 'LECTURE') {
+      // fetchLectureStart(user_id, course_id, course_topic_id);
+      fetchLectureStart();
+    } else if (course_topic_type === 'ASSIGNMENT') {
+      console.log('ASSIGNMENT STARTED FETCHING FROM COURSE CONTENT PAGE');
+      // fetchAssignmentStart(user_id, course_id, course_topic_id);
+      fetchAssignmentStart();
+    } else if (course_topic_type === 'TEST') {
+      fetchTestStart();
+    }
   }
 
   componentWillUnmount() {
@@ -36,27 +66,12 @@ class CourseContentPage extends React.Component {
   componentDidUpdate() {
     console.log('Course content page did update!');
     const {
-      user_id,
-      course_id,
-      course_topic_id,
       course_topic_type,
       fetchTestStart,
       fetchAssignmentStart,
       fetchLectureStart,
     } = this.props;
-    // course_topic_type === 'LECTURE'
-    //   ? //   ? fetchLectureStart(user_id, course_id, course_topic_id)
-    //     null
-    //   : course_topic_type === 'ASSIGNMENT'
-    //   ? //   ? fetchAssignmentStart(user_id, course_id, course_topic_id)
-    //     null
-    //   : course_topic_type === 'TEST'
-    //   ? fetchTestStart(user_id, course_id, course_topic_id)
-    //   : null;
 
-    // course_topic_type === 'ASSIGNMENT'
-    //   ? fetchAssignmentStart(user_id, course_id, course_topic_id)
-    //   : null;
     if (course_topic_type === 'LECTURE') {
       // fetchLectureStart(user_id, course_id, course_topic_id);
       fetchLectureStart();
@@ -65,10 +80,8 @@ class CourseContentPage extends React.Component {
       // fetchAssignmentStart(user_id, course_id, course_topic_id);
       fetchAssignmentStart();
     } else if (course_topic_type === 'TEST') {
-      fetchTestStart(user_id, course_id, course_topic_id);
+      fetchTestStart();
     }
-
-    // fetchTestStart(user_id, course_id, course_topic_id);
   }
 
   render() {
@@ -80,11 +93,22 @@ class CourseContentPage extends React.Component {
           {course_topic_type === 'LECTURE' ? (
             <CourseVideo />
           ) : course_topic_type === 'ASSIGNMENT' ? (
-            <AssignmentStartPage />
+            <AssignmentStartPageContainer />
           ) : course_topic_type === 'TEST' ? (
-            <TestStartPage />
+            <TestStartPageContainer />
           ) : (
-            <div>SELECT A TOPIC</div>
+            <>
+              {/* <div>SELECT A TOPIC</div> */}
+              <SelectTopicWrapper>
+                <LogoWrapper>
+                  <UnnatiLogo style={{ height: '80px', fill: 'white' }} />
+                </LogoWrapper>
+                <Title>
+                  Nothing to show, click on topic to expand and select the
+                  content
+                </Title>
+              </SelectTopicWrapper>
+            </>
           )}
           {/* <Route exact path={`${match.path}/test`} component={TestPage} />
            */}
@@ -102,12 +126,8 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchTestStart: (user_id, course_id, test_id) =>
-    dispatch(fetchTestStart(user_id, course_id, test_id)),
-  fetchAssignmentStart: (user_id, course_id, assignment_id) =>
-    dispatch(fetchAssignmentStart(user_id, course_id, assignment_id)),
-  // fetchLectureStart: (user_id, course_id, lecture_id) =>
-  //   dispatch(fetchLectureStart(user_id, course_id, lecture_id)),
+  fetchTestStart: () => dispatch(fetchTestStart()),
+  fetchAssignmentStart: () => dispatch(fetchAssignmentStart()),
   fetchLectureStart: () => dispatch(fetchLectureStart()),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(CourseContentPage);

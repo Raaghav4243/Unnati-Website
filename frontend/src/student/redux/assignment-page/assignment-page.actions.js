@@ -37,3 +37,9 @@ export const submitAssignmentFailure = (message) => {
     payload: message,
   };
 };
+
+export const resetAssignmentInfo = () => {
+  return {
+    type: AssignmentPageActionTypes.RESET_ASSIGNMENT_INFO,
+  };
+};

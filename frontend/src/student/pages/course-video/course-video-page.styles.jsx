@@ -1,48 +1,24 @@
 import styled from 'styled-components';
 
-//export const SideNav = styled.div`
-//width: 20vw;
-//height: 89vh;
-//background: #ffffff;
-//  display: flex;
-//  justify-content: center;
-//  align-items: center;
-//  font-size: 2.5vw;
-//  border: 4px solid black;
-//  font-family: 'Montserrat', sans-serif;
-//`
-
 export const CourseVideoContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   width: 100%;
   /* border: 4px solid blue; */
 `;
 
-export const CourseVideoPDFContainer = styled.div`
-  /* padding-top: 6vh; */
-  /* height: 75vh; */
-  /* width: 80vw; */
-  /* border: 4px solid red; */
-  height: 100%;
+export const Title = styled.div`
   width: 100%;
-  display: flex;
-  flex-direction: column;
-`;
-
-export const LectureTitleWrapper = styled.div`
-  /* width: 100%; */
-  /* border: 2px solid orange; */
-  display: flex;
+  /* height: 25px; */
+  /* border: 2px solid red; */
+  font-size: 25px;
+  font-weight: 500;
+  font-family: 'Montserrat', sans-serif;
+  /* margin-bottom: 10px; */
+  text-align: center;
+  /* display: flex; */
   /* align-items: center; */
-  /* padding-left: 1rem; */
-  font-size: 20px;
-  font-weight: 700;
-  /* height: 50px; */
-  padding-bottom: 10px;
-  width: 150px;
-  border-bottom: 2px solid grey;
-  text-transform: uppercase;
+  /* justify-content: center; */
 `;
 
 export const LectureVideoWrapper = styled.div`
@@ -52,6 +28,7 @@ export const LectureVideoWrapper = styled.div`
   align-items: center;
   /* border: 2px solid red; */
   padding: 2rem;
+  height: calc(100vh - 75px);
 `;
 
 export const LectureNotesWrapper = styled.div`
@@ -60,20 +37,7 @@ export const LectureNotesWrapper = styled.div`
   justify-content: center;
   align-items: center;
   /* border: 2px solid red; */
-  padding: 2rem;
-`;
+  padding: 1.5rem 2rem 2rem 2rem;
 
-export const LectureNotesTitleWrapper = styled.div`
-  /* width: 100%; */
-  /* border: 2px solid orange; */
-  display: flex;
-  /* align-items: center; */
-  /* padding-left: 1rem; */
-  font-size: 20px;
-  font-weight: 700;
-  /* height: 50px; */
-  padding-bottom: 10px;
-  width: 200px;
-  border-bottom: 2px solid grey;
-  text-transform: uppercase;
+  height: calc(100vh - 130px);
 `;

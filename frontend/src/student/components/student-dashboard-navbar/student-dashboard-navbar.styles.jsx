@@ -14,6 +14,7 @@ export const NavbarContainer = styled.div`
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.07);
   /* border: 10px solid orange; */
   width: 100%;
+  padding: 1rem;
 `;
 
 export const NavbarLeft = styled.div``;
