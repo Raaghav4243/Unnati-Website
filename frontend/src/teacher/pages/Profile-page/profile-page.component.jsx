@@ -34,8 +34,7 @@ import {
   selectCurrentUserRole,
   selectCurrentUserCafeId,
 } from '../../redux/user/user.selectors';
-import { selectUserCafeDetails } from '../../redux/cafe/cafe.selectors';
-import { fetchUserCafeStartAsync } from '../../redux/cafe/cafe.actions';
+import { selectUserCafeDetails, selectUserCafeTeacherInChargeId, selectUserCafeTeacherInChargeName } from '../../redux/cafe/cafe.selectors';
 // import StudentNavbar from '../../components/student-dashboard-navbar/student-dashboard-navbar.component';
 import { updateUserStart } from '../../redux/user/user.actions';
 import TeacherDashboardSidenav from '../../components/teacher-dashboard-sidenav/teacher-dashboard-sidenav.component';
@@ -69,12 +68,6 @@ class TeacherProfile extends React.Component {
     };
   }
 
-  // componentDidMnt() {
-  //   const { fetchUserCafeStartAsync } = this.props;
-  //   console.log('Component Mounted');
-  //   fetchUserCafeStartAsync();
-  // }
-
   handleOnChange = (e) => {
     const { value, name, placeholder } = e.target;
     let resp = this.state.updatedUserInfo;
@@ -85,43 +78,20 @@ class TeacherProfile extends React.Component {
     this.setState(
       {
         updatedUserInfo: resp,
-      },
-      () => {
-        console.log(this.state);
       }
     );
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log('hi');
     let data = this.state.updatedUserInfo;
     let user_id = this.props.userId;
     const { updateUserStart } = this.props;
     updateUserStart(user_id, data);
-    console.log('data on the page', data);
-    //fetch('/updateUser/5fa6af42769f165e982b2ea9', {
-    //  method: 'POST', // or 'PUT'
-    //  headers: {
-    //    'Content-Type': 'application/json',
-    //  },
-    //  body: JSON.stringify(data),
-    //})
-    //  .then(response => response.json())
-    //  .then(data => {
-    //    console.log('Success:', data);
-    //  })
-    //  .catch((error) => {
-    //    console.error('Error:', error);
   };
 
   render() {
-    //   let userData = localStorage.getItem('user')
-    // userData = JSON.parse(userData)
-    // console.log(userData)
-    // console.log(userData.username)
-    // const { userusername, useremail, userphonenumber, userlastname, userfirstname, userCafe, userId } = this.props;
-    const {
+   const {
       userusername,
       useremail,
       userphonenumber,
@@ -129,10 +99,8 @@ class TeacherProfile extends React.Component {
       userfirstname,
       userCafe,
       updateConfirmation,
+      teacherUsername
     } = this.props;
-    console.log(userfirstname);
-    console.log(userCafe);
-    console.log(this.props.userId);
     return (
       <>
         {' '}
@@ -220,7 +188,7 @@ class TeacherProfile extends React.Component {
                 <DetailsHeading> Phone Number</DetailsHeading>
               </DetailsWrapper>
               <DetailsWrapper>
-                <CafeInfo>uug</CafeInfo>
+                <CafeInfo>{teacherUsername}</CafeInfo>
                 <CafeInfo>uug</CafeInfo>
                 <CafeInfo>uug</CafeInfo>
               </DetailsWrapper>
@@ -242,6 +210,7 @@ const mapStateToProps = createStructuredSelector({
   userrole: selectCurrentUserRole,
   cafeId: selectCurrentUserCafeId,
   updateConfirmation: selectUpdateConfirmation,
+  teacherUsername: selectUserCafeTeacherInChargeName
 });
 
 const mapDispatchToProps = (dispatch) => ({

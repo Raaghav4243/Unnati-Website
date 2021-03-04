@@ -88,6 +88,7 @@ import {
   // Questions,
   // Options,
 } from './assignment-page.styles';
+import { ThemeConsumer } from 'styled-components';
 // import questionData from './data';
 
 function Alert(props) {

@@ -99,11 +99,6 @@ class App extends React.Component {
               exact
               component={TeacherDashboardLandingPage}
             />
-            {/* <Route
-              path='/teacher/button'
-              exact
-              component={demo}
-            /> */}
             <Route
               path='/teacher/enrolled'
               exact

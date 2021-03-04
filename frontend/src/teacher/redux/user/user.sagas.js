@@ -10,7 +10,6 @@ export function* fetchUserAsync() {
   try {
     let userData = localStorage.getItem("user");
     userData = JSON.parse(userData);
-    console.log(userData);
     yield put(fetchUserSuccess(userData));
   } catch (error) {
     yield put(fetchUserFailure(error));
@@ -19,7 +18,6 @@ export function* fetchUserAsync() {
 
 export function* updateUserAsync({ payload: { user_id, data } }) {
   try {
-    console.log("updated profile info data", data);
     yield fetch(`/updateUser/${user_id}`, {
       method: "POST", // or 'PUT'
       headers: {
@@ -28,10 +26,7 @@ export function* updateUserAsync({ payload: { user_id, data } }) {
       body: JSON.stringify(data),
     })
       .then((response) => response.json())
-      .then((data) => {
-        console.log("Success:", data);
-      });
-
+      
     yield put(updateUserSuccess("user updated"));
   } catch (error) {}
 }

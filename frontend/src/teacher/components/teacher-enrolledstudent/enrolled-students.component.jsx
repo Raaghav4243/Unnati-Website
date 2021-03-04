@@ -15,11 +15,6 @@ import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
 import TableHead from '@material-ui/core/TableHead';
-// import { fetchTestSheetStart } from '../../redux/test-sheet/test-sheet.actions';
-// import { connect } from 'react-redux';
-// import { Link, Route } from 'react-router-dom';
-// import { createStructuredSelector } from 'reselect';
-// import { selectTestDetails } from '../../redux/test-sheet/test-sheet.selectors';
 import { createMuiTheme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
@@ -124,21 +119,7 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-// function createData(ID, FirstName, LastName, Age, FullName) {
-//     return { ID, FirstName, LastName, Age, FullName };
-//   }
 
-// const rows = [
-//     createData(1 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
-//     createData(2 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
-//     createData(3 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
-//     createData(4 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
-//     createData(5 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
-//     createData(6 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
-//     createData(7 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
-//     createData(8 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'),
-//     createData(9 , 'Raaghav', 'Raj', 19, 'Raaghav Raj'), 
-// ];
 
 const useStyles2 = makeStyles({
   table: {

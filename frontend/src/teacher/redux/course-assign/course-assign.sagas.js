@@ -1,14 +1,10 @@
-import { all, call, put, takeLatest } from "redux-saga/effects";
-import { fetchVerifiedStudentAsync } from "../verified-students/verified-students.sagas";
-import { courseAssignFailure, courseAssignSuccess } from "./course-assign.actions";
+import { all, call, put, takeLatest } from "redux-saga/effects";import { courseAssignFailure, courseAssignSuccess } from "./course-assign.actions";
 import { CourseAssignTypes } from "./course-assign.types";
 
 export function* courseAssignAsync({payload: {
     userId, cafeId, courseId
 }}){
     try {
-        console.log('saga data', userId, cafeId, courseId)
-
         yield fetch(`/user/${userId}/cafe/${cafeId}/courseEnroll/${courseId}`,{
             method: "POST",
             headers: {
@@ -16,10 +12,7 @@ export function* courseAssignAsync({payload: {
             }
         })
             .then((response) => response.json())
-            .then((data) => {
-                console.log("course assigned", data)
-            })
-        
+
         yield put(courseAssignSuccess('Course assigned to student!'))
 
     } catch (error) {

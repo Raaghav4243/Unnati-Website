@@ -1,4 +1,5 @@
-import { all, call, put, takeLatest } from "redux-saga/effects";
+import { all, call, put, select, takeLatest } from "redux-saga/effects";
+import { selectUserCafeId } from "../cafe/cafe.selectors";
 import {
   fetchTestListForEvaluationFailure,
   fetchTestListForEvaluationSuccess,
@@ -9,14 +10,10 @@ import { TestEvaluationType } from "./test-evaluation-list.types";
 
 export function* fetchTestListAsync() {
   try {
-    let cafeId = localStorage.getItem("user");
-    cafeId = JSON.parse(cafeId);
-    cafeId = cafeId.cafe;
-    console.log(cafeId);
+    const cafeId = yield select(selectUserCafeId)
     
     let testList = yield fetch(`/loadPendingEvaluations/${cafeId}`);
     testList = yield testList.json();
-    console.log("testlist is", testList);
 
     yield put(fetchTestListForEvaluationSuccess(testList.pendingEvaluations));
   } catch (error) {
@@ -27,7 +24,6 @@ export function* fetchTestListAsync() {
 export function* updateTestScoreStartAsync({
   payload: { studentId, courseId, testId, data },
 }) {
-  console.log("saga data", studentId, courseId, testId, data);
   try {
     yield fetch(
       `/evaluateTest/student/${studentId}/course/${courseId}/test/${testId}`,

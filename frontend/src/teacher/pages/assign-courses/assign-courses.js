@@ -1,22 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import { ReactComponent as ArrowsEqual } from "../../icons/arrows.svg";
 import arrows from "../../icons/arrows.svg";
 import InputLabel from "@material-ui/core/InputLabel";
-import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import NativeSelect from "@material-ui/core/NativeSelect";
 import Button from "@material-ui/core/Button/Button";
-import StyledButton from "../../components/button-component/styled-button";
 
 //redux
 import { fetchUserCafeStart } from "../../redux/cafe/cafe.actions";
 import {
   selectUserCafeDetails,
   selectUserCafeId,
-  selectUserCafeNumberOfClassmates,
 } from "../../redux/cafe/cafe.selectors";
 //import { selectCurrentUserId } from '../../redux/user/user.selectors';
 
@@ -27,8 +22,6 @@ import TeacherCafeDetails from "../../components/cafe-details/cafe-details.compo
 import {
   PageContainer,
   CafeDetailsParentWrapper,
-  EnrolledCoursesParentWrapper,
-  DiscoverCourseParentWrapper,
   PageWrapper,
   TextTitle,
   DropDownWrapper,
@@ -36,7 +29,6 @@ import {
   CourseTitle,
   StudentDropDown,
   CourseDropDown,
-  ButtonWrapper,
   ButtonWrapperdiv,
   DropWrapper,
   ImageWrapper,
@@ -74,15 +66,13 @@ class TeacherDashboardAssignPage extends React.Component {
 
   handleNameChange = (e) => {
     const value = e.target.value;
-    const name = e.target.key;
-    this.setState({ userId: value, name: name });
+    this.setState({ userId: value, name: value});
   };
 
   handleCourseChange = (e) => {
     const { cafeId } = this.props;
     const value = e.target.value;
-    const name = e.target.key;
-    this.setState({ courseId: value, cafeId: cafeId, course: name });
+    this.setState({ courseId: value, cafeId: cafeId, course: value });
   };
 
   handleSubmit = (e) => {
@@ -91,6 +81,7 @@ class TeacherDashboardAssignPage extends React.Component {
     const cafeId = this.state.cafeId;
     const { courseAssignStart } = this.props;
     courseAssignStart(userId, cafeId, courseId);
+    this.setState({name: 'Select', course: 'Select', userId: null, cafeId: null, courseId: null})
   };
 
   render() {
@@ -121,7 +112,7 @@ class TeacherDashboardAssignPage extends React.Component {
                     <InputLabel htmlFor="outlined-age-native-simple">
                       Select
                     </InputLabel>
-                    <Select onChange={this.handleNameChange} label="student">
+                    <Select select='' onChange={this.handleNameChange} label="student" value={this.state.name}>
                       {verifiedStudents
                         ? verifiedStudents.map((student, index) => {
                             return (
@@ -148,6 +139,7 @@ class TeacherDashboardAssignPage extends React.Component {
                     variant="outlined"
                     className="hello"
                     style={{ minWidth: 150 }}
+                    value = {this.state.course}
                   >
                     <InputLabel htmlFor="outlined-age-native-simple">
                       Select
@@ -155,6 +147,8 @@ class TeacherDashboardAssignPage extends React.Component {
                     <Select
                       style={{ cursor: "pointer" }}
                       onChange={this.handleCourseChange}
+                      value={this.state.course}
+                      select=''
                     >
                       {allCourses
                         ? allCourses.map((course, index) => {

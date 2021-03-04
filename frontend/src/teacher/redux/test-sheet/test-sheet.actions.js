@@ -1,7 +1,6 @@
 import { testSheetTypes } from "./test-sheet.types"
 
 export const fetchTestSheetStart = (responseSheetId, courseId) => {
-    console.log('actions page data', responseSheetId, courseId)
     return{
         type: testSheetTypes.FETCH_SUBMITTED_TEST_START,
         payload: {responseSheetId: responseSheetId, courseId:courseId}

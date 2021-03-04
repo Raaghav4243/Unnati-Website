@@ -43,7 +43,7 @@ class TeacherDashboardSidenav extends React.Component {
   };
 
   render() {
-    const { match, user, firstName, lastName } = this.props;
+    const {firstName} = this.props;
     return (
       <>
         <Container>
