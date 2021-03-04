@@ -19,3 +19,8 @@ export const selectUserDueFees = createSelector(
   [selectFeeAmount],
   (due) => due.dueAmount
 );
+
+export const selectIsUserFeeAmountFetching = createSelector(
+  [selectFeeAmount],
+  (amount) => amount.isFetching
+);

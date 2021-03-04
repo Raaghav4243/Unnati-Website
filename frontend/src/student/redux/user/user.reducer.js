@@ -118,11 +118,25 @@ const userReducer = (state = INITIAL_STATE, action) => {
         didUserSignUpFail: true,
         errorMessage: action.payload,
       };
+    case UserActionTypes.RESET_SIGN_IN_INFO:
+      return {
+        ...state,
+        didUserSignInFail: false,
+        errorMessage: null,
+      };
+    case UserActionTypes.RESET_SIGN_UP_INFO:
+      return {
+        ...state,
+        wasSignUpSuccessful: false,
+        didUserSignUpFail: false,
+        errorMessage: null,
+      };
     case UserActionTypes.UPDATE_USER_START:
       return {
         ...state,
         userIsUpdating: true,
         updationFailed: false,
+        updateConfirmation: null,
       };
     case UserActionTypes.UPDATE_USER_SUCCESS:
       return {
@@ -136,6 +150,13 @@ const userReducer = (state = INITIAL_STATE, action) => {
         userIsUpdating: false,
         updationFailed: true,
         errorMessage: action.payload,
+      };
+    case UserActionTypes.RESET_UPDATE_INFO:
+      return {
+        ...state,
+        updateConfirmation: null,
+        updationFailed: false,
+        errorMessage: null,
       };
     default:
       return state;

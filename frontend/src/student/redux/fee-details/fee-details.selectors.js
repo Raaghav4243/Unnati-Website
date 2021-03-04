@@ -5,7 +5,7 @@ const selectFeeDetails = (state) => state.feeDetails;
 export const selectUserFeeDetails = createSelector(
   [selectFeeDetails],
   (fee) => {
-    console.log(fee);
+    // console.log(fee);
     return fee;
   }
 );
@@ -14,6 +14,13 @@ export const selectUserFeeReciepts = createSelector(
   [selectUserFeeDetails],
   (reciepts) => {
     return reciepts.receipts;
+  }
+);
+
+export const selectIsUserFeeDetailsFetching = createSelector(
+  [selectUserFeeDetails],
+  (details) => {
+    return details.isFetching;
   }
 );
 

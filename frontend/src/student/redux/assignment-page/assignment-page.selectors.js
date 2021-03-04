@@ -57,3 +57,8 @@ export const selectHasAssignmentSubmissionFailed = createSelector(
   [selectAssignmentDetails],
   (assignmentDetails) => assignmentDetails.submissionFailed
 );
+
+export const selectAssignmentReducerError = createSelector(
+  [selectAssignmentDetails],
+  (assignmentDetails) => assignmentDetails.errorMessage
+);

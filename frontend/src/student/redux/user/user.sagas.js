@@ -5,11 +5,13 @@ import {
   // fetchUserFailure,
   // fetchUserSuccess,
   updateUserSuccess,
+  updateUserFailure,
   signOutSuccess,
   signOutFailure,
   signUpSuccess,
   signUpFailure,
   userSessionExpired,
+  checkUserSession,
 } from './user.actions';
 import { UserActionTypes } from './user.types';
 
@@ -60,21 +62,39 @@ export function* signOutAsync() {
 
 export function* updateUserAsync({ payload: { user_id, data } }) {
   try {
-    // console.log('updated profile info data', data);
-    yield fetch(`/updateUser/${user_id}`, {
+    let UserUpdation = yield fetch(`/updateUser/${user_id}`, {
       method: 'POST', // or 'PUT'
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('Success:', data);
-      });
+    });
 
-    yield put(updateUserSuccess('User updated!'));
-  } catch (error) {}
+    UserUpdation = yield UserUpdation.json();
+    console.log('User Updation IS', UserUpdation);
+    if (UserUpdation.done) {
+      // update local storage
+      let userData = yield localStorage.getItem('user');
+
+      userData = JSON.parse(userData);
+      console.log('NEW DATA IS', data);
+      console.log('CURRENT USER DATA IN LOCAL STORAGE IS', userData);
+
+      userData = {
+        ...userData,
+        ...data,
+      };
+
+      console.log('UPDATED USER DATA IN LOCAL STORAGE IS', userData);
+      localStorage.setItem('user', JSON.stringify(userData));
+
+      yield put(updateUserSuccess('User updated!'));
+    } else {
+      yield put(updateUserFailure(UserUpdation.message));
+    }
+  } catch (error) {
+    yield put(updateUserFailure(error));
+  }
 }
 
 export function* signInWithEmail({ payload }) {
@@ -147,6 +167,10 @@ export function* onUpdateUserStart() {
   yield takeLatest(UserActionTypes.UPDATE_USER_START, updateUserAsync);
 }
 
+export function* onUpdateUserSuccess() {
+  yield takeLatest(UserActionTypes.UPDATE_USER_SUCCESS, isUserAuthenticated);
+}
+
 export function* userSagas() {
   yield all([
     call(onUpdateUserStart),
@@ -154,5 +178,6 @@ export function* userSagas() {
     call(onSignUpStart),
     call(onSignOutStart),
     call(onCheckUserSession),
+    call(onUpdateUserSuccess),
   ]);
 }

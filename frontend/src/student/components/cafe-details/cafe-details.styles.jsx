@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { ReactComponent as CafeSVG } from '../../icons/school.svg';
 
 export const Container = styled.div`
   width: 100%;
@@ -47,6 +48,17 @@ export const CafeLogo = styled.div`
   justify-content: center;
 
   align-items: center;
+`;
+
+export const CafeIcon = styled(CafeSVG)`
+  height: 100px;
+  width: 100px;
+
+  @media screen and (max-width: 1200px) {
+    /* margin-left: 0; */
+    height: 80%;
+    width: 80%;
+  }
 `;
 export const CafeDetails = styled.div`
   height: 100%;

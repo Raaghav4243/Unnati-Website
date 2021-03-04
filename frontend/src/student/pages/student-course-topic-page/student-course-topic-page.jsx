@@ -27,20 +27,8 @@ class StudentCourseTopicPage extends React.Component {
     super();
   }
 
-  componentDidMount() {
-    const { user_id, course_id, fetchCourseTopicsStart } = this.props;
-    fetchCourseTopicsStart(user_id, course_id);
-  }
-
-  componentDidUpdate() {
-    // console.log(
-    //   'STUDENT COURSE TOPIC PAGE UPDATED! SO NOW COURSE TOPICS FETCHED AGAIN'
-    // );
-    // const { user_id, course_id, fetchCourseTopicsStart } = this.props;
-    // fetchCourseTopicsStart(user_id, course_id);
-  }
   render() {
-    const { match, course_topic_type, course_topic_id } = this.props;
+    const { match } = this.props;
     // console.log('match is', match, 'topic id is', course_topic_id);
     return (
       <>
@@ -86,21 +74,4 @@ class StudentCourseTopicPage extends React.Component {
   }
 }
 
-const mapStateToProps = createStructuredSelector({
-  user_id: selectCurrentUserId,
-  course_id: selectCurrentCourseId,
-  // course_topic_id: selectCurrentCourseTopicId,
-  // course_topic_type: selectCurrentCourseTopicType,
-  // topics: selectCourseTopics,
-  // attemptedTopicsId: selectCompletedCourseTopicsId,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  fetchCourseTopicsStart: (user_id, course_id) =>
-    dispatch(fetchCourseTopicsStart(user_id, course_id)),
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(StudentCourseTopicPage);
+export default StudentCourseTopicPage;

@@ -15,6 +15,12 @@ export const signInFailure = (error) => ({
   payload: error,
 });
 
+export const resetSignInInfo = () => {
+  return {
+    type: UserActionTypes.RESET_SIGN_IN_INFO,
+  };
+};
+
 export const checkUserSession = () => ({
   type: UserActionTypes.CHECK_USER_SESSION,
 });
@@ -50,6 +56,12 @@ export const signUpFailure = (error) => ({
   payload: error,
 });
 
+export const resetSignUpInfo = () => {
+  return {
+    type: UserActionTypes.RESET_SIGN_UP_INFO,
+  };
+};
+
 export const updateUserStart = (user_id, data) => {
   console.log('action data', data, 'action user id', user_id);
   return {
@@ -69,6 +81,12 @@ export const updateUserFailure = (error) => {
   return {
     type: UserActionTypes.UPDATE_USER_SUCCESS,
     payload: error,
+  };
+};
+
+export const resetUpdateInfo = () => {
+  return {
+    type: UserActionTypes.RESET_UPDATE_INFO,
   };
 };
 

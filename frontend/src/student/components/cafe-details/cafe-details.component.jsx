@@ -2,8 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import { ReactComponent as CafeIcon } from '../../icons/school.svg';
-
 import Popup from 'reactjs-popup';
 import CafeImage from '../../assets/image.png';
 import {
@@ -19,6 +17,7 @@ import {
   CafeTitle,
   CafeDetailsWrapper,
   CafeLogo,
+  CafeIcon,
   CafeDetails,
   CafeName,
   CafeAddress,
@@ -47,7 +46,8 @@ const StudentCafeDetails = ({
           <CafeTitle>Cafe Details</CafeTitle>
           <CafeDetailsWrapper>
             <CafeLogo>
-              <CafeIcon style={{ height: '100px', width: '100px' }} />
+              {/* <CafeIcon style={{ height: '90px', width: '90px' }} /> */}
+              <CafeIcon />
             </CafeLogo>
             <CafeDetails>
               <CafeName>{cafeName}</CafeName>

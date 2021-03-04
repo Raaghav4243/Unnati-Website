@@ -15,8 +15,15 @@ Login :
 import React from 'react';
 import SignUp from '../../components/sign-up/sign-up.component';
 import SignIn from '../../components/sign-in/sign-in.component';
-// import SignUpForm from '../../components/Signup-page/SignupForm';
-import { SignInAndSignUpContainer } from './signup-and-signin-page.styles';
+
+import {
+  SignInAndSignUpContainer,
+  Container,
+  SignUpWrapper,
+  MainTitle,
+  Title,
+  SignInWrapper,
+} from './signup-and-signin-page.styles';
 import SignInPageNavbar from '../../components/signin-and-signup-page-navbar/signin-and-signup-page-navbar.component';
 
 class SignInAndSignUpPage extends React.Component {
@@ -29,8 +36,21 @@ class SignInAndSignUpPage extends React.Component {
       <>
         <SignInPageNavbar />
         <SignInAndSignUpContainer>
-          <SignIn />
-          <SignUp />
+          <Container>
+            <SignInWrapper>
+              {/* <MainTitle>Already have an account?</MainTitle> */}
+              {/* <Title>Sign into Unnati</Title> */}
+              <SignIn />
+
+              {/* <ChangePasswordContainer /> */}
+            </SignInWrapper>
+            <SignUpWrapper>
+              <MainTitle>Don't have an account?</MainTitle>
+              <Title>Sign up today</Title>
+              {/* <EditProfileContainer /> */}
+              <SignUp />
+            </SignUpWrapper>
+          </Container>
         </SignInAndSignUpContainer>
       </>
     );

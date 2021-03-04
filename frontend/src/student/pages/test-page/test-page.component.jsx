@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { withRouter } from 'react-router-dom';
-import AssignmentAndTestSidenav from '../../components/assignment-test-sidenav/assignment-test-sidenav.component';
+import AssignmentAndTestHeader from '../../components/assignment-test-header/assignment-test-header.component';
 import Timer from 'react-compound-timer';
 
 import { submitTestStart } from '../../redux/testpage/testpage.actions';
@@ -218,7 +218,7 @@ class TestPage extends React.Component {
     return (
       <>
         <StudentDashboardNavbar />
-        <AssignmentAndTestSidenav forTest />
+        <AssignmentAndTestHeader forTest />
         <PageWrapper>
           <form onChange={this.handleOnChange}>
             <TestTitle>TEST : {testName}</TestTitle>

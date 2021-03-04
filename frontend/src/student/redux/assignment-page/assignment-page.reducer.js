@@ -98,6 +98,13 @@ const assignmentReducer = (state = INITIAL_STATE, action) => {
         submissionFailed: true,
         errorMessage: action.payload,
       };
+    case AssignmentPageActionTypes.RESET_ASSIGNMENT_INFO:
+      return {
+        ...state,
+        submitConformation: false,
+        submissionFailed: false,
+        errorMessage: null,
+      };
     default:
       return state;
   }

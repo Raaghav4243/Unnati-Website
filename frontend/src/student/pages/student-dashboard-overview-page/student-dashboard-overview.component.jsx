@@ -31,9 +31,8 @@ import StudentDiscoverCourses from '../../components/discover-courses/discover-c
 
 class StudentDashboardOverviewPage extends React.Component {
   componentDidMount() {
-    const { fetchUserCafeStart, fetchEnrolledCoursesStart } = this.props;
+    const { fetchEnrolledCoursesStart } = this.props;
     fetchEnrolledCoursesStart();
-    fetchUserCafeStart();
   }
   render() {
     const { allCourses } = this.props;
@@ -58,7 +57,6 @@ class StudentDashboardOverviewPage extends React.Component {
 
 const mapDispatchToProps = (dispatch) => ({
   fetchEnrolledCoursesStart: () => dispatch(fetchEnrolledCoursesStart()),
-  fetchUserCafeStart: () => dispatch(fetchUserCafeStart()),
 });
 
 export default connect(null, mapDispatchToProps)(StudentDashboardOverviewPage);

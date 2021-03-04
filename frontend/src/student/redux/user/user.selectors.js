@@ -93,3 +93,8 @@ export const selectUserUpdationFailed = createSelector(
   [selectCurrentUser],
   (currentUser) => currentUser.updationFailed
 );
+
+export const selectUserReducerError = createSelector(
+  [selectCurrentUser],
+  (currentUser) => currentUser.errorMessage
+);

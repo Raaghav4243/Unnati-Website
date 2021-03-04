@@ -21,6 +21,7 @@ export const CardWrapper = styled.div`
     #ffc222,
     #f48c06
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  /* box-shadow: 0px 1.5px 5px grey; */
 
   margin-right: 20px;
 `;

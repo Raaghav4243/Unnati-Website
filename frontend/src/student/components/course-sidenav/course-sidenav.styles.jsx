@@ -14,6 +14,11 @@ export const SideNavContainer = styled.div`
   overflow: auto;
   left: 0;
   color: #ffffff;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  overflow: -moz-scrollbars-none;
+  -ms-overflow-style: none;
 
   @media screen and (max-width: 768px) {
     /* font-size: 20px; */

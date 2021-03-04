@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 // import { Route } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
+import { withStyles } from '@material-ui/core/styles';
 
 import {
   selectAssignmentMessageFromBackend,
-  selectAssignmentMarksScored,
-  selectAssignmentId,
-  selectAssignmentName,
+  // selectAssignmentMarksScored,
+  // selectAssignmentId,
+  // selectAssignmentName,
   selectAssignmentDuration,
   selectAssignmentMaxMarksScored,
   selectAssignmentQuestions,
@@ -22,12 +23,21 @@ import {
 } from '../../redux/student/student.selectors';
 
 //components used
+import Button from '@material-ui/core/Button';
+// import MuiAlert from '@material-ui/lab/Alert';
+import Alert from '@material-ui/lab/Alert';
 
 //styles used
 import {
-  AssignmentStartPageContainer,
+  AssignmentStartPageWrapper,
+  LogoWrapper,
+  UnnatiLogo,
+  Title,
   AssignmentTitleWrapper,
   AssignmentPrompt,
+  PromptField,
+  FieldTitle,
+  FieldValue,
   PromptWrapper,
   AssignmentName,
   AssignmentDuration,
@@ -39,6 +49,21 @@ import {
 } from './assignment-start-page.styles';
 
 import AssignmentBackendResponseTypes from './assignment-backend-response.types';
+
+// function Alert(props) {
+//   return <MuiAlert elevation={6} variant='filled' {...props} />;
+// }
+
+const useStyles = (theme) => ({
+  button: {
+    // marginRight: theme.spacing(4),
+    marginTop: theme.spacing(0.5),
+    marginBottom: theme.spacing(1),
+    color: 'white',
+    fontWeight: 500,
+    width: '100%',
+  },
+});
 
 class AssignmentStartPage extends React.Component {
   constructor() {
@@ -85,6 +110,7 @@ class AssignmentStartPage extends React.Component {
       assignmentDuration,
       assignmentAttemptsLeft,
       assignmentQuestions,
+      classes,
     } = this.props;
     console.log('Assignment start page rendered!');
     console.log(
@@ -97,97 +123,71 @@ class AssignmentStartPage extends React.Component {
 
     return (
       <>
-        <AssignmentStartPageContainer>
-          <AssignmentTitleWrapper>Assignment</AssignmentTitleWrapper>
+        <AssignmentStartPageWrapper>
+          <LogoWrapper>
+            <UnnatiLogo style={{ height: '80px', fill: 'white' }} />
+          </LogoWrapper>
+          <Title>{current_assignment_name}</Title>
           <AssignmentPrompt>
-            <AssignmentName>
+            {/* <AssignmentName>
               <PromptWrapper>Assignment Name : </PromptWrapper>
               {current_assignment_name}
-            </AssignmentName>
+            </AssignmentName> */}
+
             {assignmentDuration ? (
-              <AssignmentDuration>
-                <PromptWrapper>Assignment Duration : </PromptWrapper>
-                {assignmentDuration} minutes
-              </AssignmentDuration>
+              <PromptField>
+                <FieldTitle>Assignment Duration : </FieldTitle>
+                <FieldValue>{assignmentDuration} minutes</FieldValue>
+              </PromptField>
             ) : null}
             {assignmentAttemptsLeft === 3 ? (
-              <AssignmentHighestScore>
-                <PromptWrapper>
-                  <strong>You have not attempted this Assignment yet!</strong>
-                </PromptWrapper>
-              </AssignmentHighestScore>
+              <PromptField>
+                <FieldValue>
+                  You have not attempted this Assignment yet!
+                </FieldValue>
+                {/* <FieldValue>{assignmentDuration} minutes</FieldValue> */}
+              </PromptField>
             ) : (
-              <AssignmentHighestScore>
-                <PromptWrapper>
-                  Your Highest Score for this Assignment :
-                </PromptWrapper>
-                {maxMarksScored !== null ? ` ${maxMarksScored}` : null}
-                {maxMarksPossible !== null ? ` / ${maxMarksPossible}` : null}
-              </AssignmentHighestScore>
+              <PromptField>
+                <FieldTitle>Your Highest Score :</FieldTitle>
+                <FieldValue>
+                  {maxMarksScored !== null ? ` ${maxMarksScored}` : null}
+                  {maxMarksPossible !== null
+                    ? ` / ${maxMarksPossible}`
+                    : null}{' '}
+                  marks
+                </FieldValue>
+              </PromptField>
             )}
           </AssignmentPrompt>
           {assignmentQuestions ? (
             <AssignmentAttemptsContainer>
-              <AttemptsWrapper
+              <Button
+                variant='contained'
+                color='secondary'
+                size='large'
+                type='submit'
+                className={classes.button}
                 onClick={() => {
                   history.push(`${match.path}/assignment`);
                 }}
+                // startIcon={<SaveIcon />}
               >
-                <ClickPrompt>Click here to start the Assignment:</ClickPrompt>
-                <AttemptsLeftPrompt>
-                  {assignmentAttemptsLeft} attempts left
-                </AttemptsLeftPrompt>
-              </AttemptsWrapper>
+                Attempt Assignment
+              </Button>
+              <Alert severity='info'>
+                {assignmentAttemptsLeft == 1
+                  ? `Currently you have ${assignmentAttemptsLeft} attempt left`
+                  : `Currently you have ${assignmentAttemptsLeft} attempts left`}{' '}
+              </Alert>
             </AssignmentAttemptsContainer>
-          ) : null}
-        </AssignmentStartPageContainer>
+          ) : (
+            <Alert severity='info'>{`You have 0 attempts left for this assignment`}</Alert>
+          )}
+        </AssignmentStartPageWrapper>
       </>
     );
-    // return (
-    //   <>
-    //     <TestStartPageContainer>
-    //       {/* Do you want to start this test? : {current_test_name}
-    //         {current_user_id}
-    //         Course:
-    //         {current_course_id}
-    //         Test:
-    //         {current_test_id}
-    //         {test_message ? (
-    //           <div> Message from backend {test_message}</div>
-    //         ) : test_questions ? (
-    //           <>
-    //             <div>Questions Received</div>
-    //             <TestPage />
-    //           </>
-    //         ) : null} */}
-    //       {test_message ? (
-    //         <div>MESSAGE RECEIVED</div>
-    //       ) : test_questions ? (
-    //         <>
-    //           {/* <Route path={`${match.path}/test`} component={TestPage} /> */}
-    //           {console.log('QUESTIONS ARRAY:', test_questions)}
-    //           <QuestionsPromptContainer>
-    //             <Prompt>
-    //               Are you sure you want to start this test? Once Started, it
-    //               cannot be paused without submission.
-    //             </Prompt>
-    //             <StartTestButton
-    //               onClick={() => {
-    //                 history.push(`${match.path}/test`);
-    //               }}
-    //             >
-    //               Start Test
-    //             </StartTestButton>
-    //           </QuestionsPromptContainer>
-    //         </>
-    //       ) : (
-    //         <div>WE ARE FINDING YOUR TEST... </div>
-    //       )}
-    //     </TestStartPageContainer>
-    //   </>
-    // );
   }
-  // ({ current_test_name }) => {
 }
 
 const mapStateToProps = createStructuredSelector({
@@ -205,4 +205,6 @@ const mapStateToProps = createStructuredSelector({
   //   test_message: selectTestMessage,
 });
 
-export default connect(mapStateToProps)(withRouter(AssignmentStartPage));
+export default connect(mapStateToProps)(
+  withRouter(withStyles(useStyles)(AssignmentStartPage))
+);
