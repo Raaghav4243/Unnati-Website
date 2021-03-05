@@ -381,21 +381,21 @@ class AssignmentPage extends React.Component {
             RESET
           </button> */}
 
-          {assignmentSubmittedConfirmation ? (
-            <ButtonWrapper>
-              <Button
-                variant='contained'
-                color='secondary'
-                size='large'
-                type='submit'
-                className={classes.button}
-                onClick={this.handleSubmitSuccess}
-                // startIcon={<SaveIcon />}
-              >
-                Go back to Course Page
-              </Button>
-            </ButtonWrapper>
-          ) : (
+          <ButtonWrapper>
+            <Button
+              variant='contained'
+              color='secondary'
+              size='large'
+              type='submit'
+              className={classes.button}
+              onClick={this.handleSubmitSuccess}
+              // startIcon={<SaveIcon />}
+            >
+              Back to Course
+            </Button>
+          </ButtonWrapper>
+
+          {assignmentSubmittedConfirmation ? null : (
             <ButtonWrapper>
               <Button
                 variant='contained'
