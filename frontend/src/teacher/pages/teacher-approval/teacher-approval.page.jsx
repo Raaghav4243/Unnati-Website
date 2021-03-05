@@ -55,7 +55,7 @@ class TeacherApproval extends React.Component {
             <TableWrapper>
               
               {
-                approveConfirmation ? <div>{approveConfirmation}</div> : null
+                approveConfirmation ? <div style={{color: 'green'}}>Student Approved!</div> : null
               }
               <ApproveStudentTableContainer rows={rows}></ApproveStudentTableContainer>
             </TableWrapper>

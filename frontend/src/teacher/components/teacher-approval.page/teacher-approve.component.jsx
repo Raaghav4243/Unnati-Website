@@ -209,6 +209,7 @@ function ApproveStudentTableComponent(props) {
                     const studentId = row.ButtonId;
                     const { approveStudentStart } = props;
                     approveStudentStart(studentId);
+                    window.location.reload()
                   }}
                 >
                   APPROVE

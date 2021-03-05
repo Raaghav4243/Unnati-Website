@@ -227,7 +227,7 @@ router.get("/enrolled-course/:userId/course/:courseId",async (req,res) => {
         response['course'] = await Course.findOne({_id: req.params.courseId}).populate({
             path: 'topics',
             select:'_id topicName contentOrder',
-        }).select("courseName topics")
+        }).select("courseName topics")  
         // for (let i=0; i<response.course.topics.length; i++) {
         //     for (let j=0; j<response.course.topics[i].contentOrder.length; j++) {
         //         // console.log("yes",course['topics'][i]);
