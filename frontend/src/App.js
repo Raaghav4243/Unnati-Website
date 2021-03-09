@@ -30,6 +30,7 @@ import TeacherDashboardLandingPage from './teacher/pages/teacher-dashboard-main-
 import {
   selectCurrentUserId,
   selectCurrentUserRole,
+  selectDidUserSignInFail,
   selectIsUserSignedIn,
 } from './student/redux/user/user.selectors';
 import { checkUserSession } from './student/redux/user/user.actions';
@@ -41,8 +42,55 @@ import {
 // import StyledButton from './teacher/components/styled-button-component/styled-button'
 // import demo from './teacher/pages/demo';
 
+const PrivateStudentRoute = ({ component: Component, ...rest }) => {
+  // Add your own authentication on the below line.
+  const isLoggedIn = !!localStorage.getItem('token');
+  let userData = localStorage.getItem('user');
+  userData = JSON.parse(userData);
+  let userType = userData ? userData.role : null;
+
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        isLoggedIn && userType == 'STUDENT' ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{ pathname: '/signup', state: { from: props.location } }}
+          />
+        )
+      }
+    />
+  );
+};
+
+const PrivateTeacherRoute = ({ component: Component, ...rest }) => {
+  // Add your own authentication on the below line.
+  const isLoggedIn = !!localStorage.getItem('token');
+  let userData = localStorage.getItem('user');
+  userData = JSON.parse(userData);
+  let userType = userData ? userData.role : null;
+
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        isLoggedIn && userType == 'TEACHER' ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{ pathname: '/signup', state: { from: props.location } }}
+          />
+        )
+      }
+    />
+  );
+};
+
 class App extends React.Component {
   componentDidMount() {
+    console.log('APP.JS HAS MOUNTED.');
     const {
       checkUserSession,
       fetchAllCoursesStart,
@@ -54,6 +102,7 @@ class App extends React.Component {
   }
 
   render() {
+    console.log('APP.JS HAS RENDERED.');
     const { isUserSignedIn, userRole } = this.props;
     return (
       <BrowserRouter>
@@ -82,7 +131,7 @@ class App extends React.Component {
               }
             />
             {/* STUDENT ROUTES */}
-            <Route
+            {/* <Route
               path='/student'
               // component={StudentPage}
               render={() =>
@@ -92,7 +141,8 @@ class App extends React.Component {
                   <Redirect to='/' />
                 )
               }
-            />
+            /> */}
+            <PrivateStudentRoute path='/student' component={StudentPage} />
 
             <Route
               path='/teacher'
@@ -152,6 +202,7 @@ class App extends React.Component {
 const mapStateToProps = createStructuredSelector({
   isUserSignedIn: selectIsUserSignedIn,
   userRole: selectCurrentUserRole,
+  didUserSignInFail: selectDidUserSignInFail,
 });
 
 const mapDispatchToProps = (dispatch) => ({

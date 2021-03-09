@@ -2,10 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { withRouter } from 'react-router-dom';
-import AssignmentAndTestHeader from '../../components/assignment-test-header/assignment-test-header.component';
-import Timer from 'react-compound-timer';
-
-import { submitTestStart } from '../../redux/testpage/testpage.actions';
+import { withStyles } from '@material-ui/core/styles';
 
 import {
   selectTestMessageFromBackend,
@@ -17,6 +14,8 @@ import {
   selectTestDuration,
 } from '../../redux/testpage/testpage.selectors';
 
+import { submitTestStart } from '../../redux/testpage/testpage.actions';
+
 import {
   selectCurrentCourseId,
   selectCurrentCourseTopicId,
@@ -24,20 +23,51 @@ import {
 } from '../../redux/student/student.selectors';
 import { selectCurrentUserId } from '../../redux/user/user.selectors';
 
+import AssignmentAndTestHeader from '../../components/assignment-test-header/assignment-test-header.component';
+import Timer from 'react-compound-timer';
+
 import StudentDashboardNavbar from '../../components/student-dashboard-navbar/student-dashboard-navbar.component';
 
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+// import FormLabel from '@material-ui/core/FormLabel';
+// import FormControl from '@material-ui/core/FormControl';
+import FormGroup from '@material-ui/core/FormGroup';
+// import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormLabel from '@material-ui/core/FormLabel';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+
 import {
+  TestNavbar,
+  ButtonWrapper,
   PageWrapper,
+  Form,
+  QuestionsWrapper,
+  QuestionCardWrapper,
+  QuestionStatementContainer,
+  QuestionPrompt,
+  QuestionNoSpan,
+  QuestionStatement,
+  MarksPrompt,
+  QuestionsOptionsContainer,
+  OptionWrapper,
   BottomNav,
   TimerWrapper,
   TimeHeader,
   TimeWrapper,
   TestTitle,
-  QuestionsWrapper,
-  QuestionCardWrapper,
+  NavRight,
   // QuestionCardContainer,
-  QuestionStatementContainer,
-  QuestionsOptionsContainer,
   RadioLabel,
   RadioInput,
   RadioIndicator,
@@ -45,8 +75,8 @@ import {
   CheckedInput,
   CheckedIndicator,
   TextLabel,
-  TextInput,
-  TextIndicator,
+  // TextInput,
+  // TextIndicator,
   // QuestionWrapper,
   // AssignmentWrapper,
   // WrappingQuestions,
@@ -57,6 +87,48 @@ import {
   // Options,
 } from './test-page.styles';
 // import questionData from './data';
+
+// material ui styling
+const useStyles = (theme) => ({
+  root: {
+    '& .MuiTextField-root': {
+      marginRight: theme.spacing(4),
+      marginTop: theme.spacing(2),
+      width: '30ch',
+    },
+  },
+  button: {
+    // marginRight: theme.spacing(4),
+    // marginTop: theme.spacing(2),
+    color: 'white',
+  },
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: '#fff',
+  },
+
+  formControlForQuestion: {
+    // marginTop: theme.spacing(0.5),
+    // paddingTop: theme.spacing(1),
+    width: '100%',
+
+    // marginLeft: theme.spacing(2.5),
+    // background: 'red',
+    // marginBottom: theme.spacing(1),
+    // marginTop: 15,
+    // minWidth: 150,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(1),
+  },
+  alert: {
+    width: '100%',
+    // marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(2),
+    // backgroundColor : '',
+    // boxShadow: 'null',
+  },
+});
 
 class TestPage extends React.Component {
   constructor() {
@@ -133,7 +205,7 @@ class TestPage extends React.Component {
     });
   };
 
-  handleSubmitSuccess = () => {
+  backToCourse = () => {
     // only call when post request is completed
     const { history } = this.props;
     history.push('/student/course');
@@ -154,50 +226,6 @@ class TestPage extends React.Component {
     submitTestStart(data);
   };
 
-  //   handleSubmit = (e) => {
-  //     e.preventDefault();
-  //     const { test_questions, submitTestStart } = this.props;
-  //     const { resp } = this.state;
-  //     console.log('SUBMITTING ASSIGNMENT NOW');
-  //     console.log('QUESTIONS ARE NOW', test_questions);
-  //     console.log('RESPONSES OF USER are', resp);
-  //     // calculate score
-  //     let userResponses = Object.values(resp);
-  //     console.log('RESPONSES OF USER IN ARRAY FORM are', userResponses);
-  //     let score = 0;
-  //     userResponses.map((userAnswerArray, index) => {
-  //       let totalScorableMarksForQuestion = assignment_questions[index].maxMarks;
-  //       let correctAnswerArray = assignment_questions[index].correctAns;
-  //       let correctAnswerObj = {};
-  //       correctAnswerArray.map((correctOption) => {
-  //         correctAnswerObj[correctOption] = 'correct';
-  //       });
-  //       console.log(
-  //         'CORRECT OPTIONS FOR EACH QUESTION FORM are',
-  //         index,
-  //         'OBJ - ',
-  //         correctAnswerObj
-  //       );
-  //       let answersMarkedCorrect = 0;
-  //       userAnswerArray.map((userMarkedOption) => {
-  //         if (correctAnswerObj[userMarkedOption]) {
-  //           answersMarkedCorrect = answersMarkedCorrect + 1;
-  //         }
-  //       });
-  //       console.log('answers marked correct are', answersMarkedCorrect);
-  //       if (answersMarkedCorrect === correctAnswerArray.length) {
-  //         score = score + totalScorableMarksForQuestion;
-  //         console.log('score after this question', score);
-  //       }
-  //     });
-  //     console.log('SCORE IS', score);
-  //     let data = {};
-  //     data['marksScored'] = score;
-  //     submitAssignmentStart(data);
-  //     // alert('YOUR SCORE FOR THIS ATTEMPT IS', score);
-  //     this.setState({ score: score });
-  //   };
-
   componentWillUnmount = () => {
     // SUBMIT TEST
   };
@@ -205,11 +233,15 @@ class TestPage extends React.Component {
   render() {
     const {
       test_questions,
-      testName,
+      // testName,
       testDuration,
-      isAssignmentSubmitting,
-      assignmentSubmittedConfirmation,
-      assignmentSubmissionFailed,
+      isTestSubmitting,
+      testSubmittedConfirmation,
+      testSubmissionFailed,
+      testError,
+      classes,
+      // assignmentSubmittedConfirmation,
+      // assignmentSubmissionFailed,
     } = this.props;
     const { score } = this.state;
     console.log('TEST QUESTIONS RECIEVED', test_questions);
@@ -219,63 +251,173 @@ class TestPage extends React.Component {
       <>
         <StudentDashboardNavbar />
         <AssignmentAndTestHeader forTest />
+        <TestNavbar>
+          {/* <TimePrompt>Time Left : 00:{assignmentDuration}:00</TimePrompt> */}
+          {testSubmittedConfirmation ? (
+            <TimerWrapper>
+              <TimeHeader>
+                Time Left :&nbsp;<TimeWrapper> --:--:-- </TimeWrapper>
+              </TimeHeader>
+            </TimerWrapper>
+          ) : (
+            <TimerWrapper>
+              <TimeHeader>Time Left :&nbsp;</TimeHeader>
+              <Timer
+                initialTime={testDuration * 60 * 1000}
+                direction='backward'
+                checkpoints={[
+                  {
+                    time: 0,
+                    callback: () => console.log('Time UP!'),
+                  },
+                  {
+                    time: 5000,
+                    callback: () => console.log('5 seconds left!'),
+                  },
+                ]}
+              >
+                {() => (
+                  <React.Fragment>
+                    <TimeWrapper>
+                      <Timer.Hours />:
+                      <Timer.Minutes />:
+                      <Timer.Seconds />
+                    </TimeWrapper>
+                  </React.Fragment>
+                )}
+              </Timer>
+            </TimerWrapper>
+          )}
+
+          {/* <button
+            onClick={() => {
+              this.setState({ assignmentDone: false });
+            }}
+          >
+            RESET
+          </button> */}
+          <NavRight>
+            <ButtonWrapper>
+              <Button
+                variant='contained'
+                color='secondary'
+                size='large'
+                // type='submit'
+                className={classes.button}
+                onClick={this.backToCourse}
+                // startIcon={<SaveIcon />}
+              >
+                Back to Course
+              </Button>
+            </ButtonWrapper>
+
+            {testSubmittedConfirmation ? null : (
+              <ButtonWrapper>
+                <Button
+                  variant='contained'
+                  color='secondary'
+                  size='large'
+                  type='submit'
+                  className={classes.button}
+                  onClick={this.handleSubmit}
+                  // startIcon={<SaveIcon />}
+                >
+                  Submit
+                </Button>
+              </ButtonWrapper>
+            )}
+          </NavRight>
+        </TestNavbar>
         <PageWrapper>
-          <form onChange={this.handleOnChange}>
-            <TestTitle>TEST : {testName}</TestTitle>
-            <QuestionsWrapper>
-              {test_questions
-                ? test_questions.map((question, index) => {
-                    return (
-                      <>
-                        <QuestionCardWrapper>
-                          <QuestionStatementContainer>
-                            <strong>Q{index + 1}. </strong> {question.statement}
-                          </QuestionStatementContainer>
-                          <QuestionsOptionsContainer>
-                            {question.type === 'MULTICORRECT' ? (
-                              <>
-                                {question.options.map((option, optionIndex) => {
-                                  return (
-                                    <CheckedLabel
-                                      htmlFor={`${option}${index}${optionIndex}`}
+          {testSubmittedConfirmation ? null : (
+            <>
+              <Form onSubmit={this.handleSubmit} onChange={this.handleOnChange}>
+                <QuestionsWrapper>
+                  {test_questions
+                    ? test_questions.map((question, index) => {
+                        return (
+                          <>
+                            <QuestionCardWrapper>
+                              <QuestionStatementContainer>
+                                <QuestionPrompt>
+                                  <QuestionNoSpan>
+                                    Problem&nbsp;{index + 1}
+                                  </QuestionNoSpan>
+                                  <QuestionStatement>
+                                    {question.statement}
+                                  </QuestionStatement>
+                                </QuestionPrompt>
+                                <MarksPrompt>
+                                  {question.maxMarks}&nbsp;pts
+                                </MarksPrompt>
+                              </QuestionStatementContainer>
+                              <QuestionsOptionsContainer>
+                                {question.type === 'MULTICORRECT' ? (
+                                  <>
+                                    <FormControl
+                                      component='fieldset'
+                                      className={classes.formControlForQuestion}
                                     >
-                                      {/* <label key={index} htmlFor={option}> */}
-                                      {option}
-                                      <CheckedInput
-                                        type='checkbox'
-                                        key={question.statement}
-                                        id={`${option}${index}${optionIndex}`}
-                                        name={index}
-                                        value={option}
-                                      />
-                                      <CheckedIndicator />
-                                    </CheckedLabel>
-                                  );
-                                })}
-                              </>
-                            ) : question.type === 'SINGLECORRECT' ? (
-                              <>
-                                {question.options.map((option, optionIndex) => {
-                                  return (
-                                    <RadioLabel
-                                      htmlFor={`${option}${index}${optionIndex}`}
+                                      {/* <FormLabel component='legend'>
+                                        Assign responsibility
+                                      </FormLabel> */}
+                                      <FormGroup>
+                                        {question.options.map((option) => {
+                                          return (
+                                            <OptionWrapper>
+                                              <FormControlLabel
+                                                // value={option}
+                                                // name={index}
+                                                control={
+                                                  <Checkbox
+                                                    name={index}
+                                                    value={option}
+                                                  />
+                                                }
+                                                label={`${option}`}
+                                              />
+                                            </OptionWrapper>
+                                          );
+                                        })}
+                                      </FormGroup>
+                                      {/* <FormHelperText>
+                                        Be careful
+                                      </FormHelperText> */}
+                                    </FormControl>
+                                  </>
+                                ) : question.type === 'SINGLECORRECT' ? (
+                                  <>
+                                    <FormControl
+                                      component='fieldset'
+                                      // className={classes.formControlForQuestion}
                                     >
-                                      {option}
-                                      <RadioInput
-                                        type='radio'
-                                        key={question.statement}
-                                        id={`${option}${index}${optionIndex}`}
+                                      {/* <FormLabel component='legend'>
+                                  Mark any one
+                                </FormLabel> */}
+                                      <RadioGroup
+                                        aria-label={`Q${index}`}
                                         name={index}
-                                        value={option}
-                                      />
-                                      <RadioIndicator />
-                                    </RadioLabel>
-                                  );
-                                })}
-                              </>
-                            ) : question.type === 'TYPED' ? (
-                              <>
-                                {/* <TextLabel htmlFor={index}>
+                                      >
+                                        {question.options.map((option) => {
+                                          return (
+                                            <OptionWrapper>
+                                              <FormControlLabel
+                                                value={option}
+                                                control={<Radio />}
+                                                label={`${option}`}
+                                                className={
+                                                  classes.formControlForQuestion
+                                                }
+                                              />
+                                            </OptionWrapper>
+                                          );
+                                        })}
+                                      </RadioGroup>
+                                    </FormControl>
+                                  </>
+                                ) : question.type === 'TYPED' ? (
+                                  <>
+                                    {/* <TextLabel htmlFor={index}>
                                 TYPE YOUR ANSWER :
                                 <TextInput
                                   type='text'
@@ -284,166 +426,45 @@ class TestPage extends React.Component {
                                 />
                                 <TextIndicator />
                               </TextLabel> */}
-                                <label htmlFor={index}>
-                                  TYPE YOUR ANSWER:
-                                  <input
-                                    type='text'
-                                    id={index}
-                                    name={index}
-                                  ></input>
-                                </label>
-                              </>
-                            ) : null}
-                          </QuestionsOptionsContainer>
-                        </QuestionCardWrapper>
-                      </>
-                    );
-                  })
-                : null}
-            </QuestionsWrapper>
-          </form>
-          {test_questions ? (
-            <>
-              {/* <div>QUESTIONS RECEIVED</div> */}
-              <BottomNav>
-                <TimerWrapper>
-                  <TimeHeader>Time Left :</TimeHeader>
-                  <Timer
-                    initialTime={testDuration * 60 * 1000}
-                    direction='backward'
-                    checkpoints={[
-                      {
-                        time: 0,
-                        callback: () => console.log('Time UP!'),
-                      },
-                      {
-                        time: 5000,
-                        callback: () => console.log('5 seconds left!'),
-                      },
-                    ]}
-                  >
-                    {() => (
-                      <React.Fragment>
-                        <TimeWrapper>
-                          <Timer.Hours />:
-                          <Timer.Minutes />:
-                          <Timer.Seconds />
-                        </TimeWrapper>
-                      </React.Fragment>
-                    )}
-                  </Timer>
-                </TimerWrapper>
-                <button onClick={this.handleSubmit}>SUBMIT THIS TEST</button>
-              </BottomNav>
+                                    {/* <label htmlFor={index}>
+                                      TYPE YOUR ANSWER:
+                                      <input
+                                        type='text'
+                                        id={index}
+                                        name={index}
+                                      ></input>
+                                    </label> */}
+                                    <TextField
+                                      name={index}
+                                      label={`Type your answer for Q${
+                                        index + 1
+                                      } here`}
+                                      // error={
+                                      //   this.state.errors.email ? true : false
+                                      // }
+                                      // helperText={`Type your answer here`}
+                                      variant='outlined'
+                                      multiline
+                                      // value={resp.email}
+                                    />
+                                  </>
+                                ) : null}
+                              </QuestionsOptionsContainer>
+                            </QuestionCardWrapper>
+                          </>
+                        );
+                      })
+                    : null}
+                </QuestionsWrapper>
+              </Form>
             </>
-          ) : null}
+          )}
+          {/* <form onChange={this.handleOnChange}>
+            <TestTitle>TEST : {testName}</TestTitle>
+          </form> */}
         </PageWrapper>
       </>
     );
-    // return (
-    //   <>
-    //     <StudentDashboardNavbar />
-    //     <AssignmentAndTestSidenav />
-    //     <PageWrapper>
-    //       <form onSubmit={this.handleSubmit} onChange={this.handleOnChange}>
-    //         <AssignmentTitle>TEST : {testName}</AssignmentTitle>
-    //         <QuestionsWrapper>
-    //           {/* {assignment_questions} */}
-    //           {test_questions
-    //             ? test_questions.map((question, index) => {
-    //                 return (
-    //                   <QuestionCardWrapper>
-    //                     <QuestionStatementContainer>
-    //                       {question.statement}
-    //                     </QuestionStatementContainer>
-    //                     <QuestionsOptionsContainer>
-    //                       {question.type === 'MULTICORRECT' ? (
-    //                         <>
-    //                           {question.options.map((option) => {
-    //                             return (
-    //                               <CheckedLabel htmlFor={option}>
-    //                                 {/* <label key={index} htmlFor={option}> */}
-    //                                 {option}
-    //                                 <CheckedInput
-    //                                   type='checkbox'
-    //                                   key={question.statement}
-    //                                   id={option}
-    //                                   name={index}
-    //                                   value={option}
-    //                                 />
-    //                                 <CheckedIndicator />
-    //                               </CheckedLabel>
-    //                             );
-    //                           })}
-    //                         </>
-    //                       ) : question.type === 'SINGLECORRECT' ? (
-    //                         <>
-    //                           {question.options.map((option) => {
-    //                             return (
-    //                               <RadioLabel htmlFor={option}>
-    //                                 {option}
-    //                                 <RadioInput
-    //                                   type='radio'
-    //                                   key={question.statement}
-    //                                   id={option}
-    //                                   name={index}
-    //                                   value={option}
-    //                                 />
-    //                                 <RadioIndicator />
-    //                               </RadioLabel>
-    //                             );
-    //                           })}
-    //                         </>
-    //                       ) : (
-    //                         <>
-    //                           <TextLabel htmlFor={option}>
-    //                             {option}
-    //                             <TextInput
-    //                               type='text'
-    //                               key={question.statement}
-    //                               id={option}
-    //                               name={index}
-    //                               value={option}
-    //                             />
-    //                             <TextIndicator />
-    //                           </TextLabel>
-    //                         </>
-    //                       )}
-    //                     </QuestionsOptionsContainer>
-    //                   </QuestionCardWrapper>
-    //                 );
-    //               })
-    //             : null}
-    //         </QuestionsWrapper>
-    //         <div>ARE YOU SURE YOU WANT TO SUBMIT? YOU CAN'T GO BACK...</div>
-    //         <button>Yes, Submit</button>
-    //       </form>
-    //       {/* For the time when SUBMIT TEST BUTTON IS CLICKED */}
-    //       {/* <div>
-    //         {isTestSubmitting ? (
-    //           <div>TEST IS SUBMITTING...PLEASE WAIT.</div>
-    //         ) : null}
-    //         {testSubmittedConfirmation ? (
-    //           <>
-    //             <div>TEST SUBMITTED SUCCESSFULLY</div>
-    //             <div>YOUR SCORE IS : {score}</div>
-    //             <div
-    //               onClick={this.handleSubmitSuccess}
-    //               style={{ background: 'orange', color: 'white' }}
-    //             >
-    //               GO BACK TO COURSE PAGE
-    //             </div>
-    //           </>
-    //         ) : null}
-    //         {testSubmissionFailed ? (
-    //           <>
-    //             <div>SUBMISSION FAILED, PLEASE TRY AGAIN...</div>
-    //           </>
-    //         ) : null}
-    //       </div> */}
-    //     </PageWrapper>
-    //   </>
-    // );
   }
 }
 
@@ -454,18 +475,20 @@ const mapStateToProps = createStructuredSelector({
   current_course_id: selectCurrentCourseId,
   test_questions: selectTestQuestions,
   testName: selectTestName,
-  test_message_from_backend: selectTestMessageFromBackend,
   testDuration: selectTestDuration,
+  test_message_from_backend: selectTestMessageFromBackend,
   isTestSubmitting: selectIsTestSubmitting,
   testSubmittedConfirmation: selectTestSubmittedConfirmationMessage,
   testSubmissionFailed: selectHasTestSubmissionFailed,
+  // testError : selectTesttReducerError,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   submitTestStart: (data) => dispatch(submitTestStart(data)),
+  // resetTestInfo: () => dispatch(resetTestInfo()),
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(TestPage));
+)(withRouter(withStyles(useStyles)(TestPage)));

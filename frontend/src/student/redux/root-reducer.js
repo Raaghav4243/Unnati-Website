@@ -30,7 +30,7 @@ const persistConfig = {
   key: 'root',
   storage,
   whitelist: [
-    // 'user',
+    'user',
     'allCourses',
     'cafeDetails',
     'courseTopicsAndCompletionDetails',

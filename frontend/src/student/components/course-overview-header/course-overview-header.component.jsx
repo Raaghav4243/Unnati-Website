@@ -15,7 +15,7 @@ const CourseOverviewHeader = (props) => {
     <CourseOverviewHeaderContainer>
       <CourseOverviewHeaderWrapper>
         <CourseNameWrapper>{name}</CourseNameWrapper>
-        <CourseFeesWrapper>${fees}</CourseFeesWrapper>
+        <CourseFeesWrapper> &#8377;{fees}</CourseFeesWrapper>
         <CourseAvailableAtWrapper>
           <AvailableAtTitle>Available at:</AvailableAtTitle>
           <span style={{ color: 'white', fontWeight: '100' }}> | </span>

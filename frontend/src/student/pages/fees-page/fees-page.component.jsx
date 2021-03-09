@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import CustomPaginationActionsTable from '../../components/fees-table/styled-table-component';
+// import CustomPaginationActionsTable from '../../components/fees-table/styled-table-component';
 // import { fetchCourseTopicsStart } from '../../redux/course-topic/course-topic.sagas';
 import { fetchFeeAmountStart } from '../../redux/fee-amount/fee-amount.actions';
 import { fetchFeeDetailStart } from '../../redux/fee-details/fee-details.actions';
@@ -17,8 +17,8 @@ import {
 // import ProfileSideNav from '../../components/SideNav/SideNav';
 // import StyledButton from '../../../teacher/components/button-component/styled-button';
 
-import { FeesCard } from './fees-card.component';
-import StudentFeesSummary from '../../components/fees-summary/fees-summary.component';
+// import { FeesCard } from './fees-card.component';
+// import StudentFeesSummary from '../../components/fees-summary/fees-summary.component';
 
 import {
   PageContainer,

@@ -5,7 +5,7 @@ export const CardWrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   width: 250px;
-  height: 180px;
+  min-height: 180px;
   border-radius: 12px;
   /* border: 1px solid black; */
   padding: 1rem;
@@ -45,14 +45,20 @@ export const TitleWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  /* border: 1px solid blue; */
+  padding-left: 1rem;
+  /* word-wrap: break-word; */
 `;
 
-export const Title = styled.div`
+export const Title = styled.p`
   font-size: 24px;
   font-weight: 500;
   color: #ffffff;
   display: flex;
-  width: 80%;
+  width: 100%;
+  -ms-word-break: break-word;
+  word-break: break-word;
+  white-space: pre-wrap;
 `;
 
 export const ProgressWrapper = styled.div`

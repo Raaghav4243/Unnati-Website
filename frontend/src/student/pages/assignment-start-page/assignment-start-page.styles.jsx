@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ReactComponent as UnnatiSVG } from '../../icons/UnnatiTree.svg';
+import { ReactComponent as AssignmentSVG } from '../../icons/clipboard.svg';
 
 export const AssignmentStartPageWrapper = styled.div`
   width: 100%;
@@ -25,7 +25,7 @@ export const LogoWrapper = styled.div`
   border-radius: 50%;
 `;
 
-export const UnnatiLogo = styled(UnnatiSVG)`
+export const AssignmentLogo = styled(AssignmentSVG)`
   /* background-color: #fff; */
   /* fill: #fff; */
 `;

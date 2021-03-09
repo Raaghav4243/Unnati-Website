@@ -6,7 +6,8 @@ export const CourseMediaContainer = styled.div`
   border-radius: 10px;
   width: 100%;
   max-width: 394px;
-  max-height: 230px;
+  min-height: 230px;
+
   padding: 0.25rem;
   margin: 5px 15px;
   display: flex;

@@ -31,7 +31,7 @@ import Alert from '@material-ui/lab/Alert';
 import {
   AssignmentStartPageWrapper,
   LogoWrapper,
-  UnnatiLogo,
+  AssignmentLogo,
   Title,
   AssignmentTitleWrapper,
   AssignmentPrompt,
@@ -125,7 +125,7 @@ class AssignmentStartPage extends React.Component {
       <>
         <AssignmentStartPageWrapper>
           <LogoWrapper>
-            <UnnatiLogo style={{ height: '80px', fill: 'white' }} />
+            <AssignmentLogo style={{ height: '80px' }} />
           </LogoWrapper>
           <Title>{current_assignment_name}</Title>
           <AssignmentPrompt>

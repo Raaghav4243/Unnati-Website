@@ -22,12 +22,15 @@ export const LogoWrapper = styled.div`
   align-items: center;
   /* max-height: 50px; */
 `;
-export const NameWrapper = styled.div`
+export const NameWrapper = styled.p`
   width: 65%;
   font-size: 1.5rem;
   font-weight: 500;
   display: flex;
   font-family: 'Montserrat', sans-serif;
+  -ms-word-break: break-word;
+  word-break: break-word;
+  white-space: pre-wrap;
 
   /* justify-content: center; */
   /* align-items: center; */

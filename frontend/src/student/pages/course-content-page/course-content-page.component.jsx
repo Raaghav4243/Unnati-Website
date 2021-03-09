@@ -25,7 +25,7 @@ import {
   PageWrapper,
   SelectTopicWrapper,
   LogoWrapper,
-  UnnatiLogo,
+  ChooseTopicLogo,
   Title,
 } from './course-content-page.styles';
 import AssignmentStartPageContainer from '../assignment-start-page/assignment-start-page.container';
@@ -101,7 +101,7 @@ class CourseContentPage extends React.Component {
               {/* <div>SELECT A TOPIC</div> */}
               <SelectTopicWrapper>
                 <LogoWrapper>
-                  <UnnatiLogo style={{ height: '80px', fill: 'white' }} />
+                  <ChooseTopicLogo style={{ height: '80px' }} />
                 </LogoWrapper>
                 <Title>
                   Nothing to show, click on topic to expand and select the

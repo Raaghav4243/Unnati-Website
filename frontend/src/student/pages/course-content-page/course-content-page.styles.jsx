@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ReactComponent as UnnatiSVG } from '../../icons/UnnatiTree.svg';
+import { ReactComponent as ChooseTopicSVG } from '../../icons/timeline.svg';
 
 export const PageWrapper = styled.div`
   margin-top: 75px;
@@ -46,9 +46,9 @@ export const LogoWrapper = styled.div`
   border-radius: 50%;
 `;
 
-export const UnnatiLogo = styled(UnnatiSVG)`
+export const ChooseTopicLogo = styled(ChooseTopicSVG)`
   /* background-color: #fff; */
-  fill: #fff;
+  stroke: grey;
 `;
 
 export const Title = styled.div`

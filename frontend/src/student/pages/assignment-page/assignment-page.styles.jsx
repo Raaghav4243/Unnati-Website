@@ -20,17 +20,22 @@ export const AssignmentNavbar = styled.div`
 export const ButtonWrapper = styled.div`
   /* width: 100%; */
   /* border: 4px solid red; */
+  margin-left: 2rem;
 `;
 
-export const TimePrompt = styled.div`
-  color: #fff;
+export const NavRight = styled.div`
+  /* width: 100%; */
+  /* border: 4px solid red; */
+  display: flex;
+  padding: 0 0 0 1rem;
+  justify-content: space-between;
 `;
 
 export const PageWrapper = styled.div`
   /* width: 100%; */
-  min-height: calc(100vh - 75px);
+  min-height: calc(100vh - 75px - 66px);
   margin-top: calc(75px + 66px);
-  padding: 2rem;
+  padding: 0.75rem 2rem;
   margin-left: 300px;
   /* border: 4px solid blue; */
   /* background: #ffedbc; */
@@ -46,6 +51,23 @@ export const PageWrapper = styled.div`
     margin-left: 0;
     margin-right: 0;
   }
+`;
+
+export const TimerWrapper = styled.div`
+  /* left: 10; */
+  /* background-color: red; */
+  display: flex;
+  color: #fff;
+`;
+
+export const TimeHeader = styled.div`
+  font-size: 20px;
+  display: flex;
+`;
+
+export const TimeWrapper = styled.div`
+  font-size: 20px;
+  font-weight: bolder;
 `;
 
 export const Form = styled.form`
@@ -170,7 +192,9 @@ export const ResponseSheet = styled.div`
 export const Scorecard = styled.div`
   width: 100%;
   margin-bottom: 1.5rem;
-  border: 1px solid #bababa;
+  background: #eeeded;
+
+  /* border: 1px solid #bababa; */
   border-radius: 6px;
   padding: 1rem 2rem;
   min-height: 50px;

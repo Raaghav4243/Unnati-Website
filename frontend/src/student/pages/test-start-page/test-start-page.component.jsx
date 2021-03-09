@@ -28,7 +28,7 @@ import Alert from '@material-ui/lab/Alert';
 import {
   TestStartPageWrapper,
   LogoWrapper,
-  UnnatiLogo,
+  TestLogo,
   Title,
   TestPrompt,
   PromptField,
@@ -97,7 +97,7 @@ class TestStartPage extends React.Component {
       <>
         <TestStartPageWrapper>
           <LogoWrapper>
-            <UnnatiLogo style={{ height: '80px', fill: 'white' }} />
+            <TestLogo style={{ height: '80px' }} />
           </LogoWrapper>
           <Title>{current_test_name}</Title>
           <TestPrompt>

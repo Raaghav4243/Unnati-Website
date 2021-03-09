@@ -5,7 +5,7 @@ export const CardWrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   width: 250px;
-  height: 130px;
+  min-height: 130px;
   border-radius: 12px;
   /* border: 1px solid black; */
   padding: 0.5rem 1rem;
@@ -44,6 +44,8 @@ export const TitleWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-left: 1rem;
+  /* border: 1px solid blue; */
 `;
 
 export const Title = styled.div`
@@ -51,7 +53,10 @@ export const Title = styled.div`
   font-weight: 500;
   color: #ffffff;
   display: flex;
-  width: 80%;
+  width: 100%;
+  -ms-word-break: break-word;
+  word-break: break-word;
+  white-space: pre-wrap;
 `;
 
 export const ButtonWrapper = styled.div`

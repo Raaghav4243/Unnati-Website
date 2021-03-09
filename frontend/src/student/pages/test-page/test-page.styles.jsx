@@ -7,20 +7,53 @@ export const TestPageContainer = styled.div`
   /* border: 1px solid red; */
 `;
 
+export const TestNavbar = styled.div`
+  background: #1a1919;
+  /* background-color: #4f4f4f; */
+  min-height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  position: fixed;
+  top: 75px;
+  z-index: 10;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.07);
+  /* border: 10px solid orange; */
+  width: 100%;
+  padding: 0.75rem 2rem;
+`;
+
+export const ButtonWrapper = styled.div`
+  /* width: 100%; */
+  /* border: 4px solid red; */
+  margin-left: 2rem;
+`;
+
+export const NavRight = styled.div`
+  /* width: 100%; */
+  /* border: 4px solid red; */
+  display: flex;
+  padding: 0 0 0 1rem;
+  justify-content: space-between;
+`;
+
+export const TimePrompt = styled.div`
+  color: #fff;
+`;
+
 export const PageWrapper = styled.div`
-  margin-top: 90px;
-  margin-left: 320px;
-  margin-right: 20px;
+  /* width: 100%; */
+  min-height: calc(100vh - 75px- 66px);
+  margin-top: calc(75px + 66px);
+  padding: 0.75rem 2rem;
+  margin-left: 300px;
+  /* border: 4px solid blue; */
+  /* background: #ffedbc; */
   display: flex;
   flex-direction: column;
-
-  /* flex-wrap: wrap; */
-  /* overflow: s; */
-  min-height: 500px;
-  /* height: calc(100vh - 90px); */
-  /* height: calc(100vh-75px); */
-  width: calc(100% - 340px);
-  /* border: 4px solid red; */
+  /* justify-content: center; */
+  align-items: center;
 
   @media screen and (max-width: 768px) {
     /* font-size: 20px; */
@@ -29,6 +62,115 @@ export const PageWrapper = styled.div`
     margin-left: 0;
     margin-right: 0;
   }
+`;
+
+export const Form = styled.form`
+  width: 100%;
+  /* margin-left: 300px; */
+  /* max-width: 500px; */
+  /* border: 4px solid red; */
+`;
+
+export const QuestionsWrapper = styled.div`
+  /* border: 4px solid blue; */
+  /* padding: 1rem; */
+  width: 100%;
+  /* max-width: calc(800px + 1rem); */
+  /* margin-top: 20px; */
+  /* border-top: 8px solid #ffc222; */
+  /* border-radius: 8px; */
+  /* padding: 1rem; */
+`;
+export const QuestionCardWrapper = styled.div`
+  background-color: #fff;
+  /* border: 4px solid blue; */
+  /* width: 100%; */
+  margin-bottom: 1.5rem;
+  /* border: 1px solid #bababa; */
+  border-radius: 6px;
+  /* padding: 1.5rem; */
+  /* min-height: 170px; */
+
+  /* min-height: 200px;
+  width: 800px;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  padding: 20px;
+  margin-bottom: 15px; */
+`;
+
+export const QuestionStatementContainer = styled.div`
+  /* font-size: 18px; */
+  margin-bottom: 0.5rem;
+  background: #f5f5f5;
+  display: flex;
+  /* border: 4px solid red; */
+  border-radius: 6px;
+  min-height: 70px;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+`;
+
+export const QuestionPrompt = styled.div`
+  /* font-weight: 600; */
+  /* border: 2px solid orange; */
+  display: flex;
+  flex-direction: column;
+`;
+
+export const QuestionStatement = styled.div`
+  font-weight: 600;
+  font-size: 18px;
+  /* border: 2px solid orange; */
+`;
+
+export const QuestionNoSpan = styled.div`
+  /* font-weight: 600; */
+  /* width: 100%; */
+  /* border: 1px solid red; */
+  color: #393939;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+`;
+export const MarksPrompt = styled.div`
+  /* font-weight: 600; */
+  /* border: 2px solid orange; */
+  font-size: 20px;
+  font-family: Montserrat, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const QuestionsOptionsContainer = styled.div`
+  font-size: 10px;
+  display: flex;
+  flex-direction: column;
+  /* border: 2px solid blue; */
+  width: 100%;
+  /* padding: 1rem; */
+`;
+
+export const OptionWrapper = styled.div`
+  /* font-size: 18px; */
+  margin-bottom: 0.25rem;
+  background: #f5f5f5;
+  display: flex;
+  /* border: 4px solid red; */
+  border-radius: 6px;
+  /* min-height: 70px; */
+  padding: 0.5rem 1rem;
+  display: flex;
+  background: ${({ status }) => {
+    console.log('STATUS IS', status);
+    return status ? `${status}` : null;
+  }};
+  /* justify-content: space-between; */
+  /* flex-wrap: wrap; */
 `;
 
 export const BottomNav = styled.div`
@@ -56,10 +198,12 @@ export const TimerWrapper = styled.div`
   /* left: 10; */
   /* background-color: red; */
   display: flex;
+  color: #fff;
 `;
 
 export const TimeHeader = styled.div`
   font-size: 20px;
+  display: flex;
 `;
 
 export const TimeWrapper = styled.div`
@@ -71,28 +215,28 @@ export const TestTitle = styled.div`
   font-size: 20px;
   margin-bottom: 10px;
 `;
-export const QuestionsWrapper = styled.div``;
-export const QuestionCardWrapper = styled.div`
-  background-color: #f5f5f5;
-  min-height: 200px;
-  max-width: 800px;
-  width: 100%;
-  border-radius: 6px;
-  margin-bottom: 10px;
-  padding: 1rem;
-`;
-export const QuestionStatementContainer = styled.div`
-  font-size: 20px;
-  display: flex;
-  flex-wrap: wrap;
-`;
-export const QuestionsOptionsContainer = styled.div`
-  font-size: 10px;
-  display: flex;
-  flex-direction: column;
-  margin-left: 40px;
-  margin-top: 10px;
-`;
+// export const QuestionsWrapper = styled.div``;
+// export const QuestionCardWrapper = styled.div`
+//   background-color: #f5f5f5;
+//   min-height: 200px;
+//   max-width: 800px;
+//   width: 100%;
+//   border-radius: 6px;
+//   margin-bottom: 10px;
+//   padding: 1rem;
+// `;
+// export const QuestionStatementContainer = styled.div`
+//   font-size: 20px;
+//   display: flex;
+//   flex-wrap: wrap;
+// `;
+// export const QuestionsOptionsContainer = styled.div`
+//   font-size: 10px;
+//   display: flex;
+//   flex-direction: column;
+//   margin-left: 40px;
+//   margin-top: 10px;
+// `;
 
 export const RadioLabel = styled.label`
   /* input[type='radio'] {
