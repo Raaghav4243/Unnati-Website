@@ -30,6 +30,7 @@ import {
   Prompt,
   PopupWrapper,
   ContactDetails,
+  CafeIcon,
 } from './cafe-details.styles';
 
 const TeacherCafeDetails = ({
@@ -44,10 +45,7 @@ const TeacherCafeDetails = ({
           <CafeTitle>Cafe Details</CafeTitle>
           <CafeDetailsWrapper>
             <CafeLogo>
-              <img
-                src={CafeImage}
-                style={{ height: '100px', width: '100px' }}
-              />
+              <CafeIcon/>
             </CafeLogo>
             <CafeDetails>
               <CafeName>{cafeName}</CafeName>
