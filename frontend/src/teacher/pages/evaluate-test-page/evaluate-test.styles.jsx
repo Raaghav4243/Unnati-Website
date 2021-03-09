@@ -124,17 +124,19 @@ flex-direction: column;
 export const Questions = styled.div`
 margin-left: 3vw;
 margin-top: 2vh;
-font-size: 20px;
+font-size: 22px;
 `
 export const Answers = styled.div`
-margin-left: 3vw;
-margin-top: 1vh;
+margin: 2vh 0 1vh 3vw;
+font-family: 'Montserrat';
+font-size: 18px;
 
 `
 export const QuestionAnswers = styled.div`
 display: flex;
 flex-direction: column;
 width:50vw;
+height: auto;
 
 `
 export const QuestionAndMarksWrapper = styled.div`

@@ -76,7 +76,13 @@ class TeacherDashboardFeesPage extends React.Component {
     const data = { amount, remarks };
     const { feeUpdateStart } = this.props;
     feeUpdateStart(userId, data);
-    window.location.reload()
+    this.setState({
+      FeeAmount: null,
+      Remarks: null,
+      name: null,
+      fee: null,
+      remarks: null,
+    })
   };
 
   render() {
@@ -109,11 +115,6 @@ class TeacherDashboardFeesPage extends React.Component {
                     </InputLabel>
                     <Select
                       onChange={this.handleNameChange}
-                      label="Age"
-                      inputProps={{
-                        name: "age",
-                        id: "outlined-age-native-simple",
-                      }}
                     >
                       <option aria-label="None" value="none">
                         NONE
