@@ -123,7 +123,7 @@ export const Container = styled.div`
   flex-direction: column;
 `;
 export const DiscoverCoursesCardWrapper = styled.div`
-  width: 100%;
-  display: -webkit-box;
-  overflow-x: auto;
+width: 100%;
+display: -webkit-box;
+overflow-x: auto;
 `;
