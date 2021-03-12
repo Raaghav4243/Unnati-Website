@@ -5,11 +5,13 @@ import TextField from "@material-ui/core/TextField/TextField";
 //redux
 import { fetchUserCafeStart } from "../../redux/cafe/cafe.actions";
 import { selectUserCafeDetails } from "../../redux/cafe/cafe.selectors";
-//import { selectCurrentUserId } from '../../redux/user/user.selectors';
+// import { selectCurrentUserId } from '../../redux/user/user.selectors';
 
 //components
 // import EnrolledCourseCard from '../../components/enrolled-course-card/enrolled-course-card.component';
 import TeacherCafeDetails from "../../components/cafe-details/cafe-details.component";
+// import StyledButton from "../../components/button-component"
+
 
 import {
   PageContainer,
@@ -17,6 +19,7 @@ import {
   PageWrapper,
   ButtonWrapper,
   TestWrapper,
+  ButtonWrapperdiv,
   QuestionsWrapper,
   Questions,
   Answers,
@@ -30,6 +33,8 @@ import TeacherDashboardSidenav from "../../components/teacher-dashboard-sidenav/
 import { selectTestCourseId, selectTestDetails } from "../../redux/test-sheet/test-sheet.selectors";
 import { updateTestScoreStart } from "../../redux/test-evaluation/test-evaluation-list.actions";
 import { Link } from "react-router-dom";
+import Button from "@material-ui/core/Button/Button";
+
 
 class EvaluateTestPage extends React.Component {
   constructor(props){
@@ -136,6 +141,7 @@ class EvaluateTestPage extends React.Component {
                             id={index}
                             label="Enter Marks"
                             variant="outlined"
+                            // fullWidth="true"
                             style={{ maxWidth: 115 }}
                             onChange={this.handleChange}
                           />
@@ -147,7 +153,19 @@ class EvaluateTestPage extends React.Component {
                 : null}
             </QuestionsWrapper>
             <Link to='/teacher/testcheck'>
-            <ButtonWrapper onClick={this.handleSubmit}>Submit Score</ButtonWrapper>
+            <ButtonWrapperdiv>
+              <Button
+                variant="contained"
+                color="primary"
+                size="large"
+                fullWidth="true"
+                onClick={this.handleSubmit}
+              >
+                Submit
+              </Button>
+            </ButtonWrapperdiv>
+
+            {/* <ButtonWrapper onClick={this.handleSubmit}>Submit Score</ButtonWrapper> */}
             </Link>
           </PageWrapper>
         </PageContainer>

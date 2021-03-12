@@ -93,6 +93,7 @@ margin-top: 5vh;
 border: none;
 outline:none;
 `;
+
 export const ButtonWrapperdiv = styled.div`
 width: 11vw;
 height:5.7vh;

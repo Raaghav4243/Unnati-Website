@@ -15,6 +15,7 @@ display: flex;
 margin-top: 11vh;
 margin-left: 21vw; 
  flex-direction: column;
+  // border: 4px solid yellow;
 `;
 
 export const CafeDetailsParentWrapper = styled.div`
