@@ -28,7 +28,9 @@ class TeacherTestCheck extends React.Component {
 
     const rows = [
   
-      //createData(1, 'Raaghav', 'Raj', 1),
+      createData(1, 'Raaghav', 'Raj', 1),
+      createData(1, 'Raaghav', 'Raj', 1),
+      createData(1, 'Raaghav', 'Raj', 1),
       
 ];
 
