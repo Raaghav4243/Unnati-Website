@@ -117,3 +117,18 @@ export const ImageWrapper = styled.img`
 margin-left: 5vw;
 margin-top: 3vh;
 `;
+
+export const PopupWrapper= styled.div`
+width: 100%;
+/* height: 120px; */
+/* padding: 2.5vh 2.5vw 2.5vh 2.5vw; */
+padding: 20px;
+border: 2px solid orange;
+border-radius: 10px;
+background-color: #f48c06;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+
+`;

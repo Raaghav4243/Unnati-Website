@@ -27,7 +27,6 @@ export const CafeDetailsParentWrapper = styled.div`
 
 export const TableWrapper = styled.div`
  width: 1000px;
- margin-left: 1vh;
  margin-top:0.5vh;
 `;
 

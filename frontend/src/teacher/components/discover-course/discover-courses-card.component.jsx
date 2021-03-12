@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { ReactComponent as MSExcelLogo } from '../../icons/excel.svg';
+import { ReactComponent as DiscoverCourseLogo } from '../../icons/discover-course.svg';
 // import { setCurrentCourse } from '../../redux/student/student.actions';
 
 import {
@@ -26,7 +26,7 @@ const DiscoverCourseCard = ({
     <CardWrapper>
       <CardTitle>
         <LogoWrapper>
-          <MSExcelLogo style={{ height: '100%', width: '100%' }} />
+          <DiscoverCourseLogo style={{ height: '100%', width: '100%' }} />
         </LogoWrapper>
         <TitleWrapper>
           <Title>{courseName}</Title>
@@ -34,12 +34,12 @@ const DiscoverCourseCard = ({
       </CardTitle>
       <ButtonWrapper>
         <ExploreButton
-          onClick={() => {
+           onClick={() => {
             setCurrentCourseForOverview(courseId);
-            history.push(`/student/discover`);
+            history.push(`/discover`);
           }}
         >
-          {enrolled ? 'Already Purchased!' : 'Explore More'}
+       Explore More
         </ExploreButton>
       </ButtonWrapper>
     </CardWrapper>
