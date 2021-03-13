@@ -16,6 +16,7 @@ import {
   TextTitle
 } from "./teacher-approval.styles";
 import ApproveStudentTableContainer from "../../components/teacher-approval.page/teacher-approval.container";
+import { PageContainer, PageWrapper } from "../Profile-page/profile-page.styles";
 
 class TeacherApproval extends React.Component {
   componentDidMount(){
@@ -44,12 +45,12 @@ class TeacherApproval extends React.Component {
     const {approveConfirmation} = this.props
     return (
       <>
-        <TeacherDashboardNavbar></TeacherDashboardNavbar>
-        <Body>
-          <TeacherDashboardSidenav></TeacherDashboardSidenav>
-          <CafeTableWrapper>
+      <PageContainer>
+        <TeacherDashboardNavbar/>
+          <TeacherDashboardSidenav/>
+          <PageWrapper>
           <CafeDetailsParentWrapper> 
-              <TeacherCafeDetails></TeacherCafeDetails>
+              <TeacherCafeDetails/>
               </CafeDetailsParentWrapper >
               <TextTitle>Approve Students</TextTitle>
             <TableWrapper>
@@ -59,8 +60,8 @@ class TeacherApproval extends React.Component {
               }
               <ApproveStudentTableContainer rows={rows}></ApproveStudentTableContainer>
             </TableWrapper>
-          </CafeTableWrapper>
-        </Body>
+          </PageWrapper>
+        </PageContainer>
       </>
     );
   }

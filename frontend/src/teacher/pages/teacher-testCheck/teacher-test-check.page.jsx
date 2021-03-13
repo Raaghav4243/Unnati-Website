@@ -8,6 +8,7 @@ import CustomPaginationActionsTable from '../../components/teacher-testCheck/sty
 import { fetchTestListForEvaluationStart } from '../../redux/test-evaluation/test-evaluation-list.actions';
 import { selectTestList } from '../../redux/test-evaluation/test-evaluation-list.selectors';
 import { selectTestDetails } from '../../redux/test-sheet/test-sheet.selectors';
+import { PageContainer, PageWrapper } from '../evaluate-test-page/evaluate-test.styles';
 import {
   CafeDetailsParentWrapper,
   Body,
@@ -57,12 +58,11 @@ class TeacherTestCheck extends React.Component {
     }
 
     return (
-      <>
+      <><PageContainer>
         <TeacherDashboardNavbar></TeacherDashboardNavbar>
-        <Body>
-          {/* <ContainedButtons></ContainedButtons> */}
           <TeacherDashboardSidenav></TeacherDashboardSidenav>
-          <CafeTableWrapper>
+          <PageWrapper>
+       
             <CafeDetailsParentWrapper>
               <TeacherCafeDetails></TeacherCafeDetails>
             </CafeDetailsParentWrapper>
@@ -73,8 +73,8 @@ class TeacherTestCheck extends React.Component {
               ></CustomPaginationActionsTable>
               {/* <EnhancedTable2></EnhancedTable2> */}
             </TableWrapper>
-          </CafeTableWrapper>
-        </Body>
+          </PageWrapper>
+        </PageContainer>
       </>
     );
   }

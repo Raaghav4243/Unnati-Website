@@ -68,7 +68,6 @@ class TeacherDashboardLandingPage extends React.Component {
                               );
                             })
                             : null}
-                    {/* <DiscoverCourseCard/> */}
           </DiscoverCoursesCardWrapper>
         </Container>
         </DiscoverCourseParentWrapper>

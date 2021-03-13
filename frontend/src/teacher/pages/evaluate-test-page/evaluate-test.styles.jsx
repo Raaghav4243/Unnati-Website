@@ -15,12 +15,13 @@ export const CafeDetailsParentWrapper = styled.div`
   /* border: 4px solid yellow; */
 `;
 export const PageWrapper = styled.div`
-  margin-top: 90px;
+margin-top: 90px;
   margin-left: 21vw;
   /* margin-right: 20px; */
   display: flex;
   flex-direction: column;
   /* flex-wrap: wrap; */
+  /* overflow: scroll; */
   /* min-height: calc(100vh - 100px); */
   /* height: calc(100vh - 90px); */
   /* height: calc(100vh-75px); */
@@ -35,6 +36,7 @@ export const PageWrapper = styled.div`
     /* margin-right: 0; */
   }
 `;
+
 export const TextTitle = styled.div`
 width: 100%;
   height: 25px;

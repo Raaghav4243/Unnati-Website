@@ -6,6 +6,7 @@ import TeacherDashboardNavbar from '../../components/teacher-dashboard-navbar/te
 import TeacherDashboardSidenav from '../../components/teacher-dashboard-sidenav/teacher-dashboard-sidenav.component';
 import { selectVerifiedStudents } from '../../redux/verified-students/verified-student.selectors';
 import { fetchVerifiedStudentStart } from '../../redux/verified-students/verified-students.actions';
+import { PageContainer, PageWrapper } from '../Profile-page/profile-page.styles';
 import EnrolledStudentsTableContainer from './teacher-enrolled.container';
 
 import {
@@ -45,11 +46,11 @@ class TeacherEnrolledStudents extends React.Component {
 
     return (
       <>
-        <TeacherDashboardNavbar></TeacherDashboardNavbar>
-        <Body>
-          <TeacherDashboardSidenav></TeacherDashboardSidenav>
-          <CafeTableWrapper>
-            <CafeDetailsParentWrapper>
+        <PageContainer>
+        <TeacherDashboardNavbar/>
+        <TeacherDashboardSidenav/>
+        <PageWrapper>
+          <CafeDetailsParentWrapper>
               <TeacherCafeDetails></TeacherCafeDetails>
             </CafeDetailsParentWrapper>
             <TextTitle>Enrolled Students</TextTitle>
@@ -58,8 +59,8 @@ class TeacherEnrolledStudents extends React.Component {
                 rows={rows}
               ></EnrolledStudentsTableContainer>
             </TableWrapper>
-          </CafeTableWrapper>
-        </Body>
+          </PageWrapper>
+        </PageContainer>
       </>
     );
   }

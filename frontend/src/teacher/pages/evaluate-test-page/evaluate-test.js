@@ -83,10 +83,10 @@ class EvaluateTestPage extends React.Component {
   render() {
     const { test } = this.props;
     return (
-      <>
-        <PageContainer>
-          <TeacherDashboardNavbar />
-          <TeacherDashboardSidenav />
+      <>  
+      <PageContainer>
+      <TeacherDashboardNavbar></TeacherDashboardNavbar>
+        <TeacherDashboardSidenav></TeacherDashboardSidenav>
           <PageWrapper>
             <CafeDetailsParentWrapper>
               <TeacherCafeDetails />
@@ -158,7 +158,7 @@ class EvaluateTestPage extends React.Component {
                 variant="contained"
                 color="primary"
                 size="large"
-                fullWidth="true"
+                // fullWidth="true"
                 onClick={this.handleSubmit}
               >
                 Submit
@@ -168,7 +168,7 @@ class EvaluateTestPage extends React.Component {
             {/* <ButtonWrapper onClick={this.handleSubmit}>Submit Score</ButtonWrapper> */}
             </Link>
           </PageWrapper>
-        </PageContainer>
+       </PageContainer>
       </>
     );
   }

@@ -37,8 +37,10 @@ class StudentDashboardSidenav extends React.Component {
     signOutStart();
 
     if (isUserSignedIn) {
-    } else {
+    }
+     else {
       console.log('USER HAS SIGNED OUT SO NOW GO BACK TO HOMEPAGE');
+      
       history.push('/');
     }
   };
@@ -61,7 +63,7 @@ class StudentDashboardSidenav extends React.Component {
               Change Password
             </SidenavLink>
             <SidenavLink to={`${match.path}/fees`}>Fees</SidenavLink>
-            <SignOutButton onClick={this.handleSignOut}>Sign Out</SignOutButton>
+            <SignOutButton onClick={this.handleSignOut} >Sign Out</SignOutButton>
           </Profile>
           <Dashboard>
             <DashboardTitle>Dashboard</DashboardTitle>
