@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Route } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 // import StyledButton from '../button-component/styled-button';
 
@@ -9,6 +9,7 @@ import {
   selectCurrentUser,
   selectCurrentUserFirstName,
   selectCurrentUserLastName,
+  selectIsUserSignedIn,
 } from '../../redux/user/user.selectors';
 
 // import { ReactComponent as ProfilePhoto } from '../../icons/profile-user.svg';
@@ -24,8 +25,7 @@ import {
   Dashboard,
   DashboardTitle,
 } from './teacher-dashboard-sidenav.styles';
-import {signOutStart} from '../../../student/redux/user/user.actions'
-import {selectIsUserSignedIn} from '../../../student/redux/user/user.selectors'
+import {signOutStart} from '../../redux/user/user.actions';
 
 class TeacherDashboardSidenav extends React.Component {
   constructor() {
@@ -34,13 +34,18 @@ class TeacherDashboardSidenav extends React.Component {
 
   handleSignOut = () => {
     const { signOutStart, isUserSignedIn, history } = this.props;
+    console.log('User wants to sign out');
     signOutStart();
 
     if (isUserSignedIn) {
-    } else {
+    }
+     else {
+      console.log('USER HAS SIGNED OUT SO NOW GO BACK TO HOMEPAGE');
+      <Route path="/"/>
       history.push('/');
     }
   };
+
 
   render() {
     const {firstName, history} = this.props;
@@ -56,10 +61,10 @@ class TeacherDashboardSidenav extends React.Component {
             <SidenavLink to={`/teacher/profile`}>
               Update Profile Info
             </SidenavLink>
-            <SidenavLink to={`/teacher/changepassword`}>
+            <SidenavLink to={`/teacher/profile`}>
               Change Password
             </SidenavLink>
-            <SignOutButton onClick={this.handleSignOut}>Sign Out</SignOutButton>
+            <SignOutButton onClick={this.handleSignOut} >Sign Out</SignOutButton>
             {/* <StyledButton onClick={this.handleSignOut}>Sign Out</StyledButton> */}
           </Profile>
           <Dashboard>
@@ -81,12 +86,15 @@ const mapStateToProps = createStructuredSelector({
   user: selectCurrentUser,
   firstName: selectCurrentUserFirstName,
   lastName: selectCurrentUserLastName,
-  isUserSignedIn: selectIsUserSignedIn
+  isUserSignedIn: selectIsUserSignedIn,
 });
 
+
 const mapDispatchToProps = (dispatch) => ({
-  signOutStart: () => dispatch(signOutStart())
-})
+  signOutStart: () => dispatch(signOutStart()),
+});
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(TeacherDashboardSidenav));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(TeacherDashboardSidenav));

@@ -2,10 +2,7 @@ import { createSelector } from 'reselect';
 
 const selectUser = (state) => state.user;
 
-export const selectCurrentUser = createSelector(
-  [selectUser],
-  (user) => user
-);
+export const selectCurrentUser = createSelector([selectUser], (user) => user);
 
 export const selectCurrentUserUserName = createSelector(
   [selectCurrentUser],
@@ -20,6 +17,11 @@ export const selectCurrentUserFirstName = createSelector(
 export const selectCurrentUserLastName = createSelector(
   [selectCurrentUser],
   (currentUser) => currentUser.lastName
+);
+
+export const selectCurrentUserId = createSelector(
+  [selectCurrentUser],
+  (currentUser) => currentUser._id
 );
 
 export const selectCurrentUserCafeId = createSelector(
@@ -41,7 +43,58 @@ export const selectCurrentUserRole = createSelector(
   [selectCurrentUser],
   (currentUser) => currentUser.role
 );
-export const selectCurrentUserId = createSelector(
+
+export const selectIsUserSigningIn = createSelector(
   [selectCurrentUser],
-  (currentUser) => currentUser._id
+  (currentUser) => currentUser.isUserSigningIn
+);
+
+export const selectIsUserSignedIn = createSelector(
+  [selectCurrentUser],
+  (currentUser) => currentUser.isUserSignedIn
+);
+
+export const selectDidUserSignInFail = createSelector(
+  [selectCurrentUser],
+  (currentUser) => currentUser.didUserSignInFail
+);
+
+export const selectIsUserSigningUp = createSelector(
+  [selectCurrentUser],
+  (currentUser) => currentUser.isUserSigningUp
+);
+
+export const selectWasSignUpSuccessful = createSelector(
+  [selectCurrentUser],
+  (currentUser) => currentUser.wasSignUpSuccessful
+);
+
+export const selectDidUserSignUpFail = createSelector(
+  [selectCurrentUser],
+  (currentUser) => currentUser.didUserSignUpFail
+);
+
+export const selectDidUserSignOutFail = createSelector(
+  [selectCurrentUser],
+  (currentUser) => currentUser.didUserSignOutFail
+);
+
+export const selectIsUserUpdating = createSelector(
+  [selectCurrentUser],
+  (currentUser) => currentUser.userIsUpdating
+);
+
+export const selectUpdateConfirmation = createSelector(
+  [selectCurrentUser],
+  (currentUser) => currentUser.updateConfirmation
+);
+
+export const selectUserUpdationFailed = createSelector(
+  [selectCurrentUser],
+  (currentUser) => currentUser.updationFailed
+);
+
+export const selectUserReducerError = createSelector(
+  [selectCurrentUser],
+  (currentUser) => currentUser.errorMessage
 );

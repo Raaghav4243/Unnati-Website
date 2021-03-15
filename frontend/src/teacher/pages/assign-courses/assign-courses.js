@@ -41,6 +41,7 @@ import { selectAllCourses } from "../../../student/redux/allCourses/all-courses.
 import { fetchAllCoursesStart } from "../../../student/redux/allCourses/all-courses.actions";
 import { courseAssignStart } from "../../redux/course-assign/course-assign.actions";
 import { selectCourseUpdateConfirmation } from "../../redux/course-assign/course-assign.selector";
+import Popup from "reactjs-popup";
 class TeacherDashboardAssignPage extends React.Component {
   constructor() {
     super();
@@ -96,9 +97,10 @@ class TeacherDashboardAssignPage extends React.Component {
               <TeacherCafeDetails />
             </CafeDetailsParentWrapper>
             <TextTitle>Assign Course to Student</TextTitle>
-            {updateConfirmation ? (
+            
+            {/* {updateConfirmation ? (
               <div style={{ color: "green" }}>Course assigned to student!</div>
-            ) : null}
+            ) : null} */}
             <DropDownWrapper>
               <StudentDropDown>
                 <StudentTitle>Student</StudentTitle>
@@ -169,7 +171,7 @@ class TeacherDashboardAssignPage extends React.Component {
                 </DropWrapper>
               </CourseDropDown>
             </DropDownWrapper>
-            <ButtonWrapperdiv>
+            <Popup trigger={<ButtonWrapperdiv>
               <Button
                 variant="contained"
                 color="primary"
@@ -179,7 +181,10 @@ class TeacherDashboardAssignPage extends React.Component {
               >
                 Assign
               </Button>
-            </ButtonWrapperdiv>
+            </ButtonWrapperdiv>} position="right center"> {updateConfirmation ? (
+              <div style={{ color: "green" }}>Course assigned to student!</div>
+            ) : <div style={{ color: "red" }}>Course assigned to student!</div>} </Popup>
+            
           </PageWrapper>
         </PageContainer>
       </>

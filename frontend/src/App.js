@@ -27,6 +27,7 @@ import TeacherProfile from './teacher/pages/Profile-page/profile-page.component'
 import TeacherChangePassword from './teacher/pages/change-password/change-password';
 import EvaluateTestPage from './teacher/pages/evaluate-test-page/evaluate-test';
 import TeacherDashboardLandingPage from './teacher/pages/teacher-dashboard-main-page/teacher-dashboard-page';
+
 import {
   selectCurrentUserId,
   selectCurrentUserRole,
@@ -148,6 +149,11 @@ class App extends React.Component {
               path='/teacher'
               exact
               component={TeacherDashboardLandingPage}
+            />
+            <Route
+              path='/teacher/overview'
+              exact
+              component={CourseOverview}
             />
             <Route
               path='/teacher/enrolled'

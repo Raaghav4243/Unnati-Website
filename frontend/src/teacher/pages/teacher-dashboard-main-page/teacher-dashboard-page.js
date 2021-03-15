@@ -30,7 +30,8 @@ class TeacherDashboardLandingPage extends React.Component {
     this.state = {
       userId: null,
       cafeId: null,
-      courseId: null
+      courseId: null,
+      courseName : null,
     }
   }
   componentDidMount() {
@@ -58,15 +59,15 @@ class TeacherDashboardLandingPage extends React.Component {
           <DiscoverCoursesCardWrapper>
                {allCourses
                         ? allCourses.map((course) => { 
-                            return(
+                            return( 
+                              course.courseName ? 
                                 <DiscoverCourseCard
                                 courseId={course._id}
                                 courseName={course.courseName}
-                              />
+                              /> : null
                               );
                             })
                             : null}
-                    <DiscoverCourseCard/>
           </DiscoverCoursesCardWrapper>
         </Container>
         </DiscoverCourseParentWrapper>

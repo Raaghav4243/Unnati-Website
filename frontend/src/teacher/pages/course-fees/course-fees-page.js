@@ -32,6 +32,7 @@ import { fetchVerifiedStudentStart } from "../../redux/verified-students/verifie
 import { selectVerifiedStudents } from "../../redux/verified-students/verified-student.selectors";
 import { feeUpdateStart } from "../../redux/fee-update/fee-update.actions";
 import { selectFeeUpdateConfirmation } from "../../redux/fee-update/fee-update.selector";
+import Popup from "reactjs-popup";
 class TeacherDashboardFeesPage extends React.Component {
   constructor() {
     super();
@@ -97,9 +98,7 @@ class TeacherDashboardFeesPage extends React.Component {
               <TeacherCafeDetails />
             </CafeDetailsParentWrapper>
             <TextTitle>Enter Fee</TextTitle>
-            {updateConfirmation ? (
-              <div style={{ color: "green" }}>{updateConfirmation}</div>
-            ) : null}
+           
             <DropDownWrapper>
               <StudentDropDown>
                 <StudentTitle>Student</StudentTitle>
@@ -158,7 +157,7 @@ class TeacherDashboardFeesPage extends React.Component {
                 </RemarksFieldWrapper>
               </RemarksWrapper>
             </DropDownWrapper>
-            <ButtonWrapperdiv>
+            <Popup trigger={<ButtonWrapperdiv>
               <Button
                 variant="contained"
                 color="primary"
@@ -168,7 +167,10 @@ class TeacherDashboardFeesPage extends React.Component {
               >
                 UPDATE
               </Button>
-            </ButtonWrapperdiv>
+            </ButtonWrapperdiv>} position="right"> {updateConfirmation ? (
+              <div style={{ color: "green" }}>{updateConfirmation}</div>
+            ) : <div style={{ color: "red" }}>Fees not updated</div>}</Popup>
+            
           </PageWrapper>
         </PageContainer>
       </>

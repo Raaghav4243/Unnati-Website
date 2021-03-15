@@ -9,13 +9,6 @@ export const Container = styled.div`
 width: 50vw;
 `;
 
-export const CafeDetailsParentWrapper = styled.div`
-  width: 100%;
-  margin-top: 15px;
-  margin-bottom: 15px;
-  /* min-height: 35%; */
-  /* border: 4px solid yellow; */
-`;
 
 export const CafeTableWrapper = styled.div`
 display: flex;
@@ -26,7 +19,7 @@ margin-left: 21vw;
 
 export const TableWrapper = styled.div`
  width: 1000px;
- margin-left: 1vh;
+ margin-top:0.5vh;
 `;
 
 export const CafeDetailWrapper = styled.div`
@@ -34,6 +27,34 @@ margin-top: 2vh;
 margin-left: 3vw;
 height: 35vh
 `
+export const CafeDetailsParentWrapper = styled.div`
+  width: 100%;
+  margin-bottom: 10px;
+  /* min-height: 35%; */
+  /* border: 4px solid yellow; */
+`;
+export const PageWrapper = styled.div`
+margin-top: 90px;
+  margin-left: 21vw;
+  /* margin-right: 20px; */
+  display: flex;
+  flex-direction: column;
+  /* flex-wrap: wrap; */
+  /* overflow: scroll; */
+  /* min-height: calc(100vh - 100px); */
+  /* height: calc(100vh - 90px); */
+  /* height: calc(100vh-75px); */
+  width: calc(100% - 320px);
+  /* border: 4px solid red; */
+
+  @media screen and (max-width: 768px) {
+    /* font-size: 20px; */
+    /* padding: 0 10px; */
+    width: 100%;
+    /* margin-left: 10px; */
+    /* margin-right: 0; */
+  }
+`;
 
 /* export const NavBar = styled.div`
 background: #ffffff;
