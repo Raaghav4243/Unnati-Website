@@ -1,15 +1,15 @@
-import React from "react";
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
-import arrows from "../../icons/arrows.svg";
-import InputLabel from "@material-ui/core/InputLabel";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
-import TextField from "@material-ui/core/TextField/TextField";
-import Button from "@material-ui/core/Button/Button";
-import { fetchUserCafeStart } from "../../redux/cafe/cafe.actions";
-import { selectUserCafeDetails } from "../../redux/cafe/cafe.selectors";
-import TeacherCafeDetails from "../../components/cafe-details/cafe-details.component";
+import React from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import arrows from '../../icons/arrows.svg';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import TextField from '@material-ui/core/TextField/TextField';
+import Button from '@material-ui/core/Button/Button';
+import { fetchUserCafeStart } from '../../redux/cafe/cafe.actions';
+import { selectUserCafeDetails } from '../../redux/cafe/cafe.selectors';
+import TeacherCafeDetails from '../../components/cafe-details/cafe-details.component';
 import {
   PageContainer,
   CafeDetailsParentWrapper,
@@ -25,14 +25,14 @@ import {
   ImageWrapper,
   RemarksFieldWrapper,
   RemarksWrapper,
-} from "./course-fees-styles";
-import TeacherDashboardNavbar from "../../components/teacher-dashboard-navbar/teacher-dashboard-navbar.component";
-import TeacherDashboardSidenav from "../../components/teacher-dashboard-sidenav/teacher-dashboard-sidenav.component";
-import { fetchVerifiedStudentStart } from "../../redux/verified-students/verified-students.actions";
-import { selectVerifiedStudents } from "../../redux/verified-students/verified-student.selectors";
-import { feeUpdateStart } from "../../redux/fee-update/fee-update.actions";
-import { selectFeeUpdateConfirmation } from "../../redux/fee-update/fee-update.selector";
-import Popup from "reactjs-popup";
+} from './course-fees-styles';
+import TeacherDashboardNavbar from '../../components/teacher-dashboard-navbar/teacher-dashboard-navbar.component';
+import TeacherDashboardSidenav from '../../components/teacher-dashboard-sidenav/teacher-dashboard-sidenav.component';
+import { fetchVerifiedStudentStart } from '../../redux/verified-students/verified-students.actions';
+import { selectVerifiedStudents } from '../../redux/verified-students/verified-student.selectors';
+import { feeUpdateStart } from '../../redux/fee-update/fee-update.actions';
+import { selectFeeUpdateConfirmation } from '../../redux/fee-update/fee-update.selector';
+import Popup from 'reactjs-popup';
 class TeacherDashboardFeesPage extends React.Component {
   constructor() {
     super();
@@ -46,10 +46,7 @@ class TeacherDashboardFeesPage extends React.Component {
     };
   }
   componentDidMount() {
-    const {
-      fetchUserCafeStart,
-      fetchVerifiedStudentStart,
-    } = this.props;
+    const { fetchUserCafeStart, fetchVerifiedStudentStart } = this.props;
     // if(allCourses is null), then fetchAllCoursesStart() as well.
     fetchUserCafeStart();
     fetchVerifiedStudentStart();
@@ -83,7 +80,7 @@ class TeacherDashboardFeesPage extends React.Component {
       name: null,
       fee: null,
       remarks: null,
-    })
+    });
   };
 
   render() {
@@ -91,87 +88,95 @@ class TeacherDashboardFeesPage extends React.Component {
     return (
       <>
         <PageContainer>
-          <TeacherDashboardNavbar />
-          <TeacherDashboardSidenav />
-          <PageWrapper>
-            <CafeDetailsParentWrapper>
-              <TeacherCafeDetails />
-            </CafeDetailsParentWrapper>
-            <TextTitle>Enter Fee</TextTitle>
-           
-            <DropDownWrapper>
-              <StudentDropDown>
-                <StudentTitle>Student</StudentTitle>
+          {/* <TeacherDashboardNavbar /> */}
+          {/* <TeacherDashboardSidenav /> */}
+          {/* <PageWrapper> */}
+          <CafeDetailsParentWrapper>
+            <TeacherCafeDetails />
+          </CafeDetailsParentWrapper>
+          <TextTitle>Enter Fee</TextTitle>
 
-                <DropWrapper>
-                  <FormControl
-                    variant="outlined"
-                    className="hello"
-                    style={{ minWidth: 150 }}
-                  >
-                    <InputLabel htmlFor="outlined-age-native-simple">
-                      Select
-                    </InputLabel>
-                    <Select
-                      onChange={this.handleNameChange}
-                    >
-                      <option aria-label="None" value="none">
-                        NONE
-                      </option>
-                      {verifiedStudents
-                        ? verifiedStudents.map((student, index) => {
-                            return (
-                              <option key={index} value={student._id}>
-                                {student.firstName}
-                              </option>
-                            );
-                          })
-                        : null}
-                    </Select>
-                  </FormControl>
-                </DropWrapper>
-              </StudentDropDown>
-              <ImageWrapper src={arrows} />
-              <CourseDropDown>
-                <CourseTitle>Fee Amount</CourseTitle>
-                <DropWrapper>
-                  <TextField
-                    id="filled-basic"
-                    label="Fees"
-                    variant="filled"
-                    onChange={this.handleFeeAmount}
-                    value={this.state.fee}
-                  />
-                </DropWrapper>
-              </CourseDropDown>
-              <RemarksWrapper>
-                <CourseTitle>Remarks</CourseTitle>
-                <RemarksFieldWrapper>
-                  <TextField
-                    id="filled-basic"
-                    label="Remarks"
-                    variant="filled"
-                    onChange={this.handleRemarks}
-                    value={this.state.remarks}
-                  />
-                </RemarksFieldWrapper>
-              </RemarksWrapper>
-            </DropDownWrapper>
-            <Popup trigger={<ButtonWrapperdiv>
-              <Button
-                variant="contained"
-                color="primary"
-                size="large"
-                fullWidth="true"
-                onClick={this.handleSubmit}
-              >
-                UPDATE
-              </Button>
-            </ButtonWrapperdiv>} position="right"> {updateConfirmation ? (
-              <div style={{ color: "green" }}>{updateConfirmation}</div>
-            ) : <div style={{ color: "red" }}>Fees not updated</div>}</Popup>
-            
-          </PageWrapper>
+          <DropDownWrapper>
+            <StudentDropDown>
+              <StudentTitle>Student</StudentTitle>
+
+              <DropWrapper>
+                <FormControl
+                  variant='outlined'
+                  className='hello'
+                  style={{ minWidth: 150 }}
+                >
+                  <InputLabel htmlFor='outlined-age-native-simple'>
+                    Select
+                  </InputLabel>
+                  <Select onChange={this.handleNameChange}>
+                    <option aria-label='None' value='none'>
+                      NONE
+                    </option>
+                    {verifiedStudents
+                      ? verifiedStudents.map((student, index) => {
+                          return (
+                            <option key={index} value={student._id}>
+                              {student.firstName}
+                            </option>
+                          );
+                        })
+                      : null}
+                  </Select>
+                </FormControl>
+              </DropWrapper>
+            </StudentDropDown>
+            <ImageWrapper src={arrows} />
+            <CourseDropDown>
+              <CourseTitle>Fee Amount</CourseTitle>
+              <DropWrapper>
+                <TextField
+                  id='filled-basic'
+                  label='Fees'
+                  variant='filled'
+                  onChange={this.handleFeeAmount}
+                  value={this.state.fee}
+                />
+              </DropWrapper>
+            </CourseDropDown>
+            <RemarksWrapper>
+              <CourseTitle>Remarks</CourseTitle>
+              <RemarksFieldWrapper>
+                <TextField
+                  id='filled-basic'
+                  label='Remarks'
+                  variant='filled'
+                  onChange={this.handleRemarks}
+                  value={this.state.remarks}
+                />
+              </RemarksFieldWrapper>
+            </RemarksWrapper>
+          </DropDownWrapper>
+          <Popup
+            trigger={
+              <ButtonWrapperdiv>
+                <Button
+                  variant='contained'
+                  color='primary'
+                  size='large'
+                  fullWidth='true'
+                  onClick={this.handleSubmit}
+                >
+                  UPDATE
+                </Button>
+              </ButtonWrapperdiv>
+            }
+            position='right'
+          >
+            {' '}
+            {updateConfirmation ? (
+              <div style={{ color: 'green' }}>{updateConfirmation}</div>
+            ) : (
+              <div style={{ color: 'red' }}>Fees not updated</div>
+            )}
+          </Popup>
+
+          {/* </PageWrapper> */}
         </PageContainer>
       </>
     );

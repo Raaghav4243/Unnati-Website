@@ -77,10 +77,11 @@ export const QuoteWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   color: grey;
-  font-size: 3rem;
-  padding: 0 1.25rem 2rem 1.25rem;
+  font-size: 8rem;
+  /* border: 1px solid red; */
+  padding: 0 1.25rem 12rem 1.25rem;
 `;
 
 export const InfoWrapper = styled.div`

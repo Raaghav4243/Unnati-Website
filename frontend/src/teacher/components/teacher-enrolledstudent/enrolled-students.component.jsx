@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles, useTheme ,withStyles} from '@material-ui/core/styles';
+import { makeStyles, useTheme, withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -17,7 +17,6 @@ import LastPageIcon from '@material-ui/icons/LastPage';
 import TableHead from '@material-ui/core/TableHead';
 import { createMuiTheme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-
 
 const theme = createMuiTheme({
   palette: {
@@ -87,24 +86,36 @@ function TablePaginationActions(props) {
       <IconButton
         onClick={handleFirstPageButtonClick}
         disabled={page === 0}
-        aria-label="first page"
+        aria-label='first page'
       >
         {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
       </IconButton>
-      <IconButton onClick={handleBackButtonClick} disabled={page === 0} aria-label="previous page">
-        {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+      <IconButton
+        onClick={handleBackButtonClick}
+        disabled={page === 0}
+        aria-label='previous page'
+      >
+        {theme.direction === 'rtl' ? (
+          <KeyboardArrowRight />
+        ) : (
+          <KeyboardArrowLeft />
+        )}
       </IconButton>
       <IconButton
         onClick={handleNextButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="next page"
+        aria-label='next page'
       >
-        {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+        {theme.direction === 'rtl' ? (
+          <KeyboardArrowLeft />
+        ) : (
+          <KeyboardArrowRight />
+        )}
       </IconButton>
       <IconButton
         onClick={handleLastPageButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="last page"
+        aria-label='last page'
       >
         {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
       </IconButton>
@@ -119,22 +130,20 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-
-
 const useStyles2 = makeStyles({
   table: {
     minWidth: 500,
   },
 });
 
- function EnrolledStudentsTableComponent(props) {
-  const rows = props.rows
+function EnrolledStudentsTableComponent(props) {
+  const rows = props.rows;
   const classes = useStyles2();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(3);
-  
 
-  const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+  const emptyRows =
+    rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -147,35 +156,36 @@ const useStyles2 = makeStyles({
 
   return (
     <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="custom pagination table">
-      <colgroup>
-      <col style={{width:'10%'}}/>
-      <col style={{width:'10%'}}/>
-      <col style={{width:'10%'}}/>
-      <col style={{width:'10%'}}/>
-      <col style={{width:'13%'}}/>
-   </colgroup>
-      <TableHead>
-           <TableRow >
-             <StyledTableCell align="center">ID</StyledTableCell>
-             <StyledTableCell align="center">First Name</StyledTableCell>
-             <StyledTableCell align="center">Last Name</StyledTableCell>
-             
-             <StyledTableCell align="center">Email</StyledTableCell>
-             
+      <Table className={classes.table} aria-label='custom pagination table'>
+        <colgroup>
+          <col style={{ width: '10%' }} />
+          <col style={{ width: '10%' }} />
+          <col style={{ width: '10%' }} />
+          <col style={{ width: '10%' }} />
+          <col style={{ width: '13%' }} />
+        </colgroup>
+        <TableHead>
+          <TableRow>
+            <StyledTableCell align='center'>ID</StyledTableCell>
+            <StyledTableCell align='center'>First Name</StyledTableCell>
+            <StyledTableCell align='center'>Last Name</StyledTableCell>
+
+            <StyledTableCell align='center'>Email</StyledTableCell>
           </TableRow>
-         </TableHead>
+        </TableHead>
         <TableBody>
           {(rowsPerPage > 0
             ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : rows
           ).map((row) => (
             <StyledTableRow key={row.name}>
-            <StyledTableCell align="center" component="th" scope="row">{row.ID}</StyledTableCell>
-            <StyledTableCell align="center">{row.FirstName}</StyledTableCell>
-            <StyledTableCell align="center">{row.LastName}</StyledTableCell>
-            
-            <StyledTableCell align="center">{row.email}</StyledTableCell>
+              <StyledTableCell align='center' component='th' scope='row'>
+                {row.ID}
+              </StyledTableCell>
+              <StyledTableCell align='center'>{row.FirstName}</StyledTableCell>
+              <StyledTableCell align='center'>{row.LastName}</StyledTableCell>
+
+              <StyledTableCell align='center'>{row.email}</StyledTableCell>
             </StyledTableRow>
           ))}
 
@@ -208,5 +218,4 @@ const useStyles2 = makeStyles({
   );
 }
 
-
-export default EnrolledStudentsTableComponent
+export default EnrolledStudentsTableComponent;

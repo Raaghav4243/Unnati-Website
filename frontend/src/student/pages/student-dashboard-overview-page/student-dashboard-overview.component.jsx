@@ -20,14 +20,15 @@ import { selectCurrentUserId } from '../../redux/user/user.selectors';
 // import EnrolledCourseCard from '../../components/enrolled-course-card/enrolled-course-card.component';
 import StudentCafeDetails from '../../components/cafe-details/cafe-details.component';
 
+import StudentEnrolledCoursesContainer from '../../components/enrolled-courses/enrolled-courses.container';
+import StudentDiscoverCourses from '../../components/discover-courses/discover-courses.component';
+
 import {
   PageContainer,
   CafeDetailsParentWrapper,
   EnrolledCoursesParentWrapper,
   DiscoverCourseParentWrapper,
 } from './student-dashboard-overview.styles';
-import StudentEnrolledCoursesContainer from '../../components/enrolled-courses/enrolled-courses.container';
-import StudentDiscoverCourses from '../../components/discover-courses/discover-courses.component';
 
 class StudentDashboardOverviewPage extends React.Component {
   componentDidMount() {

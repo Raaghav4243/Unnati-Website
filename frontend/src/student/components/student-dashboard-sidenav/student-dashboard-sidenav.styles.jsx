@@ -65,6 +65,7 @@ export const SidenavLink = styled(Link)`
   /* border: 1px solid blue; */
   padding-left: 10px;
   margin-bottom: 5px;
+  justify-content: flex-start;
 `;
 
 export const SignOutButton = styled.div`

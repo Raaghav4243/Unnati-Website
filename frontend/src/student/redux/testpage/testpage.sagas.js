@@ -1,15 +1,16 @@
 import { takeLatest, put, all, call, select } from 'redux-saga/effects';
 
 import {
+  fetchTestStart,
   fetchTestSuccess,
   fetchTestFailure,
   submitTestSuccess,
   submitTestFailure,
 } from './testpage.actions';
 
-import TestPageActionTypes from './testpage.types';
-
 import { selectCurrentUserId } from '../user/user.selectors';
+
+import TestPageActionTypes from './testpage.types';
 
 import {
   selectCurrentCourseId,
@@ -63,6 +64,7 @@ export function* submitTestStartAsync({ payload: { data } }) {
     console.log('TEST ID RECEIVED IS', testId);
 
     const questionPromises = data.map((questionAndUserResponse, index) => {
+      console.log('SUBMITTING ANSWER for Q: ', index);
       let questionId = questionAndUserResponse[0];
       let userResponseArray = questionAndUserResponse[1];
       return fetch(
@@ -118,16 +120,27 @@ export function* submitTestStartAsync({ payload: { data } }) {
   }
 }
 
+export function* fetchTestAgain() {
+  yield put(fetchTestStart());
+}
+
+export function* onSubmittingTest() {
+  yield takeLatest(TestPageActionTypes.SUBMIT_TEST_SUCCESS, fetchTestAgain);
+}
+export function* onfetchTestStart() {
+  yield takeLatest(TestPageActionTypes.FETCH_TEST_START, fetchTestAsync);
+}
+
 export function* submitTestStart() {
   yield takeLatest(TestPageActionTypes.SUBMIT_TEST_START, submitTestStartAsync);
 }
 
-export function* fetchTestStart() {
-  yield takeLatest(TestPageActionTypes.FETCH_TEST_START, fetchTestAsync);
-}
-
 export function* testSagas() {
-  yield all([call(fetchTestStart), call(submitTestStart)]);
+  yield all([
+    call(onfetchTestStart),
+    call(submitTestStart),
+    // call(onSubmittingTest),
+  ]);
 }
 
 // export function* testSagas() {

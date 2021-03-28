@@ -129,17 +129,28 @@ class TestStartPage extends React.Component {
                   {maxMarksPossible !== null ? ` / ${maxMarksPossible}` : null}
                 </TestMessage> */}
                 <PromptField>
-                  <FieldTitle>
-                    Your Teacher has evaluated the test and your marks are out.
-                  </FieldTitle>
                   <FieldValue>
+                    Your Teacher has evaluated the test and your marks are out.
+                  </FieldValue>
+                  {/* <FieldValue>
                     {' '}
                     {marksScoredOnTest !== null
-                      ? ` ${marksScoredOnTest}`
+                      ? `: ${marksScoredOnTest}`
                       : null}
                     {maxMarksPossible !== null
                       ? ` / ${maxMarksPossible}`
                       : null}
+                  </FieldValue> */}
+                </PromptField>
+                <PromptField>
+                  <FieldTitle>You have scored:</FieldTitle>
+                  <FieldValue>
+                    {' '}
+                    {marksScoredOnTest !== null ? `${marksScoredOnTest}` : null}
+                    {maxMarksPossible !== null
+                      ? ` / ${maxMarksPossible}`
+                      : null}{' '}
+                    marks
                   </FieldValue>
                 </PromptField>
               </>

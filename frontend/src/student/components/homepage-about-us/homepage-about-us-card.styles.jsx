@@ -20,7 +20,7 @@ export const AboutItem = styled.div`
     margin: 3rem 1rem;
   } */
 
-  margin: 3vw;
+  /* margin: 3vw; */
 `;
 
 export const ImgWrap = styled.div`

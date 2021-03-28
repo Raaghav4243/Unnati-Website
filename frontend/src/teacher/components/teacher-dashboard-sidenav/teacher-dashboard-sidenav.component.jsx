@@ -4,7 +4,6 @@ import { withRouter, Route } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 // import StyledButton from '../button-component/styled-button';
 
-
 import {
   selectCurrentUser,
   selectCurrentUserFirstName,
@@ -25,7 +24,7 @@ import {
   Dashboard,
   DashboardTitle,
 } from './teacher-dashboard-sidenav.styles';
-import {signOutStart} from '../../redux/user/user.actions';
+import { signOutStart } from '../../redux/user/user.actions';
 
 class TeacherDashboardSidenav extends React.Component {
   constructor() {
@@ -38,17 +37,15 @@ class TeacherDashboardSidenav extends React.Component {
     signOutStart();
 
     if (isUserSignedIn) {
-    }
-     else {
+    } else {
       console.log('USER HAS SIGNED OUT SO NOW GO BACK TO HOMEPAGE');
-      <Route path="/"/>
+      // <Route path='/' />;
       history.push('/');
     }
   };
 
-
   render() {
-    const {firstName, history} = this.props;
+    const { match, firstName } = this.props;
     return (
       <>
         <Container>
@@ -58,23 +55,33 @@ class TeacherDashboardSidenav extends React.Component {
           </PictureContainer>
           <Profile>
             <ProfileTitle>Profile</ProfileTitle>
-            <SidenavLink to={`/teacher/profile`}>
+            <SidenavLink to={`${match.path}/profile`}>
               Update Profile Info
             </SidenavLink>
-            <SidenavLink to={`/teacher/profile`}>
+            <SidenavLink to={`${match.path}/profile`}>
               Change Password
             </SidenavLink>
-            <SignOutButton onClick={this.handleSignOut} >Sign Out</SignOutButton>
+            <SignOutButton onClick={this.handleSignOut}>Sign Out</SignOutButton>
             {/* <StyledButton onClick={this.handleSignOut}>Sign Out</StyledButton> */}
           </Profile>
           <Dashboard>
             <DashboardTitle>Dashboard</DashboardTitle>
-            <SidenavLink to={`/teacher`}>View Dashboard</SidenavLink>
-            <SidenavLink to={`/teacher/enrolled`}>Enrolled Students</SidenavLink>
-            <SidenavLink to={`/teacher/approve`}>Approve Student</SidenavLink>
-            <SidenavLink to={`/teacher/testcheck`}>Evaluate Tests</SidenavLink>
-            <SidenavLink to={`/teacher/assign`}>Assign Course to Student</SidenavLink>
-            <SidenavLink to={`/teacher/studentfees`}>Enter Fee for Student</SidenavLink>
+            <SidenavLink to={`${match.path}`}>View Dashboard</SidenavLink>
+            <SidenavLink to={`${match.path}/enrolled`}>
+              Enrolled Students
+            </SidenavLink>
+            <SidenavLink to={`${match.path}/approve`}>
+              Approve Student
+            </SidenavLink>
+            <SidenavLink to={`${match.path}/testcheck`}>
+              Evaluate Tests
+            </SidenavLink>
+            <SidenavLink to={`${match.path}/assign`}>
+              Assign Course to Student
+            </SidenavLink>
+            <SidenavLink to={`${match.path}/studentfees`}>
+              Enter Fee for Student
+            </SidenavLink>
           </Dashboard>
         </Container>
       </>
@@ -88,7 +95,6 @@ const mapStateToProps = createStructuredSelector({
   lastName: selectCurrentUserLastName,
   isUserSignedIn: selectIsUserSignedIn,
 });
-
 
 const mapDispatchToProps = (dispatch) => ({
   signOutStart: () => dispatch(signOutStart()),

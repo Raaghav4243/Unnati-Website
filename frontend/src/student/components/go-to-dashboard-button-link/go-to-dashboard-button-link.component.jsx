@@ -20,7 +20,7 @@ const GoToDashboardButton = ({ left, right, scrollClass, userRole }) => {
           userRole === 'STUDENT'
             ? '/student/dashboard'
             : userRole === 'TEACHER'
-            ? '/teacher'
+            ? '/teacher/dashboard'
             : null
         }
         className={scrollClass ? 'scroll' : null}

@@ -1,44 +1,48 @@
-import React, { Component } from 'react';
-import UnnatiTree from '../../icons/UnnatiTree.svg';
+import MsWord from '../../icons/word.svg';
+import MsExcel from '../../icons/excel.svg';
+import MsPPT from '../../icons/powerpoint.svg';
+import Internet from '../../icons/internet.svg';
+import Bills from '../../icons/budget.svg';
+import English from '../../icons/dictionary.svg';
 
 export const CourseCardOne = {
-  img: UnnatiTree,
+  img: MsWord,
   alt: '',
-  title: 'LOREM IPSUM',
+  title: 'MS WORD',
   courseId: '5fa6bd6f4afbc52538b49afb',
 };
 
 export const CourseCardTwo = {
-  img: UnnatiTree,
+  img: MsExcel,
   alt: '',
-  title: 'LOREM IPSUM',
+  title: 'MS EXCEL',
   courseId: '5fa6bd6f4afbc52538b49afb',
 };
 
 export const CourseCardThree = {
-  img: UnnatiTree,
+  img: MsPPT,
   alt: '',
-  title: 'LOREM IPSUM',
+  title: 'MS POWERPOINT',
   courseId: '5fa6bd6f4afbc52538b49afb',
 };
 
 export const CourseCardFour = {
-  img: UnnatiTree,
+  img: Internet,
   alt: '',
-  title: 'LOREM IPSUM',
-  courseId: '5fa6bd6f4afbc52538b49afb',
+  title: 'BASICS OF INTERNET',
+  courseId: '600516e0054735403075103c',
 };
 
 export const CourseCardFive = {
-  img: UnnatiTree,
+  img: Bills,
   alt: '',
-  title: 'LOREM IPSUM',
+  title: 'PAYING BILLS',
   courseId: '5fa6bd6f4afbc52538b49afb',
 };
 
 export const CourseCardSix = {
-  img: UnnatiTree,
+  img: English,
   alt: '',
-  title: 'LOREM IPSUM',
+  title: 'ENGLISH LITERACY',
   courseId: '5fa6bd6f4afbc52538b49afb',
 };

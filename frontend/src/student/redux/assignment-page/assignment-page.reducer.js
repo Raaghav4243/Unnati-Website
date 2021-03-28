@@ -32,6 +32,8 @@ const assignmentReducer = (state = INITIAL_STATE, action) => {
         maxMarksPossible: null,
         questions: null,
         attemptsLeft: null,
+        submitConformation: false,
+        submissionFailed: false,
         errorMessage: null,
       };
     case AssignmentPageActionTypes.FETCH_ASSIGNMENT_SUCCESS:
@@ -59,8 +61,8 @@ const assignmentReducer = (state = INITIAL_STATE, action) => {
         return {
           ...state,
           isFetching: false,
-          submitConformation: null,
-          isAssignmentSubmitting: false,
+          // submitConformation: null,
+          // isAssignmentSubmitting: false,
           assignmentId: _id,
           assignmentName: assignmentName,
           // subjectName: subjectName,
@@ -89,7 +91,7 @@ const assignmentReducer = (state = INITIAL_STATE, action) => {
         ...state,
         isAssignmentSubmitting: false,
         submitConformation: action.payload,
-        submissionFailed: false,
+        // submissionFailed: false,
       };
     case AssignmentPageActionTypes.SUBMIT_ASSIGNMENT_FAILURE:
       return {

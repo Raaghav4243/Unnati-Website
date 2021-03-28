@@ -54,5 +54,10 @@ export const selectTestSubmittedConfirmationMessage = createSelector(
 
 export const selectHasTestSubmissionFailed = createSelector(
   [selectTestDetails],
-  (testDetails) => testDetails.submitConformation
+  (testDetails) => testDetails.submissionFailed
+);
+
+export const selectTestReducerError = createSelector(
+  [selectTestDetails],
+  (testDetails) => testDetails.errorMessage
 );

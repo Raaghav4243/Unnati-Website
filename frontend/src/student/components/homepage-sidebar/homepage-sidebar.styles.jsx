@@ -34,17 +34,21 @@ export const Icon = styled.div`
 
 export const SidebarWrapper = styled.div`
   color: #fff;
+  /* border: 1px solid red; */
 `;
 
-export const SidebarMenu = styled.ul`
+export const SidebarMenu = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(6, 80px);
+  grid-template-rows: repeat(3, 80px);
   text-align: center;
-
+  justify-items: center;
+  align-items: center;
   @media screen and (max-width: 480px) {
-    grid-template-rows: repeat(6, 60px);
+    grid-template-rows: repeat(3, 60px);
   }
+  /* display: flex;
+  flex-direction: column; */
 `;
 
 export const SidebarLink = styled(LinkS)`
@@ -60,7 +64,7 @@ export const SidebarLink = styled(LinkS)`
   cursor: pointer;
 
   &:hover {
-    color: #01bf71;
+    color: #000;
     transition: 0.2s ease-in-out;
   }
 `;
@@ -68,13 +72,14 @@ export const SidebarLink = styled(LinkS)`
 export const SideBtnWrap = styled.div`
   display: flex;
   justify-content: center;
+  margin-top: 1rem;
 `;
 
 export const SidebarRoute = styled(LinkR)`
-  border-radius: 50px;
-  background: #01bf71;
+  border-radius: 10px;
+  background: #f8971d;
   white-space: nowrap;
-  padding: 16px 64px;
+  padding: 12px 48px;
   color: #fff;
   font-size: 16px;
   outline: none;
@@ -87,6 +92,6 @@ export const SidebarRoute = styled(LinkR)`
     transition: all 0.3s ease-in-out;
     background: #fff;
     color: #010606;
-    transform: scale(1.2);
+    transform: scale(1.1);
   }
 `;

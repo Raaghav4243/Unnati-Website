@@ -50,6 +50,8 @@ import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
+import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn';
+import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 import { ReactComponent as CorrectIcon } from '../../icons/correct.svg';
 import { ReactComponent as IncorrectIcon } from '../../icons/x-button.svg';
 import { ReactComponent as UnattemptedIcon } from '../../icons/warn.svg';
@@ -233,7 +235,10 @@ class AssignmentPage extends React.Component {
   };
 
   handleSubmit = (e) => {
-    e.preventDefault();
+    if (e) {
+      e.preventDefault();
+    }
+
     const { assignment_questions, submitAssignmentStart } = this.props;
     const { resp } = this.state;
     console.log('SUBMITTING ASSIGNMENT NOW');
@@ -339,6 +344,13 @@ class AssignmentPage extends React.Component {
 
   componentWillUnmount() {
     const { resetAssignmentInfo } = this.props;
+    const { assignmentDone } = this.state;
+
+    // if (assignmentDone) {
+    // } else {
+    //   this.handleSubmit();
+    // }
+
     resetAssignmentInfo();
   }
 
@@ -398,7 +410,7 @@ class AssignmentPage extends React.Component {
                 // type='submit'
                 className={classes.button}
                 onClick={this.handleSubmitSuccess}
-                // startIcon={<SaveIcon />}
+                startIcon={<KeyboardReturnIcon />}
               >
                 Back to Course
               </Button>
@@ -413,7 +425,7 @@ class AssignmentPage extends React.Component {
                   type='submit'
                   className={classes.button}
                   onClick={this.handleSubmit}
-                  // startIcon={<SaveIcon />}
+                  startIcon={<AssignmentTurnedInIcon />}
                 >
                   Submit
                 </Button>

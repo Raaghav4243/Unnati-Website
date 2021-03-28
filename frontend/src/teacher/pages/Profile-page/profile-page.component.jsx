@@ -13,11 +13,9 @@ import {
   EditProfileWrapper,
   Title,
   ChangePasswordWrapper,
-  PageWrapper,
 } from './profile-page.styles';
 import ChangePasswordContainer from '../../components/change-password/change-password.container';
-import TeacherDashboardNavbar from '../../components/teacher-dashboard-navbar/teacher-dashboard-navbar.component';
-import TeacherDashboardSidenav from '../../components/teacher-dashboard-sidenav/teacher-dashboard-sidenav.component';
+
 class Profile extends React.Component {
   constructor(props) {
     super(props);
@@ -27,9 +25,6 @@ class Profile extends React.Component {
     return (
       <>
         <PageContainer>
-        <TeacherDashboardNavbar />
-          <TeacherDashboardSidenav />
-          <PageWrapper>
           <CafeDetailsParentWrapper>
             <TeacherCafeDetails />
           </CafeDetailsParentWrapper>
@@ -43,7 +38,6 @@ class Profile extends React.Component {
               <ChangePasswordContainer />
             </ChangePasswordWrapper>
           </Container>
-          </PageWrapper>
         </PageContainer>
       </>
     );

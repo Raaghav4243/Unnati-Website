@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
 import {
-  selectCurrentUser,
-  selectCurrentUserId,
+  // selectCurrentUser,
+  // selectCurrentUserId,
   selectIsUserSignedIn,
 } from '../../redux/user/user.selectors';
 
@@ -26,7 +26,7 @@ import {
   NavItem,
   NavLinks,
   NavbarRight,
-  NavBtnLink,
+  // NavBtnLink,
 } from './homepage-navbar.styles';
 
 class HomePageNavbar extends React.Component {
@@ -58,9 +58,9 @@ class HomePageNavbar extends React.Component {
     const { changedColor } = this.state;
     return (
       <>
-        <Nav scrollOn={changedColor}>
+        <Nav>
           <NavbarContainer>
-            <MobileIcon onClick={toggle} scrollOn={changedColor}>
+            <MobileIcon onClick={toggle}>
               <FaBars />
             </MobileIcon>
             <NavbarMiddle>
@@ -73,10 +73,10 @@ class HomePageNavbar extends React.Component {
                 offset={-120}
               >
                 <UnnatiLogo style={{ height: '60px' }} />
-                <NavName scrollOn={changedColor}>UNNATI</NavName>
+                <NavName>UNNATI</NavName>
               </NavLogo>
               <NavMenu>
-                <NavItem scrollOn={changedColor}>
+                <NavItem>
                   <NavLinks
                     to='home'
                     className='home'
@@ -85,51 +85,47 @@ class HomePageNavbar extends React.Component {
                     spy={true}
                     exact='true'
                     offset={-120}
-                    scrollOn={changedColor}
                   >
                     Home
                   </NavLinks>
                 </NavItem>
-                <NavItem scrollOn={changedColor}>
+                <NavItem>
                   <NavLinks
                     to='about'
                     smooth={true}
                     duration={500}
                     spy={true}
                     exact='true'
-                    offset={-50}
-                    scrollOn={changedColor}
+                    offset={10}
                   >
                     About Us
                   </NavLinks>
                 </NavItem>
-                <NavItem scrollOn={changedColor}>
+                <NavItem>
                   <NavLinks
                     to='courses'
                     smooth={true}
                     duration={500}
                     spy={true}
                     exact='true'
-                    offset={-70}
-                    scrollOn={changedColor}
+                    offset={0}
                   >
                     Courses
                   </NavLinks>
                 </NavItem>
-                <NavItem scrollOn={changedColor}>
+                <NavItem>
                   <NavLinks
                     to='testimonials'
                     smooth={true}
                     duration={500}
                     spy={true}
                     exact='true'
-                    offset={-100}
-                    scrollOn={changedColor}
+                    offset={0}
                   >
                     Student Stories
                   </NavLinks>
                 </NavItem>
-                <NavItem scrollOn={changedColor}>
+                <NavItem>
                   <NavLinks
                     to='footer'
                     className='contact'
@@ -138,7 +134,6 @@ class HomePageNavbar extends React.Component {
                     spy={true}
                     exact='true'
                     offset={-120}
-                    scrollOn={changedColor}
                   >
                     Contact Us
                   </NavLinks>

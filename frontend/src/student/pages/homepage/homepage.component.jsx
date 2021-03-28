@@ -23,12 +23,12 @@ class HomePage extends React.Component {
   }
 
   toggle = () => {
-    console.log('Toggle is called');
+    // console.log('Toggle is called');
     this.setState({ isOpen: !this.state.isOpen });
   };
 
   componentDidMount() {
-    console.log('HOMEPAGE MOUNTED!');
+    // console.log('HOMEPAGE MOUNTED!');
   }
 
   render() {

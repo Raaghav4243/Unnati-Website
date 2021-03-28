@@ -10,6 +10,7 @@ export const Container = styled.div`
   @media screen and (max-width: 1200px) {
     flex-direction: column;
     justify-content: center;
+    padding: 0 0.75rem 0 0;
   }
 `;
 export const CafeDetailsContainer = styled.div`

@@ -24,7 +24,7 @@ class StudentPage extends React.Component {
         <Route
           path={`${match.path}/discover`}
           exact
-          render={() => <CourseOverview forStudent />}
+          render={() => <CourseOverview forUser />}
           // component={CourseOverview}
         />
         {

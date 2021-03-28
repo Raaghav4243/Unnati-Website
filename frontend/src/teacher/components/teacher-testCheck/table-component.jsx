@@ -155,7 +155,7 @@ function CustomPaginationActionsTable(props) {
               <TableCell align='center'>{row.CourseName}</TableCell>
               <TableCell align='center'>{row.testName}</TableCell>
               <TableCell align='center'>
-                <Link to='/teacher/evaluatetest'>
+                <Link to='/teacher/dashboard/evaluate'>
                   <button
                     id={row.ButtonId}
                     color='#2196F3'

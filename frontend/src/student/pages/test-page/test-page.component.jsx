@@ -12,15 +12,20 @@ import {
   selectHasTestSubmissionFailed,
   selectTestName,
   selectTestDuration,
+  selectTestReducerError,
 } from '../../redux/testpage/testpage.selectors';
 
-import { submitTestStart } from '../../redux/testpage/testpage.actions';
+import {
+  resetTestInfo,
+  submitTestStart,
+} from '../../redux/testpage/testpage.actions';
 
 import {
   selectCurrentCourseId,
   selectCurrentCourseTopicId,
   selectCurrentCourseTopicName,
 } from '../../redux/student/student.selectors';
+
 import { selectCurrentUserId } from '../../redux/user/user.selectors';
 
 import AssignmentAndTestHeader from '../../components/assignment-test-header/assignment-test-header.component';
@@ -44,8 +49,16 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
+import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn';
+import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 
 import {
   TestNavbar,
@@ -87,6 +100,10 @@ import {
   // Options,
 } from './test-page.styles';
 // import questionData from './data';
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant='filled' {...props} />;
+}
 
 // material ui styling
 const useStyles = (theme) => ({
@@ -138,8 +155,23 @@ class TestPage extends React.Component {
       resp: {},
       // score: null,
       testDone: null,
+      exitPageConfirmation: false,
     };
   }
+
+  handleDialogClickOpen = () => {
+    // setOpen(true);
+    this.setState({
+      exitPageConfirmation: true,
+    });
+  };
+
+  handleDialogClose = () => {
+    this.setState({
+      exitPageConfirmation: false,
+    });
+    // setOpen(false);
+  };
 
   handleOnChange = (e) => {
     //console.log(e.target.value);
@@ -211,7 +243,10 @@ class TestPage extends React.Component {
     history.push('/student/course');
   };
 
-  handleSubmit = () => {
+  handleSubmit = (e) => {
+    if (e) {
+      e.preventDefault();
+    }
     const { test_questions, submitTestStart } = this.props;
     const { resp } = this.state;
     console.log('SUBMITTING TEST NOW');
@@ -223,11 +258,21 @@ class TestPage extends React.Component {
       data.push([question._id, resp[index]]);
     });
     console.log('DATA OBJECT BECOMES', data);
+    this.setState({ testDone: true });
     submitTestStart(data);
   };
 
   componentWillUnmount = () => {
     // SUBMIT TEST
+    const { resetTestInfo } = this.props;
+    const { testDone } = this.state;
+
+    if (testDone) {
+    } else {
+      this.handleSubmit();
+    }
+
+    resetTestInfo();
   };
 
   render() {
@@ -243,7 +288,7 @@ class TestPage extends React.Component {
       // assignmentSubmittedConfirmation,
       // assignmentSubmissionFailed,
     } = this.props;
-    const { score } = this.state;
+    // const { score } = this.state;
     console.log('TEST QUESTIONS RECIEVED', test_questions);
     console.log('TEST DURATION IS', testDuration);
 
@@ -268,7 +313,9 @@ class TestPage extends React.Component {
                 checkpoints={[
                   {
                     time: 0,
-                    callback: () => console.log('Time UP!'),
+                    callback: () => {
+                      console.log('Time UP!');
+                    },
                   },
                   {
                     time: 5000,
@@ -304,8 +351,8 @@ class TestPage extends React.Component {
                 size='large'
                 // type='submit'
                 className={classes.button}
-                onClick={this.backToCourse}
-                // startIcon={<SaveIcon />}
+                onClick={this.handleDialogClickOpen}
+                startIcon={<KeyboardReturnIcon />}
               >
                 Back to Course
               </Button>
@@ -320,7 +367,7 @@ class TestPage extends React.Component {
                   type='submit'
                   className={classes.button}
                   onClick={this.handleSubmit}
-                  // startIcon={<SaveIcon />}
+                  startIcon={<AssignmentTurnedInIcon />}
                 >
                   Submit
                 </Button>
@@ -459,6 +506,48 @@ class TestPage extends React.Component {
               </Form>
             </>
           )}
+
+          {/* For exit page confirmation */}
+          <Dialog
+            open={this.state.exitPageConfirmation}
+            onClose={this.handleDialogClose}
+            aria-labelledby='alert-dialog-title'
+            aria-describedby='alert-dialog-description'
+          >
+            {/* <DialogTitle id='alert-dialog-title'>
+              {"?"}
+            </DialogTitle> */}
+            <DialogContent>
+              <DialogContentText id='alert-dialog-description'>
+                Are you sure you want to exit without submitting?
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={this.handleDialogClose} color='primary'>
+                No
+              </Button>
+              <Button onClick={this.backToCourse} color='primary' autoFocus>
+                Yes
+              </Button>
+            </DialogActions>
+          </Dialog>
+
+          {/* For the time when SUBMIT ASSIGNMENT BUTTON IS CLICKED */}
+
+          <Backdrop className={classes.backdrop} open={isTestSubmitting}>
+            <CircularProgress color='inherit' />
+          </Backdrop>
+
+          {testSubmittedConfirmation ? (
+            <Alert severity='success' color='warning' className={classes.alert}>
+              Test Submitted Successfully!
+            </Alert>
+          ) : testSubmissionFailed ? (
+            <Alert severity='error' color='warning' className={classes.alert}>
+              `Submission Failed... {testError}`
+            </Alert>
+          ) : null}
+
           {/* <form onChange={this.handleOnChange}>
             <TestTitle>TEST : {testName}</TestTitle>
           </form> */}
@@ -480,12 +569,12 @@ const mapStateToProps = createStructuredSelector({
   isTestSubmitting: selectIsTestSubmitting,
   testSubmittedConfirmation: selectTestSubmittedConfirmationMessage,
   testSubmissionFailed: selectHasTestSubmissionFailed,
-  // testError : selectTesttReducerError,
+  testError: selectTestReducerError,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   submitTestStart: (data) => dispatch(submitTestStart(data)),
-  // resetTestInfo: () => dispatch(resetTestInfo()),
+  resetTestInfo: () => dispatch(resetTestInfo()),
 });
 
 export default connect(

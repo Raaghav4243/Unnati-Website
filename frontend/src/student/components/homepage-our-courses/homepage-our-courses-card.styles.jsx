@@ -3,8 +3,9 @@ import styled from 'styled-components';
 export const CourseItem = styled.div`
   height: 225px;
   width: 225px;
-  padding: 2rem;
-  margin: 3rem;
+  padding: 1rem;
+  /* margin: 3rem; */
+  /* transition: all 1s ease-in-out; */
   transition: box-shadow 0.5s ease-in-out;
 
   &:hover {
@@ -18,7 +19,8 @@ export const CourseItem = styled.div`
     }
 
     div {
-      height: 90%;
+      /* transition: display 1s ease-in-out; */
+      height: 80%;
     }
 
     div img {
@@ -26,13 +28,13 @@ export const CourseItem = styled.div`
     }
   }
 
-  @media screen and (max-width: 900px) and (min-width: 768px) {
+  /* @media screen and (max-width: 900px) and (min-width: 768px) {
     margin: 3rem 1rem;
-  }
+  } */
 `;
 
 export const ImgWrap = styled.div`
-  height: 95%;
+  height: 90%;
   text-align: center;
 `;
 
@@ -41,6 +43,8 @@ export const CourseItemImg = styled.img`
 `;
 
 export const CourseItemTitle = styled.h3`
-  margin: 1rem 0;
-  display: none;
+  margin: 0.75rem 0;
+  /* display: none; */
+  /* border: 1px solid red; */
+  text-align: center;
 `;

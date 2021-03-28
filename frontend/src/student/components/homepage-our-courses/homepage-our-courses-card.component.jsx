@@ -1,7 +1,10 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { setCurrentCourseForOverview } from '../../redux/course-overview/course-overview.actions';
+import {
+  // setCurrentCourseForOverview,
+  setCurrentCourseForOverviewForHome,
+} from '../../redux/course-overview/course-overview.actions';
 import {
   CourseItem,
   ImgWrap,
@@ -16,14 +19,14 @@ const CourseCard = ({
   history,
   match,
   courseId,
-  setCurrentCourseForOverview,
+  setCurrentCourseForOverviewForHome,
 }) => {
   return (
     <CourseItem
       onClick={() => {
         // set current course overview id
         console.log('DISPATCHING ACTION TO SET CURRENT OVERVIEW COURSE');
-        setCurrentCourseForOverview(courseId);
+        setCurrentCourseForOverviewForHome(courseId);
         console.log(history);
         console.log('COURSE ID', courseId);
         history.push(`${match.path}discover`);
@@ -41,8 +44,8 @@ const CourseCard = ({
 
 const mapDispatchToProps = (dispatch) => ({
   //   setCurrentCourse: (course_id) => dispatch(setCurrentCourse(course_id)),
-  setCurrentCourseForOverview: (courseId) =>
-    dispatch(setCurrentCourseForOverview(courseId)),
+  setCurrentCourseForOverviewForHome: (courseId) =>
+    dispatch(setCurrentCourseForOverviewForHome(courseId)),
 });
 
 export default connect(null, mapDispatchToProps)(withRouter(CourseCard));

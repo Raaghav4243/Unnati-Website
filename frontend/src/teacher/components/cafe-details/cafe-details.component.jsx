@@ -9,7 +9,7 @@ import {
   selectUserCafeNumberOfClassmates,
   selectUserCafeTeacherInChargeName,
 } from '../../redux/cafe/cafe.selectors';
-import Popup from "reactjs-popup";
+import Popup from 'reactjs-popup';
 import CafeImage from '../../assets/image.png';
 
 import {
@@ -33,11 +33,7 @@ import {
   CafeIcon,
 } from './cafe-details.styles';
 
-const TeacherCafeDetails = ({
-  cafeName,
-  cafeAddress,
-  studentnumber,
-}) => {
+const TeacherCafeDetails = ({ cafeName, cafeAddress, studentnumber }) => {
   return (
     <>
       <Container>
@@ -45,7 +41,7 @@ const TeacherCafeDetails = ({
           <CafeTitle>Cafe Details</CafeTitle>
           <CafeDetailsWrapper>
             <CafeLogo>
-              <CafeIcon/>
+              <CafeIcon />
             </CafeLogo>
             <CafeDetails>
               <CafeName>{cafeName}</CafeName>
@@ -53,13 +49,19 @@ const TeacherCafeDetails = ({
                 <strong>Address :</strong> {cafeAddress}
               </CafeAddress>
               <ButtonWrapper>
-              <Popup trigger={<ContactButton>Contact Admin</ContactButton>} position="right center">
-                <PopupWrapper>
-                  <ContactDetails>Admin Phone Number : 98237273823</ContactDetails>
-                  <ContactDetails>Enactus Email : enactusdtu@gmail.com</ContactDetails>
+                <Popup
+                  trigger={<ContactButton>Contact Admin</ContactButton>}
+                  position='right center'
+                >
+                  <PopupWrapper>
+                    <ContactDetails>
+                      Admin Phone Number : 98237273823
+                    </ContactDetails>
+                    <ContactDetails>
+                      Enactus Email : enactusdtu@gmail.com
+                    </ContactDetails>
                   </PopupWrapper>
-  </Popup>
-                
+                </Popup>
               </ButtonWrapper>
             </CafeDetails>
           </CafeDetailsWrapper>
@@ -83,4 +85,3 @@ const mapStateToProps = createStructuredSelector({
 });
 
 export default connect(mapStateToProps)(TeacherCafeDetails);
-

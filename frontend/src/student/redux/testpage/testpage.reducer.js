@@ -4,12 +4,11 @@ const INITIAL_STATE = {
   isFetching: false,
   isTestSubmitting: false,
   messageFromBackend: null,
-  testId: null,
-  testName: null,
-  // subjectName: null,
-  duration: null,
   marksScored: null,
   maxMarksPossible: null,
+  testId: null,
+  testName: null,
+  duration: null,
   questions: null,
   submitConformation: null,
   submissionFailed: false,
@@ -24,11 +23,11 @@ const testReducer = (state = INITIAL_STATE, action) => {
         isFetching: true,
         isTestSubmitting: false,
         messageFromBackend: null,
+        marksScored: null,
         testId: null,
         testName: null,
         // subjectName: null,
         duration: null,
-        marksScored: null,
         maxMarksPossible: null,
         questions: null,
         submitConformation: null,
@@ -95,7 +94,7 @@ const testReducer = (state = INITIAL_STATE, action) => {
         ...state,
         isTestSubmitting: false,
         submitConformation: action.payload,
-        submissionFailed: false,
+        // submissionFailed: false,
       };
     case TestPageActionTypes.SUBMIT_TEST_FAILURE:
       return {
@@ -103,6 +102,13 @@ const testReducer = (state = INITIAL_STATE, action) => {
         isTestSubmitting: false,
         submissionFailed: true,
         errorMessage: action.payload,
+      };
+    case TestPageActionTypes.RESET_TEST_INFO:
+      return {
+        ...state,
+        submitConformation: false,
+        submissionFailed: false,
+        errorMessage: null,
       };
     default:
       return state;

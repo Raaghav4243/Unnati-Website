@@ -8,7 +8,10 @@ import CustomPaginationActionsTable from '../../components/teacher-testCheck/sty
 import { fetchTestListForEvaluationStart } from '../../redux/test-evaluation/test-evaluation-list.actions';
 import { selectTestList } from '../../redux/test-evaluation/test-evaluation-list.selectors';
 import { selectTestDetails } from '../../redux/test-sheet/test-sheet.selectors';
-import { PageContainer, PageWrapper } from '../evaluate-test-page/evaluate-test.styles';
+import {
+  PageContainer,
+  PageWrapper,
+} from '../evaluate-test-page/evaluate-test.styles';
 import {
   CafeDetailsParentWrapper,
   Body,
@@ -28,14 +31,12 @@ class TeacherTestCheck extends React.Component {
     }
 
     const rows = [
-  
-      createData(1, 'Raaghav', 'Raj', 1),
-      createData(1, 'Raaghav', 'Raj', 1),
-      createData(1, 'Raaghav', 'Raj', 1),
-      
-];
+      // createData(1, 'Raaghav', 'Raj', 1),
+      // createData(1, 'Raaghav', 'Raj', 1),
+      // createData(1, 'Raaghav', 'Raj', 1),
+    ];
 
-    const { testList } = this.props
+    const { testList } = this.props;
     if (testList) {
       testList.map((list, index) => {
         let firstName = list.firstName;
@@ -58,22 +59,22 @@ class TeacherTestCheck extends React.Component {
     }
 
     return (
-      <><PageContainer>
-        <TeacherDashboardNavbar></TeacherDashboardNavbar>
-          <TeacherDashboardSidenav></TeacherDashboardSidenav>
-          <PageWrapper>
-       
-            <CafeDetailsParentWrapper>
-              <TeacherCafeDetails></TeacherCafeDetails>
-            </CafeDetailsParentWrapper>
-            <TextTitle>Evaluate Tests</TextTitle>
-            <TableWrapper>
-              <CustomPaginationActionsTable
-                rows={rows}
-              ></CustomPaginationActionsTable>
-              {/* <EnhancedTable2></EnhancedTable2> */}
-            </TableWrapper>
-          </PageWrapper>
+      <>
+        <PageContainer>
+          {/* <TeacherDashboardNavbar></TeacherDashboardNavbar> */}
+          {/* <TeacherDashboardSidenav></TeacherDashboardSidenav> */}
+          {/* <PageWrapper> */}
+          <CafeDetailsParentWrapper>
+            <TeacherCafeDetails></TeacherCafeDetails>
+          </CafeDetailsParentWrapper>
+          <TextTitle>Evaluate Tests</TextTitle>
+          <TableWrapper>
+            <CustomPaginationActionsTable
+              rows={rows}
+            ></CustomPaginationActionsTable>
+            {/* <EnhancedTable2></EnhancedTable2> */}
+          </TableWrapper>
+          {/* </PageWrapper> */}
         </PageContainer>
       </>
     );

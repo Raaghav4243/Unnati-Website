@@ -4,12 +4,16 @@ import {
   fetchCourseForOverviewStart,
   fetchCourseForOverviewSuccess,
   fetchCourseForOverviewFailure,
+  fetchCourseForOverviewForHomeStart,
+  fetchCourseForOverviewForHomeSuccess,
+  fetchCourseForOverviewForHomeFailure,
 } from './course-overview.actions';
 
 import CourseOverviewActionTypes from './course-overview.types';
 
 import { selectCurrentCourseOverviewId } from '../course-overview/course-overview.selectors';
 import { selectAllCourses } from '../allCourses/all-courses.selectors';
+import { selectCurrentUserCafeId } from '../user/user.selectors';
 
 // import { selectCurrentUserId } from '../user/user.selectors';
 
@@ -22,42 +26,97 @@ import { selectAllCourses } from '../allCourses/all-courses.selectors';
 export function* fetchCourseForOverviewAsync() {
   try {
     const currentCourseOverviewId = yield select(selectCurrentCourseOverviewId);
-    const allCourses = yield select(selectAllCourses);
-    if (allCourses && currentCourseOverviewId) {
-      try {
-        const CourseOverviewDetails = allCourses.find(
-          (course) => course._id === currentCourseOverviewId
-        );
+    const cafeId = yield select(selectCurrentUserCafeId);
 
-        console.log('Course Overview Object is ', CourseOverviewDetails);
+    let courseOverviewDetails = yield fetch(
+      `/cafe/${cafeId}/coursedetail/${currentCourseOverviewId}`
+    );
 
-        CourseOverviewDetails
-          ? yield put(fetchCourseForOverviewSuccess(CourseOverviewDetails))
-          : yield put(fetchCourseForOverviewFailure("Course Doesn't Exist..."));
-      } catch (error) {
-        yield put(fetchCourseForOverviewFailure(error));
-      }
-    } else {
-      yield put(
-        fetchCourseForOverviewFailure(
-          "Sorry we couldn't find courses for you..."
-        )
-      );
-    }
+    courseOverviewDetails = yield courseOverviewDetails.json();
+
+    console.log('courseOverviewDetails are ', courseOverviewDetails);
+
+    courseOverviewDetails.done
+      ? yield put(fetchCourseForOverviewSuccess(courseOverviewDetails))
+      : yield put(fetchCourseForOverviewFailure(courseOverviewDetails.message));
   } catch (error) {
     yield put(fetchCourseForOverviewFailure(error));
   }
 }
 
+export function* fetchCourseForOverviewForHomeAsync() {
+  try {
+    const currentCourseOverviewId = yield select(selectCurrentCourseOverviewId);
+    const allCourses = yield select(selectAllCourses);
+    if (allCourses && currentCourseOverviewId) {
+      try {
+        const courseOverviewDetails = allCourses.find(
+          (course) => course._id === currentCourseOverviewId
+        );
+
+        console.log('courseOverviewDetails is ', courseOverviewDetails);
+
+        let courseOverviewFeesDetails = yield fetch(
+          `/course-fees/${currentCourseOverviewId}`
+        );
+
+        courseOverviewFeesDetails = yield courseOverviewFeesDetails.json();
+
+        console.log(
+          'courseOverviewFeesDetails are ',
+          courseOverviewFeesDetails
+        );
+
+        let courseDetailsObject = {};
+
+        if (courseOverviewFeesDetails.done && courseOverviewDetails) {
+          courseDetailsObject['generalDetails'] = courseOverviewDetails;
+          courseDetailsObject['feesDetails'] = courseOverviewFeesDetails;
+        }
+
+        courseOverviewFeesDetails.done && courseOverviewDetails
+          ? yield put(fetchCourseForOverviewForHomeSuccess(courseDetailsObject))
+          : yield put(
+              fetchCourseForOverviewForHomeFailure(
+                courseOverviewFeesDetails.message
+              )
+            );
+      } catch (error) {
+        yield put(fetchCourseForOverviewForHomeFailure(error));
+      }
+    } else {
+      yield put(
+        fetchCourseForOverviewForHomeFailure(
+          "Sorry we couldn't find courses for you..."
+        )
+      );
+    }
+  } catch (error) {
+    yield put(fetchCourseForOverviewForHomeFailure(error));
+  }
+}
+
 export function* fetchCourseForOverviewStartOnSetCourseForOverview() {
-  console.log('Event listener for set course invoked');
+  // console.log('Event listener for set course invoked');
   yield put(fetchCourseForOverviewStart());
+}
+
+export function* fetchCourseForOverviewForHomeStartOnSetCourseForOverviewForHome() {
+  // console.log('Event listener for set course invoked');
+  yield put(fetchCourseForOverviewForHomeStart());
 }
 
 export function* fetchCourseForOverviewStartAsync() {
   yield takeLatest(
     CourseOverviewActionTypes.FETCH_COURSE_FOR_OVERVIEW_START,
     fetchCourseForOverviewAsync
+  );
+}
+
+export function* fetchCourseForOverviewForHomeStartAsync() {
+  yield takeLatest(
+    CourseOverviewActionTypes.FETCH_COURSE_FOR_OVERVIEW_FOR_HOME_START,
+    fetchCourseForOverviewForHomeAsync
   );
 }
 
@@ -68,9 +127,18 @@ export function* onSetCourseForOverview() {
   );
 }
 
+export function* onSetCourseForOverviewForHome() {
+  yield takeLatest(
+    CourseOverviewActionTypes.SET_CURRENT_COURSE_FOR_OVERVIEW_FOR_HOME,
+    fetchCourseForOverviewForHomeStartOnSetCourseForOverviewForHome
+  );
+}
+
 export function* courseOverviewSagas() {
   yield all([
     call(fetchCourseForOverviewStartAsync),
+    call(fetchCourseForOverviewForHomeStartAsync),
     call(onSetCourseForOverview),
+    call(onSetCourseForOverviewForHome),
   ]);
 }

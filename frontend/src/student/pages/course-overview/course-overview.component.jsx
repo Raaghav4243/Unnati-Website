@@ -20,12 +20,14 @@ import {
 } from './course-overview.styles';
 import { fetchCourseForOverviewStart } from '../../redux/course-overview/course-overview.actions';
 import {
+  selectCurrentCourseOverviewAvailableAt,
   selectCurrentCourseOverviewId,
   selectCurrentCourseOverviewName,
   selectCurrentCourseOverviewPrice,
   selectCurrentCourseOverviewSummary,
 } from '../../redux/course-overview/course-overview.selectors';
 import CourseNavbar from '../../components/course-navbar/course-navbar.component';
+import { selectUserCafeName } from '../../redux/cafe/cafe.selectors';
 
 class CourseOverview extends React.Component {
   constructor(props) {
@@ -48,7 +50,7 @@ class CourseOverview extends React.Component {
     const {
       // course_name,
       // course_fees,
-      course_available_at,
+      // course_available_at,
       // course_summary,
       course_image,
     } = this.state.course_details;
@@ -57,17 +59,21 @@ class CourseOverview extends React.Component {
       courseSummary,
       coursePrice,
       forHome,
-      forStudent,
+      forUser,
+      courseAvailableAt,
+      cafeName,
     } = this.props;
     return (
       <>
         {forHome ? <StudentNavbar /> : null}
-        {forStudent ? <CourseNavbar /> : null}
+        {forUser ? <CourseNavbar /> : null}
         <CourseOverviewWrapper>
           <CourseOverviewHeader
             name={courseName}
             fees={coursePrice}
-            availableAt={course_available_at}
+            availableAt={courseAvailableAt}
+            forUser={forUser ? forUser : null}
+            cafeName={forUser ? cafeName : null}
           />
           <CourseLowerContainer>
             <CourseLowerWrapper>
@@ -86,6 +92,8 @@ const mapStateToProps = createStructuredSelector({
   courseName: selectCurrentCourseOverviewName,
   courseSummary: selectCurrentCourseOverviewSummary,
   coursePrice: selectCurrentCourseOverviewPrice,
+  courseAvailableAt: selectCurrentCourseOverviewAvailableAt,
+  cafeName: selectUserCafeName,
 });
 
 export default connect(mapStateToProps)(CourseOverview);

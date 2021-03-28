@@ -5,37 +5,22 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { ThemeProvider } from '@material-ui/styles';
 import { websiteTheme } from './material-ui.styles';
 import './App.css';
-// import AssignmentPage from './student/pages/assignment-page/assignment-page.component';
 
 import HomePage from './student/pages/homepage/homepage.component';
 import CourseOverview from './student/pages/course-overview/course-overview.component';
 import StudentPage from './student/pages/student-page/student-page.component';
-// import FeesPage from './student/pages/FeesPage/App';
 
-import Profile from './student/pages/Profile-page/profile-page.component';
-import TestPage from './student/pages/test-page/test-page.component';
-import cafeteacher from './teacher/pages/teacher-enrolledstudent/teacher-enrolledstudent';
+import TeacherPage from './teacher/pages/teacher-page/teacher-page.component';
 import SignInAndSignUpPage from './student/pages/signup-and-signin-page/signup-and-signin-page.component';
 
-import TeacherDashboardAssignPage from './teacher/pages/assign-courses/assign-courses';
-import TeacherDashboardFeesPage from './teacher/pages/course-fees/course-fees-page';
-
-import TeacherEnrolledStudents from './teacher/pages/teacher-enrolledstudent/teacher-enrolledstudent';
-import TeacherApproval from './teacher/pages/teacher-approval/teacher-approval.page';
-import TeacherTestCheck from './teacher/pages/teacher-testCheck/teacher-test-check.page';
-import TeacherProfile from './teacher/pages/Profile-page/profile-page.component';
-import TeacherChangePassword from './teacher/pages/change-password/change-password';
-import EvaluateTestPage from './teacher/pages/evaluate-test-page/evaluate-test';
-import TeacherDashboardLandingPage from './teacher/pages/teacher-dashboard-main-page/teacher-dashboard-page';
-
 import {
-  selectCurrentUserId,
+  // selectCurrentUserId,
   selectCurrentUserRole,
   selectDidUserSignInFail,
   selectIsUserSignedIn,
 } from './student/redux/user/user.selectors';
 import { checkUserSession } from './student/redux/user/user.actions';
-import { Button } from '@material-ui/core';
+// import { Button } from '@material-ui/core';
 import {
   fetchAllCafesStart,
   fetchAllCoursesStart,
@@ -91,7 +76,7 @@ const PrivateTeacherRoute = ({ component: Component, ...rest }) => {
 
 class App extends React.Component {
   componentDidMount() {
-    console.log('APP.JS HAS MOUNTED.');
+    // console.log('APP.JS HAS MOUNTED.');
     const {
       checkUserSession,
       fetchAllCoursesStart,
@@ -103,7 +88,7 @@ class App extends React.Component {
   }
 
   render() {
-    console.log('APP.JS HAS RENDERED.');
+    // console.log('APP.JS HAS RENDERED.');
     const { isUserSignedIn, userRole } = this.props;
     return (
       <BrowserRouter>
@@ -122,7 +107,7 @@ class App extends React.Component {
                   userRole === 'STUDENT' ? (
                     <Redirect to='/student/dashboard' />
                   ) : userRole === 'TEACHER' ? (
-                    <Redirect to='/teacher' />
+                    <Redirect to='/teacher/dashboard' />
                   ) : (
                     <Redirect to='/' />
                   )
@@ -145,7 +130,9 @@ class App extends React.Component {
             /> */}
             <PrivateStudentRoute path='/student' component={StudentPage} />
 
-            <Route
+            <PrivateTeacherRoute path='/teacher' component={TeacherPage} />
+
+            {/* <Route
               path='/teacher'
               exact
               component={TeacherDashboardLandingPage}
@@ -182,7 +169,7 @@ class App extends React.Component {
               exact
               component={TeacherChangePassword}
             />
-            <Route path='/teacher/evaluatetest' component={EvaluateTestPage} />
+            <Route path='/teacher/evaluatetest' component={EvaluateTestPage} /> */}
           </Switch>
         </ThemeProvider>
       </BrowserRouter>

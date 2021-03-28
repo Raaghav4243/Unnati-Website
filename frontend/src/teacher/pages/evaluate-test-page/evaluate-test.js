@@ -1,17 +1,27 @@
-import React from "react";
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
-import TextField from "@material-ui/core/TextField/TextField";
+import React from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { withStyles } from '@material-ui/core/styles';
+
 //redux
-import { fetchUserCafeStart } from "../../redux/cafe/cafe.actions";
-import { selectUserCafeDetails } from "../../redux/cafe/cafe.selectors";
+import { fetchUserCafeStart } from '../../redux/cafe/cafe.actions';
+import { selectUserCafeDetails } from '../../redux/cafe/cafe.selectors';
+
+import {
+  selectTestCourseId,
+  selectTestDetails,
+} from '../../redux/test-sheet/test-sheet.selectors';
+import { updateTestScoreStart } from '../../redux/test-evaluation/test-evaluation-list.actions';
 // import { selectCurrentUserId } from '../../redux/user/user.selectors';
 
 //components
-// import EnrolledCourseCard from '../../components/enrolled-course-card/enrolled-course-card.component';
-import TeacherCafeDetails from "../../components/cafe-details/cafe-details.component";
-// import StyledButton from "../../components/button-component"
 
+import TextField from '@material-ui/core/TextField/TextField';
+import { Link } from 'react-router-dom';
+import Button from '@material-ui/core/Button/Button';
+import TeacherCafeDetails from '../../components/cafe-details/cafe-details.component';
+// import EnrolledCourseCard from '../../components/enrolled-course-card/enrolled-course-card.component';
+// import StyledButton from "../../components/button-component"
 
 import {
   PageContainer,
@@ -21,143 +31,243 @@ import {
   TestWrapper,
   ButtonWrapperdiv,
   QuestionsWrapper,
+  QuestionCardWrapper,
+  QuestionStatement,
+  Responses,
+  ResponseContainer,
+  Prompt,
+  Response,
   Questions,
   Answers,
   QuestionAnswers,
-  QuestionAndMarksWrapper,
+  ResponseAndMarksWrapper,
   MarksWrapper,
   CorrectAnswer,
-} from "./evaluate-test.styles";
-import TeacherDashboardNavbar from "../../components/teacher-dashboard-navbar/teacher-dashboard-navbar.component";
-import TeacherDashboardSidenav from "../../components/teacher-dashboard-sidenav/teacher-dashboard-sidenav.component";
-import { selectTestCourseId, selectTestDetails } from "../../redux/test-sheet/test-sheet.selectors";
-import { updateTestScoreStart } from "../../redux/test-evaluation/test-evaluation-list.actions";
-import { Link } from "react-router-dom";
-import Button from "@material-ui/core/Button/Button";
+} from './evaluate-test.styles';
 
+const useStyles = (theme) => ({
+  root: {
+    // '& .MuiTextField-root': {
+    //   // marginRight: theme.spacing(4),
+    //   // marginTop: theme.spacing(2),
+    //   width: '100%',
+    // },
+    width: '100%',
+  },
+  button: {
+    marginRight: theme.spacing(4),
+    marginTop: theme.spacing(2),
+    color: 'white',
+  },
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: '#fff',
+  },
+});
 
 class EvaluateTestPage extends React.Component {
-  constructor(props){
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
-      score: {marksScored: 0},
+      score: 0,
       studentId: null,
       courseId: null,
       testId: null,
-      indiScore: {}
+      indiScore: {},
+    };
+  }
+
+  // componentDidMount() {
+  //   const { fetchUserCafeStart } = this.props;
+  //   // if(allCourses is null), then fetchAllCoursesStart() as well.
+  //   fetchUserCafeStart();
+  // }
+
+  handleChange = (e) => {
+    const value = e.target.value;
+    const qNo = e.target.id;
+    console.log('Q NO: ', qNo);
+    // let individualScore = [];
+    // individualScore.push(value);
+    // console.log(individualScore);
+    // this.setState({ indiScore: individualScore });
+    let prevMarks = 0;
+    if (this.state.indiScore[qNo]) {
+      prevMarks = this.state.indiScore[qNo];
     }
-  }
 
-  componentDidMount() {
-    const { fetchUserCafeStart, } = this.props;
-    // if(allCourses is null), then fetchAllCoursesStart() as well.
-    fetchUserCafeStart();
-  }
+    this.setState(
+      (prevState, prevProps) => {
+        console.log('PREVIOUS INDI SCORE : ', prevState.indiScore);
+        let prevIndiScore = prevState.indiScore;
+        prevIndiScore[qNo] = value;
+        // let prevScore = Number(prevState.score);
+        // let scoreForQuestion = Number(value);
+        // let updatedScore = prevScore + scoreForQuestion;
+        // updatedScore = updatedScore.toString();
+        // console.log('UPDATED SCORE : ', updatedScore);
+        return { indiScore: prevIndiScore };
+      },
+      () => console.log('UPDATED INDI SCORE : ', this.state.indiScore)
+    );
 
-  handleChange =(e) => {
-    const value = e.target.value
-    let individualScore = []
-    individualScore.push(value)
-    console.log(individualScore)
-    this.setState({indiScore: individualScore})
-    this.setState({score: value})
+    this.setState(
+      (prevState, prevProps) => {
+        console.log('PREVIOUS SCORE : ', prevState.score);
+        let prevScore = Number(prevState.score);
+        let scoreForQuestion = Number(value);
+        // prevMarks = Number(prevMarks);
+        let updatedScore = prevScore + scoreForQuestion - prevMarks;
+        updatedScore = updatedScore.toString();
+        console.log('UPDATED SCORE : ', updatedScore);
+        return { score: updatedScore };
+      },
+      () => console.log('UPDATED SCORE : ', this.state.score)
+    );
+    // this.setState({ score: value });
     const { userCafe, test, courseId } = this.props;
-    console.log(courseId)
-    this.setState({courseId: courseId})
-    this.setState({studentId: test.studentId})
-    this.setState({testId: test.testId._id}, () => console.log(this.state))
-  }
+    console.log(courseId);
+    this.setState({ courseId: courseId });
+    this.setState({ studentId: test.studentId });
+    this.setState({ testId: test.testId._id }, () => console.log(this.state));
+  };
 
   handleSubmit = (e) => {
-    const {updateTestScoreStart, } = this.props
-    const studentId = this.state.studentId
-    const testId = this.state.testId
-    const courseId = this.state.courseId
-    const marksScored = this.state.score
-    const data = {}
-    data['marksScored'] = marksScored
-    console.log('pagedata', studentId, courseId, testId, data)
-    updateTestScoreStart(studentId, courseId, testId, data)
-  }
+    const { updateTestScoreStart } = this.props;
+    const studentId = this.state.studentId;
+    const testId = this.state.testId;
+    const courseId = this.state.courseId;
+    const marksScored = this.state.score;
+    const data = {};
+    data['marksScored'] = marksScored;
+    console.log('pagedata', studentId, courseId, testId, data);
+    updateTestScoreStart(studentId, courseId, testId, data);
+  };
 
   render() {
-    const { test } = this.props;
+    const { test, classes } = this.props;
     return (
-      <>  
-      <PageContainer>
-      <TeacherDashboardNavbar></TeacherDashboardNavbar>
-        <TeacherDashboardSidenav></TeacherDashboardSidenav>
-          <PageWrapper>
-            <CafeDetailsParentWrapper>
-              <TeacherCafeDetails />
-            </CafeDetailsParentWrapper>
-            <QuestionsWrapper>
-              {test
-                ? test.responses.map((test, index) => {
-                    return (
-                      <TestWrapper>
-                      <QuestionAndMarksWrapper>
-                        <QuestionAnswers>
-                          <Questions>Question: {test.questionId.statement}</Questions>
-                          <Answers>Correct Answer : 
-                            <CorrectAnswer>{
-                              test.questionId.correctAns.map((ans) => {
-                                return ans
-                              })
-                            }</CorrectAnswer>
-                            <br/>
-                            
-                            User Response : 
-                            {
-                              test.response.map((ans) => {
-                                return ans
-                              })
-                            }
-                            <br/>
-                            Max marks for question :
-                            {
-                              test.questionId.maxMarks
-                            }
-                            <br/>
-                            Question Type :
-                            {
-                              test.questionId.type
-                            }
+      <>
+        <PageContainer>
+          {/* <TeacherDashboardNavbar></TeacherDashboardNavbar> */}
+          {/* <TeacherDashboardSidenav></TeacherDashboardSidenav> */}
+          {/* <PageWrapper> */}
+          <CafeDetailsParentWrapper>
+            <TeacherCafeDetails />
+          </CafeDetailsParentWrapper>
+          <QuestionsWrapper>
+            {test
+              ? test.responses.map((test, index) => {
+                  return (
+                    <QuestionCardWrapper>
+                      <QuestionStatement>
+                        <span style={{ fontWeight: '500' }}>
+                          {index + 1}.&nbsp;
+                        </span>
+                        {test.questionId.statement}
+                      </QuestionStatement>
+                      <ResponseAndMarksWrapper>
+                        <Responses>
+                          <ResponseContainer>
+                            <Prompt>
+                              <span style={{ fontWeight: '500' }}>
+                                Correct Answer
+                              </span>{' '}
+                              :
+                            </Prompt>
+                            <Response>
+                              {test.questionId.type == 'MULTICORRECT'
+                                ? test.questionId.correctAns.map((ans) => {
+                                    return `${ans},`;
+                                  })
+                                : test.questionId.type == 'SINGLECORRECT'
+                                ? test.questionId.correctAns.map((ans) => {
+                                    return ans;
+                                  })
+                                : `Subjective Question`}
+                              {/* {test.questionId.correctAns.map((ans) => {
+                                return ans;
+                              })} */}
+                            </Response>
+                          </ResponseContainer>
+                          <ResponseContainer>
+                            <Prompt>
+                              <span style={{ fontWeight: '500' }}>
+                                User Response
+                              </span>{' '}
+                              :
+                            </Prompt>
+                            <Response>
+                              {test.questionId.type == 'MULTICORRECT'
+                                ? test.response.map((ans) => {
+                                    return `${ans},`;
+                                  })
+                                : test.response.map((ans) => {
+                                    return ans;
+                                  })}
+                            </Response>
+                          </ResponseContainer>
+                          <ResponseContainer>
+                            <Prompt>
+                              <span style={{ fontWeight: '500' }}>
+                                Question Type
+                              </span>{' '}
+                              :
+                            </Prompt>
+                            <Response>{test.questionId.type}</Response>
+                          </ResponseContainer>
+                          {/* <Answers>
+                            Correct Answer :
+                            <CorrectAnswer>
+                              {test.questionId.correctAns.map((ans) => {
+                                return ans;
+                              })}
+                            </CorrectAnswer>
                             <br />
-                            {
-                              test.questionId.type == 'SINGLECORRECT' || 'MULTICORRECT' 
+                            User Response :
+                            {test.response.map((ans) => {
+                              return ans;
+                            })}
+                            <br />
+                            Max marks for question :{test.questionId.maxMarks}
+                            <br />
+                            Question Type :{test.questionId.type}
+                            <br />
+                            {test.questionId.type == 'SINGLECORRECT' ||
+                            'MULTICORRECT'
                               ? test.questionId.options.map((option, index) => {
-                                <ul>
-                                  <li key={index}>{option}</li>
-                                </ul>
-                              })
-                              :null
-                            }
-
-                          </Answers>
-                        </QuestionAnswers>
+                                  <ul>
+                                    <li key={index}>{option}</li>
+                                  </ul>;
+                                })
+                              : null}
+                          </Answers> */}
+                        </Responses>
+                        {/* <QuestionAnswers></QuestionAnswers> */}
                         <MarksWrapper>
                           <TextField
                             id={index}
-                            label="Enter Marks"
-                            variant="outlined"
-                            // fullWidth="true"
-                            style={{ maxWidth: 115 }}
+                            label='Enter Marks'
+                            variant='outlined'
+                            className={classes.root}
+                            // fullWidth='true'
+                            // style=
                             onChange={this.handleChange}
+                            helperText={`Max Marks : ${test.questionId.maxMarks}`}
                           />
                         </MarksWrapper>
-                      </QuestionAndMarksWrapper>
-                    </TestWrapper>
-                    );
-                  })
-                : null}
-            </QuestionsWrapper>
-            <Link to='/teacher/testcheck'>
+                      </ResponseAndMarksWrapper>
+                    </QuestionCardWrapper>
+                  );
+                })
+              : null}
+          </QuestionsWrapper>
+          <Link to='/teacher/dashboard/testcheck'>
             <ButtonWrapperdiv>
               <Button
-                variant="contained"
-                color="primary"
-                size="large"
+                variant='contained'
+                color='primary'
+                size='large'
                 // fullWidth="true"
                 onClick={this.handleSubmit}
               >
@@ -166,9 +276,9 @@ class EvaluateTestPage extends React.Component {
             </ButtonWrapperdiv>
 
             {/* <ButtonWrapper onClick={this.handleSubmit}>Submit Score</ButtonWrapper> */}
-            </Link>
-          </PageWrapper>
-       </PageContainer>
+          </Link>
+          {/* </PageWrapper> */}
+        </PageContainer>
       </>
     );
   }
@@ -178,12 +288,16 @@ const mapStateToProps = createStructuredSelector({
   //userId: selectCurrentUserId,
   userCafe: selectUserCafeDetails,
   test: selectTestDetails,
-  courseId: selectTestCourseId
+  courseId: selectTestCourseId,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchUserCafeStart: () => dispatch(fetchUserCafeStart()),
-  updateTestScoreStart: (studentId, courseId, testId, data) => dispatch(updateTestScoreStart(studentId, courseId, testId, data))
+  // fetchUserCafeStart: () => dispatch(fetchUserCafeStart()),
+  updateTestScoreStart: (studentId, courseId, testId, data) =>
+    dispatch(updateTestScoreStart(studentId, courseId, testId, data)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(EvaluateTestPage);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(useStyles)(EvaluateTestPage));

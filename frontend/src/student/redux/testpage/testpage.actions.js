@@ -37,3 +37,9 @@ export const submitTestFailure = (message) => {
     payload: message,
   };
 };
+
+export const resetTestInfo = () => {
+  return {
+    type: TestPageActionTypes.RESET_TEST_INFO,
+  };
+};

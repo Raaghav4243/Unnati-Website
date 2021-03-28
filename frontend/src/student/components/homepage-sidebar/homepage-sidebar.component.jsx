@@ -24,15 +24,15 @@ const HomepageSidebar = ({ isOpen, toggle }) => {
           <SidebarLink to='courses' onClick={toggle}>
             Courses
           </SidebarLink>
-          <SidebarLink to='signup' onClick={toggle}>
+          {/* <SidebarLink to='signup' onClick={toggle}>
             Sign Up
-          </SidebarLink>
+          </SidebarLink> */}
           <SidebarLink to='contact' onClick={toggle}>
             Contact Us
           </SidebarLink>
         </SidebarMenu>
         <SideBtnWrap>
-          <SidebarRoute to='/signin'>Sign in</SidebarRoute>
+          <SidebarRoute to='/signup'>Sign in</SidebarRoute>
         </SideBtnWrap>
       </SidebarWrapper>
     </SidebarContainer>

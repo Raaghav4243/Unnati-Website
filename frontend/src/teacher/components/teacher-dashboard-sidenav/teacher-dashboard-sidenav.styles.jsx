@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
   /* border: 1px solid black; */
+  /* background-color: #c4c4c4; */
   background-color: #202020;
-  width: 20vw;
+  color: #fff;
+  width: 300px;
   height: calc(100vh - 75px);
   display: flex;
   flex-direction: column;
@@ -13,6 +15,7 @@ export const Container = styled.div`
   top: 75px;
   transition: 350ms;
   z-index: 10;
+  overflow: auto;
   left: 0;
 
   @media screen and (max-width: 768px) {
@@ -35,7 +38,7 @@ export const PictureContainer = styled.div`
 export const UserPrompt = styled.div`
   margin-top: 20px;
   font-size: 1.75rem;
-  color: #fff;
+  /* color: #fff; */
 `;
 
 export const Profile = styled.div`
@@ -45,8 +48,7 @@ export const Profile = styled.div`
   /* border-bottom: 1px solid red; */
   display: flex;
   flex-direction: column;
-  padding-left: 1.5vw;
-  margin-left:1.5vw;
+  padding-left: 20px;
 `;
 
 export const ProfileTitle = styled.div`
@@ -56,7 +58,7 @@ export const ProfileTitle = styled.div`
   font-weight: 600;
   margin-bottom: 10px;
   font-size: 1.25rem;
-  color: #fff;
+  /* color: #868686; */
 `;
 
 export const SidenavLink = styled(Link)`
@@ -64,13 +66,14 @@ export const SidenavLink = styled(Link)`
   /* border: 1px solid blue; */
   padding-left: 10px;
   margin-bottom: 5px;
+  /* display: flex; */
+  justify-content: flex-start;
 `;
 
 export const SignOutButton = styled.div`
   width: 100%;
   /* border: 1px solid blue; */
   padding-left: 10px;
-  color: #fff;
   &:hover {
     cursor: pointer;
   }
@@ -83,8 +86,7 @@ export const Dashboard = styled.div`
   /* border-bottom: 1px solid red; */
   display: flex;
   flex-direction: column;
-  padding-left: 1.5vw;
-  margin-left:1.5vw;
+  padding-left: 20px;
 `;
 
 export const DashboardTitle = styled.div`
@@ -94,5 +96,5 @@ export const DashboardTitle = styled.div`
   font-weight: 600;
   margin-bottom: 10px;
   font-size: 1.25rem;
-  color: #fff;
+  /* color: #868686; */
 `;

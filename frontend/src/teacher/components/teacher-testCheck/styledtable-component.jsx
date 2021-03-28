@@ -221,7 +221,7 @@ function CustomPaginationActionsTable(props) {
               <StyledTableCell align='center'>{row.CourseName}</StyledTableCell>
               <StyledTableCell align='center'>{row.testName}</StyledTableCell>
               <StyledTableCell align='center'>
-                <Link to='/teacher/evaluatetest'>
+                <Link to='/teacher/dashboard/evaluate'>
                   <StyledButton
                     // variant="contained"
                     size='small'

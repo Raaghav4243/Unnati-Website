@@ -22,6 +22,16 @@ export const selectCurrentCourseOverviewPrice = createSelector(
   (courseOverview) => courseOverview.coursePrice
 );
 
+export const selectCurrentCourseOverviewAvailableAt = createSelector(
+  [selectCourseOverview],
+  (courseOverview) => courseOverview.courseAvailableAt
+);
+
+export const selectCurrentCourseOverviewError = createSelector(
+  [selectCourseOverview],
+  (courseOverview) => courseOverview.errorMessage
+);
+
 // export const selectAssignmentMessage = createSelector(
 //   [selectAssignmentDetails],
 //   (assignmentDetails) => assignmentDetails.message

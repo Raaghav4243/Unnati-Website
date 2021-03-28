@@ -1,12 +1,21 @@
 import styled from 'styled-components';
 
 export const TestimonialContainer = styled.div`
-  margin: 0 1rem;
-  text-align: center;
+  /* margin-top: 100px; */
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    display: block;
+    margin: 2rem 1rem;
+    /* padding-top: 1rem; */
+    text-align: center;
+    /* border: 1px solid black; */
+    /* font-size: 35px; */
+  }
 `;
 
 export const TestimonialTitleWrapper = styled.div`
-  margin: 0rem 2rem;
+  margin: 100px 2rem;
 `;
 
 export const TestimonialTitle = styled.h1`

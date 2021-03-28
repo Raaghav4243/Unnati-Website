@@ -6,8 +6,11 @@ import TeacherDashboardNavbar from '../../components/teacher-dashboard-navbar/te
 import TeacherDashboardSidenav from '../../components/teacher-dashboard-sidenav/teacher-dashboard-sidenav.component';
 import { selectVerifiedStudents } from '../../redux/verified-students/verified-student.selectors';
 import { fetchVerifiedStudentStart } from '../../redux/verified-students/verified-students.actions';
-import { PageContainer, PageWrapper } from '../Profile-page/profile-page.styles';
-import EnrolledStudentsTableContainer from './teacher-enrolled.container';
+import {
+  PageContainer,
+  PageWrapper,
+} from '../Profile-page/profile-page.styles';
+import EnrolledStudentsTableContainer from './teacher-enrolled-students.container';
 
 import {
   Body,
@@ -15,7 +18,7 @@ import {
   TableWrapper,
   CafeDetailsParentWrapper,
   TextTitle,
-} from './teacher-enrolled.styled';
+} from './teacher-enrolled-students.styles';
 
 class TeacherEnrolledStudents extends React.Component {
   componentDidMount() {
@@ -43,23 +46,22 @@ class TeacherEnrolledStudents extends React.Component {
     } else {
     }
 
-
     return (
       <>
         <PageContainer>
-        <TeacherDashboardNavbar/>
-        <TeacherDashboardSidenav/>
-        <PageWrapper>
+          {/* <TeacherDashboardNavbar /> */}
+          {/* <TeacherDashboardSidenav /> */}
+          {/* <PageWrapper> */}
           <CafeDetailsParentWrapper>
-              <TeacherCafeDetails></TeacherCafeDetails>
-            </CafeDetailsParentWrapper>
-            <TextTitle>Enrolled Students</TextTitle>
-            <TableWrapper>
-              <EnrolledStudentsTableContainer
-                rows={rows}
-              ></EnrolledStudentsTableContainer>
-            </TableWrapper>
-          </PageWrapper>
+            <TeacherCafeDetails />
+          </CafeDetailsParentWrapper>
+          <TextTitle>Enrolled Students</TextTitle>
+          <TableWrapper>
+            <EnrolledStudentsTableContainer
+              rows={rows}
+            ></EnrolledStudentsTableContainer>
+          </TableWrapper>
+          {/* </PageWrapper> */}
         </PageContainer>
       </>
     );

@@ -64,7 +64,7 @@ export function* submitAssignmentStartAsync({ payload: { data } }) {
     const userId = yield select(selectCurrentUserId);
     const assignmentId = yield select(selectCurrentCourseTopicId);
     const courseId = yield select(selectCurrentCourseId);
-    yield fetch(
+    let assignmentSubmittedMessage = yield fetch(
       `/enrolled-course/${userId}/course/${courseId}/assignment/${assignmentId}`,
       {
         method: 'POST', // or 'PUT'
@@ -73,13 +73,22 @@ export function* submitAssignmentStartAsync({ payload: { data } }) {
         },
         body: JSON.stringify(data),
       }
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('Success:', data);
-      });
+    );
 
-    yield put(submitAssignmentSuccess('assignment submitted'));
+    assignmentSubmittedMessage = yield assignmentSubmittedMessage.json();
+
+    console.log('assignmentSubmittedMessage is ', assignmentSubmittedMessage);
+
+    assignmentSubmittedMessage.done
+      ? yield put(submitAssignmentSuccess('assignment submitted'))
+      : yield put(submitAssignmentFailure('ASSIGNMENT COULDNOT BE SUBMITTED'));
+
+    // .then((response) => response.json())
+    // .then((data) => {
+    //   console.log('Success:', data);
+    // });
+
+    // yield put(submitAssignmentSuccess('assignment submitted'));
   } catch (error) {
     yield put(submitAssignmentFailure('ASSIGNMENT COULDNOT BE SUBMITTED'));
   }

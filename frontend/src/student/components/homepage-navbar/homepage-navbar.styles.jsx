@@ -4,7 +4,11 @@ import { Link as LinkS } from 'react-scroll';
 
 // global settings for navbar element
 export const Nav = styled.nav`
-  background-color: ${({ scrollOn }) => (scrollOn ? '#000000' : '#000000')};
+  /* background-color: ${({ scrollOn }) =>
+    scrollOn ? '#000000' : '#000000'}; */
+  background-color: #000000;
+
+  /* background: transparent; */
   height: 75px;
   display: flex;
   justify-content: center;
@@ -31,7 +35,8 @@ export const NavbarContainer = styled.div`
 // the hamburger when viewed on smaller screen
 export const MobileIcon = styled.div`
   display: none;
-  color: ${({ scrollOn }) => (scrollOn ? '#ffffff' : '#ffffff')};
+  /* color: ${({ scrollOn }) => (scrollOn ? '#ffffff' : '#ffffff')}; */
+  color: #ffffff;
 
   @media screen and (max-width: 768px) {
     width: 20%;
@@ -86,7 +91,8 @@ export const NavLogo = styled(LinkS)`
 `;
 
 export const NavName = styled.p`
-  color: ${({ scrollOn }) => (scrollOn ? '#ffffff' : '#ffffff')};
+  /* color: ${({ scrollOn }) => (scrollOn ? '#ffffff' : '#ffffff')}; */
+  color: #ffffff;
   text-align: nowrap;
   /* font-family: 'Montserrat'; */
   font-weight: 500;
@@ -113,13 +119,16 @@ export const NavMenu = styled.ul`
 export const NavItem = styled.li`
   height: 75px;
   &:hover {
-    background-color: ${({ scrollOn }) => (scrollOn ? '#161616' : '#161616')};
+    /* background-color: ${({ scrollOn }) =>
+      scrollOn ? '#161616' : '#161616'}; */
+    background-color: #161616;
   }
 `;
 
 // these li contain React scroll links
 export const NavLinks = styled(LinkS)`
-  color: ${({ scrollOn }) => (scrollOn ? '#ffffff' : '#ffffff')};
+  /* color: ${({ scrollOn }) => (scrollOn ? '#ffffff' : '#ffffff')}; */
+  color: #ffffff;
 
   display: flex;
   align-items: center;
