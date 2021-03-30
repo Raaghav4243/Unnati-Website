@@ -34,17 +34,11 @@ import Timer from 'react-compound-timer';
 import StudentDashboardNavbar from '../../components/student-dashboard-navbar/student-dashboard-navbar.component';
 
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-// import FormLabel from '@material-ui/core/FormLabel';
-// import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
-// import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import Checkbox from '@material-ui/core/Checkbox';
-import FormLabel from '@material-ui/core/FormLabel';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Backdrop from '@material-ui/core/Backdrop';
@@ -53,9 +47,6 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-
-import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn';
 import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
@@ -74,32 +65,11 @@ import {
   MarksPrompt,
   QuestionsOptionsContainer,
   OptionWrapper,
-  BottomNav,
   TimerWrapper,
   TimeHeader,
   TimeWrapper,
-  TestTitle,
   NavRight,
-  // QuestionCardContainer,
-  RadioLabel,
-  RadioInput,
-  RadioIndicator,
-  CheckedLabel,
-  CheckedInput,
-  CheckedIndicator,
-  TextLabel,
-  // TextInput,
-  // TextIndicator,
-  // QuestionWrapper,
-  // AssignmentWrapper,
-  // WrappingQuestions,
-  // AssignmentName,
-  // AssignmentForm,
-  // AllQuestions,
-  // Questions,
-  // Options,
 } from './test.styles';
-// import questionData from './data';
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant='filled' {...props} />;
@@ -115,8 +85,6 @@ const useStyles = (theme) => ({
     },
   },
   button: {
-    // marginRight: theme.spacing(4),
-    // marginTop: theme.spacing(2),
     color: 'white',
   },
   backdrop: {
@@ -125,25 +93,14 @@ const useStyles = (theme) => ({
   },
 
   formControlForQuestion: {
-    // marginTop: theme.spacing(0.5),
-    // paddingTop: theme.spacing(1),
     width: '100%',
-
-    // marginLeft: theme.spacing(2.5),
-    // background: 'red',
-    // marginBottom: theme.spacing(1),
-    // marginTop: 15,
-    // minWidth: 150,
   },
   selectEmpty: {
     marginTop: theme.spacing(1),
   },
   alert: {
     width: '100%',
-    // marginTop: theme.spacing(1),
     marginBottom: theme.spacing(2),
-    // backgroundColor : '',
-    // boxShadow: 'null',
   },
 });
 
@@ -153,14 +110,12 @@ class TestPage extends React.Component {
 
     this.state = {
       resp: {},
-      // score: null,
       testDone: null,
       exitPageConfirmation: false,
     };
   }
 
   handleDialogClickOpen = () => {
-    // setOpen(true);
     this.setState({
       exitPageConfirmation: true,
     });
@@ -170,23 +125,10 @@ class TestPage extends React.Component {
     this.setState({
       exitPageConfirmation: false,
     });
-    // setOpen(false);
   };
 
   handleOnChange = (e) => {
-    //console.log(e.target.value);
-    //console.log(e.target.name);
-    // const responses = this.resp.push({name: [e.target.value]})
-    //console.log(responses)
-    //  this.setState({ selectedOption: e.target.value});
-    //console.log(resp)
-    const {
-      test_questions,
-      // assignmentName,
-      // isAssignmentSubmitting,
-      // assignmentSubmittedConfirmation,
-      // assignmentSubmissionFailed,
-    } = this.props;
+    const { test_questions } = this.props;
     const value = e.target.value;
     const name = e.target.name;
     console.log('NAME:', name);
@@ -197,27 +139,11 @@ class TestPage extends React.Component {
     }
 
     let response = this.state.resp;
-    /*
-      if (questionType === 'MULTICORRECT') {
-      if (response[id] == undefined) {
-        response[id] = [value];
-      } else if (response[id].includes(value)) {
-        let temp = response[id].filter((item) => {
-          return item !== value;
-        });
-        response[id] = temp;
-      } else {
-        response[id].push(value);
-      }
-    } else {
-      response[id] = [value];
-    }
-    */
 
     let questionType = test_questions[name].type;
     console.log('QUESTION TYPE IS', questionType);
     if (questionType === 'MULTICORRECT') {
-      if (response[name] == undefined) {
+      if (response[name] === undefined) {
         response[name] = [value];
       } else if (response[name].includes(value)) {
         let temp = response[name].filter((item) => {
@@ -231,7 +157,6 @@ class TestPage extends React.Component {
       response[name] = [value];
     }
 
-    console.log('RESPONSE BECOMES', response);
     this.setState({
       resp: response,
     });
@@ -249,26 +174,23 @@ class TestPage extends React.Component {
     }
     const { test_questions, submitTestStart } = this.props;
     const { resp } = this.state;
-    console.log('SUBMITTING TEST NOW');
-    console.log('QUESTIONS RIGHT NOW ARE', test_questions);
-    console.log('USER RESPONSES ARE', resp);
 
     let data = [];
     test_questions.map((question, index) => {
       data.push([question._id, resp[index]]);
+      return null;
     });
-    console.log('DATA OBJECT BECOMES', data);
     this.setState({ testDone: true });
     submitTestStart(data);
   };
 
   componentWillUnmount = () => {
     // SUBMIT TEST
-    // const { testDone } = this.state;
-    // if (testDone) {
-    // } else {
-    //   this.handleSubmit();
-    // }
+    const { testDone } = this.state;
+    if (testDone) {
+    } else {
+      this.handleSubmit();
+    }
   };
 
   render() {

@@ -2,15 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import {
-  // selectCurrentUser,
-  // selectCurrentUserId,
-  selectIsUserSignedIn,
-} from '../../redux/user/user.selectors';
+import { selectIsUserSignedIn } from '../../redux/user/user.selectors';
 
 import GoToDashboardButton from '../go-to-dashboard-button-link/go-to-dashboard-button-link.component';
 import SignInButton from '../sign-in-button-link/sign-in-button-link.component';
-// import { ImBook } from 'react-icons/im';
 import { FaBars } from 'react-icons/fa';
 import { ReactComponent as UnnatiLogo } from '../../icons/UnnatiTree.svg';
 import './homepage-navbar.css';
@@ -55,7 +50,6 @@ class HomePageNavbar extends React.Component {
   };
   render() {
     const { isUserSignedIn, toggle } = this.props;
-    const { changedColor } = this.state;
     return (
       <>
         <Nav>

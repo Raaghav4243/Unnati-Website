@@ -27,9 +27,9 @@ import {
 import { signOutStart } from '../../redux/user/user.actions';
 
 class StudentDashboardSidenav extends React.Component {
-  constructor() {
-    super();
-  }
+  // constructor() {
+  //   super();
+  // }
 
   handleSignOut = () => {
     const { signOutStart, isUserSignedIn, history } = this.props;
@@ -45,7 +45,7 @@ class StudentDashboardSidenav extends React.Component {
   };
 
   render() {
-    const { match, user, firstName, lastName } = this.props;
+    const { match, firstName } = this.props;
     return (
       <>
         <Container>

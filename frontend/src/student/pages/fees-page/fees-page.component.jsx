@@ -14,24 +14,16 @@ import {
   selectUserFeeReciepts,
 } from '../../redux/fee-details/fee-details.selectors';
 
-// import ProfileSideNav from '../../components/SideNav/SideNav';
-// import StyledButton from '../../../teacher/components/button-component/styled-button';
-
-// import { FeesCard } from './fees-card.component';
-// import StudentFeesSummary from '../../components/fees-summary/fees-summary.component';
-
 import {
   PageContainer,
   Container,
   PaymentHistoryWrapper,
   Title,
   BalanceWrapper,
-  // BalanceContainer,
 } from './fees-page.styles';
-import { Button } from '@material-ui/core';
+// import { Button } from '@material-ui/core';
 import PaymentHistoryContainer from '../../components/payment-history/payment-history.container';
 import BalanceContainer from '../../components/balance/balance.container';
-// import { TableWrapper } from '../../../teacher/pages/teacher-testCheck/teacher-test.-check.styles';
 
 class FeesPage extends React.Component {
   componentDidMount() {
@@ -40,7 +32,7 @@ class FeesPage extends React.Component {
     fetchFeeDetailStart();
   }
   render() {
-    const { paidFees, dueFees, userFeeDetails, userFeeReciepts } = this.props;
+    const { paidFees, dueFees, userFeeReciepts } = this.props;
     console.log('paid fees', paidFees);
     console.log('due fees', dueFees);
     console.log('amount', userFeeReciepts);
@@ -50,7 +42,6 @@ class FeesPage extends React.Component {
           <Container>
             <PaymentHistoryWrapper>
               <Title>Payment History</Title>
-              {/* <CustomPaginationActionsTable></CustomPaginationActionsTable> */}
               <PaymentHistoryContainer />
             </PaymentHistoryWrapper>
             <BalanceWrapper>

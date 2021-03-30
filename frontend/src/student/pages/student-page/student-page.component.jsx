@@ -8,9 +8,9 @@ import CourseOverview from '../course-overview/course-overview.component';
 import { Container, Prompt } from './student-page.styles';
 
 class StudentPage extends React.Component {
-  constructor() {
-    super();
-  }
+  // constructor() {
+  //   super();
+  // }
 
   render() {
     const { match, location } = this.props;

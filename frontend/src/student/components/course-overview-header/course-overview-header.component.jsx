@@ -10,22 +10,24 @@ import {
 } from './course-overview-header.styles';
 
 let returnPriceRange = (availableAt) => {
-  if (!availableAt || availableAt.length == 0) {
+  if (!availableAt || availableAt.length === 0) {
     return 'No price available.';
   }
   let minPrice = Number.MAX_VALUE;
   let maxPrice = Number.MIN_VALUE;
   // console.log('AVAILABLE AT ARRAY', availableAt);
-  let a = availableAt
-    ? availableAt.map((obj) => {
-        minPrice = Math.min(minPrice, obj.amount);
-        maxPrice = Math.max(maxPrice, obj.amount);
-      })
-    : null;
+  if (availableAt) {
+    availableAt.map((obj) => {
+      minPrice = Math.min(minPrice, obj.amount);
+      maxPrice = Math.max(maxPrice, obj.amount);
+      return null;
+    });
+  }
+  // : null;
   // console.log('MIN PRICE FOR COURSE', minPrice);
   // console.log('MAX PRICE FOR COURSE', maxPrice);
   minPrice = minPrice.toString();
-  return minPrice == maxPrice ? `${maxPrice}` : `${minPrice}-${maxPrice}`;
+  return minPrice === maxPrice ? `${maxPrice}` : `${minPrice}-${maxPrice}`;
 };
 
 const CourseOverviewHeader = (props) => {

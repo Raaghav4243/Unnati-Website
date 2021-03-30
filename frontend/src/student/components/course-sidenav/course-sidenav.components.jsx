@@ -28,9 +28,9 @@ const useStyles = (theme) => ({
 });
 
 class CourseSideNav extends React.Component {
-  constructor() {
-    super();
-  }
+  // constructor() {
+  //   super();
+  // }
 
   render() {
     const {

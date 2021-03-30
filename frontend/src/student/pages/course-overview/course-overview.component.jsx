@@ -18,7 +18,6 @@ import {
   CourseLowerContainer,
   CourseLowerWrapper,
 } from './course-overview.styles';
-import { fetchCourseForOverviewStart } from '../../redux/course-overview/course-overview.actions';
 import {
   selectCurrentCourseOverviewAvailableAt,
   selectCurrentCourseOverviewId,
@@ -47,13 +46,7 @@ class CourseOverview extends React.Component {
   }
 
   render() {
-    const {
-      // course_name,
-      // course_fees,
-      // course_available_at,
-      // course_summary,
-      course_image,
-    } = this.state.course_details;
+    const { course_image } = this.state.course_details;
     const {
       courseName,
       courseSummary,

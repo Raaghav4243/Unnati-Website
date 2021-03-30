@@ -23,16 +23,6 @@ export function* fetchTestAsync() {
     const courseId = yield select(selectCurrentCourseId);
     const testId = yield select(selectCurrentCourseTopicId);
 
-    console.log(
-      'FETCHING TEST USING',
-      userId,
-      'user',
-      courseId,
-      'course',
-      testId,
-      'test'
-    );
-
     let courseTestDetails = yield fetch(
       `/enrolled-course/${userId}/course/${courseId}/test/${testId}`
     );
@@ -60,11 +50,11 @@ export function* submitTestStartAsync({ payload: { data } }) {
     const courseId = yield select(selectCurrentCourseId);
 
     // first making post request for all questions individually
-    console.log('DATA RECEIVED INSIDE SAGE IS', data);
-    console.log('TEST ID RECEIVED IS', testId);
+    // console.log('DATA RECEIVED INSIDE SAGE IS', data);
+    // console.log('TEST ID RECEIVED IS', testId);
 
     const questionPromises = data.map((questionAndUserResponse, index) => {
-      console.log('SUBMITTING ANSWER for Q: ', index);
+      // console.log('SUBMITTING ANSWER for Q: ', index);
       let questionId = questionAndUserResponse[0];
       let userResponseArray = questionAndUserResponse[1];
       return fetch(
@@ -93,7 +83,7 @@ export function* submitTestStartAsync({ payload: { data } }) {
     );
     testSubmittedMessage = yield testSubmittedMessage.json();
 
-    console.log('testSubmittedMessage is ', testSubmittedMessage);
+    // console.log('testSubmittedMessage is ', testSubmittedMessage);
 
     testSubmittedMessage.done
       ? yield put(submitTestSuccess('TEST SUBMITTED SUCCESSFULLY!'))

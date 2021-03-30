@@ -87,29 +87,27 @@ class EvaluateTestPage extends React.Component {
       prevMarks = this.state.indiScore[qNo];
     }
 
-    this.setState(
-      (prevState, prevProps) => {
-        let prevIndiScore = prevState.indiScore;
-        prevIndiScore[qNo] = value;
-        // let prevScore = Number(prevState.score);
-        // let scoreForQuestion = Number(value);
-        // let updatedScore = prevScore + scoreForQuestion;
-        // updatedScore = updatedScore.toString();
-        // console.log('UPDATED SCORE : ', updatedScore);
-        return { indiScore: prevIndiScore };
-      });
+    this.setState((prevState, prevProps) => {
+      let prevIndiScore = prevState.indiScore;
+      prevIndiScore[qNo] = value;
+      // let prevScore = Number(prevState.score);
+      // let scoreForQuestion = Number(value);
+      // let updatedScore = prevScore + scoreForQuestion;
+      // updatedScore = updatedScore.toString();
+      // console.log('UPDATED SCORE : ', updatedScore);
+      return { indiScore: prevIndiScore };
+    });
 
-    this.setState(
-      (prevState, prevProps) => {
-        let prevScore = Number(prevState.score);
-        let scoreForQuestion = Number(value);
-        // prevMarks = Number(prevMarks);
-        let updatedScore = prevScore + scoreForQuestion - prevMarks;
-        updatedScore = updatedScore.toString();
-        return { score: updatedScore };
-      });
+    this.setState((prevState, prevProps) => {
+      let prevScore = Number(prevState.score);
+      let scoreForQuestion = Number(value);
+      // prevMarks = Number(prevMarks);
+      let updatedScore = prevScore + scoreForQuestion - prevMarks;
+      updatedScore = updatedScore.toString();
+      return { score: updatedScore };
+    });
     // this.setState({ score: value });
-    const { userCafe, test, courseId } = this.props;
+    const { test, courseId } = this.props;
     this.setState({ courseId: courseId });
     this.setState({ studentId: test.studentId });
     this.setState({ testId: test.testId._id });
@@ -158,11 +156,11 @@ class EvaluateTestPage extends React.Component {
                               :
                             </Prompt>
                             <Response>
-                              {test.questionId.type == 'MULTICORRECT'
+                              {test.questionId.type === 'MULTICORRECT'
                                 ? test.questionId.correctAns.map((ans) => {
                                     return `${ans},`;
                                   })
-                                : test.questionId.type == 'SINGLECORRECT'
+                                : test.questionId.type === 'SINGLECORRECT'
                                 ? test.questionId.correctAns.map((ans) => {
                                     return ans;
                                   })
@@ -180,7 +178,7 @@ class EvaluateTestPage extends React.Component {
                               :
                             </Prompt>
                             <Response>
-                              {test.questionId.type == 'MULTICORRECT'
+                              {test.questionId.type === 'MULTICORRECT'
                                 ? test.response.map((ans) => {
                                     return `${ans},`;
                                   })
@@ -228,7 +226,7 @@ class EvaluateTestPage extends React.Component {
                         {/* <QuestionAnswers></QuestionAnswers> */}
                         <MarksWrapper>
                           <TextField
-                            id={index}
+                            id={`${index}`}
                             label='Enter Marks'
                             variant='outlined'
                             className={classes.root}

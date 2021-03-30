@@ -11,11 +11,11 @@ import { Checkbox } from '@material-ui/core';
 import { FaBook } from 'react-icons/fa';
 import {
   RiArrowUpSFill,
-  RiArrowDownSFill,
+  // RiArrowDownSFill,
   RiArrowRightSFill,
 } from 'react-icons/ri';
 import { MdOndemandVideo, MdAssignment, MdFlag } from 'react-icons/md';
-import { IoIosCheckbox } from 'react-icons/io';
+// import { IoIosCheckbox } from 'react-icons/io';
 
 import {
   TopicContainer,
@@ -93,7 +93,9 @@ class CourseSideNavSubmenu extends React.Component {
                   }
                 >
                   <ContentWrapper
-                    currentContent={content_item.id == current_topic_content_id}
+                    currentContent={
+                      content_item.id === current_topic_content_id
+                    }
                   >
                     <ContentIconWrapper>
                       {content_item.content === 'LECTURE' ? (

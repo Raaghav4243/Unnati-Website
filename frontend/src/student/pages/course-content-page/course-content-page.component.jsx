@@ -15,11 +15,6 @@ import { fetchAssignmentStart } from '../../redux/assignment-page/assignment-pag
 import { fetchLectureStart } from '../../redux/lecture-page/lecture-page.actions';
 
 import CourseVideoPageContainer from '../course-video/course-video-page.container';
-// import AssignmentPage from '../assignment-page/assignment-page.component';
-// import AssignmentStartPage from '../assignment-start-page/assignment-start-page.component';
-// import TestStartPage from '../test-start-page/test-start-page.component';
-
-// import { ReactComponent as UnnatiLogo } from '../../icons/UnnatiTree.svg';
 
 import {
   PageWrapper,
@@ -32,9 +27,9 @@ import AssignmentStartPageContainer from '../assignment-start-page/assignment-st
 import TestStartPageContainer from '../test-start-page/test-start-page.container';
 
 class CourseContentPage extends React.Component {
-  constructor() {
-    super();
-  }
+  // constructor() {
+  //   super();
+  // }
   componentDidMount() {
     const {
       course_topic_type,

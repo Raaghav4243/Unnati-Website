@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import UnnatiTree from '../../icons/UnnatiTree.svg';
 
 export const AboutCardOne = {

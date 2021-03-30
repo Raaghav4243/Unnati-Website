@@ -6,9 +6,7 @@ import CustomPaginationActionsTable from '../../components/teacher-testCheck/sty
 import { fetchTestListForEvaluationStart } from '../../redux/test-evaluation/test-evaluation-list.actions';
 import { selectTestList } from '../../redux/test-evaluation/test-evaluation-list.selectors';
 import { selectTestDetails } from '../../redux/test-sheet/test-sheet.selectors';
-import {
-  PageContainer,
-} from '../evaluate-test-page/evaluate-test.styles';
+import { PageContainer } from '../evaluate-test-page/evaluate-test.styles';
 import {
   CafeDetailsParentWrapper,
   TableWrapper,
@@ -47,8 +45,11 @@ class TeacherTestCheck extends React.Component {
               courseid
             );
             rows.push(rowObj);
+            return null;
           });
+          return null;
         });
+        return null;
       });
     } else {
     }

@@ -82,7 +82,3 @@ export const CoverContainer = styled.div`
   top: 0px;
   background-color: red;
 `;
-{
-  /* <div style='width: 80px; height: 80px; position: absolute; opacity: 0; right: 0px; top: 0px; background-color:red;'>
-            {' '} */
-}

@@ -33,22 +33,12 @@ import {
   LogoWrapper,
   AssignmentLogo,
   Title,
-  AssignmentTitleWrapper,
   AssignmentPrompt,
   PromptField,
   FieldTitle,
   FieldValue,
-  PromptWrapper,
-  AssignmentName,
-  AssignmentDuration,
-  AssignmentHighestScore,
   AssignmentAttemptsContainer,
-  AttemptsWrapper,
-  ClickPrompt,
-  AttemptsLeftPrompt,
 } from './assignment-start-page.styles';
-
-import AssignmentBackendResponseTypes from './assignment-backend-response.types';
 
 // function Alert(props) {
 //   return <MuiAlert elevation={6} variant='filled' {...props} />;
@@ -66,45 +56,15 @@ const useStyles = (theme) => ({
 });
 
 class AssignmentStartPage extends React.Component {
-  constructor() {
-    super();
-  }
-  componentDidMount() {
-    const {
-      //   current_user_id,
-      //   current_course_id,
-      //   current_test_id,
-      //   fetchTestStart,
-    } = this.props;
-    console.log('AssignmentStartPage mounted');
-    // fetchTestStart(current_user_id, current_course_id, current_test_id);
-  }
-  componentDidUpdate() {
-    console.log('AssignmentStartPage did update!');
-  }
-
-  componentWillUnmount() {
-    console.log('AssignmentStartPage Will unmount now');
-  }
-
-  // componentDidUpdate() {
-  //   const {
-  //     current_user_id,
-  //     current_course_id,
-  //     current_test_id,
-  //     fetchTestStart,
-  //   } = this.props;
-  //   console.log('When test updated');
-  //   fetchTestStart(current_user_id, current_course_id, current_test_id);
+  // constructor() {
+  //   super();
   // }
+
   render() {
     const {
       match,
       history,
-      current_assignment_id,
       current_assignment_name,
-      current_course_id,
-      assignmentMessageFromBackend,
       maxMarksScored,
       maxMarksPossible,
       assignmentDuration,
@@ -112,14 +72,6 @@ class AssignmentStartPage extends React.Component {
       assignmentQuestions,
       classes,
     } = this.props;
-    console.log('Assignment start page rendered!');
-    console.log(
-      'Assignment message from backend',
-      assignmentMessageFromBackend
-    );
-    console.log('Assignment questions received!', assignmentQuestions);
-    console.log('Assignment max marks Scored', maxMarksScored);
-    console.log('Assignment max marks Possible', maxMarksPossible);
 
     return (
       <>
@@ -129,11 +81,6 @@ class AssignmentStartPage extends React.Component {
           </LogoWrapper>
           <Title>{current_assignment_name}</Title>
           <AssignmentPrompt>
-            {/* <AssignmentName>
-              <PromptWrapper>Assignment Name : </PromptWrapper>
-              {current_assignment_name}
-            </AssignmentName> */}
-
             {assignmentDuration ? (
               <PromptField>
                 <FieldTitle>Assignment Duration : </FieldTitle>
@@ -145,7 +92,6 @@ class AssignmentStartPage extends React.Component {
                 <FieldValue>
                   You have not attempted this Assignment yet!
                 </FieldValue>
-                {/* <FieldValue>{assignmentDuration} minutes</FieldValue> */}
               </PromptField>
             ) : (
               <PromptField>
@@ -171,12 +117,11 @@ class AssignmentStartPage extends React.Component {
                 onClick={() => {
                   history.push(`${match.path}/assignment`);
                 }}
-                // startIcon={<SaveIcon />}
               >
                 Attempt Assignment
               </Button>
               <Alert severity='info'>
-                {assignmentAttemptsLeft == 1
+                {assignmentAttemptsLeft === 1
                   ? `Currently you have ${assignmentAttemptsLeft} attempt left`
                   : `Currently you have ${assignmentAttemptsLeft} attempts left`}{' '}
               </Alert>
@@ -201,8 +146,6 @@ const mapStateToProps = createStructuredSelector({
   assignmentDuration: selectAssignmentDuration,
   assignmentAttemptsLeft: selectAssignmentAttemptsLeft,
   assignmentQuestions: selectAssignmentQuestions,
-  //   test_questions: selectTestQuestions,
-  //   test_message: selectTestMessage,
 });
 
 export default connect(mapStateToProps)(

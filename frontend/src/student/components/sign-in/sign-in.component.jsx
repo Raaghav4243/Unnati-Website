@@ -14,15 +14,11 @@ import {
   selectIsUserSigningIn,
 } from '../../redux/user/user.selectors';
 
-import FormInput from '../form-input/form-input.component';
-
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 // import Icon from '@material-ui/core/Icon';
-import SaveIcon from '@material-ui/icons/Save';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import Avatar from '@material-ui/core/Avatar';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -30,7 +26,6 @@ import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 
 import {
-  SignInContainer,
   SignInTitle,
   IconWrapper,
   ButtonWrapper,
@@ -115,8 +110,8 @@ class SignIn extends React.Component {
 
     this.setState({ errors: temp });
 
-    if (fieldValues == this.state.resp) {
-      return Object.values(temp).every((x) => x == '');
+    if (fieldValues === this.state.resp) {
+      return Object.values(temp).every((x) => x === '');
     }
   };
 
@@ -152,12 +147,7 @@ class SignIn extends React.Component {
   }
 
   render() {
-    const {
-      signInstarted,
-      didSignInFail,
-      classes,
-      resetSignInInfo,
-    } = this.props;
+    const { signInstarted, didSignInFail, classes } = this.props;
     // console.log('DID SIGN IN FAIL', didSignInFail);
     const { resp } = this.state;
     return (

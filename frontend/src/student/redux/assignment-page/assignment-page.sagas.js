@@ -1,7 +1,6 @@
 import { takeLatest, put, all, call, select } from 'redux-saga/effects';
 
 import {
-  fetchAssignmentStart,
   fetchAssignmentSuccess,
   fetchAssignmentFailure,
   submitAssignmentSuccess,
@@ -20,32 +19,12 @@ export function* fetchAssignmentAsync() {
     const userId = yield select(selectCurrentUserId);
     const courseId = yield select(selectCurrentCourseId);
     const assignmentId = yield select(selectCurrentCourseTopicId);
-    // console.log(
-    //   'FETCHING ASSIGNMENT USING',
-    //   userId,
-    //   'user',
-    //   courseId,
-    //   'course',
-    //   assignmentId,
-    //   'assignment'
-    // );
-    // console.log(
-    //   'WAS PREVIOUSLY FETCHING ASSIGNMENT USING',
-    //   user_id,
-    //   'user',
-    //   course_id,
-    //   'course',
-    //   assignment_id,
-    //   'assignment'
-    // );
 
     let courseAssignmentDetails = yield fetch(
       `/enrolled-course/${userId}/course/${courseId}/assignment/${assignmentId}`
     );
 
     courseAssignmentDetails = yield courseAssignmentDetails.json();
-
-    // console.log('courseAssignmentDetails are ', courseAssignmentDetails);
 
     courseAssignmentDetails.done
       ? yield put(fetchAssignmentSuccess(courseAssignmentDetails))

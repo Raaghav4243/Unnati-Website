@@ -27,9 +27,9 @@ import {
 import SignInPageNavbar from '../../components/signin-and-signup-page-navbar/signin-and-signup-page-navbar.component';
 
 class SignInAndSignUpPage extends React.Component {
-  constructor() {
-    super();
-  }
+  // constructor() {
+  //   super();
+  // }
 
   render() {
     return (
@@ -38,16 +38,11 @@ class SignInAndSignUpPage extends React.Component {
         <SignInAndSignUpContainer>
           <Container>
             <SignInWrapper>
-              {/* <MainTitle>Already have an account?</MainTitle> */}
-              {/* <Title>Sign into Unnati</Title> */}
               <SignIn />
-
-              {/* <ChangePasswordContainer /> */}
             </SignInWrapper>
             <SignUpWrapper>
               <MainTitle>Don't have an account?</MainTitle>
               <Title>Sign up today</Title>
-              {/* <EditProfileContainer /> */}
               <SignUp />
             </SignUpWrapper>
           </Container>

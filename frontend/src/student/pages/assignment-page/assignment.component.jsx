@@ -33,22 +33,15 @@ import AssignmentAndTestHeader from '../../components/assignment-test-header/ass
 import StudentDashboardNavbar from '../../components/student-dashboard-navbar/student-dashboard-navbar.component';
 
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-// import FormLabel from '@material-ui/core/FormLabel';
-// import FormControl from '@material-ui/core/FormControl';
+
 import FormGroup from '@material-ui/core/FormGroup';
-// import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import Checkbox from '@material-ui/core/Checkbox';
-import FormLabel from '@material-ui/core/FormLabel';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn';
 import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
@@ -64,11 +57,8 @@ import {
   TimeWrapper,
   TimeHeader,
   Form,
-  // QuestionsContainer,
-  // AssignmentTitle,
   QuestionsWrapper,
   QuestionCardWrapper,
-  // QuestionCardContainer,
   QuestionStatementContainer,
   QuestionPrompt,
   QuestionStatement,
@@ -81,21 +71,9 @@ import {
   Score,
   ResponseSheet,
   IconWrapper,
-  ScoreDiv,
-  TimePrompt,
   OptionWrapper,
   NavRight,
-  // QuestionWrapper,
-  // AssignmentWrapper,
-  // WrappingQuestions,
-  // AssignmentName,
-  // AssignmentForm,
-  // AllQuestions,
-  // Questions,
-  // Options,
 } from './assignment.styles';
-import { ThemeConsumer } from 'styled-components';
-// import questionData from './data';
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant='filled' {...props} />;
@@ -121,25 +99,14 @@ const useStyles = (theme) => ({
   },
 
   formControlForQuestion: {
-    // marginTop: theme.spacing(0.5),
-    // paddingTop: theme.spacing(1),
     width: '100%',
-
-    // marginLeft: theme.spacing(2.5),
-    // background: 'red',
-    // marginBottom: theme.spacing(1),
-    // marginTop: 15,
-    // minWidth: 150,
   },
   selectEmpty: {
     marginTop: theme.spacing(1),
   },
   alert: {
     width: '100%',
-    // marginTop: theme.spacing(1),
     marginBottom: theme.spacing(2),
-    // backgroundColor : '',
-    // boxShadow: 'null',
   },
 });
 
@@ -151,7 +118,6 @@ class Assignment extends React.Component {
       resp: {},
       score: null,
       totalObtainableMarks: null,
-      score: null,
       scoreTracker: null,
       correctAnswersByUser: null,
       incorrectAnswersByUser: null,
@@ -162,19 +128,7 @@ class Assignment extends React.Component {
   }
 
   handleOnChange = (e) => {
-    //console.log(e.target.value);
-    //console.log(e.target.name);
-    // const responses = this.resp.push({name: [e.target.value]})
-    //console.log(responses)
-    //  this.setState({ selectedOption: e.target.value});
-    //console.log(resp)
-    const {
-      assignment_questions,
-      // assignmentName,
-      // isAssignmentSubmitting,
-      // assignmentSubmittedConfirmation,
-      // assignmentSubmissionFailed,
-    } = this.props;
+    const { assignment_questions } = this.props;
     const value = e.target.value;
     const name = e.target.name;
     console.log('NAME:', name);
@@ -207,22 +161,6 @@ class Assignment extends React.Component {
     } else {
     }
 
-    // if (questionType === 'MULTICORRECT') {
-    //   if (response[name] == undefined) {
-    //     response[name] = [value];
-    //   } else if (response[name].includes(value)) {
-    //     let temp = response[name].filter((item) => {
-    //       return item !== value;
-    //     });
-    //     response[name] = temp;
-    //   } else {
-    //     response[name].push(value);
-    //   }
-    // } else {
-    //   response[name] = [value];
-    // }
-
-    console.log('RESPONSE BECOMES', resp);
     this.setState({
       resp: resp,
     });
@@ -254,14 +192,13 @@ class Assignment extends React.Component {
     let answerKey = {};
 
     assignment_questions.map((question, q_no) => {
-      console.log('QUESTION NO : ', q_no, ' QUESTION : ', question);
       let correct_ans_array = question.correctAns;
       let maxMarks = question.maxMarks;
 
       if (resp[q_no]) {
         // attempted
-        if (question.type == 'SINGLECORRECT') {
-          if (resp[q_no] == correct_ans_array[0]) {
+        if (question.type === 'SINGLECORRECT') {
+          if (resp[q_no] === correct_ans_array[0]) {
             // correct
             correct_answers_numbers[q_no] = 'correct';
             scoreTracker[q_no] = maxMarks;
@@ -271,11 +208,11 @@ class Assignment extends React.Component {
             incorrect_answers_numbers[q_no] = 'incorrect';
             scoreTracker[q_no] = 0;
           }
-        } else if (question.type == 'MULTICORRECT') {
+        } else if (question.type === 'MULTICORRECT') {
           // if(resp[q_no])
           let allMarkedMultiCorrectAns = Object.values(resp[q_no]);
           console.log('ALL MARKED OPTIONS ARE', allMarkedMultiCorrectAns);
-          if (allMarkedMultiCorrectAns.length == correct_ans_array.length) {
+          if (allMarkedMultiCorrectAns.length === correct_ans_array.length) {
             let check = correct_ans_array.every(
               (correct_option_from_backend) => {
                 return resp[q_no][correct_option_from_backend];
@@ -311,18 +248,21 @@ class Assignment extends React.Component {
       let keyObj = {};
       correct_ans_array.map((correct_option) => {
         keyObj[correct_option] = 'correct';
+        return null;
       });
       answerKey[q_no] = keyObj;
+
+      return null;
     });
 
-    console.log('CORRECT ANSWERS BY USER', correct_answers_numbers);
-    console.log('INCORRECT ANSWERS BY USER', incorrect_answers_numbers);
-    console.log('UNATTEMTED ANSWERS BY USER', unattempted_answers_numbers);
+    // console.log('CORRECT ANSWERS BY USER', correct_answers_numbers);
+    // console.log('INCORRECT ANSWERS BY USER', incorrect_answers_numbers);
+    // console.log('UNATTEMTED ANSWERS BY USER', unattempted_answers_numbers);
 
-    console.log('TOTAL OBTAINABLE MARKS ARE', totalObtainableMarks);
-    console.log('SCORE IS', score);
-    console.log('SCORE TRACKER ', scoreTracker);
-    console.log('ANSWER KEY FOR ASSIGNMENT IS', answerKey);
+    // console.log('TOTAL OBTAINABLE MARKS ARE', totalObtainableMarks);
+    // console.log('SCORE IS', score);
+    // console.log('SCORE TRACKER ', scoreTracker);
+    // console.log('ANSWER KEY FOR ASSIGNMENT IS', answerKey);
 
     let data = {};
     data['marksScored'] = score;
@@ -344,43 +284,29 @@ class Assignment extends React.Component {
 
   componentWillUnmount() {
     const { resetAssignmentInfo } = this.props;
-    const { assignmentDone } = this.state;
-
-    // if (assignmentDone) {
-    // } else {
-    //   this.handleSubmit();
-    // }
-
     resetAssignmentInfo();
   }
 
   render() {
     const {
       assignment_questions,
-      // assignmentName,
       assignmentDuration,
       isAssignmentSubmitting,
       assignmentSubmittedConfirmation,
       assignmentSubmissionFailed,
-      // resetAssignmentInfo,
       assignmentError,
       classes,
     } = this.props;
     const {
       resp,
-      // questionsForGeneratingResponseSheet,
       assignmentDone,
       totalObtainableMarks,
       score,
       scoreTracker,
       correctAnswersByUser,
       incorrectAnswersByUser,
-      unattemptedAnswersByUser,
       answerKey,
     } = this.state;
-    // console.log('ASSIGNMENT QUESTIONS RECIEVED', assignment_questions);
-    console.log('RESPONSE RECEIVED IS', resp);
-    console.log('DURATION IS', assignmentDuration);
 
     return (
       <>
@@ -394,20 +320,12 @@ class Assignment extends React.Component {
             </TimeHeader>
           </TimerWrapper>
 
-          {/* <button
-            onClick={() => {
-              this.setState({ assignmentDone: false });
-            }}
-          >
-            RESET
-          </button> */}
           <NavRight>
             <ButtonWrapper>
               <Button
                 variant='contained'
                 color='secondary'
                 size='large'
-                // type='submit'
                 className={classes.button}
                 onClick={this.handleSubmitSuccess}
                 startIcon={<KeyboardReturnIcon />}
@@ -575,11 +493,6 @@ class Assignment extends React.Component {
                 </Scorecard>
                 <QuestionsWrapper>
                   {assignment_questions.map((question, index) => {
-                    {
-                      resp[index]
-                        ? console.log('USER HAS ATTEMPTED  Q.NO: ', index)
-                        : console.log('USER HAS NOT ATTEMPTED  Q.NO: ', index);
-                    }
                     return (
                       <>
                         <QuestionCardWrapper>
@@ -686,12 +599,12 @@ class Assignment extends React.Component {
                                           status={
                                             answerKey[index][option]
                                               ? resp[index]
-                                                ? resp[index] == option
+                                                ? resp[index] === option
                                                   ? 'rgba(13, 201, 132, 0.753)'
                                                   : 'rgba(13, 201, 133, 0.49)'
                                                 : 'rgba(13, 201, 133, 0.49)'
                                               : resp[index]
-                                              ? resp[index] == option
+                                              ? resp[index] === option
                                                 ? 'rgba(252, 4, 4, 0.637)'
                                                 : null
                                               : null
@@ -704,7 +617,7 @@ class Assignment extends React.Component {
                                                 disabled
                                                 checked={
                                                   resp[index]
-                                                    ? resp[index] == option
+                                                    ? resp[index] === option
                                                       ? true
                                                       : false
                                                     : false
@@ -729,33 +642,6 @@ class Assignment extends React.Component {
               </ResponseSheet>
             </>
           ) : null}
-
-          {/*
-          <Snackbar
-            open={assignmentSubmittedConfirmation && assignmentDone}
-            // autoHideDuration={5000}
-            // onClose={() => resetAssignmentInfo()}
-          >
-            <Alert severity='success'>Assignment Submitted Successfully!</Alert>
-          </Snackbar>
-          <Snackbar
-            open={assignmentSubmissionFailed}
-            // autoHideDuration={5000}
-            // onClose={() => resetAssignmentInfo()}
-          >
-            <Alert severity='error'>
-              `Submission Failed... {assignmentError}`
-            </Alert>
-          </Snackbar>
-          */}
-
-          {/* <div></div> */}
-
-          {/* {isAssignmentSubmitting ? (
-            <div>ASSIGNMENT IS SUBMITTING...PLEASE WAIT.</div>
-          ) : null} */}
-          {}
-          {/* AFTER SUBMISSION IS SUCCESSFUL */}
         </PageWrapper>
       </>
     );

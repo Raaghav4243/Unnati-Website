@@ -34,16 +34,7 @@ import {
   PromptField,
   FieldTitle,
   FieldValue,
-  TestStartPageContainer,
-  TestTitleWrapper,
-  // TestPrompt,
-  PromptWrapper,
-  TestName,
-  TestDuration,
-  TestMessage,
   QuestionsPromptContainer,
-  Prompt,
-  StartTestButton,
 } from './test-start-page.styles';
 // import TestPage from '../test-page/test-page.component';
 
@@ -59,28 +50,11 @@ const useStyles = (theme) => ({
 });
 
 class TestStartPage extends React.Component {
-  constructor() {
-    super();
-  }
-  componentDidUpdate() {
-    console.log('Test start page did update!');
-  }
-  componentDidMount() {
-    const {
-      current_user_id,
-      current_course_id,
-      current_test_id,
-      fetchTestStart,
-    } = this.props;
-    console.log('TestStartPage mounted');
-  }
-
-  componentWillUnmount() {
-    console.log('TestStartPage Will unmount now');
-  }
+  // constructor() {
+  //   super();
+  // }
 
   render() {
-    console.log('Test start page rendered!');
     const {
       match,
       history,
@@ -92,7 +66,6 @@ class TestStartPage extends React.Component {
       test_questions,
       classes,
     } = this.props;
-    console.log('Test message from backend!', test_message_from_backend);
     return (
       <>
         <TestStartPageWrapper>
@@ -101,15 +74,7 @@ class TestStartPage extends React.Component {
           </LogoWrapper>
           <Title>{current_test_name}</Title>
           <TestPrompt>
-            {/* <TestName>
-              <PromptWrapper>Test Name :</PromptWrapper>
-              {current_test_name}
-            </TestName> */}
             {testDuration ? (
-              // <TestDuration>
-              //   <PromptWrapper>Test Duration : </PromptWrapper>
-              //   {testDuration} minutes
-              // </TestDuration>
               <PromptField>
                 <FieldTitle>Test Duration : </FieldTitle>
                 <FieldValue>{testDuration} minutes</FieldValue>
@@ -118,29 +83,10 @@ class TestStartPage extends React.Component {
             {test_message_from_backend ===
             TestBackendResponseTypes.TEACHER_HAS_EVALUATED ? (
               <>
-                {/* <TestMessage>
-                  <PromptWrapper>
-                    <strong>
-                      Your Teacher has evaluated the test and your marks are
-                      out.
-                    </strong>
-                  </PromptWrapper>
-                  {marksScoredOnTest !== null ? ` ${marksScoredOnTest}` : null}
-                  {maxMarksPossible !== null ? ` / ${maxMarksPossible}` : null}
-                </TestMessage> */}
                 <PromptField>
                   <FieldValue>
                     Your Teacher has evaluated the test and your marks are out.
                   </FieldValue>
-                  {/* <FieldValue>
-                    {' '}
-                    {marksScoredOnTest !== null
-                      ? `: ${marksScoredOnTest}`
-                      : null}
-                    {maxMarksPossible !== null
-                      ? ` / ${maxMarksPossible}`
-                      : null}
-                  </FieldValue> */}
                 </PromptField>
                 <PromptField>
                   <FieldTitle>You have scored:</FieldTitle>
@@ -157,18 +103,7 @@ class TestStartPage extends React.Component {
             ) : test_message_from_backend ===
               TestBackendResponseTypes.TEACHER_WILL_EVALUATE ? (
               <>
-                {/* <TestMessage>
-                  <PromptWrapper>
-                    <strong>
-                      Your test has been submitted and will soon be evaluated by
-                      your teacher.
-                    </strong>
-                  </PromptWrapper>
-                </TestMessage> */}
                 <PromptField>
-                  {/* <FieldTitle>
-                    Your Teacher has evaluated the test and your marks are out.
-                  </FieldTitle> */}
                   <FieldValue>
                     Your test has been submitted and will soon be evaluated by
                     your teacher.
@@ -179,8 +114,6 @@ class TestStartPage extends React.Component {
           </TestPrompt>
           {test_questions ? (
             <>
-              {/* <Route path={`${match.path}/test`} component={TestPage} /> */}
-              {console.log('QUESTIONS ARRAY:', test_questions)}
               <QuestionsPromptContainer>
                 <Button
                   variant='contained'
@@ -191,22 +124,9 @@ class TestStartPage extends React.Component {
                   onClick={() => {
                     history.push(`${match.path}/test`);
                   }}
-                  // startIcon={<SaveIcon />}
                 >
                   Start Test
                 </Button>
-
-                {/* <Prompt>
-                  Are you sure you want to start this test? Once Started, it
-                  cannot be paused without submission.
-                </Prompt>
-                <StartTestButton
-                  onClick={() => {
-                    history.push(`${match.path}/test`);
-                  }}
-                >
-                  Start Test
-                </StartTestButton> */}
               </QuestionsPromptContainer>
               <Alert severity='info'>
                 Are you sure you want to start this test? Once started, it
@@ -218,7 +138,6 @@ class TestStartPage extends React.Component {
       </>
     );
   }
-  // ({ current_test_name }) => {
 }
 
 const mapStateToProps = createStructuredSelector({

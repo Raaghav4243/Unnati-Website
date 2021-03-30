@@ -20,7 +20,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import { selectTestDetails } from '../../redux/test-sheet/test-sheet.selectors';
-import { createMuiTheme } from '@material-ui/core/styles';
 import StyledButton from '../button-component/styled-button';
 // import 'BootstrapButton' from '../styled-button-component/styled-button'
 // import TableRow from '@material-ui/core/TableRow';
@@ -124,22 +123,6 @@ const useStyles2 = makeStyles({
 //   },
 // });
 
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      light: '#ff9800',
-      main: '#3f50b5',
-      dark: '#ffc222',
-      contrastText: '#fff',
-    },
-    secondary: {
-      light: '#ff7961',
-      main: '#f44336',
-      dark: '#ba000d',
-      contrastText: '#000',
-    },
-  },
-});
 const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: '#ffc222',
@@ -232,7 +215,7 @@ function CustomPaginationActionsTable(props) {
                       const responseSheetId = row.ID;
 
                       const courseId = row.ButtonId;
-                      const { fetchTestSheetStart, test } = props;
+                      const { fetchTestSheetStart } = props;
                       fetchTestSheetStart(responseSheetId, courseId);
                     }}
                   >

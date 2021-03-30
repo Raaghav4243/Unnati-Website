@@ -1,20 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
 
 //redux
-import { fetchUserCafeStart } from '../../redux/cafe/cafe.actions';
-import {
-  // selectUserCafeDetails,
-  selectUserCafeNumberOfClassmates,
-} from '../../redux/cafe/cafe.selectors';
 import { fetchEnrolledCoursesStart } from '../../redux/student/student.actions';
-import {
-  selectPercentStatusForUserEnrolledCourses,
-  selectUserEnrolledCourses,
-  selectUserEnrolledCoursesIdMap,
-} from '../../redux/student/student.selectors';
-import { selectCurrentUserId } from '../../redux/user/user.selectors';
 
 //components
 // import EnrolledCourseCard from '../../components/enrolled-course-card/enrolled-course-card.component';
@@ -36,8 +24,6 @@ class StudentDashboardOverviewPage extends React.Component {
     fetchEnrolledCoursesStart();
   }
   render() {
-    const { allCourses } = this.props;
-    console.log('ALL COURSES ARRAY', allCourses);
     return (
       <>
         <PageContainer>

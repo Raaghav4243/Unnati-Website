@@ -23,9 +23,9 @@ const useStyles = (theme) => ({
 });
 
 class ChangePassword extends React.Component {
-  constructor() {
-    super();
-  }
+  // constructor() {
+  //   super();
+  // }
 
   render() {
     const { classes } = this.props;

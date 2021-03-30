@@ -15,9 +15,7 @@ import {
   TextTitle,
 } from './teacher-approval.styles';
 import ApproveStudentTableContainer from '../../components/teacher-approval.page/teacher-approval.container';
-import {
-  PageContainer,
-} from '../Profile-page/profile-page.styles';
+import { PageContainer } from '../Profile-page/profile-page.styles';
 
 class TeacherApproval extends React.Component {
   componentDidMount() {
@@ -43,6 +41,7 @@ class TeacherApproval extends React.Component {
           student._id
         );
         rows.push(rowObj);
+        return null;
       });
     } else {
     }

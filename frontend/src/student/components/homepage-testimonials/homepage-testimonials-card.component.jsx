@@ -1,5 +1,4 @@
 import React from 'react';
-import { FaQuoteLeft } from 'react-icons/fa';
 import { VscQuote } from 'react-icons/vsc';
 import {
   CardContainer,

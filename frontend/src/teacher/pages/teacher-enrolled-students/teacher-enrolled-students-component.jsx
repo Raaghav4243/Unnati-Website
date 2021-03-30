@@ -4,9 +4,7 @@ import { createStructuredSelector } from 'reselect';
 import TeacherCafeDetails from '../../components/cafe-details/cafe-details.component';
 import { selectVerifiedStudents } from '../../redux/verified-students/verified-student.selectors';
 import { fetchVerifiedStudentStart } from '../../redux/verified-students/verified-students.actions';
-import {
-  PageContainer,
-} from '../Profile-page/profile-page.styles';
+import { PageContainer } from '../Profile-page/profile-page.styles';
 import EnrolledStudentsTableContainer from './teacher-enrolled-students.container';
 
 import {
@@ -37,6 +35,7 @@ class TeacherEnrolledStudents extends React.Component {
           student.email
         );
         rows.push(rowObj);
+        return null;
       });
     } else {
     }

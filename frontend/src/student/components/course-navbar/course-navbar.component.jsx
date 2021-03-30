@@ -5,7 +5,7 @@ import GoToHomePageButton from '../go-to-homepage-button-link/go-to-homepage-but
 import {
   Nav,
   DashboardButtonWrapper,
-  HomepageButtonWrapper,
+  // HomepageButtonWrapper,
 } from './course-navbar.styles';
 
 const CourseNavbar = () => {

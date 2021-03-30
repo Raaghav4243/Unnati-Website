@@ -10,19 +10,9 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
-import FirstPageIcon from '@material-ui/icons/FirstPage';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
-import LastPageIcon from '@material-ui/icons/LastPage';
 import TableHead from '@material-ui/core/TableHead';
-import { sizing } from '@material-ui/system';
-// import { fetchTestSheetStart } from '../../redux/test-sheet/test-sheet.actions';
-// import { connect } from 'react-redux';
-// import { Link, Route } from 'react-router-dom';
-// import { createStructuredSelector } from 'reselect';
-// import { selectTestDetails } from '../../redux/test-sheet/test-sheet.selectors';
-import { createMuiTheme } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import { websiteTheme } from '../../../material-ui.styles';
 
 const StyledTableCell = withStyles((theme) => ({

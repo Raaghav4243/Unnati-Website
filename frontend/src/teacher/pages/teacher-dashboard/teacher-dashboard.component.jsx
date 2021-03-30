@@ -17,7 +17,7 @@ import TeacherEnrolledStudents from '../teacher-enrolled-students/teacher-enroll
 import TeacherApproval from '../teacher-approval/teacher-approval.page';
 import TeacherDashboardAssignPage from '../assign-courses/assign-courses';
 import TeacherTestCheck from '../teacher-testCheck/teacher-test-check.page';
-import EvaluateTestPage from '../evaluate-test-page/evaluate-test';
+import EvaluateTestPageContainer from '../evaluate-test-page/evaluate-test.container';
 import TeacherDashboardFeesPage from '../course-fees/course-fees-page';
 
 //styles used
@@ -62,7 +62,7 @@ class teacherDashboard extends React.Component {
             <Route
               exact
               path={`${match.path}/evaluate`}
-              component={EvaluateTestPage}
+              component={EvaluateTestPageContainer}
             />
             <Route
               exact

@@ -1,5 +1,4 @@
 import { all, call, put, takeLatest, select } from 'redux-saga/effects';
-import { fetchFeeAmountStart } from '../fee-amount/fee-amount.actions';
 import FeeDetailTypes from './fee-details.types';
 import {
   fetchFeeDetailFailure,
@@ -14,8 +13,6 @@ export function* FetchFeeDetailAsync() {
     let feeTransactionDetails = yield fetch(`/user-receipts/${userId}`);
 
     feeTransactionDetails = yield feeTransactionDetails.json();
-
-    console.log('feeTransactionDetails are ', feeTransactionDetails);
 
     feeTransactionDetails.done
       ? yield put(fetchFeeDetailSuccess(feeTransactionDetails.userReceipts))

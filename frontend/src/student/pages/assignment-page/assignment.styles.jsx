@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
 export const AssignmentNavbar = styled.div`
   background: #1a1919;

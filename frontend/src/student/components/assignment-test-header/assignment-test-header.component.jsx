@@ -14,7 +14,7 @@ import {
 
 import {
   SideNavContainer,
-  SidebarWrap,
+  // SidebarWrap,
   Container,
   Wrapper,
   DetailsContainer,
@@ -76,7 +76,6 @@ Many desktop publishing packages will uncover many web sites still in their infa
                 `}
           </Instructions>
         </InstructionsWrapper>
-        {/* </SidebarWrap> */}
       </SideNavContainer>
     </>
   );

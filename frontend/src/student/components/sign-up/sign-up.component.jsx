@@ -19,7 +19,6 @@ import { selectAllCafes } from '../../redux/allCourses/all-courses.selectors';
 import MenuItem from '@material-ui/core/MenuItem';
 // import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -31,20 +30,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 
-import {
-  SignUpContainer,
-  SignUpTitle,
-  SelectionWrapper,
-  RoleContainer,
-  RolePrompt,
-  RadioWrapper,
-  RadioLabel,
-  RadioInput,
-  RadioIndicator,
-  CafeSelector,
-  CafePrompt,
-  ButtonWrapper,
-} from './sign-up.styles';
+import { RoleContainer, ButtonWrapper } from './sign-up.styles';
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant='filled' {...props} />;
@@ -140,8 +126,8 @@ class SignUp extends React.Component {
           : 'Minimum 10 numbers required.';
     this.setState({ errors: temp });
 
-    if (fieldValues == this.state.resp) {
-      return Object.values(temp).every((x) => x == '');
+    if (fieldValues === this.state.resp) {
+      return Object.values(temp).every((x) => x === '');
     }
   };
 

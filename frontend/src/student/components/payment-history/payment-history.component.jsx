@@ -34,6 +34,7 @@ class PaymentHistory extends React.Component {
         receipt.amount
       );
       rows.push(rowObj);
+      return null;
     });
     // } else {
     // }

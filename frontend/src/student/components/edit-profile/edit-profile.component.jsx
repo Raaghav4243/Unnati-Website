@@ -121,9 +121,9 @@ class EditProfile extends React.Component {
           : 'Minimum 10 numbers required.';
     this.setState({ errors: temp });
 
-    if (fieldValues == this.state.updatedUserInfo) {
+    if (fieldValues === this.state.updatedUserInfo) {
       // console.log('SUBMIT VALIDATING..');
-      return Object.values(temp).every((x) => x == '');
+      return Object.values(temp).every((x) => x === '');
     }
   };
 

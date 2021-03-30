@@ -1,9 +1,5 @@
 import styled from 'styled-components';
 
-{
-  /* <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet"></link> */
-}
-
 export const PageContainer = styled.div`
   display: flex;
   flex-direction: column;

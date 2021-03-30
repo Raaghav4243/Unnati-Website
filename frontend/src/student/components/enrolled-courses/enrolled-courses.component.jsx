@@ -15,9 +15,9 @@ import {
 } from './enrolled-courses.styles';
 
 class StudentEnrolledCourses extends React.Component {
-  constructor() {
-    super();
-  }
+  // constructor() {
+  //   super();
+  // }
 
   render() {
     const { enrolled_courses, percentStatusArray } = this.props;

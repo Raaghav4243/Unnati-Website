@@ -117,14 +117,14 @@ const useStyles2 = makeStyles({
   },
 });
 
-const styles = (theme) => ({
-  button: {
-    margin: theme.spacing.unit,
-  },
-  input: {
-    display: 'none',
-  },
-});
+// const styles = (theme) => ({
+//   button: {
+//     margin: theme.spacing.unit,
+//   },
+//   input: {
+//     display: 'none',
+//   },
+// });
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -205,7 +205,7 @@ function ApproveStudentTableComponent(props) {
                     const studentId = row.ButtonId;
                     const { approveStudentStart } = props;
                     approveStudentStart(studentId);
-                    window.location.reload()
+                    window.location.reload();
                   }}
                 >
                   APPROVE

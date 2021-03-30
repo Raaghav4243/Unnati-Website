@@ -13,9 +13,9 @@ import {
 } from './discover-courses.styles';
 
 class StudentDiscoverCourses extends React.Component {
-  constructor() {
-    super();
-  }
+  // constructor() {
+  //   super();
+  // }
 
   render() {
     const { allCourses, enrolled_courses_id_map } = this.props;

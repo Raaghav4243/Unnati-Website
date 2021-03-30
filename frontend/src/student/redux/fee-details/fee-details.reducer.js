@@ -14,7 +14,6 @@ const feeReducer = (state = INTIAL_STATE, action) => {
         isFetching: true,
       };
     case FeeDetailTypes.FETCH_FEE_DETAILS_SUCCESS:
-      const { userReceipts } = action.payload;
       return {
         ...state,
         isFetching: false,

@@ -15,10 +15,7 @@ import {
   // LectureTitleWrapper,
   LectureVideoWrapper,
   LectureNotesWrapper,
-  // LectureNotesTitleWrapper,
 } from './course-video-page.styles';
-// import pdf from '../../assets/TopicNotes.pdf';
-// import SideNav from '../../components/SideNav/SideNav';
 import {
   selectCurrentCourseId,
   selectCurrentCourseTopicId,
@@ -32,12 +29,10 @@ export class CourseVideo extends Component {
 
   render() {
     const {
-      lecture_youtube_id,
       lecture_notes_link,
       lecture_drive_id,
+      current_lecture_name,
     } = this.props;
-    console.log('Lecture Page has rendered');
-    console.log('Lecture Notes Link', lecture_notes_link);
     return (
       <>
         <CourseVideoContainer>
@@ -46,13 +41,10 @@ export class CourseVideo extends Component {
               style={{ width: '100%', height: '100%', position: ' relative' }}
             >
               <iframe
-                // src='https://drive.google.com/file/d/0BxLbnVHP6GWpV2ZIZEc4SkNTOTQ/preview'
                 src={`https://drive.google.com/file/d/${lecture_drive_id}/preview`}
                 width='100%'
                 height='100%'
-                // frameBorder='0'
-                // scrolling='no'
-                // seamless=''
+                title={`${current_lecture_name}-video`}
               ></iframe>
               <div
                 style={{
@@ -71,19 +63,15 @@ export class CourseVideo extends Component {
           </LectureVideoWrapper>
           <Title>Lecture Notes</Title>
           <LectureNotesWrapper>
-            {/* <iframe
-              src={`https://drive.google.com/file/d/${lecture_notes_link}/preview`}
-              width='100%'
-              height='100%'
-            ></iframe> */}
             <div
               style={{ width: '100%', height: '100%', position: ' relative' }}
             >
               <iframe
-                // src='https://drive.google.com/file/d/0BxLbnVHP6GWpV2ZIZEc4SkNTOTQ/preview'
                 src={`https://drive.google.com/file/d/${lecture_notes_link}/preview`}
                 width='100%'
                 height='100%'
+                title={`${current_lecture_name}-notes`}
+
                 // frameBorder='0'
                 // scrolling='no'
                 // seamless=''

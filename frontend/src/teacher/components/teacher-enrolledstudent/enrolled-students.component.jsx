@@ -15,25 +15,6 @@ import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
 import TableHead from '@material-ui/core/TableHead';
-import { createMuiTheme } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      light: '#ff9800',
-      main: '#3f50b5',
-      dark: '#002884',
-      contrastText: '#fff',
-    },
-    secondary: {
-      light: '#ff7961',
-      main: '#f44336',
-      dark: '#ba000d',
-      contrastText: '#000',
-    },
-  },
-});
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
