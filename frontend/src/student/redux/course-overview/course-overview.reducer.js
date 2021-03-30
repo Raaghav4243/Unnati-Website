@@ -72,7 +72,7 @@ const courseOverviewReducer = (state = INITIAL_STATE, action) => {
     case CourseOverviewActionTypes.FETCH_COURSE_FOR_OVERVIEW_FOR_HOME_SUCCESS:
       const { generalDetails, feesDetails } = action.payload;
       // const coursePrice = fees[0].amount;
-      console.log('PAYLOAD RECEIVED IS:', action.payload);
+      // console.log('PAYLOAD RECEIVED IS:', action.payload);
       return {
         ...state,
         isFetching: false,

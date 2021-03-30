@@ -20,7 +20,7 @@ const DiscoverCourseCard = ({
   courseId,
   enrolled,
   setCurrentCourseForOverview,
-  history
+  history,
 }) => {
   return (
     <CardWrapper>
@@ -34,12 +34,12 @@ const DiscoverCourseCard = ({
       </CardTitle>
       <ButtonWrapper>
         <ExploreButton
-           onClick={() => {
+          onClick={() => {
             setCurrentCourseForOverview(courseId);
-            history.push(`/discover`);
+            history.push(`/teacher/discover`);
           }}
         >
-       Explore More
+          Explore More
         </ExploreButton>
       </ButtonWrapper>
     </CardWrapper>

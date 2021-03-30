@@ -122,7 +122,7 @@ const useStyles2 = makeStyles({
 
 function CustomPaginationActionsTable(props) {
   const rows = props.rows;
-  console.log('TABLE MOUNTED');
+  // console.log('TABLE MOUNTED');
   const classes = useStyles2();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -139,7 +139,7 @@ function CustomPaginationActionsTable(props) {
     setPage(0);
   };
 
-  console.log('rows are ', rows);
+  // console.log('rows are ', rows);
 
   return (
     <TableContainer style={{ height: 380 }} component={Paper}>

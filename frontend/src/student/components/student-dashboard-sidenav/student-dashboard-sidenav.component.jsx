@@ -33,12 +33,12 @@ class StudentDashboardSidenav extends React.Component {
 
   handleSignOut = () => {
     const { signOutStart, isUserSignedIn, history } = this.props;
-    console.log('User wants to sign out');
+    // console.log('User wants to sign out');
     signOutStart();
 
     if (isUserSignedIn) {
     } else {
-      console.log('USER HAS SIGNED OUT SO NOW GO BACK TO HOMEPAGE');
+      // console.log('USER HAS SIGNED OUT SO NOW GO BACK TO HOMEPAGE');
 
       history.push('/');
     }

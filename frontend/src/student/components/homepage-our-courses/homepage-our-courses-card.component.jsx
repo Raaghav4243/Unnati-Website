@@ -25,10 +25,10 @@ const CourseCard = ({
     <CourseItem
       onClick={() => {
         // set current course overview id
-        console.log('DISPATCHING ACTION TO SET CURRENT OVERVIEW COURSE');
+        // console.log('DISPATCHING ACTION TO SET CURRENT OVERVIEW COURSE');
         setCurrentCourseForOverviewForHome(courseId);
-        console.log(history);
-        console.log('COURSE ID', courseId);
+        // console.log(history);
+        // console.log('COURSE ID', courseId);
         history.push(`${match.path}discover`);
       }}
     >

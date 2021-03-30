@@ -12,8 +12,8 @@ const HeroButton = styled(Link)`
   outline: none;
   border: none;
   cursor: pointer;
-  background-color: ${({ backgroundColor }) =>
-    backgroundColor ? backgroundColor : '#fff'};
+  background-color: ${({ background_color }) =>
+    background_color ? background_color : '#fff'};
   /* padding: ${({ big }) => (big ? '14px 48px' : '12px 30px')}; */
   width: ${({ big }) => (big ? '200px' : '180px')};
   height: ${({ big }) => (big ? '50px' : '45px')};
@@ -21,10 +21,12 @@ const HeroButton = styled(Link)`
 
   &:hover {
     transition: all 0.2s ease-in-out, font-weight 0ms;
-    background-color: ${({ backgroundColorOnHover }) =>
-      backgroundColorOnHover ? backgroundColorOnHover : '#fff'};
-    border: ${({ borderOnHover }) => (borderOnHover ? borderOnHover : '#000')};
-    color: ${({ colorOnHover }) => (colorOnHover ? colorOnHover : '#000')};
+    background-color: ${({ background_color_on_hover }) =>
+      background_color_on_hover ? background_color_on_hover : '#fff'};
+    border: ${({ border_on_hover }) =>
+      border_on_hover ? border_on_hover : '#000'};
+    color: ${({ color_on_hover }) =>
+      color_on_hover ? color_on_hover : '#000'};
     font-weight: bolder;
   }
 `;

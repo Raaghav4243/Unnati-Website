@@ -4,7 +4,7 @@ import { ReactComponent as MSExcelLogo } from '../../icons/excel.svg';
 import { Container, LogoWrapper, TestNameWrapper } from './test-tile.styles';
 
 const TestTile = ({ testName }) => {
-  console.log('TEST NAME INSIDE TILE IS', testName);
+  // console.log('TEST NAME INSIDE TILE IS', testName);
   return (
     <>
       <Container>

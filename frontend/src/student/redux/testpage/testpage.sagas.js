@@ -139,7 +139,7 @@ export function* testSagas() {
   yield all([
     call(onfetchTestStart),
     call(submitTestStart),
-    // call(onSubmittingTest),
+    call(onSubmittingTest),
   ]);
 }
 

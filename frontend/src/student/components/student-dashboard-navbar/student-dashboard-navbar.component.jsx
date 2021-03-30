@@ -7,10 +7,10 @@ import {
   NavbarRight,
 } from './student-dashboard-navbar.styles';
 
-const StudentDashboardNavbar = () => {
+const StudentDashboardNavbar = ({ forTest }) => {
   return (
     <NavbarContainer>
-      <GoToHomePageButton />
+      <GoToHomePageButton forTest={forTest} />
     </NavbarContainer>
   );
 };

@@ -8,14 +8,14 @@ import CafeActionTypes from './cafe.types';
 
 export function* fetchCafeAsync() {
   try {
-    console.log('CAFE ASYNC STARTED!');
+    // console.log('CAFE ASYNC STARTED!');
     const cafe_id = yield select(selectCurrentUserCafeId);
-    console.log('CAFE ID RECEIVED', cafe_id);
+    // console.log('CAFE ID RECEIVED', cafe_id);
     let cafeDetails = yield fetch(`/cafeinformation/${cafe_id}`);
 
     cafeDetails = yield cafeDetails.json();
 
-    console.log('cafeDetails are ', cafeDetails);
+    // console.log('cafeDetails are ', cafeDetails);
 
     cafeDetails.done
       ? yield put(fetchUserCafeSuccess(cafeDetails))

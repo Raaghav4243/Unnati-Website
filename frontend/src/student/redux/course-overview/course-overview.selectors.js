@@ -32,6 +32,11 @@ export const selectCurrentCourseOverviewError = createSelector(
   (courseOverview) => courseOverview.errorMessage
 );
 
+export const selectCurrentCourseOverviewIsFetching = createSelector(
+  [selectCourseOverview],
+  (courseOverview) => courseOverview.isFetching
+);
+
 // export const selectAssignmentMessage = createSelector(
 //   [selectAssignmentDetails],
 //   (assignmentDetails) => assignmentDetails.message

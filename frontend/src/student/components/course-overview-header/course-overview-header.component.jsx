@@ -22,8 +22,8 @@ let returnPriceRange = (availableAt) => {
         maxPrice = Math.max(maxPrice, obj.amount);
       })
     : null;
-  console.log('MIN PRICE FOR COURSE', minPrice);
-  console.log('MAX PRICE FOR COURSE', maxPrice);
+  // console.log('MIN PRICE FOR COURSE', minPrice);
+  // console.log('MAX PRICE FOR COURSE', maxPrice);
   minPrice = minPrice.toString();
   return minPrice == maxPrice ? `${maxPrice}` : `${minPrice}-${maxPrice}`;
 };

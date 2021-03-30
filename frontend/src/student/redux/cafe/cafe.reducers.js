@@ -26,7 +26,7 @@ const cafeReducer = (state = INITIAL_STATE, action) => {
         users,
       } = action.payload;
       const teacherObj = users.find((user) => user.role === 'TEACHER');
-      console.log('TEACHER', teacherObj);
+      // console.log('TEACHER', teacherObj);
       return {
         ...state,
         isFetching: false,
@@ -37,7 +37,7 @@ const cafeReducer = (state = INITIAL_STATE, action) => {
         cafeName: name,
         teacherInChargeName: `${teacherObj.firstName} ${teacherObj.lastName}`,
         teacherInChargeId: teacherObj._id,
-        number_of_classmates: userNumbers - 1, // we have subtracted 1 because one is the user itself.
+        number_of_classmates: userNumbers, // we have subtracted 1 because one is the user itself.
       };
     case CafeActionTypes.FETCH_CAFE_FAILURE:
       return {

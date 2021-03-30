@@ -45,7 +45,7 @@ class CourseSideNavSubmenu extends React.Component {
       current_topic_content_id,
     } = this.props;
     const { subnav } = this.state;
-    console.log('CURRENT TOPIC ID IS', current_topic_content_id);
+    // console.log('CURRENT TOPIC ID IS', current_topic_content_id);
     return (
       <>
         <TopicContainer

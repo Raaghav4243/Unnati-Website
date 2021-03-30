@@ -11,7 +11,7 @@ import { Container, Title, CardsWrapper } from './courses-offered.styles';
 const OurCourses = ({ allCourses }) => {
   return (
     <>
-      {console.log('ALL COURSES INSIDE OUR COURSES IS:', allCourses)}
+      {/* {console.log('ALL COURSES INSIDE OUR COURSES IS:', allCourses)} */}
       <Container>
         <Title>Our Courses</Title>
         <CardsWrapper>

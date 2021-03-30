@@ -14,10 +14,10 @@ import { fetchTestStart } from '../../redux/testpage/testpage.actions';
 import { fetchAssignmentStart } from '../../redux/assignment-page/assignment-page.actions';
 import { fetchLectureStart } from '../../redux/lecture-page/lecture-page.actions';
 
-import CourseVideo from '../course-video/course-video-page.component';
+import CourseVideoPageContainer from '../course-video/course-video-page.container';
 // import AssignmentPage from '../assignment-page/assignment-page.component';
-import AssignmentStartPage from '../assignment-start-page/assignment-start-page.component';
-import TestStartPage from '../test-start-page/test-start-page.component';
+// import AssignmentStartPage from '../assignment-start-page/assignment-start-page.component';
+// import TestStartPage from '../test-start-page/test-start-page.component';
 
 // import { ReactComponent as UnnatiLogo } from '../../icons/UnnatiTree.svg';
 
@@ -91,7 +91,7 @@ class CourseContentPage extends React.Component {
       <>
         <PageWrapper>
           {course_topic_type === 'LECTURE' ? (
-            <CourseVideo />
+            <CourseVideoPageContainer />
           ) : course_topic_type === 'ASSIGNMENT' ? (
             <AssignmentStartPageContainer />
           ) : course_topic_type === 'TEST' ? (

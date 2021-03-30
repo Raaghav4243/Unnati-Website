@@ -3,12 +3,12 @@ import React from 'react';
 import { ReactComponent as AssignmentLogo } from '../../icons/assignment.svg';
 import { ReactComponent as TestLogo } from '../../icons/trophy.svg';
 
-import Test from '../../assets/test-passed.png';
+// import Test from '../../assets/test-passed.png';
 // import { FcSurvey } from 'react-icons/fc';
 import { Container, LogoWrapper, NameWrapper } from './tile.styles';
 
 const Tile = ({ name, small }) => {
-  console.log(' NAME INSIDE TILE IS', name);
+  // console.log(' NAME INSIDE TILE IS', name);
   return (
     <>
       <Container small={small ? true : false}>

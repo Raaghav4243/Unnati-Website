@@ -21,3 +21,8 @@ export const selectLectureNotesLink = createSelector(
   [selectLectureDetails],
   (lectureDetails) => lectureDetails.notes_link
 );
+
+export const selectIsLectureFetching = createSelector(
+  [selectLectureDetails],
+  (lectureDetails) => lectureDetails.isFetching
+);

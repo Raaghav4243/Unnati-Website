@@ -40,7 +40,7 @@ const courseTopicReducer = (state = INITIAL_STATE, action) => {
       lecturesDone.forEach(
         (lectureId) => (completedTopicsId[lectureId] = 'lecture')
       );
-      console.log(completedTopicsId);
+      // console.log(completedTopicsId);
 
       return {
         ...state,

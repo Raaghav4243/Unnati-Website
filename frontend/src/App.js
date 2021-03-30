@@ -39,7 +39,7 @@ const PrivateStudentRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={(props) =>
-        isLoggedIn && userType == 'STUDENT' ? (
+        isLoggedIn && userType === 'STUDENT' ? (
           <Component {...props} />
         ) : (
           <Redirect
@@ -62,7 +62,7 @@ const PrivateTeacherRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={(props) =>
-        isLoggedIn && userType == 'TEACHER' ? (
+        isLoggedIn && userType === 'TEACHER' ? (
           <Component {...props} />
         ) : (
           <Redirect
@@ -116,60 +116,8 @@ class App extends React.Component {
                 )
               }
             />
-            {/* STUDENT ROUTES */}
-            {/* <Route
-              path='/student'
-              // component={StudentPage}
-              render={() =>
-                isUserSignedIn && userRole === 'STUDENT' ? (
-                  <StudentPage />
-                ) : (
-                  <Redirect to='/' />
-                )
-              }
-            /> */}
             <PrivateStudentRoute path='/student' component={StudentPage} />
-
             <PrivateTeacherRoute path='/teacher' component={TeacherPage} />
-
-            {/* <Route
-              path='/teacher'
-              exact
-              component={TeacherDashboardLandingPage}
-            />
-            <Route
-              path='/teacher/overview'
-              exact
-              component={CourseOverview}
-            />
-            <Route
-              path='/teacher/enrolled'
-              exact
-              component={TeacherEnrolledStudents}
-            />
-            <Route path='/teacher/approve' exact component={TeacherApproval} />
-            <Route
-              path='/teacher/testcheck'
-              exact
-              component={TeacherTestCheck}
-            />
-            <Route
-              path='/teacher/assign'
-              exact
-              component={TeacherDashboardAssignPage}
-            />
-            <Route
-              path='/teacher/studentfees'
-              exact
-              component={TeacherDashboardFeesPage}
-            />
-            <Route path='/teacher/profile' exact component={TeacherProfile} />
-            <Route
-              path='/teacher/changepassword'
-              exact
-              component={TeacherChangePassword}
-            />
-            <Route path='/teacher/evaluatetest' component={EvaluateTestPage} /> */}
           </Switch>
         </ThemeProvider>
       </BrowserRouter>

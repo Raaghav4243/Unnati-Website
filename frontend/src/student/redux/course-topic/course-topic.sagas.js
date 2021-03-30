@@ -13,6 +13,7 @@ import {
 import StudentActionTypes from '../student/student.types';
 import CourseTopicActionTypes from './course-topic.types';
 import AssignmentPageActionTypes from '../assignment-page/assignment-page.types';
+import TestPageActionTypes from '../testpage/testpage.types';
 export function* fetchCourseTopicsAsync() {
   try {
     const userId = yield select(selectCurrentUserId);
@@ -123,6 +124,13 @@ export function* OnAssignmentSubmitSuccess() {
   );
 }
 
+export function* OnTestSubmitSuccess() {
+  yield takeLatest(
+    TestPageActionTypes.SUBMIT_TEST_SUCCESS,
+    fetchCourseTopicsOnOtherActions
+  );
+}
+
 export function* OnViewedLectureForFirstTimeSuccess() {
   yield takeLatest(
     CourseTopicActionTypes.VIEWED_LECTURE_FOR_FIRST_TIME_SUCCESS,
@@ -142,6 +150,7 @@ export function* courseTopicSagas() {
     call(onfetchCourseTopicsStart),
     call(onSetCurrentCourse),
     call(OnAssignmentSubmitSuccess),
+    call(OnTestSubmitSuccess),
     call(OnViewedLectureForFirstTimeSuccess),
     call(viewedLectureForFirstTimeStart),
   ]);

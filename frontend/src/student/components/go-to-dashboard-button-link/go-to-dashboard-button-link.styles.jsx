@@ -41,6 +41,6 @@ export const GoToDashboardButtonLink = styled(Link)`
     font-size: 0.75rem;
   }
   @media screen and (max-width: 768px) {
-    font-size: 0.6rem;
+    /* font-size: 0.6rem; */
   }
 `;

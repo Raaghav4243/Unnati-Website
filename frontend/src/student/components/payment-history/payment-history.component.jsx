@@ -11,11 +11,6 @@ import CustomPaginationActionsTable from '../fees-table/styled-table-component';
 
 import {} from './payment-history.styles';
 
-// const PaymentHistory = ({ userFeeReciepts }) => {
-//   console.log('PAYMENT HISTORY IS:', userFeeReciepts);
-//   return <>{/* <div>PAYMENT HISTORY</div> */}</>;
-// };
-
 class PaymentHistory extends React.Component {
   componentDidMount() {}
   render() {
@@ -43,7 +38,6 @@ class PaymentHistory extends React.Component {
     // } else {
     // }
 
-    console.log('RECEIPTS', userFeeReciepts);
     return (
       <>
         <CustomPaginationActionsTable

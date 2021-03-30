@@ -141,7 +141,6 @@ class SignUp extends React.Component {
     this.setState({ errors: temp });
 
     if (fieldValues == this.state.resp) {
-      // console.log('SUBMIT VALIDATING..');
       return Object.values(temp).every((x) => x == '');
     }
   };
@@ -154,18 +153,12 @@ class SignUp extends React.Component {
     //   this.validate({ [name]: value });
     //   return;
     // }
-    console.log('NAME: ' + name + ' VALUE: ' + value);
+    // console.log('NAME: ' + name + ' VALUE: ' + value);
     let response = this.state.resp;
     response[name] = value;
-    //console.log(response);
-    this.setState(
-      {
-        resp: response,
-      },
-      () => {
-        console.log(this.state.resp);
-      }
-    );
+    this.setState({
+      resp: response,
+    });
     this.validate({ [name]: value });
   };
 
@@ -186,7 +179,6 @@ class SignUp extends React.Component {
 
     const data = { ...this.state.resp };
     // data['cafe'] = this.state.cafe;
-    console.log('handle submit called', data);
     if (this.validate()) {
       this.props.signUpStart(data);
       // alert('SUBMITTING FORM!');
@@ -224,7 +216,6 @@ class SignUp extends React.Component {
       resetSignUpInfo,
     } = this.props;
     const { resp } = this.state;
-    // console.log('CAFE LIST IS', cafeList);
     return (
       <>
         {/* <SignUpContainer> */}

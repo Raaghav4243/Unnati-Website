@@ -1,4 +1,4 @@
-import { takeLatest, put, all, call, delay } from 'redux-saga/effects';
+import { takeLatest, put, all, call } from 'redux-saga/effects';
 
 import {
   fetchAllCoursesSuccess,
@@ -16,7 +16,7 @@ export function* fetchAllCoursesAsync() {
 
     allCourses = yield allCourses.json();
 
-    console.log('allCourses are ', allCourses);
+    // console.log('allCourses are ', allCourses);
 
     allCourses.done
       ? yield put(fetchAllCoursesSuccess(allCourses.courses))
@@ -33,7 +33,7 @@ export function* fetchAllCafesAsync() {
 
     allCafes = yield allCafes.json();
 
-    console.log('allCafes are ', allCafes);
+    // console.log('allCafes are ', allCafes);
 
     allCafes.done
       ? yield put(fetchAllCafesSuccess(allCafes.cafes))

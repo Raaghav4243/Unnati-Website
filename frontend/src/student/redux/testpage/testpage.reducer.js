@@ -103,13 +103,6 @@ const testReducer = (state = INITIAL_STATE, action) => {
         submissionFailed: true,
         errorMessage: action.payload,
       };
-    case TestPageActionTypes.RESET_TEST_INFO:
-      return {
-        ...state,
-        submitConformation: false,
-        submissionFailed: false,
-        errorMessage: null,
-      };
     default:
       return state;
   }

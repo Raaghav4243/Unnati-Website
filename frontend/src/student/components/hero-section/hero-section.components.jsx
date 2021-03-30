@@ -40,11 +40,11 @@ const HeroSection = () => {
             onMouseLeave={onHover}
             primary='false'
             dark='false'
-            backgroundColor='#F8971D'
-            backgroundColorOnHover='transparent'
+            background_color='#F8971D'
+            background_color_on_hover='transparent'
             color='#000'
-            colorOnHover='#F8971D'
-            borderOnHover='0.5px solid #F8971D'
+            color_on_hover='#F8971D'
+            border_on_hover='0.5px solid #F8971D'
           >
             Get Started
             {hover ? <ArrowForward /> : <ArrowRight />}

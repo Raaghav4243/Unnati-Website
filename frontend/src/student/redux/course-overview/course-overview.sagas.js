@@ -34,7 +34,7 @@ export function* fetchCourseForOverviewAsync() {
 
     courseOverviewDetails = yield courseOverviewDetails.json();
 
-    console.log('courseOverviewDetails are ', courseOverviewDetails);
+    // console.log('courseOverviewDetails are ', courseOverviewDetails);
 
     courseOverviewDetails.done
       ? yield put(fetchCourseForOverviewSuccess(courseOverviewDetails))
@@ -54,7 +54,7 @@ export function* fetchCourseForOverviewForHomeAsync() {
           (course) => course._id === currentCourseOverviewId
         );
 
-        console.log('courseOverviewDetails is ', courseOverviewDetails);
+        // console.log('courseOverviewDetails is ', courseOverviewDetails);
 
         let courseOverviewFeesDetails = yield fetch(
           `/course-fees/${currentCourseOverviewId}`
@@ -62,10 +62,10 @@ export function* fetchCourseForOverviewForHomeAsync() {
 
         courseOverviewFeesDetails = yield courseOverviewFeesDetails.json();
 
-        console.log(
-          'courseOverviewFeesDetails are ',
-          courseOverviewFeesDetails
-        );
+        // console.log(
+        //   'courseOverviewFeesDetails are ',
+        //   courseOverviewFeesDetails
+        // );
 
         let courseDetailsObject = {};
 

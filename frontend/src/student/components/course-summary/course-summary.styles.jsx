@@ -17,9 +17,15 @@ export const CourseSummaryTitle = styled.div`
   font-weight: 500;
   font-size: 22px;
   line-height: 27px;
+  -ms-word-break: break-word;
+  word-break: break-word;
+  white-space: pre-wrap;
 `;
 export const CourseSummaryDetails = styled.div`
   padding: 0.5rem;
   font-size: 16px;
   line-height: 20px;
+  -ms-word-break: break-word;
+  word-break: break-word;
+  white-space: pre-wrap;
 `;

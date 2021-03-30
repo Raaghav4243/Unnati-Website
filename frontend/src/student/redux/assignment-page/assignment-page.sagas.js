@@ -20,15 +20,15 @@ export function* fetchAssignmentAsync() {
     const userId = yield select(selectCurrentUserId);
     const courseId = yield select(selectCurrentCourseId);
     const assignmentId = yield select(selectCurrentCourseTopicId);
-    console.log(
-      'FETCHING ASSIGNMENT USING',
-      userId,
-      'user',
-      courseId,
-      'course',
-      assignmentId,
-      'assignment'
-    );
+    // console.log(
+    //   'FETCHING ASSIGNMENT USING',
+    //   userId,
+    //   'user',
+    //   courseId,
+    //   'course',
+    //   assignmentId,
+    //   'assignment'
+    // );
     // console.log(
     //   'WAS PREVIOUSLY FETCHING ASSIGNMENT USING',
     //   user_id,
@@ -45,7 +45,7 @@ export function* fetchAssignmentAsync() {
 
     courseAssignmentDetails = yield courseAssignmentDetails.json();
 
-    console.log('courseAssignmentDetails are ', courseAssignmentDetails);
+    // console.log('courseAssignmentDetails are ', courseAssignmentDetails);
 
     courseAssignmentDetails.done
       ? yield put(fetchAssignmentSuccess(courseAssignmentDetails))
@@ -77,7 +77,7 @@ export function* submitAssignmentStartAsync({ payload: { data } }) {
 
     assignmentSubmittedMessage = yield assignmentSubmittedMessage.json();
 
-    console.log('assignmentSubmittedMessage is ', assignmentSubmittedMessage);
+    // console.log('assignmentSubmittedMessage is ', assignmentSubmittedMessage);
 
     assignmentSubmittedMessage.done
       ? yield put(submitAssignmentSuccess('assignment submitted'))
@@ -94,16 +94,16 @@ export function* submitAssignmentStartAsync({ payload: { data } }) {
   }
 }
 
-export function* fetchAssignmentAgain() {
-  yield put(fetchAssignmentStart());
-}
+// export function* fetchAssignmentAgain() {
+//   yield put(fetchAssignmentStart());
+// }
 
-export function* onSubmittingAssignment() {
-  yield takeLatest(
-    AssignmentPageActionTypes.SUBMIT_ASSIGNMENT_SUCCESS,
-    fetchAssignmentAgain
-  );
-}
+// export function* onSubmittingAssignment() {
+//   yield takeLatest(
+//     AssignmentPageActionTypes.SUBMIT_ASSIGNMENT_SUCCESS,
+//     fetchAssignmentAgain
+//   );
+// }
 
 export function* onFetchAssignmentStart() {
   yield takeLatest(

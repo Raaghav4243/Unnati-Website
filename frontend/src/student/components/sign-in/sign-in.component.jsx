@@ -103,7 +103,6 @@ class SignIn extends React.Component {
   }
 
   validate = (fieldValues = this.state.resp) => {
-    console.log('FIELD VALUES BEING VALIDATED ARE', fieldValues);
     let temp = { ...this.state.errors };
 
     if ('email' in fieldValues)
@@ -117,7 +116,6 @@ class SignIn extends React.Component {
     this.setState({ errors: temp });
 
     if (fieldValues == this.state.resp) {
-      console.log('SUBMIT VALIDATING..');
       return Object.values(temp).every((x) => x == '');
     }
   };
@@ -126,15 +124,9 @@ class SignIn extends React.Component {
     const { value, name } = e.target;
     let response = this.state.resp;
     response[name] = value;
-    console.log(response);
-    this.setState(
-      {
-        resp: response,
-      },
-      () => {
-        console.log(this.state.resp);
-      }
-    );
+    this.setState({
+      resp: response,
+    });
   };
 
   handleSubmit = (e) => {

@@ -122,7 +122,7 @@ class EditProfile extends React.Component {
     this.setState({ errors: temp });
 
     if (fieldValues == this.state.updatedUserInfo) {
-      console.log('SUBMIT VALIDATING..');
+      // console.log('SUBMIT VALIDATING..');
       return Object.values(temp).every((x) => x == '');
     }
   };
@@ -136,7 +136,7 @@ class EditProfile extends React.Component {
         updatedUserInfo: resp,
       },
       () => {
-        console.log(this.state);
+        // console.log(this.state);
       }
     );
     this.validate({ [name]: value });
@@ -149,7 +149,7 @@ class EditProfile extends React.Component {
       let user_id = this.props.userId;
       const { updateUserStart } = this.props;
       updateUserStart(user_id, data);
-      console.log('data on the page', data);
+      // console.log('data on the page', data);
     } else {
       alert('Fill details correctly first');
     }

@@ -4,15 +4,15 @@ import { compose } from 'redux';
 
 import { selectIsAssignmentFetching } from '../../redux/assignment-page/assignment-page.selectors';
 import WithSpinner from '../../components/with-spinner/with-spinner.component';
-import AssignmentStartPage from './assignment-start-page.component';
+import Assignment from './assignment.component';
 
 const mapStateToProps = createStructuredSelector({
   isLoading: selectIsAssignmentFetching,
 });
 
-const AssignmentStartPageContainer = compose(
+const AssignmentContainer = compose(
   connect(mapStateToProps),
   WithSpinner
-)(AssignmentStartPage);
+)(Assignment);
 
-export default AssignmentStartPageContainer;
+export default AssignmentContainer;

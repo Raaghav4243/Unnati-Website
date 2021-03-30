@@ -19,21 +19,18 @@ class StudentEnrolledCourses extends React.Component {
     super();
   }
 
-  componentDidMount() {
-    console.log('ENROLLED COURSES MOUNTED!');
-  }
-
   render() {
     const { enrolled_courses, percentStatusArray } = this.props;
-    console.log('ENROLLED COURSES ARRAY IS', enrolled_courses);
-    console.log('PERCENT STATUS ARRAY IS', percentStatusArray);
+    // console.log('ENROLLED COURSES ARRAY IS', enrolled_courses);
+    // console.log('PERCENT STATUS ARRAY IS', percentStatusArray);
     return (
       <>
         <Container>
           <Title>Enrolled Courses</Title>
           <EnrolledCourseCardWrapper>
-            {enrolled_courses
-              ? enrolled_courses.map((course, index) => (
+            {enrolled_courses ? (
+              enrolled_courses.length > 0 ? (
+                enrolled_courses.map((course, index) => (
                   <>
                     <EnrolledCourseCard
                       courseName={course.course.courseName}
@@ -43,7 +40,12 @@ class StudentEnrolledCourses extends React.Component {
                     />
                   </>
                 ))
-              : null}
+              ) : (
+                <>
+                  <h3>You have not enrolled in any courses yet...</h3>
+                </>
+              )
+            ) : null}
           </EnrolledCourseCardWrapper>
         </Container>
       </>

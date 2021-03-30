@@ -6,11 +6,11 @@ import { createStructuredSelector } from 'reselect';
 //redux used
 
 //components used
-import CourseOverviewHeader from '../../components/course-overview-header/course-overview-header.component';
-import CourseSummary from '../../components/course-summary/course-summary.component';
+import CourseOverviewHeaderContainer from '../../components/course-overview-header/course-overview-header.container';
+import CourseSummaryContainer from '../../components/course-summary/course-summary.container';
 import StudentNavbar from '../../components/student-dashboard-navbar/student-dashboard-navbar.component';
 
-import CourseMedia from '../../components/course-media/course-media.component';
+import CourseMediaContainer from '../../components/course-media/course-media.container';
 
 // styles used
 import {
@@ -68,7 +68,7 @@ class CourseOverview extends React.Component {
         {forHome ? <StudentNavbar /> : null}
         {forUser ? <CourseNavbar /> : null}
         <CourseOverviewWrapper>
-          <CourseOverviewHeader
+          <CourseOverviewHeaderContainer
             name={courseName}
             fees={coursePrice}
             availableAt={courseAvailableAt}
@@ -77,8 +77,8 @@ class CourseOverview extends React.Component {
           />
           <CourseLowerContainer>
             <CourseLowerWrapper>
-              <CourseSummary summary={courseSummary} />
-              <CourseMedia src={course_image} alt={'course-image'} />
+              <CourseSummaryContainer summary={courseSummary} />
+              <CourseMediaContainer src={course_image} alt={'course-image'} />
             </CourseLowerWrapper>
           </CourseLowerContainer>
         </CourseOverviewWrapper>
