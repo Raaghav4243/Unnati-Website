@@ -17,10 +17,6 @@ import {
 import ChangePasswordContainer from '../../components/change-password/change-password.container';
 
 class Profile extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <>

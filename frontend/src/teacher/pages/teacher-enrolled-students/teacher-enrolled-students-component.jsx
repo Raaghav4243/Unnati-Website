@@ -2,19 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import TeacherCafeDetails from '../../components/cafe-details/cafe-details.component';
-import TeacherDashboardNavbar from '../../components/teacher-dashboard-navbar/teacher-dashboard-navbar.component';
-import TeacherDashboardSidenav from '../../components/teacher-dashboard-sidenav/teacher-dashboard-sidenav.component';
 import { selectVerifiedStudents } from '../../redux/verified-students/verified-student.selectors';
 import { fetchVerifiedStudentStart } from '../../redux/verified-students/verified-students.actions';
 import {
   PageContainer,
-  PageWrapper,
 } from '../Profile-page/profile-page.styles';
 import EnrolledStudentsTableContainer from './teacher-enrolled-students.container';
 
 import {
-  Body,
-  CafeTableWrapper,
   TableWrapper,
   CafeDetailsParentWrapper,
   TextTitle,

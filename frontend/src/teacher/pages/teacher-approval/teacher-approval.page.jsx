@@ -2,8 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import TeacherCafeDetails from '../../components/cafe-details/cafe-details.component';
-import TeacherDashboardNavbar from '../../components/teacher-dashboard-navbar/teacher-dashboard-navbar.component';
-import TeacherDashboardSidenav from '../../components/teacher-dashboard-sidenav/teacher-dashboard-sidenav.component';
 import {
   selectApproveConfirmation,
   selectUnVerifiedStudents,
@@ -12,8 +10,6 @@ import { fetchUnVerifiedStudentStart } from '../../redux/unverified-students/unv
 // import EnhancedTable2 from '../../components/teacher-enrolledstudent/table2.Component';
 
 import {
-  Body,
-  CafeTableWrapper,
   TableWrapper,
   CafeDetailsParentWrapper,
   TextTitle,
@@ -21,7 +17,6 @@ import {
 import ApproveStudentTableContainer from '../../components/teacher-approval.page/teacher-approval.container';
 import {
   PageContainer,
-  PageWrapper,
 } from '../Profile-page/profile-page.styles';
 
 class TeacherApproval extends React.Component {

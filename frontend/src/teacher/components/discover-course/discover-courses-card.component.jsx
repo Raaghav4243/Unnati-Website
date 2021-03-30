@@ -18,7 +18,6 @@ import { setCurrentCourseForOverview } from '../../redux/course-overview/course-
 const DiscoverCourseCard = ({
   courseName,
   courseId,
-  enrolled,
   setCurrentCourseForOverview,
   history,
 }) => {

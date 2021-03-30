@@ -10,9 +10,7 @@ import CourseOverview from '../../../student/pages/course-overview/course-overvi
 import { Container, Prompt } from './teacher-page.styles';
 
 class TeacherPage extends React.Component {
-  constructor() {
-    super();
-  }
+
 
   render() {
     const { match, location } = this.props;

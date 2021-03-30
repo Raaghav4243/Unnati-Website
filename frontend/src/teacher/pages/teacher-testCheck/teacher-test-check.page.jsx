@@ -2,20 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import TeacherCafeDetails from '../../components/cafe-details/cafe-details.component';
-import TeacherDashboardNavbar from '../../components/teacher-dashboard-navbar/teacher-dashboard-navbar.component';
-import TeacherDashboardSidenav from '../../components/teacher-dashboard-sidenav/teacher-dashboard-sidenav.component';
 import CustomPaginationActionsTable from '../../components/teacher-testCheck/styledtable-component';
 import { fetchTestListForEvaluationStart } from '../../redux/test-evaluation/test-evaluation-list.actions';
 import { selectTestList } from '../../redux/test-evaluation/test-evaluation-list.selectors';
 import { selectTestDetails } from '../../redux/test-sheet/test-sheet.selectors';
 import {
   PageContainer,
-  PageWrapper,
 } from '../evaluate-test-page/evaluate-test.styles';
 import {
   CafeDetailsParentWrapper,
-  Body,
-  CafeTableWrapper,
   TableWrapper,
   TextTitle,
 } from './teacher-test.-check.styles';

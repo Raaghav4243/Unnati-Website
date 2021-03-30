@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles, useTheme, withStyles } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -27,9 +26,6 @@ import StyledButton from '../button-component/styled-button';
 // import { createStructuredSelector } from 'reselect';
 // import { selectTestDetails } from '../../redux/test-sheet/test-sheet.selectors';
 // import TableRow from '@material-ui/core/TableRow';
-// import TableRow from '@material-ui/core/TableRow';
-import { createMuiTheme } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 
 const useStyles1 = makeStyles((theme) => ({
   root: {

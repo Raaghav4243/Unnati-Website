@@ -3,8 +3,6 @@ import GoToHomePageButton from '../go-to-homepage-button-link/go-to-homepage-but
 
 import {
   NavbarContainer,
-  NavbarLeft,
-  NavbarRight,
 } from './teacher-dashboard-navbar.styles';
 
 const TeacherDashboardNavbar = () => {

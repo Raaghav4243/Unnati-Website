@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter, Route } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 // import StyledButton from '../button-component/styled-button';
 
@@ -27,18 +27,14 @@ import {
 import { signOutStart } from '../../redux/user/user.actions';
 
 class TeacherDashboardSidenav extends React.Component {
-  constructor() {
-    super();
-  }
+
 
   handleSignOut = () => {
     const { signOutStart, isUserSignedIn, history } = this.props;
-    console.log('User wants to sign out');
     signOutStart();
 
     if (isUserSignedIn) {
     } else {
-      console.log('USER HAS SIGNED OUT SO NOW GO BACK TO HOMEPAGE');
       // <Route path='/' />;
       history.push('/');
     }

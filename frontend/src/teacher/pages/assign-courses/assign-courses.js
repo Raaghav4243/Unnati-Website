@@ -22,7 +22,6 @@ import TeacherCafeDetails from '../../components/cafe-details/cafe-details.compo
 import {
   PageContainer,
   CafeDetailsParentWrapper,
-  PageWrapper,
   TextTitle,
   DropDownWrapper,
   StudentTitle,
@@ -33,8 +32,6 @@ import {
   DropWrapper,
   ImageWrapper,
 } from './assign.courses.styles';
-import TeacherDashboardNavbar from '../../components/teacher-dashboard-navbar/teacher-dashboard-navbar.component';
-import TeacherDashboardSidenav from '../../components/teacher-dashboard-sidenav/teacher-dashboard-sidenav.component';
 import { selectVerifiedStudents } from '../../redux/verified-students/verified-student.selectors';
 import { fetchVerifiedStudentStart } from '../../redux/verified-students/verified-students.actions';
 import { selectAllCourses } from '../../../student/redux/allCourses/all-courses.selectors';

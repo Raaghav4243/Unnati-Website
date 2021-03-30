@@ -161,13 +161,10 @@ function CustomPaginationActionsTable(props) {
                     color='#2196F3'
                     onClick={() => {
                       const responseSheetId = row.ID;
-                      console.log(responseSheetId);
 
                       const courseId = row.ButtonId;
-                      console.log('course id', courseId);
                       const { fetchTestSheetStart, test } = props;
                       fetchTestSheetStart(responseSheetId, courseId);
-                      console.log(test);
                     }}
                   >
                     VIEW RESPONSE

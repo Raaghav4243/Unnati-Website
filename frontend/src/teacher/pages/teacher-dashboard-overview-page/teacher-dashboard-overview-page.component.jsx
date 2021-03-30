@@ -1,9 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-//redux
-import { fetchUserCafeStart } from '../../redux/cafe/cafe.actions';
-import { selectUserCafeDetails } from '../../redux/cafe/cafe.selectors';
+//redu
 
 //components
 // import EnrolledCourseCard from '../../components/enrolled-course-card/enrolled-course-card.component';
@@ -15,7 +13,6 @@ import {
   PageContainer,
   CafeDetailsParentWrapper,
   DiscoverCourseParentWrapper,
-  PageWrapper,
   TextTitle,
   Container,
   DiscoverCoursesCardWrapper,

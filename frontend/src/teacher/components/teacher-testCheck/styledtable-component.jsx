@@ -17,11 +17,10 @@ import LastPageIcon from '@material-ui/icons/LastPage';
 import TableHead from '@material-ui/core/TableHead';
 import { fetchTestSheetStart } from '../../redux/test-sheet/test-sheet.actions';
 import { connect } from 'react-redux';
-import { Link, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import { selectTestDetails } from '../../redux/test-sheet/test-sheet.selectors';
 import { createMuiTheme } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import StyledButton from '../button-component/styled-button';
 // import 'BootstrapButton' from '../styled-button-component/styled-button'
 // import TableRow from '@material-ui/core/TableRow';
@@ -231,13 +230,10 @@ function CustomPaginationActionsTable(props) {
                     // color='#2196F3'
                     onClick={() => {
                       const responseSheetId = row.ID;
-                      console.log(responseSheetId);
 
                       const courseId = row.ButtonId;
-                      console.log('course id', courseId);
                       const { fetchTestSheetStart, test } = props;
                       fetchTestSheetStart(responseSheetId, courseId);
-                      console.log(test);
                     }}
                   >
                     VIEW RESPONSE

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Input, Inputname, Form, ConfirmChanges, Mainbox, ChangeHeading, FlexBoxAndHeading, FlexBox, Body, FullBody, FlexEven, ChangePasswordPage, Page} from './PasswordElements';
+import { Input, Inputname, Form, ConfirmChanges, Mainbox, ChangeHeading, FlexBoxAndHeading, FlexBox, Body,  FlexEven,  Page} from './PasswordElements';
 
 import { Component } from 'react';
 import TeacherDashboardSidenav from '../../components/teacher-dashboard-sidenav/teacher-dashboard-sidenav.component'
@@ -33,11 +33,11 @@ class ChangePassword extends Component {
                                             </Body>
                                             <Body>
                                                 <Inputname>New Password</Inputname>
-                                                <Input type="password" name="name" required pattern=".{8,12}" title="8 to 12 characters" onChange={e => { this.setState({ password: e.target.value }, () => console.log(this.state)); }} />
+                                                <Input type="password" name="name" required pattern=".{8,12}" title="8 to 12 characters" onChange={e => { this.setState({ password: e.target.value }) }} />
                                             </Body>
                                             <Body>
                                                 <Inputname>Confirm New Password</Inputname>
-                                                <Input type="password" name="name" required pattern=".{8,12}" title="8 to 12 characters" onChange={e => { this.setState({ cpassword: e.target.value }, () => console.log(this.state)); }} />
+                                                <Input type="password" name="name" required pattern=".{8,12}" title="8 to 12 characters" onChange={e => { this.setState({ cpassword: e.target.value }) }} />
                                             </Body>
                                         </FlexEven>
                                         <ConfirmChanges type="submit">Confirm Changes</ConfirmChanges >

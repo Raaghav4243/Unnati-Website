@@ -4,7 +4,6 @@ import { createStructuredSelector } from 'reselect';
 import { withStyles } from '@material-ui/core/styles';
 
 //redux
-import { fetchUserCafeStart } from '../../redux/cafe/cafe.actions';
 import { selectUserCafeDetails } from '../../redux/cafe/cafe.selectors';
 
 import {
@@ -26,9 +25,6 @@ import TeacherCafeDetails from '../../components/cafe-details/cafe-details.compo
 import {
   PageContainer,
   CafeDetailsParentWrapper,
-  PageWrapper,
-  ButtonWrapper,
-  TestWrapper,
   ButtonWrapperdiv,
   QuestionsWrapper,
   QuestionCardWrapper,
@@ -37,12 +33,8 @@ import {
   ResponseContainer,
   Prompt,
   Response,
-  Questions,
-  Answers,
-  QuestionAnswers,
   ResponseAndMarksWrapper,
   MarksWrapper,
-  CorrectAnswer,
 } from './evaluate-test.styles';
 
 const useStyles = (theme) => ({
@@ -86,7 +78,6 @@ class EvaluateTestPage extends React.Component {
   handleChange = (e) => {
     const value = e.target.value;
     const qNo = e.target.id;
-    console.log('Q NO: ', qNo);
     // let individualScore = [];
     // individualScore.push(value);
     // console.log(individualScore);
@@ -98,7 +89,6 @@ class EvaluateTestPage extends React.Component {
 
     this.setState(
       (prevState, prevProps) => {
-        console.log('PREVIOUS INDI SCORE : ', prevState.indiScore);
         let prevIndiScore = prevState.indiScore;
         prevIndiScore[qNo] = value;
         // let prevScore = Number(prevState.score);
@@ -107,29 +97,22 @@ class EvaluateTestPage extends React.Component {
         // updatedScore = updatedScore.toString();
         // console.log('UPDATED SCORE : ', updatedScore);
         return { indiScore: prevIndiScore };
-      },
-      () => console.log('UPDATED INDI SCORE : ', this.state.indiScore)
-    );
+      });
 
     this.setState(
       (prevState, prevProps) => {
-        console.log('PREVIOUS SCORE : ', prevState.score);
         let prevScore = Number(prevState.score);
         let scoreForQuestion = Number(value);
         // prevMarks = Number(prevMarks);
         let updatedScore = prevScore + scoreForQuestion - prevMarks;
         updatedScore = updatedScore.toString();
-        console.log('UPDATED SCORE : ', updatedScore);
         return { score: updatedScore };
-      },
-      () => console.log('UPDATED SCORE : ', this.state.score)
-    );
+      });
     // this.setState({ score: value });
     const { userCafe, test, courseId } = this.props;
-    console.log(courseId);
     this.setState({ courseId: courseId });
     this.setState({ studentId: test.studentId });
-    this.setState({ testId: test.testId._id }, () => console.log(this.state));
+    this.setState({ testId: test.testId._id });
   };
 
   handleSubmit = (e) => {
@@ -140,7 +123,6 @@ class EvaluateTestPage extends React.Component {
     const marksScored = this.state.score;
     const data = {};
     data['marksScored'] = marksScored;
-    console.log('pagedata', studentId, courseId, testId, data);
     updateTestScoreStart(studentId, courseId, testId, data);
   };
 
