@@ -28,7 +28,7 @@ export function* fetchCourseForOverviewAsync() {
           (course) => course._id === currentCourseOverviewId
         );
 
-        console.log('Course Overview Object is ', CourseOverviewDetails);
+        // console.log('Course Overview Object is ', CourseOverviewDetails);
 
         CourseOverviewDetails
           ? yield put(fetchCourseForOverviewSuccess(CourseOverviewDetails))

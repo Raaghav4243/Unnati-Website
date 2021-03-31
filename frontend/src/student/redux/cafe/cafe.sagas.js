@@ -11,7 +11,7 @@ export function* fetchCafeAsync() {
     // console.log('CAFE ASYNC STARTED!');
     const cafe_id = yield select(selectCurrentUserCafeId);
     // console.log('CAFE ID RECEIVED', cafe_id);
-    let cafeDetails = yield fetch(`/cafeinformation/${cafe_id}`);
+    let cafeDetails = yield fetch(`/api/cafeinformation/${cafe_id}`);
 
     cafeDetails = yield cafeDetails.json();
 

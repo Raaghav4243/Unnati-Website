@@ -5,7 +5,7 @@ export const AboutCardOne = {
   alt: '',
   title: 'LOREM IPSUM',
   info:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed dobfwjkebfjebkf,ejkbfkjebfkjebkjfbkejbkfjbekjfbkejfbkejfbkefbkjefb',
+    'Unnati was started 4 years ago with an aim to bridge the digital divide',
 };
 
 export const AboutCardTwo = {
@@ -13,7 +13,7 @@ export const AboutCardTwo = {
   alt: '',
   title: 'LOREM IPSUM',
   info:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed dobfwjkebfjebkf,ejkbfkjebfkjebkjfbkejbkfjbekjfbkejfbkejfbkefbkjefb',
+    'We provide basic and advanced digital courses to increase your skillset',
 };
 
 export const AboutCardThree = {
@@ -21,15 +21,14 @@ export const AboutCardThree = {
   alt: '',
   title: 'LOREM IPSUM',
   info:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed dobfwjkebfjebkf,ejkbfkjebfkjebkjfbkejbkfjbekjfbkejfbkejfbkefbkjefb',
+    'You can use Unnati to gain employable skills and become self sustainable',
 };
 
 export const AboutCardFour = {
   img: UnnatiTree,
   alt: '',
   title: 'LOREM IPSUM',
-  info:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed dobfwjkebfjebkf,ejkbfkjebfkjebkjfbkejbkfjbekjfbkejfbkejfbkefbkjefb',
+  info: 'Software can be used individually and/or as an educational aid',
 };
 
 export const AboutCardFive = {
@@ -37,7 +36,7 @@ export const AboutCardFive = {
   alt: '',
   title: 'LOREM IPSUM',
   info:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed dobfwjkebfjebkf,ejkbfkjebfkjebkjfbkejbkfjbekjfbkejfbkejfbkefbkjefb',
+    'We have been creating cafes, entrepreneurs & sustainable businesses since 2018',
 };
 
 export const AboutCardSix = {
@@ -45,5 +44,5 @@ export const AboutCardSix = {
   alt: '',
   title: 'LOREM IPSUM',
   info:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed dobfwjkebfjebkf,ejkbfkjebfkjebkjfbkejbkfjbekjfbkejfbkejfbkefbkjefb',
+    'Minimization of electronic waste with an aim to lower our carbon footprint',
 };

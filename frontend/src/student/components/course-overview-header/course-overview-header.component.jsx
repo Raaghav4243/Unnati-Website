@@ -26,7 +26,7 @@ let returnPriceRange = (availableAt) => {
   // : null;
   // console.log('MIN PRICE FOR COURSE', minPrice);
   // console.log('MAX PRICE FOR COURSE', maxPrice);
-  minPrice = minPrice.toString();
+  // minPrice = minPrice.toString();
   return minPrice === maxPrice ? `${maxPrice}` : `${minPrice}-${maxPrice}`;
 };
 
@@ -57,15 +57,19 @@ const CourseOverviewHeader = (props) => {
             <AvailableAtTitle>Available at:</AvailableAtTitle>
             <span style={{ color: 'white', fontWeight: '100' }}> | </span>
             {availableAt
-              ? availableAt.map((obj) => (
-                  <span
-                    key={obj.cafe._id}
-                    style={{ color: 'white', fontWeight: '100' }}
-                  >
-                    {' '}
-                    {obj.cafe.name} |
-                  </span>
-                ))
+              ? availableAt.map((obj) => {
+                  if (obj.cafe) {
+                    return (
+                      <span
+                        key={obj.cafe._id}
+                        style={{ color: 'white', fontWeight: '100' }}
+                      >
+                        {' '}
+                        {obj.cafe.name} |
+                      </span>
+                    );
+                  }
+                })
               : null}
           </CourseAvailableAtWrapper>
         )}

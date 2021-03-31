@@ -13,7 +13,7 @@ Login :
 */
 
 import React from 'react';
-import SignUp from '../../components/sign-up/sign-up.component';
+import SignUpContainer from '../../components/sign-up/sign-up.container';
 import SignIn from '../../components/sign-in/sign-in.component';
 
 import {
@@ -43,7 +43,7 @@ class SignInAndSignUpPage extends React.Component {
             <SignUpWrapper>
               <MainTitle>Don't have an account?</MainTitle>
               <Title>Sign up today</Title>
-              <SignUp />
+              <SignUpContainer />
             </SignUpWrapper>
           </Container>
         </SignInAndSignUpContainer>

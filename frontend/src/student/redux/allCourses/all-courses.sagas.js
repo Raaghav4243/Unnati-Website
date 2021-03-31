@@ -12,7 +12,7 @@ import AllCoursesActionTypes from './all-courses.types';
 export function* fetchAllCoursesAsync() {
   try {
     //yield delay(3000);
-    let allCourses = yield fetch(`/all-courses`);
+    let allCourses = yield fetch(`/api/all-courses`);
 
     allCourses = yield allCourses.json();
 
@@ -29,7 +29,7 @@ export function* fetchAllCoursesAsync() {
 export function* fetchAllCafesAsync() {
   try {
     //yield delay(3000);
-    let allCafes = yield fetch(`/cafe-list`);
+    let allCafes = yield fetch(`/api/cafe-list`);
 
     allCafes = yield allCafes.json();
 

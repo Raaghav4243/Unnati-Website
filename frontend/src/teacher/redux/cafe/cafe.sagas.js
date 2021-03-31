@@ -9,7 +9,7 @@ import CafeActionTypes from './cafe.types';
 export function* fetchCafeAsync() {
   try {
     const cafe_id = yield select(selectCurrentUserCafeId);
-    let cafeDetails = yield fetch(`/cafeinformation/${cafe_id}`);
+    let cafeDetails = yield fetch(`/api/cafeinformation/${cafe_id}`);
     cafeDetails = yield cafeDetails.json();
     cafeDetails.done
       ? yield put(fetchUserCafeSuccess(cafeDetails))

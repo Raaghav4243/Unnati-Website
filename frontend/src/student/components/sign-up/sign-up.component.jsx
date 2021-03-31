@@ -331,9 +331,13 @@ class SignUp extends React.Component {
             <MenuItem value='' disabled>
               None
             </MenuItem>
-            {cafeList.map((cafe) => (
-              <MenuItem value={cafe._id}>{cafe.name}</MenuItem>
-            ))}
+            {cafeList
+              ? cafeList.map((cafe) => (
+                  <MenuItem value={cafe._id} key={cafe._id}>
+                    {cafe.name}
+                  </MenuItem>
+                ))
+              : null}
           </TextField>
 
           {/* <SelectionWrapper> */}

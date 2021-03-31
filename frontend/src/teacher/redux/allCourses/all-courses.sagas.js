@@ -9,7 +9,7 @@ import AllCoursesActionTypes from './all-courses.types';
 
 export function* fetchAllCoursesAsync() {
   try {
-    let allCourses = yield fetch(`/all-courses`);
+    let allCourses = yield fetch(`/api/all-courses`);
     allCourses = yield allCourses.json();
     allCourses.done
       ? yield put(fetchAllCoursesSuccess(allCourses.courses))

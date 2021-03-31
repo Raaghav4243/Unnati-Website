@@ -39,6 +39,6 @@ export const AboutItemTitle = styled.h3`
 
 export const AboutItemInfo = styled.p`
   overflow: hidden;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   text-align: center;
 `;

@@ -9,10 +9,10 @@ import FeeAmountTypes from './fee-amount.types';
 
 export function* fetchFeeAmountAsync() {
   try {
-    console.log('FEE AMOUNT SAGA IS GETTING CALLED');
+    // console.log('FEE AMOUNT SAGA IS GETTING CALLED');
     const userId = yield select(selectCurrentUserId);
 
-    let feeAmountDetails = yield fetch(`/FeesStatus/user/${userId}`);
+    let feeAmountDetails = yield fetch(`/api/FeesStatus/user/${userId}`);
 
     feeAmountDetails = yield feeAmountDetails.json();
 

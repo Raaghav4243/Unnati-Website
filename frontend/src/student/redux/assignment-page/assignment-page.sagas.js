@@ -21,7 +21,7 @@ export function* fetchAssignmentAsync() {
     const assignmentId = yield select(selectCurrentCourseTopicId);
 
     let courseAssignmentDetails = yield fetch(
-      `/enrolled-course/${userId}/course/${courseId}/assignment/${assignmentId}`
+      `/api/enrolled-course/${userId}/course/${courseId}/assignment/${assignmentId}`
     );
 
     courseAssignmentDetails = yield courseAssignmentDetails.json();
@@ -44,7 +44,7 @@ export function* submitAssignmentStartAsync({ payload: { data } }) {
     const assignmentId = yield select(selectCurrentCourseTopicId);
     const courseId = yield select(selectCurrentCourseId);
     let assignmentSubmittedMessage = yield fetch(
-      `/enrolled-course/${userId}/course/${courseId}/assignment/${assignmentId}`,
+      `/api/enrolled-course/${userId}/course/${courseId}/assignment/${assignmentId}`,
       {
         method: 'POST', // or 'PUT'
         headers: {

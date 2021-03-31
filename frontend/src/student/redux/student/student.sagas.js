@@ -11,11 +11,11 @@ import StudentActionTypes from './student.types';
 export function* fetchEnrolledCoursesAsync() {
   try {
     const userId = yield select(selectCurrentUserId);
-    let enrolledCoursesDetails = yield fetch(`/enrolled-courses/${userId}`);
+    let enrolledCoursesDetails = yield fetch(`/api/enrolled-courses/${userId}`);
 
     enrolledCoursesDetails = yield enrolledCoursesDetails.json();
 
-    console.log('enrolledCoursesDetails are ', enrolledCoursesDetails);
+    // console.log('enrolledCoursesDetails are ', enrolledCoursesDetails);
 
     enrolledCoursesDetails.done
       ? yield put(fetchEnrolledCoursesSuccess(enrolledCoursesDetails))

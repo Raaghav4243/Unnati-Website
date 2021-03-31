@@ -27,12 +27,12 @@ export function* fetchLectureAsync() {
     //   'lecture'
     // );
     let courseLectureDetails = yield fetch(
-      `/enrolled-course/${userId}/course/${courseId}/lecture/${lectureId}`
+      `/api/enrolled-course/${userId}/course/${courseId}/lecture/${lectureId}`
     );
 
     courseLectureDetails = yield courseLectureDetails.json();
 
-    console.log('courseLectureDetails are ', courseLectureDetails);
+    // console.log('courseLectureDetails are ', courseLectureDetails);
 
     courseLectureDetails.done
       ? yield put(fetchLectureSuccess(courseLectureDetails))

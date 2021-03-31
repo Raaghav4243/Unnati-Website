@@ -24,12 +24,12 @@ export function* fetchTestAsync() {
     const testId = yield select(selectCurrentCourseTopicId);
 
     let courseTestDetails = yield fetch(
-      `/enrolled-course/${userId}/course/${courseId}/test/${testId}`
+      `/api/enrolled-course/${userId}/course/${courseId}/test/${testId}`
     );
 
     courseTestDetails = yield courseTestDetails.json();
 
-    console.log('courseTestDetails are ', courseTestDetails);
+    // console.log('courseTestDetails are ', courseTestDetails);
 
     courseTestDetails.done
       ? yield put(fetchTestSuccess(courseTestDetails))
@@ -58,7 +58,7 @@ export function* submitTestStartAsync({ payload: { data } }) {
       let questionId = questionAndUserResponse[0];
       let userResponseArray = questionAndUserResponse[1];
       return fetch(
-        `/submit-response/user/${userId}/test/${testId}/question/${questionId}`,
+        `/api/submit-response/user/${userId}/test/${testId}/question/${questionId}`,
         {
           method: 'POST', // or 'PUT'
           headers: {
@@ -72,7 +72,7 @@ export function* submitTestStartAsync({ payload: { data } }) {
     const result = yield all(questionPromises);
 
     let testSubmittedMessage = yield fetch(
-      `/enrolled-course/${userId}/course/${courseId}/test/${testId}`,
+      `/api/enrolled-course/${userId}/course/${courseId}/test/${testId}`,
       {
         method: 'POST', // or 'PUT'
         headers: {

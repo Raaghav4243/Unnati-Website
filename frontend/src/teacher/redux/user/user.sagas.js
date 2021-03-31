@@ -17,7 +17,7 @@ import { UserActionTypes } from './user.types';
 
 export function* isUserAuthenticated() {
   try {
-    console.log('USER ASYNC IS GETTING CALLED');
+    // console.log('USER ASYNC IS GETTING CALLED');
     // localStorage.removeItem('user');
     let token = yield localStorage.getItem('token');
     let userData = yield localStorage.getItem('user');
@@ -27,15 +27,15 @@ export function* isUserAuthenticated() {
     // yield put(signInSuccess(userData));
 
     if (token && userData) {
-      console.log('USER DATA FOUND!');
-      console.log('USER DATA INSIDE SAGA IS', userData);
+      // console.log('USER DATA FOUND!');
+      // console.log('USER DATA INSIDE SAGA IS', userData);
       // check if token is valid
 
       // if yes, then sign in the user
       yield put(signInSuccess(userData));
       // if no, then remove the token and the user from the local storage
     } else {
-      console.log('USER DATA NOT FOUND!');
+      // console.log('USER DATA NOT FOUND!');
       yield localStorage.removeItem('token');
       yield localStorage.removeItem('user');
       yield put(userSessionExpired());
@@ -49,7 +49,7 @@ export function* isUserAuthenticated() {
 
 export function* signOutAsync() {
   try {
-    console.log('SIGN OUT USER ASYNC IS GETTING CALLED');
+    // console.log('SIGN OUT USER ASYNC IS GETTING CALLED');
     // localStorage.removeItem('user');
     yield localStorage.removeItem('token');
     yield localStorage.removeItem('user');
@@ -62,7 +62,7 @@ export function* signOutAsync() {
 
 export function* updateUserAsync({ payload: { user_id, data } }) {
   try {
-    let UserUpdation = yield fetch(`/updateUser/${user_id}`, {
+    let UserUpdation = yield fetch(`/api/updateUser/${user_id}`, {
       method: 'POST', // or 'PUT'
       headers: {
         'Content-Type': 'application/json',
@@ -71,21 +71,21 @@ export function* updateUserAsync({ payload: { user_id, data } }) {
     });
 
     UserUpdation = yield UserUpdation.json();
-    console.log('User Updation IS', UserUpdation);
+    // console.log('User Updation IS', UserUpdation);
     if (UserUpdation.done) {
       // update local storage
       let userData = yield localStorage.getItem('user');
 
       userData = JSON.parse(userData);
-      console.log('NEW DATA IS', data);
-      console.log('CURRENT USER DATA IN LOCAL STORAGE IS', userData);
+      // console.log('NEW DATA IS', data);
+      // console.log('CURRENT USER DATA IN LOCAL STORAGE IS', userData);
 
       userData = {
         ...userData,
         ...data,
       };
 
-      console.log('UPDATED USER DATA IN LOCAL STORAGE IS', userData);
+      // console.log('UPDATED USER DATA IN LOCAL STORAGE IS', userData);
       localStorage.setItem('user', JSON.stringify(userData));
 
       yield put(updateUserSuccess('User updated!'));
@@ -98,10 +98,10 @@ export function* updateUserAsync({ payload: { user_id, data } }) {
 }
 
 export function* signInWithEmail({ payload }) {
-  console.log('DATA BEFORE POST REQUEST IS', payload);
+  // console.log('DATA BEFORE POST REQUEST IS', payload);
   let data = payload;
   try {
-    let UserObj = yield fetch('/login', {
+    let UserObj = yield fetch('/api/login', {
       method: 'POST', // or 'PUT'
       headers: {
         'Content-Type': 'application/json',
@@ -110,7 +110,7 @@ export function* signInWithEmail({ payload }) {
     });
 
     UserObj = yield UserObj.json();
-    console.log('USER OBJ IS', UserObj);
+    // console.log('USER OBJ IS', UserObj);
     if (UserObj.done) {
       localStorage.setItem('token', UserObj.token);
       localStorage.setItem('user', JSON.stringify(UserObj.user));
@@ -124,10 +124,10 @@ export function* signInWithEmail({ payload }) {
 }
 
 export function* signUp({ payload }) {
-  console.log('DATA BEFORE POST REQUEST IS', payload);
+  // console.log('DATA BEFORE POST REQUEST IS', payload);
   let data = payload;
   try {
-    let UserObj = yield fetch('/signup', {
+    let UserObj = yield fetch('/api/signup', {
       method: 'POST', // or 'PUT'
       headers: {
         'Content-Type': 'application/json',
@@ -136,7 +136,7 @@ export function* signUp({ payload }) {
     });
 
     UserObj = yield UserObj.json();
-    console.log('USER OBJ IS', UserObj);
+    // console.log('USER OBJ IS', UserObj);
     if (UserObj.done) {
       yield put(signUpSuccess());
     } else {

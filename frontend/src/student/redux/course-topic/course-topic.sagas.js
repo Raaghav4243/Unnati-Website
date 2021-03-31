@@ -18,13 +18,13 @@ export function* fetchCourseTopicsAsync() {
   try {
     const userId = yield select(selectCurrentUserId);
     const courseId = yield select(selectCurrentCourseId);
-    console.log(
-      'FETCHING COURSE TOPICS USING',
-      userId,
-      'user',
-      courseId,
-      'course'
-    );
+    // console.log(
+    //   'FETCHING COURSE TOPICS USING',
+    //   userId,
+    //   'user',
+    //   courseId,
+    //   'course'
+    // );
     // console.log(
     //   'WAS PREVIOUSLY FETCHING COURSE TOPICS USING',
     //   user_id,
@@ -33,15 +33,15 @@ export function* fetchCourseTopicsAsync() {
     //   'course'
     // );
     let CourseTopicsAndCompletionDetails = yield fetch(
-      `/enrolled-course/${userId}/course/${courseId}`
+      `/api/enrolled-course/${userId}/course/${courseId}`
     );
 
     CourseTopicsAndCompletionDetails = yield CourseTopicsAndCompletionDetails.json();
 
-    console.log(
-      'CourseTopicsAndCompletionDetails are ',
-      CourseTopicsAndCompletionDetails
-    );
+    // console.log(
+    //   'CourseTopicsAndCompletionDetails are ',
+    //   CourseTopicsAndCompletionDetails
+    // );
 
     CourseTopicsAndCompletionDetails.done
       ? yield put(fetchCourseTopicsSuccess(CourseTopicsAndCompletionDetails))
@@ -57,18 +57,18 @@ export function* viewedLectureForFirstTimeAsync({ payload: { lectureId } }) {
   try {
     const userId = yield select(selectCurrentUserId);
     const courseId = yield select(selectCurrentCourseId);
-    console.log(
-      'VIEWED LECTURE FOR FIRST TIME CALL MADE USING',
-      userId,
-      'user',
-      courseId,
-      'course',
-      lectureId,
-      'lecture'
-    );
+    // console.log(
+    //   'VIEWED LECTURE FOR FIRST TIME CALL MADE USING',
+    //   userId,
+    //   'user',
+    //   courseId,
+    //   'course',
+    //   lectureId,
+    //   'lecture'
+    // );
 
     let viewedLectureForFirstTimeMessage = yield fetch(
-      `/enrolled-course/${userId}/course/${courseId}/lecture/${lectureId}`,
+      `/api/enrolled-course/${userId}/course/${courseId}/lecture/${lectureId}`,
       {
         method: 'POST', // or 'PUT'
         headers: {
@@ -80,10 +80,10 @@ export function* viewedLectureForFirstTimeAsync({ payload: { lectureId } }) {
 
     viewedLectureForFirstTimeMessage = yield viewedLectureForFirstTimeMessage.json();
 
-    console.log(
-      'viewedLectureForFirstTimeMessage is ',
-      viewedLectureForFirstTimeMessage
-    );
+    // console.log(
+    //   'viewedLectureForFirstTimeMessage is ',
+    //   viewedLectureForFirstTimeMessage
+    // );
 
     viewedLectureForFirstTimeMessage.done
       ? yield put(

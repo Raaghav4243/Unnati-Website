@@ -62,7 +62,7 @@ export function* signOutAsync() {
 
 export function* updateUserAsync({ payload: { user_id, data } }) {
   try {
-    let UserUpdation = yield fetch(`/updateUser/${user_id}`, {
+    let UserUpdation = yield fetch(`/api/updateUser/${user_id}`, {
       method: 'POST', // or 'PUT'
       headers: {
         'Content-Type': 'application/json',
@@ -101,7 +101,7 @@ export function* signInWithEmail({ payload }) {
   // console.log('DATA BEFORE POST REQUEST IS', payload);
   let data = payload;
   try {
-    let UserObj = yield fetch('/login', {
+    let UserObj = yield fetch('/api/login', {
       method: 'POST', // or 'PUT'
       headers: {
         'Content-Type': 'application/json',
@@ -127,7 +127,7 @@ export function* signUp({ payload }) {
   // console.log('DATA BEFORE POST REQUEST IS', payload);
   let data = payload;
   try {
-    let UserObj = yield fetch('/signup', {
+    let UserObj = yield fetch('/api/signup', {
       method: 'POST', // or 'PUT'
       headers: {
         'Content-Type': 'application/json',

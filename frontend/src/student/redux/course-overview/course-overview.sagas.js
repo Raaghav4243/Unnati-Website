@@ -29,7 +29,7 @@ export function* fetchCourseForOverviewAsync() {
     const cafeId = yield select(selectCurrentUserCafeId);
 
     let courseOverviewDetails = yield fetch(
-      `/cafe/${cafeId}/coursedetail/${currentCourseOverviewId}`
+      `/api/cafe/${cafeId}/coursedetail/${currentCourseOverviewId}`
     );
 
     courseOverviewDetails = yield courseOverviewDetails.json();
@@ -57,7 +57,7 @@ export function* fetchCourseForOverviewForHomeAsync() {
         // console.log('courseOverviewDetails is ', courseOverviewDetails);
 
         let courseOverviewFeesDetails = yield fetch(
-          `/course-fees/${currentCourseOverviewId}`
+          `/api/course-fees/${currentCourseOverviewId}`
         );
 
         courseOverviewFeesDetails = yield courseOverviewFeesDetails.json();

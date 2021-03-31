@@ -1,20 +1,37 @@
 const express = require('express');
-const app = express();
 const mongoose = require('mongoose');
 const cors = require('cors');
+const config = require('./config/key');
 
 require('dotenv').config();
 require('./models/user');
 
+const app = express();
+
+mongoose.connect(config.mongoURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+mongoose.connection.on('connected', () => {
+  console.log('connected to mongo');
+});
+mongoose.connection.on('err', () => {
+  console.log('error while connecting', err);
+});
+
 const User = mongoose.model('User');
 const authenticate = require('./middleware/authenticate');
 const restrictTo = require('./middleware/restrictTo');
-app.use(cors());
+
 app.use(express.json());
-app.use(require('./routes/auth/auth'));
-app.use(require('./routes/admin/index'));
-app.use(require('./routes/student/index'));
-app.use(require('./routes/teacher/index'));
+
+// CORS Middleware
+app.use(cors());
+
+app.use('/api', require('./routes/auth/auth'));
+app.use('/api', require('./routes/admin/index'));
+app.use('/api', require('./routes/student/index'));
+app.use('/api', require('./routes/teacher/index'));
 
 // app.get("/",authenticate,(req,res)=>{
 //     res.send("its Protected")
@@ -28,17 +45,6 @@ app.use(require('./routes/teacher/index'));
 //         console.log(error);
 //     }
 // })
-
-mongoose.connect(process.env.MONGOURI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-mongoose.connection.on('connected', () => {
-  console.log('connected to mongo');
-});
-mongoose.connection.on('err', () => {
-  console.log('error while connecting', err);
-});
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === 'production') {

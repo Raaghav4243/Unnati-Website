@@ -1,18 +1,18 @@
-import { all, call, put, select, takeLatest } from "redux-saga/effects";
-import { selectUserCafeId } from "../cafe/cafe.selectors";
+import { all, call, put, select, takeLatest } from 'redux-saga/effects';
+import { selectUserCafeId } from '../cafe/cafe.selectors';
 import {
   fetchTestListForEvaluationFailure,
   fetchTestListForEvaluationSuccess,
   updateTestScoreSuccess,
   updateTestScoreFailure,
-} from "./test-evaluation-list.actions";
-import { TestEvaluationType } from "./test-evaluation-list.types";
+} from './test-evaluation-list.actions';
+import { TestEvaluationType } from './test-evaluation-list.types';
 
 export function* fetchTestListAsync() {
   try {
-    const cafeId = yield select(selectUserCafeId)
-    
-    let testList = yield fetch(`/loadPendingEvaluations/${cafeId}`);
+    const cafeId = yield select(selectUserCafeId);
+
+    let testList = yield fetch(`/api/loadPendingEvaluations/${cafeId}`);
     testList = yield testList.json();
 
     yield put(fetchTestListForEvaluationSuccess(testList.pendingEvaluations));
@@ -26,21 +26,21 @@ export function* updateTestScoreStartAsync({
 }) {
   try {
     yield fetch(
-      `/evaluateTest/student/${studentId}/course/${courseId}/test/${testId}`,
+      `/api/evaluateTest/student/${studentId}/course/${courseId}/test/${testId}`,
       {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
       }
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log("fees updated", data);
+        // console.log("fees updated", data);
       });
 
-    yield put(updateTestScoreSuccess("score updated"));
+    yield put(updateTestScoreSuccess('score updated'));
   } catch (error) {
     yield put(updateTestScoreFailure(error));
   }

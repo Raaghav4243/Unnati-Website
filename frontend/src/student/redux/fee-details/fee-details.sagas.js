@@ -10,7 +10,7 @@ export function* FetchFeeDetailAsync() {
   try {
     const userId = yield select(selectCurrentUserId);
 
-    let feeTransactionDetails = yield fetch(`/user-receipts/${userId}`);
+    let feeTransactionDetails = yield fetch(`/api/user-receipts/${userId}`);
 
     feeTransactionDetails = yield feeTransactionDetails.json();
 
